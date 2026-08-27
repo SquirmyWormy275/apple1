@@ -5,6 +5,18 @@ syntax, 6502 byte sequences, program flow, screenshots, and presentation
 scripts. Emulator results are useful software evidence but never prove a
 Replica 1 Plus electrical, Propeller, PS/2, FT232R, or timing behavior.
 
+The repository now includes `tools/apple1_emulator.py`: a pinned Py65-backed,
+ROM-free harness that executes the RAM-only `$0300` programs with Apple-1
+keyboard high-bit input and a Monitor ECHO stub. It is deliberately narrower
+than a complete Apple-1 machine emulator: it does not ship a Woz Monitor ROM,
+emulate the Propeller, or open serial hardware.
+
+```powershell
+python -m pip install -r requirements-dev.txt
+python -m pytest tests\test_apple1_emulator.py -q
+python .\tools\apple1_emulator.py .\software\ram-only\line-input-0300.hex --input "HI`r"
+```
+
 ## Repeatable rehearsal packet
 
 - Emulator name/version and ROM image provenance
