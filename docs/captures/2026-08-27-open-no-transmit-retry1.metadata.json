@@ -1,0 +1,23 @@
+{
+  "target_identity": {
+    "by_id": "/dev/serial/by-id/usb-FTDI_FT232R_USB_UART_00000000-if00-port0",
+    "by_path": "/dev/serial/by-path/platform-xhci-hcd.0-usbv2-0:2:1.0-port0"
+  },
+  "timestamp_utc": "2026-08-27T16:42:20.901092+00:00",
+  "board_revision": "unverified",
+  "power_source": "unverified; board has a physical power switch",
+  "usb_topology": "platform-xhci-hcd.0-usbv2-0:2:1.0-port0",
+  "result": "STOP",
+  "test_card": "FT232R open with no transmit",
+  "control_policy_requested": {
+    "dtr": false,
+    "rts": false
+  },
+  "observations": [
+    "The FT232R session opened, settled for approximately 0.2 seconds, drained no startup bytes, and closed normally.",
+    "The Replica display became garbage during the session.",
+    "Physical Reset restored a stable monitor prompt and flashing @ cursor."
+  ],
+  "conclusion": "Confirmed: opening the FT232R through the host serial stack is sufficient to disturb the board. Unverified: the electrical mechanism; no scope or logic-analyzer trace was captured.",
+  "recovery": "Use the physical Reset button; do not use Clear or repeat a serial open until board-path measurement is available."
+}
