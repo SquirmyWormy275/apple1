@@ -18,6 +18,13 @@ temporary wiring, soldering, or other physical modification.
   evidence collection with hashes and no serial-device access.
 - [Firmware behavior model](docs/firmware-behavior-model.md): executable
   pre-change contract for a future single-writer candidate.
+- [Virtual LLM bridge](docs/virtual-llm-bridge.md): full software rehearsal
+  using the local 6502 harness and an optional local Ollama model, with no
+  serial-device path.
+- [Firmware static audit](docs/firmware-static-audit.md),
+  [collection archive](docs/collection-archive.md), and
+  [logic-trace validation](docs/logic-trace-validation.md): off-device
+  source, provenance, and evidence-packet preparation.
 - [RAM-only software library](docs/apple1-software-library.md) and
   [emulator/demo guide](docs/emulator-demo-guide.md): safe software rehearsal
   and deterministic terminal formatting.
