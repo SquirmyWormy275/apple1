@@ -98,9 +98,10 @@ class PySerialTransport:
             import serial
         except ImportError as error:  # pragma: no cover - exercised on the Pi
             raise RuntimeError("pyserial is required for an opened serial session") from error
-        self._serial = serial.Serial(port=None, timeout=0.2, **settings)
-        self._serial.dtr = False
-        self._serial.rts = False
+        serial_settings = {key: value for key, value in settings.items() if key not in {"dtr", "rts"}}
+        self._serial = serial.Serial(port=None, timeout=0.2, **serial_settings)
+        self._serial.dtr = bool(settings["dtr"])
+        self._serial.rts = bool(settings["rts"])
 
     def open(self) -> None:
         if self._serial is None:

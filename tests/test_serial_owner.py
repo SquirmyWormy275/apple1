@@ -1,12 +1,15 @@
 from __future__ import annotations
 
 import json
+import sys
+import types
 from pathlib import Path
 
 import pytest
 
 from tools.serial_owner import (
     DeviceIdentityError,
+    PySerialTransport,
     SerialOwner,
     TargetIdentity,
     TargetLockedError,
@@ -118,3 +121,34 @@ def test_mismatched_identity_paths_fail_closed(tmp_path: Path) -> None:
     second.touch()
     with pytest.raises(DeviceIdentityError):
         TargetIdentity(by_id=first, by_path=second).validate()
+
+
+def test_pyserial_transport_sets_control_lines_before_open(monkeypatch: pytest.MonkeyPatch, tmp_path: Path) -> None:
+    calls: dict[str, object] = {}
+
+    class FakeSerial:
+        def __init__(self, **kwargs: object) -> None:
+            calls["kwargs"] = kwargs
+            self.dtr = True
+            self.rts = True
+            self.port: str | None = None
+            self.is_open = False
+
+    monkeypatch.setitem(sys.modules, "serial", types.SimpleNamespace(Serial=FakeSerial))
+    transport = PySerialTransport(tmp_path / "ttyUSB0")
+
+    transport.configure(**SerialOwner.SETTINGS)
+
+    assert calls["kwargs"] == {
+        "port": None,
+        "timeout": 0.2,
+        "baudrate": 9600,
+        "bytesize": 8,
+        "parity": "N",
+        "stopbits": 1,
+        "xonxoff": False,
+        "rtscts": False,
+        "dsrdtr": False,
+    }
+    assert transport._serial.dtr is False
+    assert transport._serial.rts is False
