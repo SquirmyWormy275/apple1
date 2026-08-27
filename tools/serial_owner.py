@@ -9,10 +9,11 @@ from __future__ import annotations
 import argparse
 import json
 import os
+import time
 from dataclasses import dataclass
 from datetime import UTC, datetime
 from pathlib import Path
-from typing import Protocol
+from typing import Callable, Protocol
 
 
 DEFAULT_BY_ID = Path("/dev/serial/by-id/usb-FTDI_FT232R_USB_UART_00000000-if00-port0")
@@ -34,7 +35,7 @@ class SerialTransport(Protocol):
 
     def close(self) -> None: ...
 
-    def read(self, size: int) -> bytes: ...
+    def read_available(self) -> bytes: ...
 
     def write(self, payload: bytes) -> int: ...
 
@@ -112,10 +113,10 @@ class PySerialTransport:
         if self._serial is not None and self._serial.is_open:
             self._serial.close()
 
-    def read(self, size: int) -> bytes:
+    def read_available(self) -> bytes:
         if self._serial is None:
             raise RuntimeError("transport is not configured")
-        return self._serial.read(size)
+        return self._serial.read(self._serial.in_waiting)
 
     def write(self, payload: bytes) -> int:
         if self._serial is None:
@@ -142,11 +143,15 @@ class SerialOwner:
         lock_path: Path,
         transport: SerialTransport,
         capture_path: Path | None = None,
+        settle_seconds: float = 0.2,
+        sleep: Callable[[float], None] = time.sleep,
     ) -> None:
         self.target = target
         self.lock = ExclusiveLock(lock_path)
         self.transport = transport
         self.capture_path = capture_path
+        self.settle_seconds = settle_seconds
+        self.sleep = sleep
         self.quarantined = False
         self.opened = False
 
@@ -161,6 +166,9 @@ class SerialOwner:
             self.transport.open()
             self.opened = True
             self._record("opened", control_policy={"dtr": False, "rts": False})
+            self.sleep(self.settle_seconds)
+            startup_bytes = self.transport.read_available()
+            self._record("startup_drained", payload_hex=startup_bytes.hex())
         except Exception:
             self.close()
             raise

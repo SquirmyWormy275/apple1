@@ -22,7 +22,7 @@ class FakeTransport:
         self.closed = False
         self.settings: dict[str, object] = {}
         self.writes: list[bytes] = []
-        self.in_waiting = 0
+        self.startup_bytes = b""
 
     def configure(self, **settings: object) -> None:
         self.settings = settings
@@ -33,8 +33,8 @@ class FakeTransport:
     def close(self) -> None:
         self.closed = True
 
-    def read(self, size: int) -> bytes:
-        return b""
+    def read_available(self) -> bytes:
+        return self.startup_bytes
 
     def write(self, payload: bytes) -> int:
         self.writes.append(payload)
@@ -110,8 +110,37 @@ def test_capture_records_identity_control_policy_and_raw_bytes(tmp_path: Path) -
     assert records[0]["event"] == "opened"
     assert records[0]["identity"]["by_id"] == str(target.by_id)
     assert records[0]["control_policy"] == {"dtr": False, "rts": False}
-    assert records[1]["event"] == "transmit"
-    assert records[1]["payload_hex"] == "54"
+    assert records[1]["event"] == "startup_drained"
+    assert records[2]["event"] == "transmit"
+    assert records[2]["payload_hex"] == "54"
+
+
+def test_open_settles_and_captures_startup_bytes(tmp_path: Path) -> None:
+    target = identity(tmp_path)
+    capture_path = tmp_path / "capture.jsonl"
+    transport = FakeTransport()
+    transport.startup_bytes = b"\xff\x00"
+    elapsed: list[float] = []
+    owner = SerialOwner(
+        target,
+        tmp_path / "owner.lock",
+        transport,
+        capture_path,
+        settle_seconds=0.2,
+        sleep=elapsed.append,
+    )
+
+    owner.acquire_and_open()
+    owner.close()
+
+    records = [json.loads(line) for line in capture_path.read_text().splitlines()]
+    assert elapsed == [0.2]
+    assert records[1] == {
+        "event": "startup_drained",
+        "identity": target.as_record(),
+        "payload_hex": "ff00",
+        "timestamp": records[1]["timestamp"],
+    }
 
 
 def test_mismatched_identity_paths_fail_closed(tmp_path: Path) -> None:
