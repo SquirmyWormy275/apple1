@@ -1,0 +1,37 @@
+{
+  "status": "candidate-not-eeprom-readback",
+  "source_url": "https://wiki.reactivemicro.com/Replica_1",
+  "archive_filename": "2019-04-28_-_Replica_1_-_JGK_Firmware.rar",
+  "retrieved_on": "2026-08-25",
+  "archive_metadata": {
+    "project": "replica 110REV03",
+    "archived_on": "2014-05-27",
+    "tool": "Propeller Tool 1.3.2"
+  },
+  "files": {
+    "_README_.txt": "0AC01C969B391B2A15DC5A45DF9A54CB2893481EC83DFF0C0102C603FD772E77",
+    "AiGeneric_Driver_002.spin": "0A338EB5848B18AC4D31A2A0ACA13F9700CA502E6568749FD98E6636D3D5AC56",
+    "AiGeneric_Driver_TV.spin": "DEDF9B28125AB6CD76C590B1E18CF0FAC3B3FE2D74AB9E69C4AB7FCDF9EDA1D9",
+    "AiGeneric_Driver.spin": "1B25B38377CE4D776E8B3339DAFE406CAB73E8B2F8150EEF4A170E2BF56BEDA1",
+    "Font_Atari.spin": "E6DC0713E308EA81024C638CD72A80C1518E7F3E923E178D147BF0C3FC62B8DB",
+    "FullDuplex.spin": "4EABF5EF26131213689E5875505B0F4EB0A4B2B9293BCB4AACCED1B0DB9716FA",
+    "Keyboard.spin": "E8CED09297B67E055E268703FD71C0C2BCB3262D946D0AFD09E23B0A715C1B6E",
+    "replica 110REV03.spin": "4CD279AEE4CEB4F87C1F47C4ECD32C84999A65CDFF72C5ECB62B240FF9200209",
+    "Serial_IO.spin": "F411BBFF8DB15A811502161BEA679E540DD34FF613F3F4391F7EF136BA9C458C"
+  },
+  "observed_candidate_properties": {
+    "rx_pin": 31,
+    "tx_pin": 30,
+    "clear_pin": 9,
+    "clock_pin": 15,
+    "serial_baud": 9600,
+    "serial_strobe_ms": 7,
+    "serial_input_filter": "serdata < 96",
+    "receive_ring_bytes": 16
+  },
+  "limitations": [
+    "This archive was not read from the Replica 1 Plus EEPROM.",
+    "The source must not be used as a recovery image or proof of the installed firmware.",
+    "No EEPROM programming is authorized by this record."
+  ]
+}
