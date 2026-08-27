@@ -163,6 +163,9 @@ def test_pyserial_transport_sets_control_lines_before_open(monkeypatch: pytest.M
             self.port: str | None = None
             self.is_open = False
 
+        def open(self) -> None:
+            self.is_open = True
+
     monkeypatch.setitem(sys.modules, "serial", types.SimpleNamespace(Serial=FakeSerial))
     transport = PySerialTransport(tmp_path / "ttyUSB0")
 
@@ -181,3 +184,7 @@ def test_pyserial_transport_sets_control_lines_before_open(monkeypatch: pytest.M
     }
     assert transport._serial.dtr is False
     assert transport._serial.rts is False
+
+    transport.open()
+    assert transport._serial.port == str(tmp_path / "ttyUSB0")
+    assert transport._serial.is_open is True

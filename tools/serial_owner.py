@@ -108,6 +108,7 @@ class PySerialTransport:
         if self._serial is None:
             raise RuntimeError("transport must be configured before it is opened")
         self._serial.port = str(self.device)
+        self._serial.open()
 
     def close(self) -> None:
         if self._serial is not None and self._serial.is_open:
