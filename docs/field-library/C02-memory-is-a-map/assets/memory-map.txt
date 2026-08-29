@@ -1,0 +1,39 @@
+APPLE-1 FIELD LIBRARY / C02
+MEMORY MAP OF THE ORIGINAL APPLE-1
+(AS DOCUMENTED.  A MODEL, NOT A
+ READING FROM ANY PARTICULAR BOARD.)
+
+$FFFF +----------------------------+
+      | MONITOR ROM        256 B   |
+$FF00 +----------------------------+
+      |                            |
+      | UNUSED                     |
+      |                            |
+$F000 +----------------------------+
+      | INTEGER BASIC AREA  4 KB   |
+      | (RAM ON THE ORIGINAL, SO   |
+      |  BASIC HAD TO BE RELOADED  |
+      |  EVERY POWER-UP)           |
+$E000 +----------------------------+
+      |                            |
+      | UNUSED                     |
+      |                            |
+$D013 +----------------------------+
+      | PIA: KEYBOARD IN, VIDEO OUT|
+$D010 +----------------------------+
+      |                            |
+      | UNUSED                     |
+      |                            |
+$1000 +----------------------------+
+      | SYSTEM AND USER RAM 4 KB   |
+      |                            |
+      |  $0400 BUFFER USED BY THE  |
+      |        REPO PROGRAMS       |
+      |  $0300 WHERE THE REPO      |
+      |        PROGRAMS ARE ENTERED|
+      |  $0200 MONITOR INPUT LINE  |
+      |  $0100 THE 6502 STACK      |
+      |  $0000 ZERO PAGE           |
+$0000 +----------------------------+
+
+MOST OF THE 64 KB IS EMPTY.

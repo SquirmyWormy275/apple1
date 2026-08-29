@@ -1,0 +1,53 @@
+APPLE-1 FIELD LIBRARY / M04
+THE TWO-COLUMN OBSERVATION SHEET
+
+WHAT I EXPECTED   |  WHAT HAPPENED
+------------------+------------------
+                  |
+                  |
+                  |
+                  |
+                  |
+------------------+------------------
+
+WRITE THE LEFT COLUMN FIRST.
+ALWAYS.  BEFORE YOU LOOK.
+
+THE DIFFERENCE BETWEEN THE COLUMNS
+IS THE ONLY THING YOU HAVE LEARNED.
+
+NOW ONE HYPOTHESIS:
+
+  I THINK THE CAUSE IS
+
+    ______________________________
+
+  IF I AM RIGHT, THEN CHANGING
+
+    ______________________________
+
+  SHOULD PRODUCE
+
+    ______________________________
+
+  AND NOTHING ELSE CHANGED.
+
+CHANGE ONE THING.  ONE.
+IF YOU CHANGE TWO AND IT WORKS, YOU
+HAVE LEARNED NOTHING.
+
++--------------------------------------+
+| STOP RULE                            |
+|                                      |
+| IF THE DISPLAY CHANGES UNEXPECTEDLY, |
+| A RESET OCCURS, IDENTITIES DRIFT, OR |
+| BYTES MISMATCH:                      |
+|                                      |
+|   1. WRITE "STOP".                   |
+|   2. RECOVER TO THE KNOWN MONITOR    |
+|      STATE.                          |
+|   3. DO NOT START ANOTHER TEST.      |
+|                                      |
+| A STOP IS A RESULT.  IT IS NOT A     |
+| FAILURE TO GET A RESULT.             |
++--------------------------------------+

@@ -1,0 +1,36 @@
+APPLE-1 FIELD LIBRARY / M01
+THE MONITOR DOES THREE THINGS
+
++--------------------------------------+
+| 1.  INSPECT                          |
+|     SHOW ME WHAT IS AT AN ADDRESS.   |
+|                                      |
+|     YOU TYPE:   300                  |
+|     IT SHOWS:   0300: E1             |
++--------------------------------------+
+
++--------------------------------------+
+| 2.  CHANGE                           |
+|     PUT THIS VALUE AT THAT ADDRESS.  |
+|                                      |
+|     YOU TYPE:   300: FF              |
+|     IT SHOWS:   0300: E1             |
+|     (THE OLD VALUE, BEFORE THE       |
+|      CHANGE.  NOT A REFUSAL.)        |
++--------------------------------------+
+
++--------------------------------------+
+| 3.  RUN                              |
+|     START EXECUTING AT AN ADDRESS.   |
+|                                      |
+|     YOU TYPE:   300R                 |
+|     IT DOES:    JUMPS THERE AND      |
+|                 STOPS BEING IN       |
+|                 CHARGE.              |
++--------------------------------------+
+
+THAT IS THE WHOLE TOOL.  256 BYTES.
+
+IT HAS NO FILES, NO COMMANDS, NO
+PROGRAMS, NO HELP, AND NO WAY TO
+UNDO ANYTHING.

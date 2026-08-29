@@ -1,0 +1,56 @@
+APPLE-1 FIELD LIBRARY / X03
+THE THREE-MINUTE SCRIPT
+
+  0:00  THE HOOK
+        ONE SENTENCE.  WHY SHOULD
+        A STRANGER STAY?
+        __________________________
+        __________________________
+
+  0:20  THE OBJECT
+        WHAT ARE THEY LOOKING AT,
+        NAMED CORRECTLY?
+        __________________________
+        __________________________
+
+  0:45  THE ONE IDEA
+        PICK ONE.  NOT TWO.
+        __________________________
+        __________________________
+
+  1:15  THE SHOW
+        THE THING THEY WATCH.
+        __________________________
+        __________________________
+
+  2:15  THE QUESTION BACK
+        SOMETHING THEY ANSWER.
+        __________________________
+
+  2:45  WHERE TO GO NEXT
+        __________________________
+
++--------------------------------------+
+| THE FALLBACK                         |
+|                                      |
+| YOUR DEMO MUST WORK WITH NO          |
+| POWERED HARDWARE AT ALL.             |
+|                                      |
+| THE OFF-DEVICE VERSION OF THE SHOW:  |
+|                                      |
+| ______________________________       |
+| ______________________________       |
+| ______________________________       |
+|                                      |
+| IF YOU CANNOT FILL THIS IN, THE      |
+| DEMO IS NOT FINISHED.                |
++--------------------------------------+
+
+THINGS THAT WILL GO WRONG:
+  NO POWER AT THE VENUE
+  THE MACHINE IS NOT AVAILABLE
+  A VISITOR ASKS A QUESTION YOU
+    CANNOT ANSWER
+  SOMEONE ASKS WHAT IT IS WORTH
+
+PLAN ALL FOUR.

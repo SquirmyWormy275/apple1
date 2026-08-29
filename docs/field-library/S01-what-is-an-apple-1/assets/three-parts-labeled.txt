@@ -1,0 +1,32 @@
+APPLE-1 FIELD LIBRARY / S01
+THREE THINGS PEOPLE CALL "AN APPLE-1"
+
++--------------------------------------+
+| 1. THE BOARD                         |
+|    A 1976 CIRCUIT BOARD.             |
+|    HARDWARE YOU CAN HOLD.            |
+|    SOLD BARE: NO CASE, NO KEYBOARD,  |
+|    NO POWER SUPPLY, NO DISPLAY.      |
++--------------------------------------+
+                   |
+                   | CARRIES A CHIP
+                   | HOLDING
+                   V
++--------------------------------------+
+| 2. THE MONITOR                       |
+|    A 256-BYTE PROGRAM IN ROM.        |
+|    SOFTWARE, NOT HARDWARE.           |
+|    IT CAN LOOK AT MEMORY, CHANGE     |
+|    MEMORY, AND RUN A PROGRAM.        |
++--------------------------------------+
+                   |
+                   | REBUILT DECADES
+                   | LATER AS
+                   V
++--------------------------------------+
+| 3. THE REPLICA                       |
+|    A MODERN REPRODUCTION BOARD.      |
+|    NEW PARTS, NEW MANUFACTURE.       |
+|    RUNS SIMILAR SOFTWARE.            |
+|    IT IS NOT AN ORIGINAL APPLE-1.    |
++--------------------------------------+

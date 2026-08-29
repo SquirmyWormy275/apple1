@@ -1,0 +1,45 @@
+APPLE-1 FIELD LIBRARY / H03
+THE EVIDENCE CARD
+
+ONE CARD PER ITEM.  FILL IT WHEN
+THE ITEM ARRIVES, NOT LATER.
+
+ 1. WHAT IS IT
+    ______________________________
+
+ 2. WHERE IS IT NOW
+    ______________________________
+
+ 3. WHERE DID IT COME FROM
+    ______________________________
+
+ 4. WHEN DID IT ARRIVE HERE
+    ______________________________
+
+ 5. WHO SAYS SO
+    ______________________________
+
+ 6. ORIGINAL, DERIVATIVE, OR
+    WORKING COPY
+    ______________________________
+
+ 7. PERMISSION OR LICENCE NOTE
+    ______________________________
+
+ 8. SHA-256 (FIRST 16 CHARACTERS)
+    ______________________________
+
+ 9. WHAT THIS CARD ESTABLISHES
+    ______________________________
+
+10. WHAT IT DOES NOT ESTABLISH
+    ______________________________
+
+FIELD 10 IS NOT OPTIONAL.
+A CARD WITHOUT IT INVITES THE
+READER TO ASSUME.
+
+WRITE "NOT RECORDED" WHERE YOU DO
+NOT KNOW.  NEVER GUESS.
+A GAP IS INFORMATION.
+A GUESS IS DAMAGE.

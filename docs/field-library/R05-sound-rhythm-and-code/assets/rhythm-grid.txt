@@ -1,0 +1,48 @@
+APPLE-1 FIELD LIBRARY / R05
+THE RHYTHM GRID
+
+A RHYTHM IS A ROW OF SLOTS.
+EACH SLOT IS ON OR OFF.
+
+  1 2 3 4 5 6 7 8
+  X . . . X . . .     CLAP ON 1 AND 5
+
+  1 2 3 4 5 6 7 8
+  X . X . X . X .     CLAP ON EVERY
+                      OTHER SLOT
+
+  1 2 3 4 5 6 7 8
+  X . . X . . X .     CLAP ON 1, 4, 7
+
+READ EACH ROW OUT LOUD.
+COUNT 1 TO 8 STEADILY AND CLAP ON
+THE X.
+
+NOW ENCODE THEM AS BITS.
+X IS 1.  DOT IS 0.
+
+  X . . . X . . .  =  1000 1000  = $88
+
+  X . X . X . X .  =  ________  =  ___
+
+  X . . X . . X .  =  ________  =  ___
+
+ONE BYTE HOLDS AN EIGHT-SLOT
+RHYTHM.  THAT IS THE WHOLE
+REPRESENTATION.
+
+NOW WRITE YOUR OWN:
+
+  1 2 3 4 5 6 7 8
+  _ _ _ _ _ _ _ _  =  ________  =  ___
+
+CLAP IT.  THEN HAND THE BYTE TO
+SOMEONE ELSE AND SEE IF THEY CLAP
+THE SAME THING.
+
+WHAT THE BYTE DOES NOT SAY:
+
+  HOW FAST      ______________
+  HOW LOUD      ______________
+  HOW LONG EACH ______________
+  WHAT SOUND    ______________

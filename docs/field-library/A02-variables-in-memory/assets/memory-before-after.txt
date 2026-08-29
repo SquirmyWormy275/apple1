@@ -1,0 +1,42 @@
+APPLE-1 FIELD LIBRARY / A02
+MEMORY BEFORE AND AFTER
+
+PROGRAM:
+
+  0300  A9 48     LDA #$48
+  0302  8D 00 04  STA $0400
+  0305  A9 49     LDA #$49
+  0307  8D 01 04  STA $0401
+  030A  4C 1F FF  JMP $FF1F
+
+FILL IN.  USE ? FOR UNKNOWN.
+
+ AFTER   A     $0400   $0401
+ -----  ----   -----   -----
+ START   ?       ?       ?
+  0300  ____   _____   _____
+  0302  ____   _____   _____
+  0305  ____   _____   _____
+  0307  ____   _____   _____
+  030A  ____   _____   _____
+
+
+NOW THE INDEXED VERSION:
+
+  0300  A0 00     LDY #$00
+  0302  A9 48     LDA #$48
+  0304  99 00 04  STA $0400,Y
+  0307  C8        INY
+  0308  A9 49     LDA #$49
+  030A  99 00 04  STA $0400,Y
+  030D  4C 1F FF  JMP $FF1F
+
+ AFTER   A    Y    $0400   $0401
+ -----  ---- ---   -----   -----
+  0304  ____ ___   _____   _____
+  0307  ____ ___   _____   _____
+  030A  ____ ___   _____   _____
+
+SAME RESULT.  ONE STORE INSTRUCTION
+WRITTEN TWICE INSTEAD OF TWO
+DIFFERENT ONES.

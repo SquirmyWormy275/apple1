@@ -1,0 +1,35 @@
+APPLE-1 FIELD LIBRARY / C01
+THE ONLY LOOP THE CPU EVER RUNS
+
+        +----------------------+
+        |                      |
+        V                      |
+   +---------+                 |
+   | FETCH   |  READ THE BYTE  |
+   |         |  AT THE ADDRESS |
+   |         |  IN THE PROGRAM |
+   |         |  COUNTER        |
+   +---------+                 |
+        |                      |
+        V                      |
+   +---------+                 |
+   | DECIDE  |  THAT BYTE      |
+   |         |  NAMES ONE      |
+   |         |  ACTION.  SOME  |
+   |         |  ACTIONS NEED   |
+   |         |  MORE BYTES.    |
+   +---------+                 |
+        |                      |
+        V                      |
+   +---------+                 |
+   | ACT     |  DO IT.  MOVE   |
+   |         |  THE PROGRAM    |
+   |         |  COUNTER PAST   |
+   |         |  WHAT WAS USED. |
+   +---------+                 |
+        |                      |
+        +----------------------+
+
+IT NEVER STOPS.  IT NEVER DECIDES TO
+STOP.  A "HALTED" COMPUTER IS RUNNING
+A LOOP THAT GOES NOWHERE.

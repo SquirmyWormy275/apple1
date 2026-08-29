@@ -1,0 +1,26 @@
+APPLE-1 FIELD LIBRARY / S02
+WORKSHEET: TRACE ONE KEYPRESS
+
+  YOU PRESS THE KEY  A
+          |
+          V
+[1] ______________
+          |
+          V
+[2] ______________
+          |
+          V
+[3] ______________
+          |
+          V
+[4] ______________
+          |
+          V
+[5] ______________
+          |
+          V
+       YOU SEE  A
+
+WORD BANK (EACH USED ONCE):
+    INPUT    OUTPUT    MEMORY
+    PROCESSING         A MAILBOX

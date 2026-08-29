@@ -1,0 +1,31 @@
+APPLE-1 FIELD LIBRARY / C05
+STATE TRACE WORKSHEET
+
+THE PROGRAM (OFF-DEVICE ONLY):
+
+  0300:  A9 41     LDA #$41
+  0302:  69 01     ADC #$01
+  0304:  8D 00 04  STA $0400
+  0307:  4C 1F FF  JMP $FF1F
+
+FILL IN THE STATE AFTER EACH STEP.
+WRITE "?" IF A VALUE IS UNKNOWN.
+WRITE "-" IF IT DID NOT CHANGE.
+
+ STEP  INSTRUCTION    A    $0400   NEXT
+ ----  -----------  ----   -----   ----
+  0    (START)       ?       ?     0300
+  1    LDA #$41     ____   _____   ____
+  2    ADC #$01     ____   _____   ____
+  3    STA $0400    ____   _____   ____
+  4    JMP $FF1F    ____   _____   ____
+
+RULES YOU NEED:
+
+  LDA #N   PUT N IN A.
+  ADC #N   ADD N AND THE CARRY TO A.
+  STA ADDR COPY A INTO ADDRESS ADDR.
+  JMP ADDR SET NEXT TO ADDR.
+
+CARRY IS A SINGLE BIT OUTSIDE A.
+IT IS NOT SET TO ZERO FOR YOU.

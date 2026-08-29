@@ -1,0 +1,45 @@
+APPLE-1 FIELD LIBRARY / X02
+THE BROKEN LOOP
+
+WHAT IT IS MEANT TO DO:
+  STORE THE LETTER A AT $0400
+  THROUGH $0404.  FIVE COPIES.
+  THEN RETURN TO THE MONITOR.
+
+THE PROGRAM AS WRITTEN:
+
+  0300  A0 00     LDY #$00
+  0302  A9 41     LDA #$41
+  0304  99 00 04  STA $0400,Y
+  0307  C8        INY
+  0308  C0 06     CPY #$06
+  030A  D0 F8     BNE $0304
+  030C  4C 1F FF  JMP $FF1F
+
+  CPY #N   COMPARE Y WITH N.
+           SET THE ZERO FLAG IF
+           THEY ARE EQUAL.
+  BNE ADDR IF THE ZERO FLAG IS
+           CLEAR, GO TO ADDR.
+
+THERE IS EXACTLY ONE BUG.
+IT IS ONE BYTE.
+
+TRACE BEFORE YOU LOOK FOR IT.
+
+ PASS   Y BEFORE  STORED AT  Y AFTER
+ ----   --------  ---------  -------
+   1     ______    _______    ______
+   2     ______    _______    ______
+   3     ______    _______    ______
+   4     ______    _______    ______
+   5     ______    _______    ______
+   6     ______    _______    ______
+
+  HOW MANY STORES HAPPENED?  ______
+  HIGHEST ADDRESS WRITTEN?   ______
+  WAS THAT THE INTENTION?    ______
+
+THE BUG IS AT ADDRESS  __________
+
+THE BYTE SHOULD BE     __________

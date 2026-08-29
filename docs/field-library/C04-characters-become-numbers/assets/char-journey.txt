@@ -1,0 +1,33 @@
+APPLE-1 FIELD LIBRARY / C04
+THE JOURNEY OF ONE LETTER
+
+YOU PRESS:            A
+
+ASCII SAYS:           65 DECIMAL
+                      $41 HEX
+                      0100 0001 BINARY
+
+THE KEYBOARD SENDS SEVEN BITS:
+                       100 0001
+
+THE MONITOR EXPECTS THE TOP BIT ON:
+                      1100 0001
+                      $C1
+                      193 DECIMAL
+
+SO THE SAME LETTER IS:
+  $41  IN AN ASCII TABLE
+  $C1  IN A MONITOR KEYBOARD BYTE
+
+THE LETTER DID NOT CHANGE.
+THE CONVENTION AROUND IT DID.
+
++--------------------------------------+
+| THREE VALUES WORTH KNOWING COLD      |
+|                                      |
+|   CHARACTER   PLAIN   HIGH BIT SET   |
+|   ---------   -----   ------------   |
+|   RETURN      $0D     $8D            |
+|   SPACE       $20     $A0            |
+|   A           $41     $C1            |
++--------------------------------------+

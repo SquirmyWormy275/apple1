@@ -1,0 +1,56 @@
+APPLE-1 FIELD LIBRARY / H04
+GREEN, AMBER, RED
+
++--------------------------------------+
+| GREEN   OFF-DEVICE                   |
+|                                      |
+| NOTHING IS POWERED, CONNECTED, OR    |
+| CHANGED.  READING, PAPER WORK, THE   |
+| REPOSITORY EMULATOR ON AN ORDINARY   |
+| COMPUTER, HASHING FILES AN OPERATOR  |
+| NAMED.                               |
+|                                      |
+| DO IT.  NO PERMISSION NEEDED.        |
++--------------------------------------+
+
++--------------------------------------+
+| AMBER   RAM-ONLY CANDIDATE           |
+|                                      |
+| A PROGRAM THAT COULD ONE DAY BE      |
+| ENTERED BY HAND INTO RAM, IN A       |
+| SEPARATE OPERATOR-LED SESSION.       |
+|                                      |
+| THE ARTIFACTS IN THIS PROJECT        |
+| CARRY  NO LIVE-RUN AUTHORITY.        |
+|                                      |
+| NOT YOURS TO START.  READ, REHEARSE  |
+| OFF-DEVICE, AND STOP THERE.          |
++--------------------------------------+
+
++--------------------------------------+
+| RED     NOT IN ANY LESSON            |
+|                                      |
+|   FIRMWARE LOADING                   |
+|   EEPROM WRITING                     |
+|   CFFA1 MODIFICATION                 |
+|   SERIAL-PORT OPENING                |
+|   AUTOMATED DEVICE CONTROL           |
+|   SOLDERING, WIRING, RESISTORS       |
+|   UPLOADER USE                       |
+|   ROM-BANK CHANGES                   |
+|                                      |
+| NONE OF THESE BELONGS IN A LESSON,   |
+| INCLUDING THIS ONE.                  |
++--------------------------------------+
+
+THE STANDING RED IN THIS PROJECT:
+
+  OPENING THE FT232R FROM THE HOST
+  ALREADY PRODUCED A DISPLAY-GARBLING
+  STOP.  AN OPENED SERIAL SESSION OR
+  TRANSMIT TEST IS BLOCKED UNTIL A
+  MEASUREMENT TEST CARD IS READY AND
+  AN OPERATOR EXPLICITLY STARTS THAT
+  SINGLE STEP.
+
+WHEN IN DOUBT, IT IS NOT GREEN.

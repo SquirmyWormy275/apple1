@@ -1,0 +1,49 @@
+APPLE-1 FIELD LIBRARY / B02
+PROGRAM FLOW: ONE IN, ONE OUT
+
+  +---------------------+
+  |       START         |
+  +---------------------+
+            |
+            V
+  +---------------------+
+  | ASK                 |
+  | PRINT A PROMPT      |
+  +---------------------+
+            |
+            V
+  +---------------------+
+  | GET                 |
+  | READ ONE VALUE INTO |
+  | A VARIABLE          |
+  +---------------------+
+            |
+            V
+  +---------------------+
+  | WORK                |
+  | COMPUTE THE ANSWER  |
+  | FROM THE VARIABLE   |
+  +---------------------+
+            |
+            V
+  +---------------------+
+  | TELL                |
+  | PRINT THE ANSWER    |
+  +---------------------+
+            |
+            V
+  +---------------------+
+  |        END          |
+  +---------------------+
+
+FOUR BOXES.  ASK, GET, WORK, TELL.
+
+FILL IN FOR YOUR OWN PROGRAM:
+
+  ASK   __________________________
+  GET   __________________________
+  WORK  __________________________
+  TELL  __________________________
+
+  VARIABLE NAME  ______
+  IS IT A NUMBER OR A STRING? ____

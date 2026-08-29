@@ -256,6 +256,8 @@ claims that still need verification, and the exact checks you ran.
 
 ## Repository links
 
+- [Field Library lesson packets](field-library/README.md) - the written lessons,
+  with a catalog index and the register of open verification items
 - [RAM-only software library](apple1-software-library.md)
 - [Emulator and demo preparation](emulator-demo-guide.md)
 - [Collection archive manifest](collection-archive.md)

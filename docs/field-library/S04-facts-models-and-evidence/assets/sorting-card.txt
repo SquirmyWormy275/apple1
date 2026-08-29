@@ -1,0 +1,33 @@
+APPLE-1 FIELD LIBRARY / S04
+THE THREE-BIN SORTING CARD
+
++--------------------------------------+
+| FACT                                 |
+| SOMEONE OBSERVED THIS AND WROTE IT   |
+| DOWN.  IT CAME FROM A MEASUREMENT,   |
+| A PHOTOGRAPH, OR A DIRECT READING.   |
+| ASK: WHO SAW IT, AND WHEN?           |
++--------------------------------------+
+
++--------------------------------------+
+| MODEL                                |
+| A DESCRIPTION OF HOW SOMETHING IS    |
+| SUPPOSED TO WORK.  A MANUAL, A       |
+| SCHEMATIC, A SIMULATION, A DIAGRAM.  |
+| USEFUL AND OFTEN RIGHT.  STILL NOT   |
+| A MEASUREMENT OF THIS OBJECT.        |
+| ASK: WHAT WOULD SHOW IT IS TRUE      |
+| HERE?                                |
++--------------------------------------+
+
++--------------------------------------+
+| CLAIM NEEDING EVIDENCE               |
+| STATED AS IF SETTLED, BUT NOTHING    |
+| HAS ESTABLISHED IT YET.              |
+| ASK: WHAT TEST WOULD SETTLE IT, AND  |
+| HAS ANYONE RUN THAT TEST?            |
++--------------------------------------+
+
+THE TRAP:
+A MODEL REPEATED OFTEN ENOUGH STARTS
+TO SOUND LIKE A FACT.

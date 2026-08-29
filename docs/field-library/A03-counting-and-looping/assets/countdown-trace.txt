@@ -1,0 +1,45 @@
+APPLE-1 FIELD LIBRARY / A03
+COUNTDOWN TRACE
+
+PROGRAM A
+
+  0300  A2 05     LDX #$05
+  0302  CA        DEX
+  0303  D0 FD     BNE $0302
+  0305  8E 00 04  STX $0400
+  0308  4C 1F FF  JMP $FF1F
+
+ PASS   X BEFORE   X AFTER   BRANCH?
+ ----   --------   -------   -------
+   1      ____      ____      ____
+   2      ____      ____      ____
+   3      ____      ____      ____
+   4      ____      ____      ____
+   5      ____      ____      ____
+   6      ____      ____      ____
+
+  DEX RAN ______ TIMES.
+  BRANCH TAKEN ______ TIMES.
+  FINAL X = ______
+  $0400 = ______
+
+
+PROGRAM B
+ONE BYTE DIFFERENT.  D0 BECOMES 10.
+
+  0300  A2 05     LDX #$05
+  0302  CA        DEX
+  0303  10 FD     BPL $0302
+  0305  8E 00 04  STX $0400
+  0308  4C 1F FF  JMP $FF1F
+
+  BNE  BRANCH IF RESULT NOT ZERO.
+  BPL  BRANCH IF RESULT IS PLUS,
+       THAT IS, IF BIT 7 IS CLEAR.
+
+  DEX RAN ______ TIMES.
+  FINAL X = ______
+
+WHY IS PROGRAM B DIFFERENT?
+
+  ______________________________
