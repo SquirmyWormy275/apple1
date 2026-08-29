@@ -28,6 +28,9 @@ temporary wiring, soldering, or other physical modification.
 - [RAM-only software library](docs/apple1-software-library.md) and
   [emulator/demo guide](docs/emulator-demo-guide.md): safe software rehearsal
   and deterministic terminal formatting.
+- [Apple-1 Field Library curriculum scaffold](docs/apple1-learning-library-curriculum.md):
+  structured, content-ready lessons for the CF-card educational catalog, with
+  off-device and preservation boundaries.
 
 ## Verification
 
