@@ -48,11 +48,13 @@ guessed." The lesson does not tell a learner which choice is correct.
 - Page numbers inherit **V-1**.
 - **V-8 applies.** The high-bit behavior is documented, not measured on this
   board. The lesson says so in the README and in `STATUS.md`.
-- **V-10 (new).** The exact mechanism by which the harness applies the high bit
-  was read from the tool's argument documentation and its keyboard-read helper,
-  not from a line-by-line audit of the function. The recorded runs are
-  consistent with it. A reviewer confirming C04 should read
-  `tools/apple1_emulator.py` directly.
+- **V-10. RESOLVED.** The exact mechanism by which the harness applies the high
+  bit is now confirmed by direct reading of `tools/apple1_emulator.py`:
+  `run_keyboard_line` builds its input queue as
+  `deque(byte | 0x80 for byte in text.encode("ascii", errors="strict"))`, so the
+  harness sets bit 7 on every input byte itself. It also masks the echo back down
+  with `mpu.a & 0x7F` when recording screen text. Previously inferred from the
+  argument documentation; no longer an open item.
 
 ## What this lesson does not establish
 

@@ -27,6 +27,22 @@ document. That is verification item V-36 and it is outstanding.
 |---|---|
 | `SOURCES.md` | The citation pool. Every packet's `SOURCE-NOTES.md` cites into it by key, so each quoted passage is written down once. |
 | `EMULATOR-RUNS.md` | Every emulator run performed while authoring, with inputs and outputs, so lessons state observed results rather than predicted ones. |
+| `GLOSSARY.md` | Twenty-nine terms, each labelled either with a source key or as a general computing concept. |
+
+## Companion material
+
+Four folders alongside the lessons, for using this library rather than working
+through it.
+
+| Folder | For | Contents |
+|---|---|---|
+| [`visitor-mode/`](visitor-mode/README.md) | Showing the machine to someone | Spoken host scripts at 2, 5 and 15 minutes, plus a question sheet |
+| [`program-annotations/`](program-annotations/README.md) | Reading the two RAM-only programs closely | Line-by-line annotations of both existing artifacts |
+| [`teacher-materials/`](teacher-materials/README.md) | Running this with a group | Teacher guide, three worksheets, full answer key |
+| [`GLOSSARY.md`](GLOSSARY.md) | Looking a word up | Twenty-nine terms |
+
+Every one of them is OFF-DEVICE, every activity has an off-device path, and none
+brings a learner or a visitor into contact with the hardware.
 
 ## Lessons
 
@@ -128,7 +144,7 @@ evidence and should be worked through before anything goes on the card.**
 | **V-7** | `SOURCES.md` | Display geometry. The 40-column width used throughout this library comes from the repository's own rule and tooling, not from a cited Apple-1 display specification. A line count per screen is nowhere cited and is not claimed by any lesson. |
 | **V-8** | `SOURCES.md` | This machine. Nothing in this pool describes the state of this project's board, its installed EEPROM, or its serial path. |
 | **V-9** | `C02-memory-is-a-map` | The `$0200` Monitor input-line label is inferred from the Monitor listing's `STA IN,Y` assembling as `99 00 02`, not from a stated memory-map entry. Confirm against a primary Apple-1 memory map before this packet goes on the card. |
-| **V-10** | `C04-characters-become-numbers` | The exact mechanism by which the harness applies the high bit was read from the tool's argument documentation and its keyboard-read helper, not from a line-by-line audit of the function. The recorded runs are consistent with it. A reviewer confirming C04... |
+| **V-10** | `C04-characters-become-numbers` | **RESOLVED.** Confirmed by direct reading of `tools/apple1_emulator.py`: the harness sets bit 7 on input itself (`byte | 0x80`) and masks it off when recording screen text. |
 | **V-11** | `C05-instructions-change-state` | The claim that the harness begins with the carry clear was inferred from the observed result (`$42` rather than `$43`) plus a direct py65 reproduction, not from a stated guarantee in the tool. If a future harness change altered initial processor state,... |
 | **V-12** | `M03-a-safe-rehearsal-loop` | The instruction-count rule is empirical over four inputs, not derived. Do not promote it to a stated property of the program without deriving it. |
 | **V-13** | `M04-debugging-as-observation` | The FT232R account is summarized from the preservation dossier's "Current boundaries" section. The primary record of that event, with its date, operator, and exact observation, lives in the project's chain-of-custody and evidence ledger rather than in this... |
