@@ -1,0 +1,36 @@
+{
+  "artifacts": [
+    {
+      "bytes": 32746820,
+      "category": "manual",
+      "filename": "Apple-120Basic20Manual.pdf",
+      "sha256": "0da35c19dbbf74c1234aca0d2cd876c4c9c426184bcfa8f11483387fdae6eb26"
+    },
+    {
+      "bytes": 1466282,
+      "category": "manual",
+      "filename": "Apple-120Interface.pdf",
+      "sha256": "113b55b618bd1310fd00c60c3655362f3ab93a89ae4694216e03ef5248e5c5ad"
+    },
+    {
+      "bytes": 1774213,
+      "category": "manual",
+      "filename": "Apple1 Manual.pdf",
+      "sha256": "8f5e595ea6c0c91fdd4206a4b2c2333be8990178db2600392af185ec63f9a1c2"
+    },
+    {
+      "bytes": 23740218,
+      "category": "manual",
+      "filename": "AppleIReplicaCreationTomOwad.pdf",
+      "sha256": "23623af924d963e14d0e947f03d3c3af7f7aa174bd4be242f1085c8ce31b469a"
+    },
+    {
+      "bytes": 8929708,
+      "category": "manual",
+      "filename": "Replica_One_Plus_Manual_-_June_2014.pdf",
+      "sha256": "fdd7c0e471d9ed2a8417dfbcefdb3987f29202d2cdf7405f5d653cad7d3cd79e"
+    }
+  ],
+  "format": "apple1-archive-manifest/v1",
+  "generated_utc": "2026-08-29T01:49:34.853976+00:00"
+}

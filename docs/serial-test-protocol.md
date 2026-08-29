@@ -28,9 +28,12 @@ open the device.
 
 Before an opened session, prepare a capture manifest containing board revision,
 power source, USB topology, timestamps, and the `STOP` recovery action. Then
-record video and, if available, reset/control-line evidence. The owner requests
-DTR and RTS low before the open, uses 9600 8N1 with all flow control disabled,
-and retains its JSONL capture.
+record video and, if available, reset/control-line evidence. For the known
+reset-on-open symptom, follow the
+[logic-analyzer open-event test card](captures/logic-analyzer-open-event-test-card.md)
+before any further serial action. The owner requests DTR and RTS low before the
+open, uses 9600 8N1 with all flow control disabled, and retains its JSONL
+capture.
 
 Only after a repeatable non-resetting open may the owner transmit the first
 payload: 7-bit uppercase `TEST` plus CR, starting at 500 ms per character.
