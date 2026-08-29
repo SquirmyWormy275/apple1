@@ -1,0 +1,22 @@
+APPLE-1 FIELD LIBRARY / S03
+ANSWER: THE FIRST SIXTEEN
+
+ DEC | HEX        DEC | HEX
+-----+-----      -----+-----
+  0  |  0          8  |  8
+  1  |  1          9  |  9
+  2  |  2         10  |  A
+  3  |  3         11  |  B
+  4  |  4         12  |  C
+  5  |  5         13  |  D
+  6  |  6         14  |  E
+  7  |  7         15  |  F
+
+THE FIRST TEN LOOK THE SAME.
+ONLY 10-15 NEED NEW SYMBOLS.
+
+USEFUL LANDMARKS:
+
+  $10 = 16        $80 = 128
+  $20 = 32        $FF = 255
+  $40 = 64

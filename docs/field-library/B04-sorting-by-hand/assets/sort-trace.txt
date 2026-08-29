@@ -1,0 +1,43 @@
+APPLE-1 FIELD LIBRARY / B04
+SORTING FIVE CARDS
+
+WRITE THESE FIVE NUMBERS ON CARDS
+AND LAY THEM OUT IN THIS ORDER:
+
+        5   3   1   4   2
+
+THE ONLY MOVE YOU MAY MAKE:
+  LOOK AT TWO CARDS THAT ARE NEXT
+  TO EACH OTHER.  IF THE LEFT ONE
+  IS BIGGER, SWAP THEM.
+
+  THAT COUNTS AS ONE COMPARISON.
+  A SWAP IS RECORDED SEPARATELY.
+
+GO LEFT TO RIGHT.  WHEN YOU REACH
+THE END, START AGAIN FROM THE LEFT.
+STOP WHEN A WHOLE PASS MAKES NO
+SWAPS.
+
+ PASS  ORDER AT END   COMPS  SWAPS
+ ----  -------------  -----  -----
+   1   _ _ _ _ _      _____  _____
+   2   _ _ _ _ _      _____  _____
+   3   _ _ _ _ _      _____  _____
+   4   _ _ _ _ _      _____  _____
+   5   _ _ _ _ _      _____  _____
+
+  TOTAL COMPARISONS  ________
+  TOTAL SWAPS        ________
+
+NOW PREDICT, DO NOT COUNT:
+
+  FOR 10 CARDS, ROUGHLY HOW MANY
+  COMPARISONS?    ________
+
+  FOR 100 CARDS?  ________
+
+WHAT HAPPENS TO THE WORK WHEN THE
+NUMBER OF CARDS DOUBLES?
+
+  ______________________________

@@ -1,0 +1,59 @@
+APPLE-1 FIELD LIBRARY / R03
+PATTERNS FROM RULES
+
+RULE ONE: THE COUNTING RULE
+
+  START AT 1.  ADD 1 EACH STEP.
+  PRINT # IF THE NUMBER DIVIDES
+  EXACTLY BY 3, OTHERWISE PRINT .
+
+  ..#..#..#..#..#..#..#..#..#..#..#..#
+
+RULE TWO: THE ROW RULE
+
+  ROW N PRINTS # WHERE THE COLUMN
+  DIVIDES EXACTLY BY N.
+
+  1  ################################
+  2  .#.#.#.#.#.#.#.#.#.#.#.#.#.#.#.#
+  3  ..#..#..#..#..#..#..#..#..#..#..
+  4  ...#...#...#...#...#...#...#...#
+  5  ....#....#....#....#....#....#..
+  6  .....#.....#.....#.....#.....#..
+  7  ......#......#......#......#....
+  8  .......#.......#.......#.......#
+
+RULE THREE: THE TRIANGLE RULE
+
+  EACH NUMBER IS THE SUM OF THE
+  TWO ABOVE IT.  PRINT # IF THE
+  NUMBER IS ODD, SPACE IF EVEN.
+
+                 #
+                ##
+               # #
+              ####
+             #   #
+            ##  ##
+           # # # #
+          ########
+         #       #
+        ##      ##
+       # #     # #
+      ####    ####
+     #   #   #   #
+    ##  ##  ##  ##
+   # # # # # # # #
+  ################
+
+NO PART OF THAT SHAPE WAS DRAWN.
+IT CAME OUT OF ONE SENTENCE.
+
+NOW YOUR TURN.  WRITE A RULE:
+
+  ____________________________
+  ____________________________
+
+AND WORK OUT THE FIRST 3 ROWS BY
+HAND BEFORE YOU DECIDE IF IT IS
+ANY GOOD.

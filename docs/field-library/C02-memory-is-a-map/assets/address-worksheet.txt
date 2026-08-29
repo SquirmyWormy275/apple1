@@ -1,0 +1,30 @@
+APPLE-1 FIELD LIBRARY / C02
+WORKSHEET: WHERE DOES IT LIVE?
+
+FOR EACH ADDRESS, WRITE WHAT REGION
+IT FALLS IN.
+
+  $0300  ______________________
+
+  $0400  ______________________
+
+  $01FF  ______________________
+
+  $D011  ______________________
+
+  $FF1F  ______________________
+
+  $9000  ______________________
+
+
+A BYTE AT AN ADDRESS.  WHAT IS IT?
+
+  ADDRESS $0300 HOLDS THE VALUE $A0.
+
+  IS $A0 . . .
+    [ ] A NUMBER (160)
+    [ ] AN INSTRUCTION (LDY)
+    [ ] A CHARACTER
+    [ ] ALL OF THESE, DEPENDING
+
+  WHY? __________________________

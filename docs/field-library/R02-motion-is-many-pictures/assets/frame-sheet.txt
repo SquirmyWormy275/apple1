@@ -1,0 +1,60 @@
+APPLE-1 FIELD LIBRARY / R02
+THE FRAME SHEET
+
+A BOUNCING BALL, 20 COLUMNS WIDE.
+THE BALL IS THE CHARACTER  O
+
+FRAME 1
++--------------------+
+|O                   |
++--------------------+
+
+FRAME 2
++--------------------+
+|    O               |
++--------------------+
+
+FRAME 3
++--------------------+
+|        O           |
++--------------------+
+
+NOW YOU DRAW FRAMES 4, 5 AND 6.
+KEEP THE BALL MOVING THE SAME
+DISTANCE EACH TIME.
+
+FRAME 4
++--------------------+
+|                    |
++--------------------+
+
+FRAME 5
++--------------------+
+|                    |
++--------------------+
+
+FRAME 6
++--------------------+
+|                    |
++--------------------+
+
+WHAT HAPPENS AT FRAME 6?
+THE BALL REACHES THE WALL.
+
+  DOES IT STOP?
+  DOES IT TURN AROUND?
+  DOES IT VANISH?
+  DOES IT GO PAST THE EDGE?
+
+YOU MUST DECIDE.  THE PICTURE
+CANNOT DECIDE FOR YOU.
+
+  MY CHOICE: __________________
+
+WHAT IS THE STATE?
+
+  POSITION   ______
+  DIRECTION  ______
+
+TWO NUMBERS.  THAT IS THE WHOLE
+ANIMATION.

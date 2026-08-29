@@ -1,0 +1,49 @@
+APPLE-1 FIELD LIBRARY / X04
+EXHIBIT CARD
+
+ONE CARD PER ARTIFACT.  THREE CARDS
+MAKE THE EXHIBIT.
+
+ 1. TITLE, AS A VISITOR SEES IT
+    ______________________________
+
+ 2. WHAT IT IS, IN ONE SENTENCE
+    ______________________________
+    ______________________________
+
+ 3. WHY IT IS HERE
+    WHAT DOES IT SHOW THAT THE
+    OTHER TWO DO NOT?
+    ______________________________
+    ______________________________
+
+ 4. WHERE IT CAME FROM
+    ______________________________
+
+ 5. WHO MADE IT, AND WHO SAYS SO
+    ______________________________
+
+ 6. RIGHTS AND PERMISSION
+    MAY THIS BE DISPLAYED?  COPIED?
+    WHO WOULD KNOW?
+    ______________________________
+    ______________________________
+
+ 7. STATUS LABEL
+    OFF-DEVICE / RAM-ONLY /
+    LIVE BY SEPARATE APPROVAL
+    ______________________________
+
+ 8. WHAT THIS ARTIFACT SHOWS
+    ______________________________
+
+ 9. WHAT THIS DOES NOT PROVE
+    ______________________________
+    ______________________________
+
+FIELD 9 IS REQUIRED.
+A CARD WITHOUT IT IS NOT FINISHED.
+
+FIELD 6 IS THE ONE PEOPLE SKIP.
+"I FOUND IT ONLINE" IS NOT A
+PERMISSION.  IT IS A LOCATION.

@@ -1,0 +1,53 @@
+APPLE-1 FIELD LIBRARY / H01
+FIVE CARDS TO PUT IN ORDER
+
+CUT THESE OUT.  SHUFFLE THEM.
+PUT THEM IN ORDER WITHOUT LOOKING
+AT THE DATES ON THE BACK.
+
++--------------------------------------+
+| CARD A                               |
+| WOZNIAK WRITES A SHORT PROGRAM THAT  |
+| WATCHES THE KEYBOARD, DOING THE JOB  |
+| FRONT-PANEL SWITCHES USED TO DO.     |
+| HE CALLS IT A MONITOR.  IT TAKES     |
+| 256 BYTES, WHICH IS TWO PROM CHIPS.  |
++--------------------------------------+
+
++--------------------------------------+
+| CARD B                               |
+| JOBS AND WOZNIAK START APPLE         |
+| COMPUTER COMPANY, BUILT AROUND A     |
+| SINGLE-BOARD DESIGN THAT USES A      |
+| KEYBOARD AND A TV.                   |
++--------------------------------------+
+
++--------------------------------------+
+| CARD C                               |
+| ABOUT TWO HUNDRED BOARDS ARE MADE.   |
+| THE RETAIL PRICE IS $666.66, WHICH   |
+| BUYS THE BARE BOARD.  THE BUYER      |
+| STILL NEEDS A KEYBOARD, A POWER      |
+| SUPPLY, AND A DISPLAY.               |
++--------------------------------------+
+
++--------------------------------------+
+| CARD D                               |
+| JOE TORZEWSKI FOUNDS THE APPLE I     |
+| OWNERS CLUB TO SUPPORT USERS.  IT    |
+| HAS ABOUT THIRTY MEMBERS.            |
++--------------------------------------+
+
++--------------------------------------+
+| CARD E                               |
+| A DEALER WHO KEPT AN UNSOLD APPLE I  |
+| IN A DISPLAY CASE FOR 25 YEARS       |
+| DECIDES TO AUCTION IT.               |
++--------------------------------------+
+
+- - - - - - - - - - - - - - - - - - - -
+DATES, FACE DOWN:
+
+  A  1975       D  1977
+  B  APRIL 1976 E  2001
+  C  1976

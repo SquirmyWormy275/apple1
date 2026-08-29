@@ -1,0 +1,38 @@
+APPLE-1 FIELD LIBRARY / A05
+THE FOUR STAGES
+
+LINE-INPUT-0300.HEX, 26 BYTES,
+LOAD ADDRESS $0300.
+
+  0300  A0 00      LDY #$00     SETUP
+  ------------------------------------
+  0302  AD 11 D0   LDA $D011  ]
+  0305  10 FB      BPL $0302  ]  INPUT
+  0307  AD 10 D0   LDA $D010  ]
+  ------------------------------------
+  030A  99 00 04   STA $0400,Y]  STORE
+  ------------------------------------
+  030D  20 EF FF   JSR $FFEF  ]  ECHO
+  ------------------------------------
+  0310  C9 8D      CMP #$8D   ]
+  0312  F0 03      BEQ $0317  ]  TEST
+  0314  C8         INY        ]   AND
+  0315  10 EB      BPL $0302  ]  REPEAT
+  ------------------------------------
+  0317  4C 1F FF   JMP $FF1F    RETURN
+
+IN ENGLISH, ONE LINE PER STAGE:
+
+  SETUP   START AT BUFFER POSITION 0.
+  INPUT   WAIT UNTIL A KEY IS READY,
+          THEN TAKE IT.
+  STORE   PUT IT IN THE BUFFER AT THE
+          CURRENT POSITION.
+  ECHO    ASK THE MONITOR TO DISPLAY
+          IT.
+  TEST    IF IT WAS RETURN, FINISH.
+          OTHERWISE ADVANCE AND GO
+          BACK TO INPUT.
+  RETURN  HAND CONTROL TO THE MONITOR.
+
+THAT IS A LINE EDITOR IN 26 BYTES.

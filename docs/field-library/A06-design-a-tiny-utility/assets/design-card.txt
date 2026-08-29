@@ -1,0 +1,67 @@
+APPLE-1 FIELD LIBRARY / A06
+PROGRAM DESIGN CARD
+
+ONE PAGE.  FILL IT IN BEFORE YOU
+WRITE A SINGLE BYTE.
+
+1. PURPOSE
+   ONE SENTENCE.  IF IT NEEDS TWO,
+   IT IS TWO PROGRAMS.
+
+   ______________________________
+   ______________________________
+
+2. INPUTS
+   WHERE DOES DATA COME FROM?
+   WHAT VALUES ARE POSSIBLE?
+
+   ______________________________
+   ______________________________
+
+3. OUTPUTS
+   WHAT CHANGES WHEN IT IS DONE?
+   SCREEN?  MEMORY?  A REGISTER?
+
+   ______________________________
+   ______________________________
+
+4. MEMORY
+   WHAT ADDRESSES DO YOU USE, AND
+   WHY ARE THEY SAFE?
+
+   PROGRAM AT   ______ TO ______
+   DATA AT      ______ TO ______
+   CLEARANCE?   ______
+
+5. EXIT
+   HOW DOES IT FINISH, AND WHAT
+   TAKES CONTROL AFTERWARDS?
+
+   ______________________________
+
+   IS THE EXIT REACHABLE ON EVERY
+   PATH?   YES / NO / NOT SURE
+
+6. TEST CASES
+   WRITE THE EXPECTED RESULT FIRST.
+
+   INPUT          EXPECTED
+   -----          --------
+   TYPICAL   ___  ______________
+   EMPTY     ___  ______________
+   BIGGEST   ___  ______________
+   WRONG     ___  ______________
+
+7. WHAT IT DOES NOT DO
+   LIST THREE THINGS YOU CHOSE NOT
+   TO HANDLE.
+
+   ______________________________
+   ______________________________
+   ______________________________
+
+8. STATUS
+   OFF-DEVICE / RAM-ONLY /
+   LIVE BY SEPARATE APPROVAL
+
+   ______________________________

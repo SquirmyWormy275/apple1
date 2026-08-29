@@ -1,0 +1,37 @@
+APPLE-1 FIELD LIBRARY / C03
+THE BIT STRIP
+
+CUT ALONG THE LINE.  WRITE 1 OR 0 IN
+THE BLANK ROW.
+
++---+---+---+---+---+---+---+---+
+|BIT|BIT|BIT|BIT|BIT|BIT|BIT|BIT|
+| 7 | 6 | 5 | 4 | 3 | 2 | 1 | 0 |
++---+---+---+---+---+---+---+---+
+|128| 64| 32| 16|  8|  4|  2|  1|
++---+---+---+---+---+---+---+---+
+|   |   |   |   |   |   |   |   |
+|   |   |   |   |   |   |   |   |
++---+---+---+---+---+---+---+---+
+- - - - - - - - - - - - - - - - -
+
+RULES:
+  ADD UP THE VALUES OF THE 1
+  COLUMNS.  THAT IS THE NUMBER.
+  ALL ZEROS = 0.  ALL ONES = 255.
+
+BIT 7 IS CALLED THE HIGH BIT OR THE
+TOP BIT.  ON ITS OWN IT IS 128, $80.
+
+NOTE THE NUMBERING RUNS RIGHT TO
+LEFT.  BIT 0 IS THE RIGHTMOST.
+
+HEX SHORTCUT:
+  LEFT FOUR BITS  = FIRST HEX DIGIT
+  RIGHT FOUR BITS = SECOND HEX DIGIT
+
+     1100 1000
+     ----+----
+      C     8     = $C8 = 200
+
+FOUR BITS IS CALLED A NIBBLE.

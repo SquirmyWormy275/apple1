@@ -1,0 +1,44 @@
+APPLE-1 FIELD LIBRARY / B05
+THREE KINDS OF STORED THING
+
++--------------------------------------+
+| CONTENT                              |
+| SOMETHING TO BE READ.                |
+| A LESSON.  A MANUAL.  A PHOTOGRAPH.  |
+| A LIST OF BYTES YOU LOOK AT.         |
+|                                      |
+| RUINED BY: BEING UNREADABLE.         |
+| ASK: CAN A PERSON STILL READ IT?     |
++--------------------------------------+
+
++--------------------------------------+
+| EXECUTABLE CODE                      |
+| SOMETHING A MACHINE CARRIES OUT.     |
+| A PROGRAM.  A FIRMWARE IMAGE.        |
+|                                      |
+| RUINED BY: ONE WRONG BYTE.           |
+| ASK: IS IT EXACTLY WHAT IT WAS?      |
++--------------------------------------+
+
++--------------------------------------+
+| BACKUP                               |
+| A SECOND COPY KEPT SO THE FIRST      |
+| CAN BE LOST.                         |
+|                                      |
+| RUINED BY: LIVING IN THE SAME PLACE  |
+| AS THE ORIGINAL.                     |
+| ASK: WOULD IT SURVIVE WHAT WOULD     |
+| DESTROY THE ORIGINAL?                |
++--------------------------------------+
+
+THE SAME FILE CAN BE MORE THAN ONE
+OF THESE, IN DIFFERENT CONTEXTS.
+
+A BYTE LIST YOU READ IS CONTENT.
+THE SAME BYTES ENTERED INTO MEMORY
+ARE EXECUTABLE CODE.
+A COPY OF IT ON ANOTHER DISK IS A
+BACKUP.
+
+THE BYTES DO NOT CHANGE.
+WHAT YOU ARE TRUSTING THEM FOR DOES.

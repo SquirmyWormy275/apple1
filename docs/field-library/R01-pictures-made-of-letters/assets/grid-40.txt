@@ -1,0 +1,41 @@
+APPLE-1 FIELD LIBRARY / R01
+THE 40-COLUMN GRID
+
+EVERY LINE IS EXACTLY 40 WIDE.
+COUNT THE RULER BEFORE YOU DRAW.
+
+         1111111111222222222233333333334
+1234567890123456789012345678901234567890
++--------------------------------------+
+|                                      |
+|                                      |
+|                                      |
+|                                      |
+|                                      |
+|                                      |
+|                                      |
+|                                      |
+|                                      |
+|                                      |
+|                                      |
+|                                      |
++--------------------------------------+
+
+RULES OF THIS CANVAS:
+
+  UPPER CASE ONLY.
+  PRINTABLE ASCII ONLY.
+  40 COLUMNS.  NO WRAPPING.
+  NO GOING BACK.  ONCE A LINE IS
+  DRAWN IT IS DRAWN.
+
+USEFUL CHARACTERS:
+
+  SOLID    # * @ M W
+  MEDIUM   + = O X
+  LIGHT    . , ' "
+  LINES    - | / \ _
+  CORNERS  + < > ^ V
+
+A GOOD BANNER USES THREE WEIGHTS
+AND NO MORE.

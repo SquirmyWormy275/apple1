@@ -1,0 +1,40 @@
+APPLE-1 FIELD LIBRARY / M03
+THE REHEARSAL CARD
+
+WHAT A REHEARSAL IS FOR:
+  CHECKING THAT A BYTE SEQUENCE DOES
+  WHAT YOU THINK IT DOES.
+
+WHAT A REHEARSAL IS NOT FOR:
+  DECIDING THAT THE MACHINE WORKS.
+
+FILL THIS IN FOR EVERY RUN.
+
+  PROGRAM FILE ____________________
+
+  LOAD ADDRESS ____________________
+
+  BYTE COUNT   ____________________
+
+  INPUT USED   ____________________
+
+  PREDICTED BEFORE RUNNING:
+    SCREEN     ____________________
+    BUFFER     ____________________
+    RETURNED   ____________________
+
+  OBSERVED AFTER RUNNING:
+    SCREEN     ____________________
+    BUFFER     ____________________
+    RETURNED   ____________________
+    INSTRS     ____________________
+
+  MATCHED?  YES / NO
+
+  IF NO, WHAT DIFFERED:
+    ______________________________
+
+THIS RUN PROVES SOMETHING ABOUT THE
+BYTES.  IT PROVES NOTHING ABOUT THE
+REPLICA 1 PLUS, ITS PROPELLER, ITS
+DISPLAY, OR ITS SERIAL PORT.

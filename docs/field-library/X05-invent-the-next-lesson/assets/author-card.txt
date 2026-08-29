@@ -1,0 +1,68 @@
+APPLE-1 FIELD LIBRARY / X05
+CURRICULUM AUTHOR CARD
+
+ 1. LESSON ID AND TITLE
+    ______________________________
+
+ 2. AUDIENCE
+    LOOK / LEARN / BUILD / STUDY
+    ______________________________
+
+ 3. TIME
+    ______________________________
+
+ 4. LEARNING OBJECTIVE
+    "BY THE END, THE LEARNER CAN
+     ___________________________"
+    IT MUST BE SOMETHING YOU COULD
+    WATCH THEM DO.
+
+ 5. FIRST VISIBLE RESULT
+    ______________________________
+    REACHED IN HOW MANY ACTIONS?
+    ______  (MUST BE 3 OR FEWER)
+
+ 6. THE THREE ACTIONS
+    1 ___________________________
+    2 ___________________________
+    3 ___________________________
+
+ 7. SOURCES
+    EVERY APPLE-1 OR HISTORICAL
+    CLAIM, AND WHERE IT COMES FROM.
+    ______________________________
+    ______________________________
+    ______________________________
+    CLAIMS WITH NO SOURCE YET:
+    ______________________________
+
+ 8. STATUS LABEL
+    OFF-DEVICE / RAM-ONLY /
+    LIVE BY SEPARATE APPROVAL
+    ______________________________
+
+ 9. ANSWER KEY PLAN
+    EVERY QUESTION HAS AN ANSWER.
+    HOW MANY QUESTIONS?  ________
+    ANY OPEN-ENDED ONES?  ________
+    HOW WILL THOSE BE JUDGED?
+    ______________________________
+
+10. WHAT IT DOES NOT ESTABLISH
+    ______________________________
+    ______________________________
+
+11. PREREQUISITES
+    ______________________________
+
+12. THE SAFETY CHECK
+    DOES IT CONTAIN ANY OF:
+      FIRMWARE LOADING      Y / N
+      EEPROM WRITING        Y / N
+      CFFA1 MODIFICATION    Y / N
+      SERIAL-PORT OPENING   Y / N
+      AUTOMATED CONTROL     Y / N
+      WIRING OR SOLDERING   Y / N
+
+    ANY YES MEANS THE LESSON DOES
+    NOT GO IN THE LIBRARY.

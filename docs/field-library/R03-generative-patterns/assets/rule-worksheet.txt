@@ -1,0 +1,43 @@
+APPLE-1 FIELD LIBRARY / R03
+WORK IT OUT BY HAND
+
+RULE: PRINT # WHERE THE COLUMN
+DIVIDES EXACTLY BY THE ROW NUMBER,
+OTHERWISE PRINT A DOT.
+
+FILL IN ROWS 1 TO 4, COLUMNS 1 TO 12.
+
+     COLUMN
+     123456789012
+     ------------
+ R1  ____________
+ R2  ____________
+ R3  ____________
+ R4  ____________
+
+CHECK: HOW MANY # ARE IN ROW 3?
+  ______
+
+WHY DOES ROW 1 HAVE NO DOTS?
+  ______________________________
+
+
+NOW THE TRIANGLE RULE.
+EACH NUMBER IS THE SUM OF THE TWO
+ABOVE IT.  WRITE THE NUMBERS FIRST.
+
+            1
+           1 1
+          1 _ 1
+         1 _ _ 1
+        1 _ _ _ 1
+       _ _ _ _ _ _
+
+NOW MARK ODD NUMBERS WITH #
+AND EVEN NUMBERS WITH A SPACE.
+
+WHAT SHAPE APPEARS?
+  ______________________________
+
+DID ANYONE DRAW THAT SHAPE?
+  ______________________________

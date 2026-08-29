@@ -1,0 +1,42 @@
+APPLE-1 FIELD LIBRARY / R01
+THREE WORKED BANNERS
+
+ONE: LETTERS BUILT FROM ONE CHARACTER
+
+  #   #  ####  #     #     #####
+  #   #  #     #     #     #   #
+  #####  ###   #     #     #   #
+  #   #  #     #     #     #   #
+  #   #  ####  ####  ####  #####
+
+TWO: A BORDER AND A CENTRED TITLE
+
+  ++++++++++++++++++++++++++++++++
+  +                              +
+  +      APPLE-1 FIELD LIBRARY   +
+  +                              +
+  ++++++++++++++++++++++++++++++++
+
+THREE: WEIGHT USED TO SUGGEST DEPTH
+
+       .,'''''',.
+     ,'          ',
+    '   #######   '
+    '   #     #   '
+     ',  #####  ,'
+       '',,,,,''
+
+WHAT MAKES ONE WORK:
+
+  A LETTER NEEDS AT LEAST 5 ROWS
+  TO BE READABLE.
+
+  A GAP OF ONE COLUMN BETWEEN
+  LETTERS IS TOO LITTLE.  USE TWO.
+
+  FIVE LETTERS AT 5 WIDE PLUS 2
+  GAPS IS 33 COLUMNS.  SIX LETTERS
+  IS 40.  SEVEN DOES NOT FIT.
+
+  SO PLAN THE WORD BEFORE YOU
+  DRAW THE FIRST LETTER.

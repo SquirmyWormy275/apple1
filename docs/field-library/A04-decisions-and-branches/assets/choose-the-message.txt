@@ -1,0 +1,46 @@
+APPLE-1 FIELD LIBRARY / A04
+CHOOSE THE MESSAGE
+
+READ ONE KEY.  ECHO "Y" IF THE KEY
+WAS Y.  ECHO "N" FOR ANYTHING ELSE.
+
+  0300  AD 11 D0  LDA $D011
+  0303  10 FB     BPL $0300
+  0305  AD 10 D0  LDA $D010
+  0308  C9 D9     CMP #$D9
+  030A  F0 05     BEQ $0311
+  030C  A9 CE     LDA #$CE
+  030E  4C 13 03  JMP $0313
+  0311  A9 D9     LDA #$D9
+  0313  20 EF FF  JSR $FFEF
+  0316  4C 1F FF  JMP $FF1F
+
+  $D9 IS "Y" WITH THE HIGH BIT SET.
+  $CE IS "N" WITH THE HIGH BIT SET.
+
+THE SHAPE OF A DECISION:
+
+        COMPARE
+           |
+       +---+---+
+       |       |
+    EQUAL   NOT EQUAL
+       |       |
+    PATH A  PATH B
+       |       |
+       +---+---+
+           |
+        REJOIN
+
+TRACE IT FOR THREE KEYS.
+
+  KEY   PATH TAKEN   ECHOED
+  ---   ----------   ------
+   Y    __________   ______
+   N    __________   ______
+   Q    __________   ______
+
+WHY DOES PATH B NEED A JMP AT $030E
+BUT PATH A NEEDS NOTHING AT $0313?
+
+  ______________________________

@@ -1,0 +1,31 @@
+APPLE-1 FIELD LIBRARY / C04
+WORKSHEET: ENCODE AND DECODE
+
+PART 1.  FILL THE TABLE.
+
+  CHAR   DEC   HEX   HIGH-BIT HEX
+  ----   ---   ---   ------------
+   A      65   $41       $C1
+   B     ___   ___       ___
+   Z     ___   ___       ___
+   0     ___   ___       ___
+  SPC    ___   ___       ___
+   CR    ___   ___       ___
+
+
+PART 2.  DECODE THIS BYTE LIST.
+STRIP THE TOP BIT FIRST.
+
+  C8  C9  A0  D4  C8  C5  D2  C5  8D
+
+  PLAIN HEX: __ __ __ __ __ __ __ __ __
+
+  TEXT:      _________________________
+
+
+PART 3.  ONE SENTENCE.
+
+WHY DOES STRIPPING THE TOP BIT COME
+BEFORE LOOKING UP THE LETTER?
+
+  ______________________________
