@@ -1,0 +1,19 @@
+APPLE-1 BA1 / COLS 01-06
+----------------------------------------
+        1     2     3     4     5     6
+ +-----+-----+-----+-----+-----+-----+
+B|7400 |7410 |74123|KBD  |74S25|74S25|
+ +-----+-----+-----+-----+-----+-----+
+A|PRM1 |PRM2 |.....|6820 |JMP  |.....|
+ +-----+-----+-----+-----+-----+-----+
+
+A1  MONITOR PROM LOW NIBBLE
+A2  MONITOR PROM HIGH NIBBLE
+A4  6820 PIA
+
+B1  7400 NAND LOGIC
+B2  7410 LOGIC
+B3  74123 ONE-SHOT
+B4  KEYBOARD CONNECTOR
+B5  74S257 SELECTOR
+B6  74S257 SELECTOR

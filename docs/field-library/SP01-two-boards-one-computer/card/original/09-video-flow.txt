@@ -1,0 +1,24 @@
+ORIGINAL / VIDEO HARDWARE FLOW
+----------------------------------------
+6-BIT CHARACTER STREAM
+          |
+          V
++----------------------+
+| 2504 SHIFT REGISTERS |
+| SCREEN CHARACTER LOOP|
++----------+-----------+
+           |
+           V
++----------------------+
+| 2519 ROW / RECIRC.   |
++----------+-----------+
+           |
+           V
++----------------------+
+| 2513 CHARACTER ROM   |
++----------+-----------+
+           |
+           V
+COUNTERS / 74166 / TTL
+           |
+           V  ->  COMPOSITE VIDEO

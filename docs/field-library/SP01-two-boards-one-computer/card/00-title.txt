@@ -1,0 +1,22 @@
++--------------------------------------+
+|              APPLE-1                 |
+|          FIELD LIBRARY               |
++--------------------------------------+
+|                                      |
+|         SPECIAL LESSON SP01          |
+|                                      |
+|       TWO BOARDS, ONE COMPUTER       |
+|                                      |
+|    ORIGINAL APPLE-1 / REPLICA 1+     |
+|                                      |
+|         HARDWARE ATLAS               |
+|        + SOFTWARE COMPARE            |
+|                                      |
++--------------------------------------+
+|                                      |
+|  40 X 24 ASCII EDITION               |
+|                                      |
+|  MOVE THROUGH THE BOARD IN TILES.    |
+|  THEN COMPARE WHAT SOFTWARE SEES.    |
+|                                      |
++--------------------------------------+

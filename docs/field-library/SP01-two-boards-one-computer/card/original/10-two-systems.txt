@@ -1,0 +1,20 @@
+ORIGINAL / TWO SYSTEMS ON ONE PCB
+----------------------------------------
++--------------------------------------+
+| VIDEO DISPLAY SYSTEM                 |
+|                                      |
+| 2504 / 2519 / 2513 / TTL / TIMING   |
+| MOSTLY ROWS C AND D                  |
++--------------------------------------+
+                  ||
+                  || CHARACTER I/O
+                  \/
++--------------------------------------+
+| MICROCOMPUTER SYSTEM                 |
+|                                      |
+| 6502 / 6820 / PROM / DRAM / DECODE  |
+| MOSTLY ROWS A AND B                  |
++--------------------------------------+
+
+THE VIDEO SECTION CAN BE STUDIED AS
+A LARGE SUBSYSTEM OF ITS OWN.

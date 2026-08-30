@@ -1,0 +1,20 @@
+APPLE-1 DC1 / COLS 01-06
+----------------------------------------
+        1     2     3     4     5     6
+ +-----+-----+-----+-----+-----+-----+
+D|74166|2513 |.....|2504X|2504X|74160|
+ +-----+-----+-----+-----+-----+-----+
+C|6800?|R/C  |2519 |74157|7427 |7410 |
+ +-----+-----+-----+-----+-----+-----+
+
+D1  74166 PIXEL SHIFT REGISTER
+D2  2513 CHARACTER GENERATOR
+D4  TWO 2504 SHIFT REGISTERS
+D5  TWO 2504 SHIFT REGISTERS
+D6  74160 COUNTER
+
+C1  6800-ONLY SOCKET POSITION
+C3  2519 ROW SHIFT REGISTER
+C4  74157 SELECTOR
+C5  7427 LOGIC
+C6  7410 LOGIC

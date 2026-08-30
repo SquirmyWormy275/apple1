@@ -1,0 +1,21 @@
+REPLICA 1 PLUS / ATLAS MAP
+----------------------------------------
+ORIENT AS IN MANUAL FIGURE 3:
+
+TOP:
+SWITCH / USB / BREADBOARD / PS2 / VIDEO
+
+RIGHT:
+APPLE-1 STYLE 44-PIN EXPANSION
+
+BOTTOM:
+6502 / 6821 / ASCII KEYBOARD
+
+       +-------------+-------------+
+TOP    |     UL      |      UR     |
+       +-------------+-------------+
+BOTTOM |     LL      |      LR     |
+       +-------------+-------------+
+
+THE FOUR TILES FOLLOW THE LABELED
+PHYSICAL BOARD PHOTOGRAPH.

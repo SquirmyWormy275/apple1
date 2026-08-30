@@ -1,0 +1,21 @@
+SP01 / BIG PICTURE
+----------------------------------------
+ORIGINAL APPLE-1:
+
++------------------+-------------------+
+| VIDEO TERMINAL   | POWER             |
+| MANY IC PACKAGES | REGULATORS / CAPS |
++------------------+-------------------+
+| CPU / PIA / ROM  | TWO DRAM BANKS    |
++------------------+-------------------+
+
+REPLICA 1 PLUS:
+
++------------------+-------------------+
+| USB / PS2        | PROPELLER I/O     |
+| MODERN PORTS     | VIDEO / SERIAL    |
++------------------+-------------------+
+| 6502 / 6821      | SRAM / EPROM      |
++------------------+-------------------+
+
+SAME COMPUTER IDEA. DIFFERENT DENSITY.

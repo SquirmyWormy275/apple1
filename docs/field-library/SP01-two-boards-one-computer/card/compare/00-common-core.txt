@@ -1,0 +1,20 @@
+COMPARE / COMMON CORE
+----------------------------------------
+ORIGINAL                 REPLICA 1 PLUS
+
++------+                 +------+
+| 6502 |                 | 6502 |
++--+---+                 +--+---+
+   |                        |
+   V                        V
++------+                 +------+
+| 6820 |                 | 6821 |
+| PIA  |                 | PIA  |
++--+---+                 +--+---+
+   |                        |
+   +----------+  +----------+
+              |  |
+              V  V
+        KEYBOARD / DISPLAY
+
+EXACT PARTS DIFFER. ROLE IS RELATED.

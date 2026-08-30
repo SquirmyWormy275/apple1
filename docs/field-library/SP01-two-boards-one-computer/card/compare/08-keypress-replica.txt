@@ -1,0 +1,24 @@
+FOLLOW "A" / REPLICA
+----------------------------------------
+USER PRESSES "A"
+       |
+       V
+PS/2 OR ASCII INPUT
+       |
+       V
+PROPELLER / I/O PATH
+       |
+       V
+6821 PIA
+       |
+       V
+6502 + WOZ MONITOR
+       |
+       V
+PROPELLER OUTPUT PATH
+       |
+       V
+COMPOSITE VIDEO
+       |
+       V
+"A" ON DISPLAY

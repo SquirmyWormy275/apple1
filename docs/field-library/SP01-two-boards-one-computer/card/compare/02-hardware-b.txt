@@ -1,0 +1,19 @@
+COMPARE / HARDWARE B
+----------------------------------------
+ITEM        ORIGINAL       REPLICA 1+
+
+POWER       TRANSFORMERS   USB OPTION
+            + BOARD REG.
+
+HOST        NOT BUILT      FT232R USB
+SERIAL      INTO BOARD     SERIAL
+
+VIDEO OUT   COMPOSITE      COMPOSITE
+
+EXPANSION   44-PIN         APPLE-1
+            EDGE           STYLE SLOT
+
+I/O CTRL    DISCRETE       PROPELLER
+            LOGIC          + LOGIC
+
+SUPPORT SYSTEMS ARE MODERNIZED.

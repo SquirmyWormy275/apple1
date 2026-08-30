@@ -1,0 +1,18 @@
+APPLE-1 BA2 / COLS 07-12
+----------------------------------------
+        7     8     9    10    11    12
+ +-----+-----+-----+-----+-----+-----+
+B|74S25|74S25|74154|.....|RAMX |RAMX |
+ +-----+-----+-----+-----+-----+-----+
+A|6502 |JMP  |8T97 |8T97 |RAMW |RAMW |
+ +-----+-----+-----+-----+-----+-----+
+
+A7    MOS 6502 PROCESSOR
+A9-10 8T97 DATA-BUS DRIVERS
+A11-12 START RAM BANK W
+
+B7-8  74S257 SELECTORS
+B9    74154 ADDRESS DECODER
+B11-12 START RAM BANK X
+
+CPU SITS BETWEEN PIA AND MEMORY.

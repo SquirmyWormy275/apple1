@@ -1,0 +1,24 @@
+FOLLOW "A" / ORIGINAL
+----------------------------------------
+USER PRESSES "A"
+       |
+       V
+ASCII KEYBOARD
+       |
+       V
+6820 PIA
+       |
+       V
+6502 + WOZ MONITOR
+       |
+       V
+6820 DISPLAY PATH
+       |
+       V
+2504 / 2519 / 2513 / TTL
+       |
+       V
+COMPOSITE VIDEO
+       |
+       V
+"A" ON DISPLAY

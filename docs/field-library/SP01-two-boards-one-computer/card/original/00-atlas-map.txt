@@ -1,0 +1,20 @@
+ORIGINAL APPLE-1 / ATLAS MAP
+----------------------------------------
+        COLUMNS 1 THROUGH 18
+
+ROW D   VIDEO / TIMING / POWER
+ROW C   VIDEO / TIMING / POWER
+ROW B   LOGIC / KEYBOARD / RAM X
+ROW A   ROM / PIA / CPU / RAM W
+
+       +--------+--------+--------+
+D / C  |  DC1   |  DC2   |  DC3   |
+       +--------+--------+--------+
+B / A  |  BA1   |  BA2   |  BA3   |
+       +--------+--------+--------+
+
+DC1 / BA1 = COLUMNS 1-6
+DC2 / BA2 = COLUMNS 7-12
+DC3 / BA3 = COLUMNS 13-18
+
+THE TILES FOLLOW THE BOARD GRID.

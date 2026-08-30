@@ -1,0 +1,19 @@
+APPLE-1 DC3 / COLS 13-18
+----------------------------------------
+       13    14    15    16    17    18
+ +-----+-----+-----+-----+-----+-----+
+D|N555 |2504X|74161|PWR  |.....|+5RG |
+ +-----+-----+-----+-----+-----+-----+
+C|74175|74157|7400 |.....|CAPS |PWR  |
+ +-----+-----+-----+-----+-----+-----+
+
+D13  NE555 + 14 MHZ CRYSTAL
+D14  TWO 2504 SHIFT REGISTERS
+D15  74161 + CURSOR / POWER
+D16  +/-12 V AND -5 V REGULATION
+D18  +5 V REGULATOR / HEATSINK
+
+C13  74175   C14 74157
+C15  7400 + POWER COMPONENTS
+C17  TWO LARGE 2400 UF CAPS
+C18  POWER HEADER

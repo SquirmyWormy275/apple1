@@ -1,0 +1,20 @@
+REPLICA ATLAS LR / LOWER RIGHT
+----------------------------------------
++--------------------------------------+
+|       PROPELLER / I/O AREA           |
+|                |                     |
+|                V                     |
+|        ASCII ENABLE JUMPER           |
+|               [::]                   |
+|                                      |
+|      +----------------+              |
+|      | ASCII KEYBOARD |              |
+|      | 16-PIN PORT    |              |
+|      +----------------+              |
+|                                      |
+|                            44-PIN    |
+|                           SLOT >>>   |
+|                                      |
++--------------------------------------+
+
+ASCII INPUT IS RETAINED BESIDE PS/2.

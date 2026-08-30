@@ -1,0 +1,19 @@
+APPLE-1 BA3 / COLS 13-18
+----------------------------------------
+       13    14    15    16    17    18
+ +-----+-----+-----+-----+-----+-----+
+B|RAMX |RAMX |RAMX |RAMX |RAMX |RAMX |
+ +-----+-----+-----+-----+-----+-----+
+A|RAMW |RAMW |RAMW |RAMW |RAMW |RAMW |
+ +-----+-----+-----+-----+-----+-----+
+
+BANK X = B11 THROUGH B18.
+EIGHT 4096 X 1 DRAM CHIPS.
+
+BANK W = A11 THROUGH A18.
+EIGHT 4096 X 1 DRAM CHIPS.
+
+8 X 1-BIT CHIPS MAKE ONE
+8-BIT-WIDE 4096-BYTE RAM BANK.
+
+44-PIN EXPANSION IS AT RIGHT EDGE.

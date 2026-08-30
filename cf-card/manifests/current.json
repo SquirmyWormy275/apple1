@@ -1,0 +1,41 @@
+{
+  "schema_version": 1,
+  "purpose": "Host-side CF-card source registry; not an on-card filesystem or write procedure.",
+  "baseline": {
+    "id": "original-lexar-2026-08-28",
+    "status": "immutable-preservation-baseline",
+    "image_path": "preservation/cf-card/2026-08-28/apple1-cf-card-lexar-disk2-128974848.img",
+    "manifest_path": "preservation/cf-card/2026-08-28/MANIFEST.md",
+    "size_bytes": 128974848,
+    "sha256": "5c98a3bb8c77e4155167a1c8df353ae07697f57c939de9196b838ecf097ad836"
+  },
+  "sources": [
+    {
+      "id": "sp01-two-boards-one-computer",
+      "kind": "field-library-card-pages",
+      "source_path": "docs/field-library/SP01-two-boards-one-computer/card",
+      "staging_path": "overlay/field-library/SP01",
+      "status": "approved-card-facing",
+      "format": "ascii-40x24",
+      "include_in_default_export": true
+    },
+    {
+      "id": "field-library-catalog",
+      "kind": "field-library-source",
+      "source_path": "docs/field-library",
+      "staging_path": "candidate/field-library-source",
+      "status": "candidate-review-gates-open",
+      "format": "mixed-markdown-assets",
+      "include_in_default_export": false
+    },
+    {
+      "id": "ram-only-software",
+      "kind": "software-source",
+      "source_path": "software/ram-only",
+      "staging_path": "candidate/ram-only-software",
+      "status": "ram-only-no-live-run-authority",
+      "format": "mixed-text-hex",
+      "include_in_default_export": false
+    }
+  ]
+}
