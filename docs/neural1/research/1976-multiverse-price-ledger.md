@@ -1,221 +1,271 @@
 # 1976 MULTIVERSE Price Ledger v1
 
-**Status:** initial economic-evidence ledger  
-**Purpose:** prevent incompatible or anachronistic component prices from entering 1976 MULTIVERSE scoring.  
+**Status:** reconciled economic-evidence ledger  
+**Purpose:** prevent incompatible, anachronistic, or unsupported component prices from entering 1976 MULTIVERSE scoring.
 
-## Rule
+## Core rule
 
-A component can be historically available without having a usable historical price.
+A component can be historically available without having a usable historical price. A market price can be real without being comparable to another price from a different quantity tier, seller, package, or date.
 
-When price evidence is absent or not comparable, the authoritative field remains unavailable. NEURAL1 must not ask an LLM to estimate the missing value.
+When qualifying price evidence is absent, the authoritative field remains unavailable. NEURAL1 must not ask an LLM to estimate it.
 
-Every price record must retain:
+Every authoritative price record retains:
 
-- part/family;
-- price;
-- currency;
+- part/family and exact order number where known;
+- price and currency;
 - publication/transaction date;
+- seller/channel;
 - quantity tier;
-- price basis;
+- package/variant;
+- economic regime;
 - source;
 - cutoff eligibility;
 - limitations.
 
+See also:
+
+- `1976-multiverse-economic-regimes.md`
+- `1976-multiverse-component-lifecycle-policy.md`
+- `1976-multiverse-price-snapshot-1976-01.json`
+- `1976-multiverse-power-price-findings-v1.md`
+
 ---
 
-# Confirmed / high-confidence period records
+# A. Strict pre-March-10-1976 records
 
-## PRICE-MOS6502-1975-09
+## CPUs / PIA
 
-**Part:** MOS Technology 6502  
-**Price:** USD $25  
+| Part | Price | Date | Basis | Notes |
+|---|---:|---|---|---|
+| MOS 6502 | $25.00 | 1975-09 | introductory individual-sale advertisement | strict-cutoff eligible |
+| Motorola MC6800 | $69.00 | 1975-10-30 | manufacturer advertisement, qty 1 | comparator CPU |
+| Motorola MC6820 | $28.00 | 1974-12 / 1975-04 | small quantity / 1–24 trade listing | strict-cutoff eligible |
+
+The MOS 6502 primary-artifact trail is the September 1975 WESCON advertisement. Motorola's MC6800 $69 quantity-one reduction is documented by the October 30, 1975 advertisement. MC6820 has two independent pre-cutoff low-quantity records.
+
+---
+
+# B. January 1976 hobbyist-retail snapshot
+
+A single January 1976 *BYTE* market snapshot supplies an unusually coherent pre-cutoff retail comparison set. Machine-readable authoritative rows are in `1976-multiverse-price-snapshot-1976-01.json`.
+
+Representative Apple-1-relevant rows:
+
+| Part | Jan-1976 advertised price | Apple-1 relation |
+|---|---:|---|
+| Signetics 2504 | $9.00 | installed family |
+| Signetics 2513 | $11.00 | installed family; font/suffix remains explicit |
+| Signetics 2519 | $4.00 | installed family |
+| 2102 SRAM | $2.95 | alternate design candidate |
+| 2107 4096x1 DRAM | $19.95 | alternate DRAM candidate; not MK4096 price |
+| 8T97B | $1.49 | installed-family comparator |
+| NE555 | $0.49 | installed-function comparator |
+| 82S129 256x4 PROM | $2.95 | explicitly drawing-permitted Apple PROM family |
+
+Standard TTL retail rows from the same issue include:
+
+| Part | Price |
+|---|---:|
+| 7400 | $0.14 |
+| 7402 | $0.15 |
+| 7404 | $0.19 |
+| 7408 | $0.18 |
+| 7410 | $0.16 |
+| 7427 | $0.29 |
+| 7432 | $0.23 |
+| 7450 | $0.17 |
+| 74123 | $0.85 |
+| 74154 | $1.25 |
+| 74157 | $0.99 |
+| 74160 | $1.39 |
+| 74161 | $1.25 |
+| 74166 | $1.49 |
+| 74174 | $1.62 |
+| 74175 | $1.39 |
+
+For the Apple Drawing `00101 Rev A` quantities, these standard TTL rows total **$18.17**, excluding the separately priced 74S257 positions.
+
+Primary source set: January 1976 *BYTE* advertisements from JAMES Electronics, International Electronics Unlimited, and S.D. Sales.
+
+---
+
+# C. 74S257 resolved
+
+## PRICE-74S257N-1975
+
+**Part:** 74S257N  
+**Price:** **$2.40 each**  
+**Date:** documented in late-1975 retail listings, including December 1975  
+**Economic regime:** R1 hobbyist/electronics retail  
+**Cutoff eligible:** yes  
+**Apple Drawing quantity:** 4  
+**Extended Apple design-position cost:** **$9.60**
+
+Representative source:
+
+https://www.worldradiohistory.com/Archive-Radio-Electronics/70s/1975/Radio-Electronics-1975-12.pdf
+
+The source lists `74S257N 2.40` among Schottky TTL parts. This closes the previously unresolved Apple 74S257 price position for strict pre-cutoff market studies.
+
+---
+
+# D. Power-regulator evidence
+
+## LM323K-5
+
+**Price:** **$14.00**  
 **Date:** September 1975  
-**Context:** introductory MOS advertisement / WESCON sale offering  
-**Quantity basis:** individual sale / advertisement context; preserve exact ad wording during final transcription  
-**Price basis:** P1/P2 pending direct final transcription classification  
-**Eligible cutoffs:** `DESIGN_1976_03_10`, `YEAR_END_1976_12_31`  
+**Source:** JAMES Electronics advertisement, first issue of *BYTE*  
+**Cutoff eligible:** yes
 
-**Primary-artifact provenance record:**  
-https://commons.wikimedia.org/wiki/File:MOS_6501_6502_Ad_Sept_1975.jpg
+Primary scan:
 
-The Commons record identifies the source as a MOS Technology advertisement appearing in the September 1975 issue of *IEEE Computer*, pp. 38–39, for the September 16–19, 1975 WESCON.
+https://vintageapple.org/byte/pdf/197509_Byte_Magazine_Vol_00-01_The_Worlds_Greatest_Toy.pdf
 
-**Secondary corroboration:** IEEE Spectrum and Computer History Museum histories identify the 6502's $25 introductory price.
+This is a strong exact-family observation for the Apple-1's high-current +5 V regulator position.
 
-**Rights note:** the Commons record marks this advertisement image public domain based on lack of a copyright notice. Preserve that rights record if the image is ever redistributed.
+## LM320 / LM340 family observations
 
----
+Period retail advertisements establish the market scale for related regulator packages before the cutoff, including records such as:
 
-## PRICE-MC6800-1975-10-30
+- LM320-5K — $2.90;
+- LM320-5T — $2.50;
+- LM320-12K — $2.90;
+- LM320-12T — $2.50;
+- LM340-12K — $2.60;
+- September 1975 JAMES listings for LM340 12 V forms around $1.75–$1.95 depending package.
 
-**Part:** Motorola MC6800  
-**Price:** USD $69  
-**Date:** 1975-10-30  
-**Quantity basis:** quantity one  
-**Prior price stated in source history:** $175 quantity one; $125 for 50–99 before the reduction  
-**Price basis:** P1 — manufacturer advertisement  
-**Eligible cutoffs:** `DESIGN_1976_03_10`, `YEAR_END_1976_12_31`  
+However, the exact Apple production-style `MP` suffix/package rows remain unresolved. Family-level observations may be used for alternative-design sensitivity studies but must not be silently assigned to the exact Apple production package.
 
-**Primary citation identity:** Motorola advertisement, “All this and unbundled $69 microprocessor,” *Electronics*, Vol. 48 No. 22, 1975-10-30, p. 11.
-
-**Current accessible source trail:**  
-https://www.swtpc.com/mholley/microprocessors/microprocessor_history.html
-
-The source index explicitly identifies the period advertisement and the quantity-one price reduction.
-
-**Acquisition note:** retain the direct period magazine scan or independently archived advertisement image in the final evidence package before marking the machine-readable price row fully ingested.
+See `1976-multiverse-power-price-findings-v1.md`.
 
 ---
 
-## PRICE-MC6820-1974-12-26
+# E. Mostek MK4096 DRAM
 
-**Part:** Motorola MC6820 Peripheral Interface Adapter  
-**Price:** USD $28  
-**Date:** 1974-12-26  
-**Quantity basis:** small quantities  
-**Price basis:** P2 — period trade publication product report  
-**Eligible cutoffs:** `DESIGN_1976_03_10`, `YEAR_END_1976_12_31`  
+The MK4096 is firmly documented as commercially available before the Apple-1 design date, but a clean strict-R1 hobbyist-retail exact MK4096 price remains unresolved.
 
-**Primary period source:** *Electronics*, 1974-12-26, p. 114.  
-https://www.worldradiohistory.com/Archive-Electronics/70s/74/Electronics-1974-12-26.pdf
+A 1975 NASA semiconductor-memory comparison records approximate Q1-1975 vendor-book tiers:
 
-The period text describes the MC6820 PIA, its 40-pin ceramic DIP packaging, and states that it cost **$28 each in small quantities**.
+- 25-piece: $42 each;
+- 100-piece: $28 each;
+- 1,000-piece: $22 each.
 
----
+These are **production/vendor-book regime observations**, not hobbyist-retail prices.
 
-## PRICE-MC6820-1975-04-26
+For sensitivity only:
 
-**Part:** Motorola MC6820 Peripheral Interface Adapter  
-**Price:** USD $28  
-**Date:** 1975-04-26  
-**Quantity basis:** 1–24  
-**Price basis:** P2 — period trade publication product listing  
-**Eligible cutoffs:** `DESIGN_1976_03_10`, `YEAR_END_1976_12_31`  
+| Apple memory profile | 25-piece tier | 100-piece tier | 1,000-piece tier |
+|---|---:|---:|---:|
+| 4K / 8 DRAMs | $336 | $224 | $176 |
+| 8K / 16 DRAMs | $672 | $448 | $352 |
 
-**Primary period source:** *Electronic Design*, Vol. 23 No. 9, 1975-04-26.  
-https://www.worldradiohistory.com/Archive-Electronic-Design/1975/Electronic-Design-V23-N09-1975-0426.pdf
+Do not infer Apple's actual memory procurement cost from this table.
 
-The listing gives Motorola Semiconductor Products' MC6820 PIA at **$28 (1–24)**.
-
-### Significance
-
-This is an unusually useful strict-cutoff record because it establishes a price and an explicit low-quantity tier well before the Apple-1 design date.
+January 1976 retail evidence for Intel 2107 at $19.95 provides an alternate-design DRAM market observation, not an MK4096 substitute price.
 
 ---
 
-## PRICE-SIG2519B-1972
+# F. Signetics family historical context
 
-**Part:** Signetics 2519B / 2518B shift-register family  
-**Price:** USD $6  
-**Date:** January 1972 period source  
-**Quantity basis:** 250–999  
-**Availability:** stock  
-**Price basis:** P2 — period trade product listing  
-**Cutoff use:** proves early commercialization and provides historical economic context; **do not use as a March-1976 price without a study explicitly permitting older price observations**.  
+A 1971 Signetics MOS data book establishes that 2504, 2513/2514, and 2518/2519 families were commercial product families years before the Apple-1.
 
-**Primary period source:** *Electronic Design*, January 1972 issue record located during source acquisition.  
-https://www.worldradiohistory.com/Archive-Electronic-Design/1972/Electronic-Design-V20-N01-1972-0106.pdf
+A January 1972 *Electronic Design* record lists 2518B/2519B at **$6 in quantities 250–999**, useful as early commercialization evidence but **not** as a March-1976 price.
 
-### Limitation
-
-This quantity tier is radically different from single-unit hobbyist purchasing. It must not be compared directly against a quantity-one CPU price in an assembled BOM without an explicit price-normalization methodology.
+The January 1976 retail snapshot supersedes that old quantity-tier observation for strict R1 comparison of the 2519 family.
 
 ---
 
-# Late-1976 records — useful only for later cutoff worlds
+# G. DS0025
 
-## PRICE-MOTOROLA-FAMILY-1976-11
+National Semiconductor's 1975 Interface Integrated Circuits data book directly documents the `DS0025/DS0025C` two-phase MOS clock-driver family and its electrical/package properties.
 
-**Date:** November 1976  
-**Source:** *Microcomputer Digest*, Vol. 3 No. 5  
-**URL:** https://bitsavers.org/magazines/Microcomputer_Digest/Microcomputer_Digest_v03n05_Nov76.pdf  
-**Price basis:** P2  
-**Eligible cutoff:** `YEAR_END_1976_12_31` only  
+Source:
 
-Reported commercial-temperature family prices include:
+https://www.bitsavers.org/components/national/_dataBooks/1975_National_Interface_Integrated_Circuits.pdf
 
-- MC6800CL — $49
-- MC6820CL — $23
-- MC6850CL — $24
-- MC6810ACL — $9.25
+**Strict pre-cutoff market price:** **UNRESOLVED**.
 
-The issue describes availability as off the shelf.
-
-These values must **not** be projected backward into the March-1976 design world.
+Repeated targeted searches have located the product documentation but not a sufficiently clear period low-quantity/retail price. Keep the price null rather than estimating it.
 
 ---
 
-# Product-level transaction records — not component cost
+# H. Product / commercial records — separate from component cost
 
-## PRICE-APPLE1-INVOICE-1976-12-07
+These belong to R4/R5 commercial analysis, not the strict component-price table:
 
-**Product:** Apple-1  
-**Price:** USD $666.66  
-**Date:** 1976-12-07  
-**Additional ACI:** $75  
-**Basis:** P4 if underlying invoice image is directly inspected  
-**Locator:** Apple-1 Registry Frank Anderson system record  
-https://www.apple1registry.com/en/41.html
+- Apple-1 advertised/invoiced retail baseline: **$666.66 / 4K**;
+- Apple Cassette Interface: **$75** on surviving December 1976 invoice;
+- Byte Shop: **50 assembled units x $500 wholesale = $25,000 PO value**;
+- July 15, 1976 Kierulff payment: **$3,430 for Apple-1 parts**, line items unknown;
+- July 1, 1976 Santa Clara Circuits payment: **$673.36**, production-PCB context, quantity unknown;
+- March 1976 Ramlor payment: **$116.97**, PCB-related context, quantity unknown.
 
-**Use:** Apple-1 retail/product history only.
-
-**Prohibited inference:** do not derive Apple's component procurement cost or margin from this invoice without separate cost evidence.
+See `apple1-commercial-economics-ledger-v1.md` and `apple1-procurement-cashflow-v1.json`.
 
 ---
 
-## PRICE-APPLE1-RICKETTS-1976
+# I. Late-1976 records — later cutoff only
 
-**Product:** Apple-1 transaction  
-**Recorded payment:** USD $600 for Apple-1 in the Registry description; separate later payment associated with software/programming  
-**Date:** July/August 1976 according to artifact history  
-**Basis:** P4 only after underlying check is directly verified  
-**Locator:**  
-https://www.apple1registry.com/en/30.html
+Example November 1976 Motorola commercial-temperature family prices:
 
-**Use:** product transaction history, not BOM cost.
+- MC6800CL — $49;
+- MC6820CL — $23;
+- MC6850CL — $24;
+- MC6810ACL — $9.25.
+
+These are useful for `YEAR_END_1976_12_31` but must never leak into the strict March-10 world.
 
 ---
 
-# Important missing price evidence
+# J. Current strict-cutoff status
 
-These remain priority targets:
+## Resolved / usable price families relevant to Apple design
 
-| Component/family | Strict March-1976 price status |
+- 6502;
+- MC6820;
+- 2504;
+- 2513;
+- 2519;
+- standard 74xx TTL set;
+- 74S257;
+- 8T97B comparator;
+- NE555;
+- drawing-permitted 82S129 PROM configuration;
+- LM323K-5;
+- several LM320/LM340 family/package comparators.
+
+## Still unresolved as exact Apple design/procurement prices
+
+| Component/category | Status |
 |---|---|
-| Mostek MK4096 / exact Apple-1 DRAM grade | MISSING |
-| Signetics 2504 | MISSING |
-| Signetics 2513 | MISSING |
-| Signetics 2519 near 1975/early-1976 | MISSING; only older quantity-tier evidence currently recorded |
-| Common Apple-1 TTL parts | MISSING as a coherent comparable price set |
-| PROM/ROM alternatives in Apple schematic | MISSING |
-| Keyboard encoders | MISSING |
-| Power regulators / analog support | MISSING |
-| Connectors / sockets / board fabrication | MISSING |
+| MK4096 exact strict-R1 retail / actual Apple procurement | UNRESOLVED |
+| Intel/MMI 3601 exact pre-cutoff price | UNRESOLVED; drawing-permitted 82S129 is priced separately |
+| DS0025 exact pre-cutoff price | UNRESOLVED |
+| exact Apple LM320MP-5 package price | UNRESOLVED |
+| exact Apple LM320MP-12 package price | UNRESOLVED |
+| exact Apple LM340MP-12 package price | UNRESOLVED |
+| 14.31818 MHz crystal before 1976-03-10 | UNRESOLVED |
+| rectifiers / exact passives / sockets / connectors | PARTIAL OR UNRESOLVED |
+| PCB per-unit fabrication | UNRESOLVED despite surviving aggregate payments |
+| assembly labor per unit | UNRESOLVED |
 
 ---
 
-# Pricing methodology decisions still required
+# K. Scoring policy
 
-1976 MULTIVERSE must not produce a fake single-dollar cost score until these questions are explicitly resolved:
+1976 MULTIVERSE must not produce a fake complete dollar cost while required rows remain unsupported.
 
-1. **Quantity basis:** are candidate machines priced at quantity one, hobbyist retail, or a documented production tier?
-2. **Date basis:** use latest qualifying price before cutoff, nearest qualifying observation, or a declared price window?
-3. **Distributor versus manufacturer:** should these be separate frontiers rather than normalized together?
-4. **Missing price:** exclude the candidate, mark cost incomplete, or compute a partial-cost lower bound?
-5. **Board/support costs:** how are PCB, connectors, sockets, transformers, and passives treated?
-6. **Alternative designs:** must support logic and refresh circuitry be priced alongside the primary memory/video chip?
-
-Recommended initial policy:
-
-> Use only directly sourced component prices at their declared quantity/date basis. Report **partial sourced cost** plus **coverage percentage**, rather than pretending the complete BOM cost is known.
-
-Example:
+Default reporting:
 
 ```text
 SOURCED COMPONENT COST: $X
-COST-COVERED REQUIRED LINE ITEMS: 18 / 31
-COST COVERAGE: 58%
+COST-COVERED PACKAGE POSITIONS: N / TOTAL
+COST COVERAGE: Y%
+ECONOMIC REGIME: R1 / R2 / ...
 COMPLETE BOM COST: UNAVAILABLE
 ```
 
-This is less visually satisfying than a fake total and far more scientifically defensible.
+If a candidate has unsupported cost rows, report a **partial sourced cost / lower bound** rather than assigning LLM-estimated values.
+
+Market prices are identified by **date + seller/channel + quantity tier + package/configuration**. Price comparisons across regimes require a preregistered normalization method or separate Pareto frontiers.
