@@ -1,0 +1,25 @@
+{
+  "schema_version": "neural1-model-registry-0.1",
+  "models": [
+    {
+      "backend": "llama.cpp",
+      "backend_name": "qwen2.5-coder:1.5b-gguf",
+      "capabilities": ["text", "code"],
+      "context_limit": 2048,
+      "digest": "29d8c98fa6b098e200069bfb88b9508dc3e85586d20cba59f8dda9a808165104",
+      "family": "qwen2.5-coder",
+      "generation_defaults": {
+        "executable": "external/llama.cpp-b10621/llama-b10621/llama-cli",
+        "extra_args": ["--single-turn", "--simple-io", "--no-display-prompt", "--temp", "0.2", "--top-p", "0.9"],
+        "max_tokens": 64,
+        "model_path": "external/ollama-models/blobs/sha256-29d8c98fa6b098e200069bfb88b9508dc3e85586d20cba59f8dda9a808165104",
+        "timeout_seconds": 180
+      },
+      "license": "Apache-2.0 (same qualified GGUF blob as Ollama record)",
+      "model_id": "qwen25-coder-15b-llamacpp-parity",
+      "parameter_count": "1543714304",
+      "quantization": "Q4_K_M",
+      "role": "provider-parity-only"
+    }
+  ]
+}

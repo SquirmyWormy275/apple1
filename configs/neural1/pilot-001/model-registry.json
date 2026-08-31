@@ -1,0 +1,47 @@
+{
+  "schema_version": "neural1-model-registry-0.1",
+  "models": [
+    {
+      "backend": "ollama",
+      "backend_name": "qwen2.5-coder:1.5b",
+      "capabilities": ["text", "code"],
+      "context_limit": 32768,
+      "digest": "d7372fd828518a4d38b1eb196c673c31a85f2ed302b3d1e406c4c2d1b64a0668",
+      "family": "qwen2.5-coder",
+      "generation_defaults": {"max_tokens": 192, "temperature": 0.2, "timeout_seconds": 180, "top_p": 0.9},
+      "license": "Apache-2.0 (local GGUF metadata and bundled license layer)",
+      "model_id": "qwen25-coder-15b",
+      "parameter_count": "1543714304",
+      "quantization": "Q4_K_M",
+      "role": "coding-small"
+    },
+    {
+      "backend": "ollama",
+      "backend_name": "smollm2:1.7b",
+      "capabilities": ["text", "code"],
+      "context_limit": 8192,
+      "digest": "cef4a1e09247f018ca0c482ad4c2ce1474aba5e87f245dacf97f07948d05d8b4",
+      "family": "smollm2",
+      "generation_defaults": {"max_tokens": 192, "temperature": 0.2, "timeout_seconds": 180, "top_p": 0.9},
+      "license": "Apache-2.0 (local GGUF metadata and bundled license layer)",
+      "model_id": "smollm2-17b",
+      "parameter_count": "1711376384",
+      "quantization": "Q8_0",
+      "role": "general-small"
+    },
+    {
+      "backend": "ollama",
+      "backend_name": "tinyllama:1.1b",
+      "capabilities": ["text"],
+      "context_limit": 2048,
+      "digest": "2644915ede352ea7bdfaff0bfac0be74c719d5d5202acb63a6fb095b52f394a4",
+      "family": "tinyllama",
+      "generation_defaults": {"max_tokens": 192, "temperature": 0.2, "timeout_seconds": 180, "top_p": 0.9},
+      "license": "NOT REPORTED BY LOCAL OLLAMA MODEL METADATA",
+      "model_id": "tinyllama-11b",
+      "parameter_count": "1100048384",
+      "quantization": "Q4_0",
+      "role": "weak-small-baseline"
+    }
+  ]
+}
