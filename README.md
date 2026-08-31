@@ -70,6 +70,7 @@ Primary domain routes:
   that keeps seller claims separate from authenticated collection evidence.
 - [NEURAL1 overview](docs/neural1/README.md): architecture, five flagship
   experiments, META/1, methods, maturity, and reproducible demonstrations.
+- [Next-eight implementation status](docs/neural1/phase-2-status.md).
 - [Pilot 001 research package](docs/neural1/research/pilot-001/README.md):
   the first model-validated pilot package, honestly preserving the incomplete
   matrix, thermal stop, negative parser result, bounded resume evidence, and
@@ -132,7 +133,7 @@ recordings, bounded local providers, evaluation, and hash-verifiable research
 bundles. The committed Pilot 001 specification retains TinyLlama deliberately
 as a lower-capability baseline alongside Qwen2.5-Coder 1.5B and SmolLM2 1.7B.
 Registry records—not experiment definitions—carry backend and model-size
-details, so later models require no experiment rewrite.
+details, so later 3B–4B models require no experiment rewrite.
 
 ```bash
 python -m pip install -e '.[dev]'
