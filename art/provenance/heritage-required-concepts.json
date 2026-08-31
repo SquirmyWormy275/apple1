@@ -1,0 +1,20 @@
+{
+  "asset_id": "HERITAGE-APPLE1-SLIDESHOW-REFERENCE",
+  "concept": "QUALITY_REFERENCE_ONLY",
+  "origin": "external",
+  "source_ids": ["HERITAGE-APPLE1-SLIDESHOW"],
+  "author": "David Schmenk",
+  "license_status": "NOT_ESTABLISHED",
+  "redistribution_status": "DO_NOT_VENDOR",
+  "permission_evidence": [],
+  "changes": "None; reference record only. No asset is included.",
+  "attribution": "David Schmenk, Apple1-Slideshow, commit d436e3b088f94919f135e48af6303295058b3d51",
+  "published": false,
+  "required_concepts": {
+    "APPLE_EMBLEM": "BLOCKED",
+    "WOZNIAK_PORTRAIT": "BLOCKED",
+    "JOBS_PORTRAIT": "BLOCKED",
+    "JOBS_WOZ_PLATE": "BLOCKED",
+    "APPLE1_ORIGINS": "BLOCKED"
+  }
+}
