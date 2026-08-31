@@ -1,0 +1,82 @@
+{
+  "schema_version": "neural1-apple1-capability-contract/v1",
+  "contract_id": "APPLE1-CAPABILITY-1976-V1",
+  "status": "SOURCE_BACKED_BASELINE",
+  "purpose": "Historical Apple-1 comparison baseline for 1976 MULTIVERSE. This is not a Replica 1 Plus hardware-state record.",
+  "primary_source": {
+    "source_id": "A76-001",
+    "title": "Apple-1 Operation Manual",
+    "publisher": "Apple Computer Company",
+    "date": "1976",
+    "archive": "Computer History Museum",
+    "url": "https://archive.computerhistory.org/resources/text/Apple/Apple.AppleI.1976.102646518.pdf"
+  },
+  "capabilities": {
+    "cpu": {
+      "architecture": "MOS Technology 6502",
+      "clock_hz": 1023000,
+      "effective_cycle_hz_with_refresh_waits": 960000,
+      "required_for_blind_candidate": false,
+      "comparison_field": true
+    },
+    "video": {
+      "output_type": "composite_positive_video",
+      "line_rate_hz": 15734,
+      "frame_rate_hz": 60.05,
+      "columns": 40,
+      "lines": 24,
+      "automatic_scrolling": true,
+      "display_memory_technology": "dynamic_shift_register",
+      "display_memory_organization": "1Kx7",
+      "character_matrix": "5x7"
+    },
+    "ram": {
+      "technology": "16-pin 4K dynamic RAM, type 4096 family",
+      "onboard_capacity_bytes": 8192,
+      "supplied_bytes": 4096,
+      "automatic_dynamic_refresh": true,
+      "static_memory_permitted_by_manual": true,
+      "expansion_described_to_bytes": 66560
+    },
+    "human_interface": {
+      "keyboard": "ASCII encoded keyboard",
+      "integrated_display_electronics": true,
+      "external_teletype_required": false
+    },
+    "bootstrap_environment": {
+      "resident_system_monitor": true,
+      "monitor_capabilities": [
+        "write_programs_via_keyboard_entry",
+        "examine_memory",
+        "debug_programs",
+        "run_programs"
+      ]
+    },
+    "expansion": {
+      "edge_connector": true,
+      "breadboard_area": true,
+      "manual_examples": ["additional PIA", "ACIA", "EROM"]
+    }
+  },
+  "candidate_contract_policy": {
+    "description": "A blind Multiverse experiment may choose a different CPU, memory implementation, video implementation, or monitor design unless the experiment explicitly fixes that factor. Candidate designs are compared against capabilities, not required to copy Apple-1 components.",
+    "minimum_default_requirements": [
+      "general_purpose_programmable_cpu",
+      "at_least_4096_bytes_user_program_memory_or_declared_equivalent_experimental_budget",
+      "keyboard_input",
+      "human_readable_video_or_declared_equivalent_output_meeting_experiment_requirement",
+      "ability_to_enter_or_load_program_code",
+      "ability_to inspect_or otherwise debug stored program state under the declared experiment contract",
+      "ability_to_execute user programs"
+    ],
+    "historical_cutoff_default": "DESIGN_1976_03_10",
+    "unsupported_cost_fields_must_remain_null": true
+  },
+  "limitations": [
+    "This contract does not yet encode the full Apple-1 BOM or netlist.",
+    "It does not establish component procurement cost.",
+    "It does not describe the current Replica 1 Plus state.",
+    "Exact candidate equivalence criteria must be preregistered per experiment.",
+    "The 65K expansion statement follows the manual wording and should not be silently reinterpreted as a modern address-space convention without source notes."
+  ]
+}
