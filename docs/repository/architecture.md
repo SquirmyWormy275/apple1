@@ -64,7 +64,7 @@ preservation/             preserved byte artifacts and manifests
 schemas/                  machine-readable data contracts
 software/                 Apple-1 software artifacts by execution authority
 tests/                    deterministic tests
- tools/                    host-side utilities and validators
+tools/                    host-side utilities and validators
 wiki/                     derived GitHub-wiki-facing navigation
 ```
 
