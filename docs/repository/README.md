@@ -7,6 +7,7 @@ This directory documents how the Apple1 repository is organized, audited, and mi
 - [Project map](../PROJECT-MAP.md) — human navigation from the repository root.
 - [Repository architecture](architecture.md) — durable directory taxonomy and authority boundaries.
 - [Repository audit — 2026-08-30](audit-2026-08-30.md) — baseline inventory, risks, and consolidation findings.
+- [Authority-aware inventory](inventory-v1.md) — major durable subtrees classified by owner, source/generated status, preservation state, authority, currentness, duplication, destination, and concern.
 - [Git archaeology](git-archaeology-2026-08-30.md) — branch classifications and unique-lineage findings.
 - [Provenance audit](provenance-audit-2026-08-30.md) — source, hash, rights, and attribution state.
 - [Migration ledger](migration-v1.md) — what this architecture pass changed and deliberately did not change.
