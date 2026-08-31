@@ -2,6 +2,9 @@
   "schema_version": "neural1-history-acquisition-0.1",
   "generated_date": "2026-08-30",
   "authoritative_component_records": 0,
+  "research_staging_index": "data/neural1/history/1976-research-index.json",
+  "research_source_seed": "docs/neural1/research/1976-multiverse-source-seed.json",
+  "staged_source_candidates": 16,
   "sources": [
     {
       "source_id": "APPLE1-OPERATION-MANUAL-PROJECT-COPY",
