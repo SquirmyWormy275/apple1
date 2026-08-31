@@ -1,6 +1,6 @@
 # Apple-1 Field Library
 
-Forty lesson packets written against the brief in
+Forty-one lesson packets written against the brief in
 `../apple1-learning-library-curriculum.md`. Every packet follows that
 document's authoring template and contains `README.md`, `ACTIVITY.md`,
 `ANSWERS.md`, `SOURCE-NOTES.md`, `STATUS.md`, and an `assets/` directory.
@@ -18,8 +18,9 @@ discussed in several lessons. They remain RAM-only candidates with **no
 live-run authority**, exactly as `../apple1-software-library.md` classifies
 them. No lesson changes that.
 
-**No packet has been through the review gate** at the end of the curriculum
-document. That is verification item V-36 and it is outstanding.
+**H06 has been through the review gate** as part of the display-history research
+pass. The pre-existing forty packets have not been reviewed as a set; verification
+item V-36 remains outstanding for that earlier material.
 
 ## Shared files
 
@@ -115,6 +116,7 @@ brings a learner or a visitor into contact with the hardware.
 | [H03](H03-why-provenance-matters/README.md) | Why provenance matters | STUDY | 45 minutes | S04, H02 |
 | [H04](H04-safe-experimentation/README.md) | Safe experimentation | LEARN | 30 minutes | S04, M04 |
 | [H05](H05-the-future-history-you-are-making/README.md) | The future history you are making | LOOK | 20 minutes | H03 |
+| [H06](H06-the-monitor-that-wasnt/README.md) | The monitor that wasn't | STUDY | 35 minutes | S04, H02, H03 |
 
 ### 8. Challenges and capstones
 
@@ -170,7 +172,8 @@ evidence and should be worked through before anything goes on the card.**
 | **V-33** | `X02-fix-the-loop` | Both programs in this packet are teaching artifacts written for this lesson. Neither is in `software/ram-only/`, neither has been through that library's acceptance process, and neither carries any hardware authority. |
 | **V-34** | `X04-curate-a-mini-software-exhibit` | Rights and permission status is unrecorded for several artifacts. |
 | **V-35** | `X05-invent-the-next-lesson` | Two card sections extend the curriculum's stated requirements. |
-| **V-36** | `X05-invent-the-next-lesson` | The review gate has not been applied to any existing packet. |
+| **V-36** | `X05-invent-the-next-lesson` | The review gate has not been applied across the pre-existing forty-packet library. H06 was reviewed separately during the display-history research pass. |
+| **V-37** | `H06-the-monitor-that-wasnt` | Exact VM-4209 launch date, earliest primary Apple-specific use, V&A trade-fair source basis, Byte Shop transaction evidence, and the claimed 1977 Apple II/VM-4209 advertisement remain open in the dedicated display-history dossier. |
 
 ## What this library does not establish
 

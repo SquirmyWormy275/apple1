@@ -127,6 +127,7 @@ defines the educational catalog only.
 | H03 | Why provenance matters | STUDY | Explains what a checksum and a source record can establish. | Creates a sample evidence-card entry. | Link to the collection-archive manifest and distinguish identity from authenticity. |
 | H04 | Safe experimentation | LEARN | Identifies which actions are off-device, RAM-only, or approval-gated. | Completes a green/amber/red decision card. | Reuse the repository's safety boundaries exactly; no live procedure. |
 | H05 | The future history you are making | LOOK | Treats notes, photos, and software versions as future historical material. | Writes a one-paragraph collection log entry. | End warmly: a careful hobbyist can be a good archivist. |
+| H06 | The monitor that wasn't | STUDY | Separates Apple's 1976 display documentation from the VM-4209's later Apple-1 collector association. | Classifies three monitor claims as fact, later association, or unverified. | Use the display-history evidence ledger; teach how a later iconic pairing can be historically real without being an original factory bundle. |
 
 ### 8. Challenges and capstones
 
