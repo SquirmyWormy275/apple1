@@ -25,6 +25,7 @@ Apple supplied VM-4209s with Apple-1 computers in 1976.
 - [Open research questions](open-research.md)
 - [Prepared archival requests](research-requests.md)
 - [Source register](sources.md)
+- [Validation record](validation.md)
 - [Sanyo VM-4092](sanyo/vm-4092.md)
 - [Sanyo VM-4209](sanyo/vm-4209.md)
 - [Sanyo model relationship](sanyo/model-lineage.md)
