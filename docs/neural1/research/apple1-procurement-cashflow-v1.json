@@ -1,0 +1,108 @@
+{
+  "schema_version": "neural1-apple1-procurement-cashflow/v1",
+  "status": "SOURCE_BACKED_PARTIAL_LEDGER",
+  "purpose": "Record Apple Computer Company financial artifacts relevant to Apple-1 development and production without converting vendor payments into unsupported per-unit BOM costs.",
+  "records": [
+    {
+      "id": "CF-1976-03-CANTIN",
+      "date": "1976-03-16",
+      "payee": "Howard Cantin",
+      "amount_usd": 500.00,
+      "classification": "pcb_layout_development",
+      "source_type": "surviving_check",
+      "per_unit_cost_usable": false,
+      "source_url": "https://www.rrauction.com/auctions/lot-detail/350879307346000-steve-jobs-and-steve-wozniak-historic-signed-1976-apple-computer-check-no-1-to-howard-cantin-designer-of-the-apple-1-printed-circuit-board-psa-mint-9/"
+    },
+    {
+      "id": "CF-1976-03-RAMLOR",
+      "date": "1976-03",
+      "payee": "Ramlor, Inc.",
+      "amount_usd": 116.97,
+      "classification": "pcb_related_payment_quantity_unknown",
+      "source_type": "surviving_bank_statement",
+      "per_unit_cost_usable": false,
+      "source_url": "https://www.rrauction.com/auctions/lot-detail/351019507346002-steve-jobs-march-1976-wells-fargo-account-statement-for-apple-computer-co-apples-first-financial-record/"
+    },
+    {
+      "id": "CF-1976-03-ELMAR",
+      "date": "1976-03",
+      "payee": "Elmar Electronics",
+      "amount_usd": 13.86,
+      "classification": "electronics_vendor_line_items_unknown",
+      "source_type": "surviving_bank_statement",
+      "per_unit_cost_usable": false,
+      "source_url": "https://www.rrauction.com/auctions/lot-detail/351019507346002-steve-jobs-march-1976-wells-fargo-account-statement-for-apple-computer-co-apples-first-financial-record/"
+    },
+    {
+      "id": "CF-1976-03-ZACK",
+      "date": "1976-03",
+      "payee": "Zack Electronics",
+      "amount_usd": 4.95,
+      "classification": "electronics_vendor_line_items_unknown",
+      "source_type": "surviving_bank_statement",
+      "per_unit_cost_usable": false,
+      "source_url": "https://www.rrauction.com/auctions/lot-detail/351019507346002-steve-jobs-march-1976-wells-fargo-account-statement-for-apple-computer-co-apples-first-financial-record/"
+    },
+    {
+      "id": "CF-1976-07-SANTA-CLARA-CIRCUITS",
+      "date": "1976-07-01",
+      "payee": "Santa Clara Circuits",
+      "amount_usd": 673.36,
+      "classification": "production_pcb_payment_quantity_unknown",
+      "source_type": "surviving_check",
+      "per_unit_cost_usable": false,
+      "source_url": "https://www.rrauction.com/auctions/lot-detail/351630507484001-steve-jobs-signed-1976-apple-computer-company-check-to-santa-clara-circuits-linked-to-the-first-apple-1-boards/"
+    },
+    {
+      "id": "CF-1976-07-KIERULFF",
+      "date": "1976-07-15",
+      "payee": "Kierulff Electronics",
+      "amount_usd": 3430.00,
+      "classification": "apple1_parts_payment_line_items_unknown",
+      "source_type": "surviving_check",
+      "per_unit_cost_usable": false,
+      "source_url": "https://www.rrauction.com/auctions/lot-detail/345625006328020-steve-jobs-and-steve-wozniak-signed-1976-apple-computer-check/"
+    },
+    {
+      "id": "CF-1976-07-ELMAR",
+      "date": "1976-07-16",
+      "payee": "Elmar Electronics",
+      "amount_usd": 10.52,
+      "classification": "electronics_vendor_line_items_unknown",
+      "source_type": "surviving_check",
+      "per_unit_cost_usable": false,
+      "source_url": "https://www.rrauction.com/auctions/lot-detail/349143007005088-steve-jobs-filled-out-and-signed-apple-computer-company-check-to-elmar-electronics-july-16-1976/"
+    },
+    {
+      "id": "CF-1976-07-QUEMENT",
+      "date": "1976-07-16",
+      "payee": "Quement Electronics",
+      "amount_usd": 24.75,
+      "classification": "electronics_vendor_line_items_unknown",
+      "source_type": "surviving_check",
+      "per_unit_cost_usable": false,
+      "source_url": "https://www.rrauction.com/auctions/lot-detail/349145707050156-steve-jobs-signed-1976-apple-computer-check-to-quement-electronics/"
+    }
+  ],
+  "statement_aggregates": [
+    {
+      "id": "STATEMENT-1976-03",
+      "period": "1976-03",
+      "deposits_usd": 840.00,
+      "debits_usd": 697.45,
+      "source_url": "https://www.rrauction.com/auctions/lot-detail/351019507346002-steve-jobs-march-1976-wells-fargo-account-statement-for-apple-computer-co-apples-first-financial-record/"
+    },
+    {
+      "id": "STATEMENT-1976-07",
+      "period": "1976-07",
+      "checking_debits_usd": 6756.14,
+      "source_url": "https://www.rrauction.com/auctions/lot-detail/351630707484005-steve-jobs-july-1976-wells-fargo-account-statements-for-apple-computer-co-tracing-the-funds-behind-early-apple-1-production/"
+    }
+  ],
+  "policy": {
+    "vendor_payment_is_not_unit_cost": true,
+    "unknown_line_items_remain_unknown": true,
+    "do_not_allocate_development_cost_without_declared_assumption": true,
+    "blind_design_cutoff_leakage_forbidden": true
+  }
+}
