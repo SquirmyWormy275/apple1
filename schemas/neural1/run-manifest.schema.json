@@ -1,0 +1,21 @@
+{
+  "$schema": "https://json-schema.org/draft/2020-12/schema",
+  "$id": "https://github.com/SquirmyWormy275/apple1/schemas/neural1/run-manifest.schema.json",
+  "title": "NEURAL1 run manifest",
+  "type": "object",
+  "required": ["schema_version", "run_id", "experiment_id", "seed", "target", "maturity", "model", "config"],
+  "properties": {
+    "schema_version": {"const": "neural1-0.1"},
+    "run_id": {"type": "string", "pattern": "^N1R-[0-9A-F]{16}$"},
+    "experiment_id": {"enum": ["4k-mind", "1976-multiverse", "selfhost1", "256-byte-universe", "ram-republic"]},
+    "seed": {"type": "integer"},
+    "target": {"enum": ["VIRTUAL", "PHYSICAL_QUALIFICATION"]},
+    "maturity": {"type": "string"},
+    "model": {"type": "object"},
+    "config": {"type": "object"},
+    "parent_run_id": {"type": ["string", "null"]},
+    "fork_point": {"type": ["string", "null"]},
+    "changed_factor": {"type": ["string", "null"]}
+  },
+  "additionalProperties": false
+}

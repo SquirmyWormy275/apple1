@@ -1,0 +1,17 @@
+{
+  "$schema": "https://json-schema.org/draft/2020-12/schema",
+  "title": "NEURAL1 artwork provenance",
+  "type": "object",
+  "required": ["asset_id", "origin", "author", "license_status", "redistribution_status", "changes", "attribution"],
+  "properties": {
+    "asset_id": {"type": "string"},
+    "origin": {"enum": ["original", "external", "derivative"]},
+    "author": {"type": "string", "minLength": 1},
+    "license_status": {"type": "string", "minLength": 1},
+    "redistribution_status": {"type": "string", "minLength": 1},
+    "changes": {"type": "string"},
+    "attribution": {"type": "string"},
+    "published": {"type": "boolean"}
+  },
+  "additionalProperties": true
+}

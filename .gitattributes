@@ -1,1 +1,5 @@
 *.img filter=lfs diff=lfs merge=lfs -text
+# These two upstream files are CRLF byte artifacts; provenance hashes require
+# preserving their recorded checkout representation on every platform.
+firmware/vendor/110REV03/Serial_IO.spin text eol=crlf
+"firmware/vendor/110REV03/replica 110REV03.spin" text eol=crlf

@@ -1,0 +1,15 @@
+{
+  "fixture_status": "SYNTHETIC_TEST_ONLY_NOT_HISTORICAL_EVIDENCE",
+  "schema_version": "neural1-0.1",
+  "components": [
+    {
+      "part_id": "SYN-CPU-01",
+      "category": "CPU",
+      "manufacturer": "SYNTHETIC",
+      "available_by": null,
+      "source_ids": [],
+      "attributes": {"purpose": "validator rejection fixture"},
+      "authoritative": false
+    }
+  ]
+}
