@@ -41,7 +41,7 @@ A full 16-DRAM socket/population model corresponds to 8K capacity and must not a
 
 The following package counts are now reconciled with Apple Drawing `00101 Rev A`; the modern replica BOM remains only a secondary consistency check.
 
-| Part | Qty | Jan-1976 hobbyist price each | Extended |
+| Part | Qty | Pre-cutoff price each | Extended |
 |---|---:|---:|---:|
 | 7400 | 3 | $0.14 | $0.42 |
 | 7402 | 1 | $0.15 | $0.15 |
@@ -59,44 +59,53 @@ The following package counts are now reconciled with Apple Drawing `00101 Rev A`
 | 74166 | 1 | $1.49 | $1.49 |
 | 74174 | 1 | $1.62 | $1.62 |
 | 74175 | 1 | $1.39 | $1.39 |
-| 74S257 | 4 | unavailable in current pre-cutoff retail snapshot | unavailable |
+| 74S257 | 4 | $2.40 | $9.60 |
 
-**Sourced subtotal for standard TTL rows above, excluding 74S257:** **$18.17**.
+**Pre-cutoff TTL subtotal including 74S257:** **$27.77**.
 
-The 74S257 family is documented as commercially available before 1976, but a qualifying pre-March-1976 price has not yet been established.
+### 74S257 price evidence
+
+A period component advertisement in *Popular Electronics*, August 1975, lists `74S257N` at **$2.40**. Additional late-1975 listings repeat the same $2.40 figure. This establishes a pre-March-1976 market price observation for the required Schottky multiplexer family.
+
+Primary period source trail:
+
+- `Popular Electronics`, August 1975, semiconductor advertisement: https://americanradiohistory.com/Archive-Poptronics/70s/1975/Poptronics-1975-08.pdf
+- late-1975 Radio-Electronics listings provide corroboration.
+
+The Apple drawing specifies 74S257 at B5-B8. Manufacturer/package realization on a particular surviving Apple board remains a separate production-history question.
 
 ### Production-vendor caveat
 
-The design function is more stable than vendor/package realization. Surviving boards show Fairchild/Signetics and other supplier variation; at C8, for example, functionally compatible 7450/7451-style realization requires board-specific treatment. Do not turn the price row above into a claim about a specific original board's vendor marking.
+The design function is more stable than vendor/package realization. Surviving boards show Fairchild/Signetics and other supplier variation; at C8, for example, functionally compatible 7450/7451-style realization requires board-specific treatment. Do not turn the price rows above into claims about a specific original board's vendor marking.
 
 ## Pre-cutoff sourced semiconductor partials
 
-Using only rows for which a qualifying retail/small-quantity price has been found, and excluding DRAM, 74S257, DS0025, regulators, transformers, passives, PCB, sockets, connectors, and assembly:
+Using rows for which qualifying retail/small-quantity price evidence has been found, and excluding DRAM, DS0025, regulators, transformers, passives, PCB, sockets, connectors, and assembly:
 
 - 6502: $25.00 (1975 introductory individual-sale record)
 - MC6820: $28.00 (period low-quantity record; economic-regime caveat)
-- standard TTL subtotal excluding 74S257: $18.17
+- TTL including four 74S257: $27.77
 - 7 x 2504: $63.00
 - 1 x 2513: $11.00
 - 1 x 2519: $4.00
 - 2 x 8T97B retail reference: $2.98
 - 1 x NE555: $0.49
 
-**Partial matched subtotal excluding PROMs:** **$152.64**.
+**Partial matched subtotal excluding PROMs:** **$162.24**.
 
 Apple's own processor drawing explicitly permits three 256x4 PROM families. If the historical design configuration selects the January-1976 retail-priced Signetics 82S129 option:
 
 - 2 x 82S129 at $2.95 = $5.90.
 
-**Drawing-permitted partial subtotal with 82S129 PROMs:** **$158.54**.
+**Drawing-permitted partial subtotal with 82S129 PROMs:** **$168.14**.
 
 Neither figure is an Apple-1 BOM cost. Both are partial sums of price-supported semiconductor rows under declared pre-cutoff evidence. The second is a **drawing-permitted configuration**, not a claim that production Apple used 82S129s on a particular board.
 
 ### Package-position price coverage
 
-The reconciled base-4K digital/terminal inventory contains 53 IC packages. Under the current small-quantity/retail evidence set, 39 package positions have a directly usable price if the drawing-permitted 82S129 PROM choice is selected, before deciding whether the MC6820 trade-publication price belongs in the same strict R1 regime.
+Closing 74S257 pricing resolves four additional required package positions. The major unresolved digital-package concentration is now the eight base DRAM devices plus the DS0025 clock driver, with economic-regime treatment of the PIA still requiring care.
 
-This is roughly 74% package-position coverage, but the missing eight DRAM positions are economically dominant. Therefore a total-cost ranking remains invalid despite the apparently high line-item coverage.
+Despite improved package-position coverage, the missing DRAM price in the strict hobbyist-retail regime remains economically dominant. Therefore a total-cost ranking is still invalid.
 
 ## DRAM economic evidence
 
@@ -134,15 +143,14 @@ Examples:
 ## Remaining high-priority BOM evidence gaps
 
 1. Exact 3601 PROM pre-cutoff price for observed-production-style configurations.
-2. 74S257 pre-cutoff price.
-3. DS0025 pre-cutoff price.
-4. Apple-specific MK4096 procurement quantities/prices.
-5. Apple actual supplier line-item invoices, if surviving records can be sourced.
-6. PCB fabrication cost / Byte Shop production economics.
-7. Regulator and power-supply component prices.
-8. 14.31818 MHz crystal price before March 10, 1976.
-9. Sockets/connectors/passives and assembly labor.
-10. Full as-built PCB netlist reconciliation against known published-drawing errors.
+2. DS0025 pre-cutoff price.
+3. Apple-specific MK4096 procurement quantities/prices and/or strict R1 market price.
+4. Apple actual supplier line-item invoices, if surviving records can be sourced.
+5. PCB fabrication cost / Byte Shop production economics.
+6. Exact production-package regulator prices where period family prices do not resolve the suffix/package.
+7. 14.31818 MHz crystal price before March 10, 1976.
+8. Sockets/connectors/passives and assembly labor.
+9. Full as-built PCB netlist reconciliation against known published-drawing errors.
 
 ## Sources / cross-checks
 
@@ -151,6 +159,7 @@ Primary:
 - Apple Computer Company, Drawing `00101 Rev A`, sheets 1–3.
 - Apple Computer Company, *Apple-1 Operation Manual*, 1976.
 - January 1976 *BYTE* period retail advertisements.
+- *Popular Electronics*, August 1975 74S257 component advertisement.
 - Motorola MC6820 period pricing records in *Electronics* / *Electronic Design*.
 - MOS Technology 6501/6502 1975 advertisements.
 - NASA 1975 semiconductor-memory comparison, NTRS citation `19750020659`.
