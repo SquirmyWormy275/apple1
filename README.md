@@ -31,6 +31,10 @@ temporary wiring, soldering, or other physical modification.
 - [Apple-1 Field Library curriculum scaffold](docs/apple1-learning-library-curriculum.md):
   structured, content-ready lessons for the CF-card educational catalog, with
   off-device and preservation boundaries.
+- [Apple1-Slideshow heritage artwork provenance](docs/reference/apple1-slideshow.md):
+  pinned source and mandatory attribution record for the classic Apple-1
+  Jobs/Woz and Apple-logo visual reference. Redistribution remains blocked
+  until upstream license or permission terms are established.
 
 ## Verification
 
