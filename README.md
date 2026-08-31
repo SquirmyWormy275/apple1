@@ -50,6 +50,12 @@ temporary wiring, soldering, or other physical modification.
 - [Apple-1 Field Library curriculum scaffold](docs/apple1-learning-library-curriculum.md):
   structured, content-ready lessons for the CF-card educational catalog, with
   off-device and preservation boundaries.
+- [Apple-1 display history and Sanyo monitor research](docs/peripherals/displays/README.md):
+  evidence-graded Apple-1 display history, VM-4092/VM-4209 research, visual
+  chronology, source register, rights ledger, and unresolved archival targets.
+- [Sanyo VM-4209 collection accession](docs/collection/sanyo-vm-4209-1979/README.md):
+  pre-arrival provenance, physical-verification fields, and an owner-photo plan
+  that keeps seller claims separate from authenticated collection evidence.
 - [NEURAL1 overview](docs/neural1/README.md): architecture, five flagship
   experiments, META/1, methods, maturity, and reproducible demonstrations.
 - [Initial technical report](docs/neural1/publications/technical-report.md) and
