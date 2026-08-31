@@ -1,0 +1,32 @@
+{
+  "source_id": "HERITAGE-APPLE1-SLIDESHOW",
+  "title": "Apple1-Slideshow",
+  "author": "David Schmenk",
+  "github_owner": "dschmenk",
+  "repository": "https://github.com/dschmenk/Apple1-Slideshow",
+  "branch": "master",
+  "commit_sha": "d436e3b088f94919f135e48af6303295058b3d51",
+  "commit_date": "2014-12-04T19:33:36Z",
+  "retrieved_date": "2026-08-30",
+  "purpose": "heritage Apple-1 ASCII-art visual reference",
+  "upstream_description": "ASCII art slideshow for Apple 1 (as seen on most Apple 1 auctions)",
+  "documented_source_geometry": "40x23 pixels",
+  "license_status": "NOT_ESTABLISHED",
+  "redistribution_status": "DO_NOT_VENDOR_UNTIL_LICENSE_OR_PERMISSION_ESTABLISHED",
+  "attribution_required": true,
+  "relevant_assets": [
+    "WozJobsApple-I-lo.pbm",
+    "woz-lo.pbm",
+    "woz.rle",
+    "jobs-lo.pbm",
+    "jobs.rle",
+    "apple-logo-lo.pbm",
+    "apple-logo.rle",
+    "apple-logo-stripe-lo.pbm",
+    "apple-logo-striped.rle",
+    "slideshow.a65",
+    "pbmtorle.c",
+    "dumprle.c"
+  ],
+  "citation_record": "docs/reference/apple1-slideshow.md"
+}
