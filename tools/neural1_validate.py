@@ -23,6 +23,7 @@ def validate_repository(root: str | Path) -> list[str]:
             errors.append(f"{schema_path.relative_to(root_path)}: invalid schema: {error}")
     instances = {
         "campaign.schema.json": root_path / "configs" / "neural1" / "pilot-001" / "campaign.json",
+        "historical-research-index.schema.json": root_path / "data" / "neural1" / "history" / "1976-research-index.json",
         "model-registry.schema.json": root_path / "configs" / "neural1" / "pilot-001" / "model-registry.template.json",
     }
     for schema_name, instance_path in instances.items():
@@ -31,6 +32,22 @@ def validate_repository(root: str | Path) -> list[str]:
             Draft202012Validator(schema).validate(json.loads(instance_path.read_text(encoding="utf-8")))
         except Exception as error:
             errors.append(f"{instance_path.relative_to(root_path)}: schema validation failed: {error}")
+    research_index_path = root_path / "data" / "neural1" / "history" / "1976-research-index.json"
+    try:
+        research_index = json.loads(research_index_path.read_text(encoding="utf-8"))
+        runtime_ids = research_index.get("runtime_authoritative_component_ids", [])
+        if research_index.get("authoritative_runtime_records") != len(runtime_ids):
+            errors.append(
+                f"{research_index_path.relative_to(root_path)}: authoritative_runtime_records does not match runtime_authoritative_component_ids"
+            )
+        for research_input in research_index.get("research_inputs", []):
+            source_path = root_path / research_input["path"]
+            if not source_path.exists():
+                errors.append(f"{research_index_path.relative_to(root_path)}: missing research input {research_input['path']}")
+        if research_index.get("status") == "RESEARCH_STAGING" and runtime_ids:
+            errors.append(f"{research_index_path.relative_to(root_path)}: staging corpus cannot contain authoritative runtime component IDs")
+    except Exception as error:
+        errors.append(f"{research_index_path.relative_to(root_path)}: research-index validation failed: {error}")
     markdown = [root_path / "README.md", *(root_path / "docs" / "neural1").rglob("*.md"), *(root_path / "docs" / "visual-system").rglob("*.md"), *(root_path / "art").rglob("*.md"), *(root_path / "wiki").rglob("*.md")]
     for path in markdown:
         for link in re.findall(r"\[[^]]+\]\(([^)]+)\)", path.read_text(encoding="utf-8")):
