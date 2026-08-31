@@ -23,7 +23,7 @@ REQUIRED_PATHS = (
     "docs/field-library/README.md",
     "docs/peripherals/displays/README.md",
     "cf-card/README.md",
-    "preservation/cf-card/2026-08-28/README.md",
+    "preservation/cf-card/2026-08-28/MANIFEST.md",
     "firmware/vendor/110REV03/provenance.json",
     "data/neural1/history/1976-research-index.json",
 )
