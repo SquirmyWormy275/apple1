@@ -84,4 +84,3 @@ material, browser profiles, cookies, shell history, and capture contents were
 excluded. Deleted or unallocated-content recovery was outside scope. The
 filesystem allocation difference and exact Ollama version remain explicit
 unknowns.
-
