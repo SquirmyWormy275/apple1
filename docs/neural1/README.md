@@ -45,6 +45,7 @@ physical qualification adapter always refuses launch.
 - Storage and recovery: [storage lifecycle](architecture/storage-lifecycle.md),
   [dedicated SSD layout](architecture/storage-layout.md),
   [Pi image baseline](operations/pi-image-baseline.md),
+  [preserved-image archaeology](preservation/pi-image-archaeology-2026-08-30.md),
   [Pi recovery](operations/pi-recovery.md), and
   [SSD commissioning](operations/ssd-commissioning.md)
 - Publication-shaped presentation: [technical report](publications/technical-report.md)
