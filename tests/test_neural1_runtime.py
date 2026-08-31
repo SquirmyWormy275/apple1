@@ -26,6 +26,24 @@ def test_wozmon_is_the_only_agent_surface_and_enforces_budget() -> None:
     assert session.transact("0600") == "ERR RANGE OR SYNTAX"
 
 
+def test_wozmon_executes_deposited_6502_with_a_hard_bound() -> None:
+    world = VirtualApple1World(ram_budget=1024)
+    session = WozMonSession(world, max_instructions=20)
+    # LDA #$2A; STA $0300; BRK
+    assert session.transact("0200: A9 2A 8D 00 03 00") == "0200: A9 2A 8D 00 03 00"
+    assert session.transact("0200R") == "0200: STOP=BRK STEPS=2"
+    assert session.transact("0300") == "0300: 2A"
+
+
+def test_execution_trace_is_verifier_evidence_not_agent_memory_api() -> None:
+    world = VirtualApple1World()
+    world.host_write(0x0200, bytes.fromhex("A9 41 20 EF FF 4C 1F FF"))
+    result = world.execute(0x0200)
+    assert result.stop_reason == "MONITOR_WARM_ENTRY"
+    assert result.screen_text == "A"
+    assert [entry.pc for entry in result.trace[:2]] == [0x0200, 0x0202]
+
+
 def test_snapshot_restore_and_counterfactual_metadata(tmp_path) -> None:
     provider = FakeProvider()
     base = RunManifest.create("4k-mind", 9, provider.record, {"pressure": "bytes"})
