@@ -145,3 +145,40 @@ def test_pi_preservation_record_pins_verified_artifact() -> None:
     assert record["seagate_general_backup_touched"] is False
     assert record["physical_apple_hardware_touched"] is False
     assert record["future_ssd_migration_required"] is True
+
+
+def test_manifest_path_traversal_cannot_escape_source(tmp_path: Path) -> None:
+    source = tmp_path / "temporary"
+    destination = tmp_path / "ssd"
+    destination.mkdir()
+    initialize_temporary_root(source)
+    initialize_ssd_root(destination, volume_id="test-ssd", confirmation=SSD_ROLE)
+    (source / "payload.bin").write_bytes(b"safe")
+    outside = tmp_path / "outside.bin"
+    outside.write_bytes(b"do not delete")
+    manifest = build_migration_manifest(source, destination)
+    manifest["items"][0]["path"] = "../outside.bin"
+
+    with pytest.raises(ValueError, match="escapes storage root"):
+        copy_migration(manifest)
+
+    assert outside.read_bytes() == b"do not delete"
+
+
+def test_finalize_preserves_unplanned_residual_file(tmp_path: Path) -> None:
+    source = tmp_path / "temporary"
+    destination = tmp_path / "ssd"
+    destination.mkdir()
+    initialize_temporary_root(source)
+    initialize_ssd_root(destination, volume_id="test-ssd", confirmation=SSD_ROLE)
+    planned = source / "planned.bin"
+    planned.write_bytes(b"planned")
+    manifest = verify_migration(copy_migration(build_migration_manifest(source, destination)))
+    residual = source / "created-after-plan.txt"
+    residual.write_text("preserve me", encoding="utf-8")
+
+    completed = finalize_migration(manifest, confirmation=DELETE_CONFIRMATION)
+
+    assert completed["state"] == "SOURCE_PLANNED_COPIES_DELETED_WITH_RESIDUALS"
+    assert completed["residual_paths"] == ["created-after-plan.txt"]
+    assert residual.read_text(encoding="utf-8") == "preserve me"

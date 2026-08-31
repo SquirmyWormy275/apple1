@@ -245,6 +245,22 @@ def _assert_disjoint_roots(source: Path, destination: Path) -> None:
         raise ValueError("source and destination storage roots must be disjoint")
 
 
+def _safe_payload_path(root: Path, relative_text: str) -> Path:
+    relative = Path(relative_text)
+    if relative.is_absolute() or not relative.parts:
+        raise ValueError(f"unsafe payload path: {relative_text}")
+    candidate = root.joinpath(relative)
+    resolved = candidate.resolve(strict=False)
+    if resolved == root or root not in resolved.parents:
+        raise ValueError(f"payload path escapes storage root: {relative_text}")
+    current = root
+    for part in relative.parts[:-1]:
+        current = current / part
+        if current.is_symlink():
+            raise ValueError(f"payload path crosses symlinked directory: {relative_text}")
+    return candidate
+
+
 def _iter_payload_files(root: Path) -> Iterator[Path]:
     excluded = {TEMP_MARKER_NAME}
     for path in sorted(root.rglob("*")):
@@ -288,9 +304,10 @@ def _validate_manifest_roots(manifest: dict[str, Any]) -> tuple[Path, Path]:
 def copy_migration(manifest: dict[str, Any]) -> dict[str, Any]:
     source, destination = _validate_manifest_roots(manifest)
     for item in manifest.get("items", []):
-        relative = Path(str(item["path"]))
-        source_path = source / relative
-        destination_path = destination / relative
+        relative_text = str(item["path"])
+        relative = Path(relative_text)
+        source_path = _safe_payload_path(source, relative_text)
+        destination_path = _safe_payload_path(destination, relative_text)
         if not source_path.is_file() or source_path.is_symlink():
             raise ValueError(f"source payload is missing or unsafe: {relative}")
         if source_path.stat().st_size != item["size_bytes"] or sha256_file(source_path) != item["sha256"]:
@@ -309,9 +326,10 @@ def copy_migration(manifest: dict[str, Any]) -> dict[str, Any]:
 def verify_migration(manifest: dict[str, Any]) -> dict[str, Any]:
     source, destination = _validate_manifest_roots(manifest)
     for item in manifest.get("items", []):
-        relative = Path(str(item["path"]))
-        source_path = source / relative
-        destination_path = destination / relative
+        relative_text = str(item["path"])
+        relative = Path(relative_text)
+        source_path = _safe_payload_path(source, relative_text)
+        destination_path = _safe_payload_path(destination, relative_text)
         if not source_path.is_file() or source_path.is_symlink():
             raise ValueError(f"source payload is missing or unsafe: {relative}")
         if not destination_path.is_file() or destination_path.is_symlink():
@@ -335,8 +353,8 @@ def finalize_migration(manifest: dict[str, Any], *, confirmation: str) -> dict[s
     destination_record = destination / "manifests/storage-migration-verified.json"
     _write_json(destination_record, verified)
     for item in verified.get("items", []):
-        relative = Path(str(item["path"]))
-        (source / relative).unlink()
+        relative_text = str(item["path"])
+        _safe_payload_path(source, relative_text).unlink()
     (source / TEMP_MARKER_NAME).unlink()
     directories = sorted((path for path in source.rglob("*") if path.is_dir()), key=lambda path: len(path.parts), reverse=True)
     for directory in directories:
@@ -344,7 +362,7 @@ def finalize_migration(manifest: dict[str, Any], *, confirmation: str) -> dict[s
             directory.rmdir()
         except OSError:
             pass
-    residual_paths = sorted(path.relative_to(source).as_posix() for path in source.rglob("*") if path.exists())
+    residual_paths = sorted(path.relative_to(source).as_posix() for path in source.rglob("*") if path.exists() or path.is_symlink())
     source_root_removed = False
     if not residual_paths:
         source.rmdir()
