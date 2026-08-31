@@ -358,10 +358,8 @@ def finalize_migration(manifest: dict[str, Any], *, confirmation: str) -> dict[s
     (source / TEMP_MARKER_NAME).unlink()
     directories = sorted((path for path in source.rglob("*") if path.is_dir()), key=lambda path: len(path.parts), reverse=True)
     for directory in directories:
-        try:
+        if not any(directory.iterdir()):
             directory.rmdir()
-        except OSError:
-            pass
     residual_paths = sorted(path.relative_to(source).as_posix() for path in source.rglob("*") if path.exists() or path.is_symlink())
     source_root_removed = False
     if not residual_paths:
