@@ -6,6 +6,7 @@ import json
 from dataclasses import asdict, dataclass
 from datetime import date
 from pathlib import Path
+from typing import Any
 
 from .core import Neural1Error, canonical_json, sha256_bytes
 from .experiments import HistoricalComponent
@@ -56,6 +57,44 @@ class HistoricalCorpus:
         text = json.dumps(payload, indent=2, sort_keys=True) + "\n"
         destination.write_text(text, encoding="utf-8")
         return sha256_bytes(canonical_json(payload).encode("ascii"))
+
+
+def load_research_index(path: str | Path) -> dict[str, Any]:
+    """Load the non-authoritative historical research staging index.
+
+    This is deliberately separate from :class:`HistoricalCorpus`: staged research
+    may describe strong evidence, but it must not become runtime-authoritative until
+    its source artifacts and extracted claims pass the ingestion gate.
+    """
+
+    payload = json.loads(Path(path).read_text(encoding="utf-8"))
+    if payload.get("schema_version") != "neural1-historical-research-index-0.1":
+        raise Neural1Error("unsupported historical research index schema")
+    date.fromisoformat(str(payload.get("cutoff_date", "")))
+    runtime_ids = payload.get("runtime_authoritative_component_ids", [])
+    if not isinstance(runtime_ids, list):
+        raise Neural1Error("runtime_authoritative_component_ids must be a list")
+    authoritative_count = payload.get("authoritative_runtime_records")
+    if authoritative_count != len(runtime_ids):
+        raise Neural1Error("authoritative runtime record count does not match component IDs")
+    if payload.get("status") == "RESEARCH_STAGING" and runtime_ids:
+        raise Neural1Error("research staging index cannot promote authoritative runtime components")
+    policy = payload.get("promotion_policy")
+    if not isinstance(policy, dict) or not all(policy.get(key) is True for key in ("requires_sha256", "requires_claim_review", "requires_cutoff_validation", "missing_prices_remain_null", "no_llm_estimates")):
+        raise Neural1Error("historical research promotion policy is incomplete or unsafe")
+    return payload
+
+
+def research_status(path: str | Path) -> dict[str, Any]:
+    payload = load_research_index(path)
+    return {
+        "world_id": payload["world_id"],
+        "cutoff_date": payload["cutoff_date"],
+        "status": payload["status"],
+        "authoritative_runtime_records": payload["authoritative_runtime_records"],
+        "research_inputs": len(payload["research_inputs"]),
+        "unresolved_high_impact": len(payload["unresolved_high_impact"]),
+    }
 
 
 def verify_local_source(path: str | Path, expected_sha256: str) -> bool:
