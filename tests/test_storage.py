@@ -5,7 +5,7 @@ from pathlib import Path
 
 import pytest
 
-from neural1.storage import (
+from neural1.storage_commissioning import (
     DELETE_CONFIRMATION,
     SSD_ROLE,
     baseline_rootfs,
