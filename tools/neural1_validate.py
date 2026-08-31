@@ -12,7 +12,6 @@ from jsonschema import Draft202012Validator
 
 from neural1.visualization import lint_provenance, validate_frame
 
-
 REQUIRED_PATHS = (
     "README.md",
     "docs/PROJECT-MAP.md",
