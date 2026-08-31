@@ -25,6 +25,15 @@ temporary wiring, soldering, or other physical modification.
 
 ## Start here
 
+**New contributor:** begin with the [project map](docs/PROJECT-MAP.md). It
+explains the current state, major products, directory ownership, safety boundary,
+Pilot 001, 1976 MULTIVERSE, CF-card flow, display/Sanyo research, and the normal
+validation workflow. The [repository governance index](docs/repository/README.md)
+records the architecture, repository-wide audit, Git archaeology, provenance
+review, and migration history.
+
+Primary domain routes:
+
 - [Preservation dossier](docs/preservation-dossier.md): collection inventory,
   chain of custody, and hard safety boundaries.
 - [Firmware baseline](docs/firmware-baseline.md) and
@@ -47,9 +56,12 @@ temporary wiring, soldering, or other physical modification.
 - [RAM-only software library](docs/apple1-software-library.md) and
   [emulator/demo guide](docs/emulator-demo-guide.md): safe software rehearsal
   and deterministic terminal formatting.
-- [Apple-1 Field Library curriculum scaffold](docs/apple1-learning-library-curriculum.md):
-  structured, content-ready lessons for the CF-card educational catalog, with
-  off-device and preservation boundaries.
+- [Apple-1 Field Library](docs/field-library/README.md) and
+  [curriculum scaffold](docs/apple1-learning-library-curriculum.md): lesson
+  packets, teacher/visitor material, source notes, and the CF-card educational
+  catalog boundary.
+- [CF-card source control](cf-card/README.md): immutable preserved baseline plus
+  manifest-controlled host-side export/staging; not a physical card writer.
 - [Apple-1 display history and Sanyo monitor research](docs/peripherals/displays/README.md):
   evidence-graded Apple-1 display history, VM-4092/VM-4209 research, visual
   chronology, source register, rights ledger, and unresolved archival targets.
@@ -58,12 +70,40 @@ temporary wiring, soldering, or other physical modification.
   that keeps seller claims separate from authenticated collection evidence.
 - [NEURAL1 overview](docs/neural1/README.md): architecture, five flagship
   experiments, META/1, methods, maturity, and reproducible demonstrations.
+- [Pilot 001 research package](docs/neural1/research/pilot-001/README.md):
+  the first model-validated pilot package, honestly preserving the incomplete
+  matrix, thermal stop, negative parser result, bounded resume evidence, and
+  zero automatic scientific findings.
+- [1976 MULTIVERSE source ingestion](docs/neural1/history/source-ingestion.md):
+  research staging is kept separate from authoritative runtime historical data.
 - [Initial technical report](docs/neural1/publications/technical-report.md) and
   [visual system](docs/visual-system/design-language.md).
-- [Next-eight implementation status](docs/neural1/phase-2-status.md).
-- [Pilot 001 research package](docs/neural1/research/pilot-001/README.md):
-  an honestly incomplete model-validated pilot, thermal stop, negative results,
-  META/1 record, and reproducibility report.
+
+## Authority at a glance
+
+Repository location does not itself establish truth. Use these classes:
+
+```text
+SOURCE
+AUTHORITATIVE DATA
+RESEARCH STAGING
+TEST FIXTURE
+GENERATED OUTPUT
+PRESERVED ARTIFACT
+DERIVED DOCUMENTATION
+```
+
+The current 1976 MULTIVERSE index is `RESEARCH_STAGING` with zero authoritative
+runtime component records. Promotion requires the documented source/hash/claim/
+cutoff review gate. Missing prices remain null and LLM-generated price estimates
+are forbidden.
+
+Preserved artifacts are not silently rewritten into modern documentation.
+Emulator evidence is not live-hardware evidence. Scientific run evidence such
+as Pilot 001 is not disposable build output.
+
+See [repository architecture](docs/repository/architecture.md) for the complete
+rules.
 
 ## NEURAL1 foundation
 
@@ -83,7 +123,8 @@ python -m pytest tests/test_neural1_runtime.py tests/test_neural1_experiments.py
 
 Demo output is labeled prototype evidence, not a research finding or physical
 result. There are no cameras, firmware loaders, EEPROM writers, CFFA1 writers,
-or enabled physical adapters in NEURAL1.
+or enabled physical adapters in NEURAL1. The deterministic demo records
+`serial_opened=false`.
 
 The off-device campaign layer adds a versioned model registry, matched
 experiment matrices, atomic checkpoints, interruption-safe resume, exact model
@@ -91,7 +132,7 @@ recordings, bounded local providers, evaluation, and hash-verifiable research
 bundles. The committed Pilot 001 specification retains TinyLlama deliberately
 as a lower-capability baseline alongside Qwen2.5-Coder 1.5B and SmolLM2 1.7B.
 Registry records—not experiment definitions—carry backend and model-size
-details, so later 3B–4B models require no experiment rewrite.
+details, so later models require no experiment rewrite.
 
 ```bash
 python -m pip install -e '.[dev]'
@@ -107,16 +148,23 @@ license field with locally observed metadata.
 ## Heritage visual reference
 
 David Schmenk's [Apple1-Slideshow](docs/reference/apple1-slideshow.md), pinned
-at `d436e3b088f94919f135e48af6303295058b3d51`, is the quality and format
+at `d436e3b088f94919f135e48af6303295058b3d51`, is a heritage quality/format
 reference. Its redistribution license is not established; upstream artwork is
 excluded from this repository and from releases.
-- [Apple1-Slideshow heritage artwork provenance](docs/reference/apple1-slideshow.md):
-  pinned source and mandatory attribution record for the classic Apple-1
-  Jobs/Woz and Apple-logo visual reference. Redistribution remains blocked
-  until upstream license or permission terms are established.
 
 ## Verification
 
-```powershell
-python -m pytest tests -q
+From a fresh checkout:
+
+```bash
+python -m pip install -e '.[dev]'
+ruff check neural1 tools/neural1_validate.py tests/test_neural1*.py
+mypy neural1
+python -m pytest -q
+python tools/neural1_validate.py .
+python -m neural1.demos --out out/neural1-demo
 ```
+
+CI must remain off-device. No verification command in this section authorizes a
+physical serial open, Replica transmission, firmware/EEPROM/CFFA1 write, GPIO,
+wiring/jumper/solder change, camera use, or physical qualification.
