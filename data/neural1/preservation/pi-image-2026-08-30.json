@@ -1,0 +1,18 @@
+{
+  "artifact_name": "neural1-pi-2026-08-30.img",
+  "artifact_storage": "LOCAL_ONLY_TEMPORARY_STORAGE",
+  "compressed_replacement_created": false,
+  "date": "2026-08-30",
+  "disk_signature": "0xa329df98",
+  "future_ssd_migration_required": true,
+  "independent_complete_reread_passed": true,
+  "partition_table_reproduced": true,
+  "physical_apple_hardware_touched": false,
+  "raw_image_retained": true,
+  "record_type": "PRESERVATION_RECORD",
+  "seagate_general_backup_touched": false,
+  "sha256": "58e46686e02a54fbe8c7060afdb8a2fdc5eea5e3107478366c7881c7957169da",
+  "size_bytes": 127865454592,
+  "source_byte_size_match": true,
+  "source_read_only_after_imaging": true
+}

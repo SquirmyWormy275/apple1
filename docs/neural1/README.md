@@ -42,6 +42,11 @@ physical qualification adapter always refuses launch.
   [reproducibility](research/reproducibility.md), and [threats](research/threats-to-validity.md)
 - Implementation: [data formats](data/schemas.md), [interfaces](interface/portal.md),
   [experiments](experiments/4k-mind.md), and [META/1](meta1/claim-graph.md)
+- Storage and recovery: [storage lifecycle](architecture/storage-lifecycle.md),
+  [dedicated SSD layout](architecture/storage-layout.md),
+  [Pi image baseline](operations/pi-image-baseline.md),
+  [Pi recovery](operations/pi-recovery.md), and
+  [SSD commissioning](operations/ssd-commissioning.md)
 - Publication-shaped presentation: [technical report](publications/technical-report.md)
 
 ## Safety and truth labels
