@@ -54,6 +54,7 @@ temporary wiring, soldering, or other physical modification.
   experiments, META/1, methods, maturity, and reproducible demonstrations.
 - [Initial technical report](docs/neural1/publications/technical-report.md) and
   [visual system](docs/visual-system/design-language.md).
+- [Next-eight implementation status](docs/neural1/phase-2-status.md).
 
 ## NEURAL1 foundation
 

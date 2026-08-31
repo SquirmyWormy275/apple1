@@ -94,8 +94,9 @@ not biological or sociological equivalences.
 
 ## Limitations and threats
 
-The foundation does not yet execute arbitrary deposited programs in its world,
-run autonomous model populations, contain authoritative 1976 component data,
+The foundation executes deposited programs under a bounded CPU/RAM/Monitor-stub
+model but does not claim cycle accuracy, run commissioned autonomous model
+populations, contain authoritative 1976 component data,
 or establish Pi throughput. Prompt leakage, hidden affordances, simulator
 mismatch, selection bias, seed dependence, classifier drift, and post-hoc
 metrics remain central threats. Blinding, preregistration, intervention,

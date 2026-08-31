@@ -10,3 +10,9 @@ may open hardware or silently call a cloud service.
 Many logical agent IDs may share one provider. Their context belongs to the
 experiment scheduler, not to distinct copies of model weights. Throughput and
 feasible Pi model sizes remain unmeasured.
+
+Implemented opt-in providers are localhost Ollama HTTP and bounded llama.cpp
+process execution. Both accept injectable transports for tests. llama.cpp uses
+an argument array, `shell=False`, and a timeout. `RecordingProvider` appends
+exact prompts, agent IDs, seeds, model records, results, token/latency metadata,
+and structured errors; replay refuses absent tuples.
