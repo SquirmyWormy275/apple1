@@ -12,6 +12,7 @@ from .bundle import export_bundle, verify_bundle
 from .campaign import CampaignEngine, CampaignSpec
 from .drivers import objective, parse_commands
 from .evaluation import evaluate_campaign
+from .history import research_status
 from .pilot_report import generate_pilot_001
 from .provider_factory import provider_for
 from .qualification import qualify_registry
@@ -48,6 +49,8 @@ def main(argv: Sequence[str] | None = None) -> int:
     qualify = commands.add_parser("qualify-models")
     qualify.add_argument("registry", type=Path)
     qualify.add_argument("destination", type=Path)
+    history = commands.add_parser("history-status")
+    history.add_argument("index", type=Path, nargs="?", default=Path("data/neural1/history/1976-research-index.json"))
     args = parser.parse_args(argv)
 
     if args.command == "validate-campaign":
@@ -82,6 +85,9 @@ def main(argv: Sequence[str] | None = None) -> int:
         result = qualify_registry(args.registry, args.destination)
         print(json.dumps(result, indent=2, sort_keys=True))
         return 0 if result["qualified"] else 2
+    if args.command == "history-status":
+        print(json.dumps(research_status(args.index), indent=2, sort_keys=True))
+        return 0
     verification = verify_bundle(args.bundle)
     print(json.dumps(asdict(verification), indent=2, sort_keys=True))
     return 0 if verification.valid else 1
