@@ -1,0 +1,69 @@
+{
+  "schema_version": "neural1-historical-price-snapshot/v1",
+  "snapshot_id": "US_HOBBYIST_RETAIL_1976_01",
+  "status": "SOURCE_BACKED_PARTIAL",
+  "date_scope": "1976-01",
+  "economic_regime": "R1_HOBBYIST_RETAIL",
+  "currency": "USD",
+  "cutoff_eligibility": ["DESIGN_1976_03_10", "YEAR_END_1976_12_31"],
+  "policy": {
+    "no_cross_regime_normalization_without_declared_method": true,
+    "missing_prices_remain_null": true,
+    "compatible_parts_do_not_replace_historical_installed_parts": true,
+    "source_image_transcription_required_for_authoritative_rows": true
+  },
+  "sources": [
+    {
+      "source_id": "BYTE-1976-01-JAMES",
+      "publication": "BYTE",
+      "issue": "1976-01",
+      "advertiser": "JAMES Electronics",
+      "url": "https://vintageapple.org/byte/pdf/197601_Byte_Magazine_Vol_00-05_Build_a_Light_Pen.pdf",
+      "evidence_type": "period_retail_advertisement"
+    },
+    {
+      "source_id": "BYTE-1976-01-IEU",
+      "publication": "BYTE",
+      "issue": "1976-01",
+      "advertiser": "International Electronics Unlimited",
+      "url": "https://vintageapple.org/byte/pdf/197601_Byte_Magazine_Vol_00-05_Build_a_Light_Pen.pdf",
+      "evidence_type": "period_retail_advertisement"
+    },
+    {
+      "source_id": "BYTE-1976-01-SDSALES",
+      "publication": "BYTE",
+      "issue": "1976-01",
+      "advertiser": "S.D. Sales",
+      "url": "https://vintageapple.org/byte/pdf/197601_Byte_Magazine_Vol_00-05_Build_a_Light_Pen.pdf",
+      "evidence_type": "period_retail_advertisement"
+    }
+  ],
+  "prices": [
+    {"part":"2504","description":"1024-bit dynamic shift register","unit_price":9.00,"quantity_basis":"advertised unit price","source_id":"BYTE-1976-01-JAMES","historical_apple_relation":"installed_family","exact_substitution_policy":"family/property verification required"},
+    {"part":"2518","description":"static shift register family","unit_price":7.00,"quantity_basis":"advertised unit price","source_id":"BYTE-1976-01-JAMES","historical_apple_relation":"alternative/related family","exact_substitution_policy":"not an Apple-1 BOM row by default"},
+    {"part":"2519","description":"hex 40-bit static shift register","unit_price":4.00,"quantity_basis":"advertised unit price","source_id":"BYTE-1976-01-JAMES","historical_apple_relation":"installed_family","exact_substitution_policy":"variant verification required"},
+    {"part":"2513","description":"character generator","unit_price":11.00,"quantity_basis":"advertised unit price","source_id":"BYTE-1976-01-JAMES","historical_apple_relation":"installed_family","exact_substitution_policy":"font/suffix verification required"},
+    {"part":"2102","description":"1024x1 static RAM","unit_price":2.95,"quantity_basis":"advertised unit price in JAMES listing","source_id":"BYTE-1976-01-JAMES","historical_apple_relation":"alternate_design_candidate","exact_substitution_policy":"not Apple-installed DRAM"},
+    {"part":"2107","description":"4096x1 dynamic RAM","unit_price":19.95,"quantity_basis":"advertised unit price","source_id":"BYTE-1976-01-JAMES","historical_apple_relation":"alternate_design_candidate","exact_substitution_policy":"not proof of MK4096 price"},
+    {"part":"7400","description":"quad 2-input NAND","unit_price":0.14,"quantity_basis":"advertised unit price","source_id":"BYTE-1976-01-IEU","historical_apple_relation":"BOM_crosscheck"},
+    {"part":"7402","description":"quad 2-input NOR","unit_price":0.15,"quantity_basis":"advertised unit price","source_id":"BYTE-1976-01-IEU","historical_apple_relation":"BOM_crosscheck"},
+    {"part":"7404","description":"hex inverter","unit_price":0.19,"quantity_basis":"advertised unit price","source_id":"BYTE-1976-01-IEU","historical_apple_relation":"BOM_crosscheck"},
+    {"part":"7408","description":"quad 2-input AND","unit_price":0.18,"quantity_basis":"advertised unit price","source_id":"BYTE-1976-01-IEU","historical_apple_relation":"BOM_crosscheck"},
+    {"part":"7410","description":"triple 3-input NAND","unit_price":0.16,"quantity_basis":"advertised unit price","source_id":"BYTE-1976-01-IEU","historical_apple_relation":"BOM_crosscheck"},
+    {"part":"7427","description":"triple 3-input NOR","unit_price":0.29,"quantity_basis":"advertised unit price","source_id":"BYTE-1976-01-IEU","historical_apple_relation":"BOM_crosscheck"},
+    {"part":"7432","description":"quad 2-input OR","unit_price":0.23,"quantity_basis":"advertised unit price","source_id":"BYTE-1976-01-IEU","historical_apple_relation":"BOM_crosscheck"},
+    {"part":"7450","description":"dual AND-OR-invert","unit_price":0.17,"quantity_basis":"advertised unit price","source_id":"BYTE-1976-01-IEU","historical_apple_relation":"BOM_crosscheck"},
+    {"part":"74123","description":"dual retriggerable monostable","unit_price":0.85,"quantity_basis":"advertised unit price","source_id":"BYTE-1976-01-IEU","historical_apple_relation":"BOM_crosscheck"},
+    {"part":"74154","description":"4-to-16 decoder/demultiplexer","unit_price":1.25,"quantity_basis":"advertised unit price","source_id":"BYTE-1976-01-IEU","historical_apple_relation":"BOM_crosscheck"},
+    {"part":"74157","description":"quad 2-to-1 selector/multiplexer","unit_price":0.99,"quantity_basis":"advertised unit price","source_id":"BYTE-1976-01-IEU","historical_apple_relation":"BOM_crosscheck"},
+    {"part":"74160","description":"synchronous decade counter","unit_price":1.39,"quantity_basis":"advertised unit price","source_id":"BYTE-1976-01-IEU","historical_apple_relation":"BOM_crosscheck"},
+    {"part":"74161","description":"synchronous binary counter","unit_price":1.25,"quantity_basis":"advertised unit price","source_id":"BYTE-1976-01-IEU","historical_apple_relation":"BOM_crosscheck"},
+    {"part":"74166","description":"parallel-load 8-bit shift register","unit_price":1.49,"quantity_basis":"advertised unit price","source_id":"BYTE-1976-01-IEU","historical_apple_relation":"BOM_crosscheck"},
+    {"part":"74174","description":"hex D flip-flop","unit_price":1.62,"quantity_basis":"advertised unit price","source_id":"BYTE-1976-01-IEU","historical_apple_relation":"BOM_crosscheck"},
+    {"part":"74175","description":"quad D flip-flop","unit_price":1.39,"quantity_basis":"advertised unit price","source_id":"BYTE-1976-01-IEU","historical_apple_relation":"BOM_crosscheck"},
+    {"part":"8T97B","description":"tri-state hex buffer","unit_price":1.49,"quantity_basis":"advertised unit price","source_id":"BYTE-1976-01-SDSALES","historical_apple_relation":"installed_family_crosscheck","exact_substitution_policy":"suffix/variant must remain explicit"},
+    {"part":"NE555","description":"timer","unit_price":0.49,"quantity_basis":"advertised unit price","source_id":"BYTE-1976-01-SDSALES","historical_apple_relation":"installed_function_crosscheck","exact_substitution_policy":"manufacturer/variant may differ"},
+    {"part":"82S129","description":"256x4 bipolar PROM","unit_price":2.95,"quantity_basis":"advertised unit price","source_id":"BYTE-1976-01-SDSALES","historical_apple_relation":"3601-compatible experimental candidate","exact_substitution_policy":"must not be priced as historical 3601"}
+  ],
+  "known_missing_apple_rows": ["MK4096 exact R1 price","Intel 3601 exact contemporary price","74S257 pre-cutoff price","DS0025 pre-cutoff price","14.31818MHz crystal pre-cutoff price","exact regulator prices","transformers","passives","sockets","connectors","PCB","assembly"]
+}
