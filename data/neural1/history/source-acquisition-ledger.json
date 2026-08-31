@@ -1,0 +1,38 @@
+{
+  "schema_version": "neural1-history-acquisition-0.1",
+  "generated_date": "2026-08-30",
+  "authoritative_component_records": 0,
+  "sources": [
+    {
+      "source_id": "APPLE1-OPERATION-MANUAL-PROJECT-COPY",
+      "title": "Apple-1 Operation Manual",
+      "issuer": "Apple Computer Company",
+      "publication_date": "1976",
+      "archive_path": "preservation/manuals/2026-08-28/files/Apple1 Manual.pdf",
+      "sha256": "8f5e595ea6c0c91fdd4206a4b2c2333be8990178db2600392af185ec63f9a1c2",
+      "source_type": "PRIMARY MANUAL / PROJECT COPY",
+      "rights_status": "RESEARCH REFERENCE; REDISTRIBUTION ALREADY GOVERNED BY PRESERVATION RECORD",
+      "status": "HASH_VERIFIED_SOURCE; CLAIM EXTRACTION PENDING"
+    },
+    {
+      "source_id": "MOS-6500-HARDWARE-MANUAL-JAN76-CANDIDATE",
+      "title": "MCS6500 Microcomputer Family Hardware Manual 6500-10A",
+      "issuer": "MOS Technology",
+      "publication_date": "1976-01",
+      "url": "http://archive.6502.org/books/mcs6500_family_hardware_manual.pdf",
+      "source_type": "PRIMARY MANUFACTURER MANUAL",
+      "rights_status": "ALL RIGHTS RESERVED; DO NOT VENDOR WITHOUT REVIEW",
+      "status": "ACQUISITION_BLOCKED_BY_REMOTE_TRANSPORT; NO AUTHORITATIVE ROWS"
+    },
+    {
+      "source_id": "MOTOROLA-M6800-DATA-MAY75-CANDIDATE",
+      "title": "M6800 Systems Reference and Data Sheets",
+      "issuer": "Motorola Semiconductor Products",
+      "publication_date": "1975-05",
+      "url": "https://vtda.org/docs/computing/Motorola/M6800SystemsReferenceDataSheets_May75.pdf",
+      "source_type": "PRIMARY MANUFACTURER DATA BOOK",
+      "rights_status": "NOT ESTABLISHED; DO NOT VENDOR",
+      "status": "CANDIDATE IDENTIFIED; HASHED ACQUISITION PENDING; NO AUTHORITATIVE ROWS"
+    }
+  ]
+}

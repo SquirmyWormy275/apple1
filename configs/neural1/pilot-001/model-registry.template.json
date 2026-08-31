@@ -1,0 +1,47 @@
+{
+  "schema_version": "neural1-model-registry-0.1",
+  "models": [
+    {
+      "backend": "ollama",
+      "backend_name": "qwen2.5-coder:1.5b",
+      "capabilities": ["text", "code"],
+      "context_limit": 32768,
+      "digest": "PENDING-LOCAL-QUALIFICATION",
+      "family": "qwen2.5-coder",
+      "generation_defaults": {"max_tokens": 192, "temperature": 0.2, "timeout_seconds": 180, "top_p": 0.9},
+      "license": "SEE-QUALIFIED-LOCAL-METADATA",
+      "model_id": "qwen25-coder-15b",
+      "parameter_count": "1.5B",
+      "quantization": "PENDING",
+      "role": "coding-small"
+    },
+    {
+      "backend": "ollama",
+      "backend_name": "smollm2:1.7b",
+      "capabilities": ["text", "code"],
+      "context_limit": 8192,
+      "digest": "PENDING-LOCAL-QUALIFICATION",
+      "family": "smollm2",
+      "generation_defaults": {"max_tokens": 192, "temperature": 0.2, "timeout_seconds": 180, "top_p": 0.9},
+      "license": "SEE-QUALIFIED-LOCAL-METADATA",
+      "model_id": "smollm2-17b",
+      "parameter_count": "1.7B",
+      "quantization": "PENDING",
+      "role": "general-small"
+    },
+    {
+      "backend": "ollama",
+      "backend_name": "tinyllama:1.1b",
+      "capabilities": ["text"],
+      "context_limit": 2048,
+      "digest": "PENDING-LOCAL-QUALIFICATION",
+      "family": "tinyllama",
+      "generation_defaults": {"max_tokens": 192, "temperature": 0.2, "timeout_seconds": 180, "top_p": 0.9},
+      "license": "SEE-QUALIFIED-LOCAL-METADATA",
+      "model_id": "tinyllama-11b",
+      "parameter_count": "1.1B",
+      "quantization": "PENDING",
+      "role": "weak-small-baseline"
+    }
+  ]
+}

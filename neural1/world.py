@@ -2,13 +2,12 @@
 
 from __future__ import annotations
 
-from dataclasses import dataclass
 import re
+from dataclasses import dataclass
 
 from py65.devices.mpu6502 import MPU
 
 from .core import Neural1Error, sha256_bytes
-
 
 MEMORY_SIZE = 0x10000
 DEFAULT_START = 0x0200
@@ -76,7 +75,7 @@ class VirtualApple1World:
         return WorldSnapshot(bytes(self._memory), self.ram_start, self.ram_budget, self.generation)
 
     @classmethod
-    def restore(cls, snapshot: WorldSnapshot) -> "VirtualApple1World":
+    def restore(cls, snapshot: WorldSnapshot) -> VirtualApple1World:
         world = cls(ram_budget=snapshot.ram_budget, ram_start=snapshot.ram_start)
         if len(snapshot.memory) != MEMORY_SIZE:
             raise Neural1Error("snapshot is not a 64 KiB memory image")

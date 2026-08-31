@@ -2,14 +2,14 @@
 
 from __future__ import annotations
 
-from dataclasses import dataclass, field
 import random
+from collections.abc import Callable, Mapping, Sequence
+from dataclasses import dataclass, field
 from statistics import fmean, stdev
-from typing import Callable, Mapping, Sequence
 
 from .core import Neural1Error
 from .models import ModelProvider
-from .world import VirtualApple1World, WozMonSession, WorldSnapshot
+from .world import VirtualApple1World, WozMonSession
 
 
 @dataclass
@@ -43,7 +43,7 @@ class PopulationScheduler:
         self.round_number = 0
 
     def round(self, objective: str, command_parser: Callable[[str], Sequence[str]]) -> list[AgentTurn]:
-        rng = random.Random(f"{self.seed}:{self.round_number}")
+        rng = random.Random(f"{self.seed}:{self.round_number}")  # noqa: S311 - reproducible schedule, not cryptography
         turns = []
         for agent in sorted(self.agents, key=lambda item: item.agent_id):
             turn_seed = rng.randrange(0, 2**31)

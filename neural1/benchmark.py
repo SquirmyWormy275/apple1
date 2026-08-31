@@ -2,11 +2,11 @@
 
 from __future__ import annotations
 
-from dataclasses import asdict
 import json
-from pathlib import Path
 import platform
 import sys
+from dataclasses import asdict
+from pathlib import Path
 from time import perf_counter
 
 from .runtime import ExperimentRuntime

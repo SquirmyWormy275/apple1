@@ -15,3 +15,16 @@ manifest process.
 Machine-readable initial contracts live in `schemas/neural1/`. The 1976
 MULTIVERSE rejection fixture is explicitly marked synthetic under
 `neural1/fixtures/`; it is not an authoritative component record.
+
+Additional off-device contracts are:
+
+- `campaign.schema.json`: stable matched experiment matrix.
+- `model-registry.schema.json`: backend-specific identities separated from
+  experiment definitions.
+- `checkpoint.schema.json`: portable cell progress and snapshot identity.
+- `release-bundle.schema.json`: closed file inventory, byte counts, hashes,
+  and reproduction command.
+
+`configs/neural1/pilot-001/model-registry.template.json` is deliberately marked
+pending. It documents intended identities but is not proof that a model blob
+was downloaded or qualified.

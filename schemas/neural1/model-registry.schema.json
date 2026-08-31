@@ -1,0 +1,11 @@
+{
+  "$schema": "https://json-schema.org/draft/2020-12/schema",
+  "title": "NEURAL1 model registry",
+  "type": "object",
+  "required": ["schema_version", "models"],
+  "properties": {
+    "schema_version": {"const": "neural1-model-registry-0.1"},
+    "models": {"type": "array", "items": {"type": "object", "required": ["model_id", "family", "role", "backend", "backend_name", "parameter_count", "quantization", "context_limit", "digest", "license", "generation_defaults", "capabilities"]}}
+  },
+  "additionalProperties": false
+}

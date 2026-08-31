@@ -2,11 +2,12 @@
 
 from __future__ import annotations
 
+from collections.abc import Mapping
 from dataclasses import asdict, dataclass, replace
 from pathlib import Path
-from typing import Any, Mapping
+from typing import Any
 
-from .core import Maturity, ModelRecord, SCHEMA_VERSION, Target, stable_id
+from .core import SCHEMA_VERSION, Maturity, ModelRecord, Target, stable_id
 from .storage import ArtifactRecord, ArtifactStore, EventLog
 from .world import VirtualApple1World, WorldSnapshot
 
@@ -26,7 +27,7 @@ class RunManifest:
     changed_factor: str | None = None
 
     @classmethod
-    def create(cls, experiment_id: str, seed: int, model: ModelRecord, config: Mapping[str, Any]) -> "RunManifest":
+    def create(cls, experiment_id: str, seed: int, model: ModelRecord, config: Mapping[str, Any]) -> RunManifest:
         identity = {"schema": SCHEMA_VERSION, "experiment": experiment_id, "seed": seed, "model": asdict(model), "config": config}
         return cls(SCHEMA_VERSION, stable_id("N1R", identity), experiment_id, seed, Target.VIRTUAL, Maturity.PROTOTYPE, model, dict(config))
 

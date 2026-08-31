@@ -3,9 +3,8 @@
 from __future__ import annotations
 
 import hashlib
+from collections.abc import Iterable, Mapping
 from pathlib import Path
-from typing import Iterable, Mapping
-
 
 PRINTABLE = set(chr(value) for value in range(0x20, 0x7F))
 
@@ -74,6 +73,64 @@ def selfhost_tower(stages: Iterable[str], *, achieved: bool = False) -> str:
 def constellation(claim: str, supports: Iterable[str], opposes: Iterable[str]) -> str:
     lines = [f"[{claim}]", " | SUPPORT", *[f" +--[{item}]" for item in supports], " | OPPOSE", *[f" +--[{item}]" for item in opposes]]
     return "\n".join(lines)
+
+
+def lineage_tree(nodes: Mapping[str, Iterable[str]]) -> str:
+    lines = ["SOFTWARE LINEAGE"]
+    children: dict[str, list[str]] = {}
+    roots = set(nodes)
+    for child, parents in nodes.items():
+        for parent in parents:
+            children.setdefault(parent, []).append(child)
+            roots.discard(child)
+    def visit(node: str, prefix: str) -> None:
+        lines.append(f"{prefix}[{node[:12]}]")
+        for child in sorted(children.get(node, [])):
+            visit(child, prefix + "  ")
+    for root in sorted(roots):
+        visit(root, "")
+    return "\n".join(lines)
+
+
+def ram_republic_map(regions: Iterable[tuple[int, int, str]], *, start: int = 0x0200, length: int = 1024) -> str:
+    cells = ["."] * 32
+    conflicts = set()
+    owners: dict[int, str] = {}
+    for address, size, owner in regions:
+        for location in range(max(start, address), min(start + length, address + size)):
+            cell = min(31, (location - start) * 32 // length)
+            if cell in owners and owners[cell] != owner:
+                conflicts.add(cell)
+            owners[cell] = owner
+            cells[cell] = owner[:1].upper() if owner else "?"
+    for cell in conflicts:
+        cells[cell] = "!"
+    return f"RAM REPUBLIC {start:04X}-{start + length - 1:04X}\n|{''.join(cells)}|\n! = CONFLICT"
+
+
+def multiverse_design(genome_id: str, blocks: Iterable[tuple[str, str]]) -> str:
+    lines = [f"DESIGN {genome_id[:20]}", "+------------------------------+"]
+    for label, value in blocks:
+        lines.append(f"|{label[:10]:<10} {value[:19]:<19}|")
+    lines.append("+------------------------------+")
+    return "\n".join(lines)
+
+
+def compare_rom_genomes(before: bytes, after: bytes) -> str:
+    if len(before) != 256 or len(after) != 256:
+        raise ValueError("ROM comparison requires two exact 256-byte images")
+    return "\n".join("".join("." if before[index] == after[index] else "X" for index in range(row, row + 16)) for row in range(0, 256, 16))
+
+
+def transition_frames(title: str, final_lines: Iterable[str], *, frame_count: int = 4) -> tuple[str, ...]:
+    lines = [title.upper(), *[line.upper() for line in final_lines]]
+    if frame_count <= 0:
+        raise ValueError("frame count must be positive")
+    frames = []
+    for frame in range(1, frame_count + 1):
+        visible = max(1, (len(lines) * frame + frame_count - 1) // frame_count)
+        frames.append("\n".join(lines[:visible]))
+    return tuple(frames)
 
 
 def lint_provenance(root: str | Path) -> list[str]:

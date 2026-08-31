@@ -76,6 +76,25 @@ Demo output is labeled prototype evidence, not a research finding or physical
 result. There are no cameras, firmware loaders, EEPROM writers, CFFA1 writers,
 or enabled physical adapters in NEURAL1.
 
+The off-device campaign layer adds a versioned model registry, matched
+experiment matrices, atomic checkpoints, interruption-safe resume, exact model
+recordings, bounded local providers, evaluation, and hash-verifiable research
+bundles. The committed Pilot 001 specification retains TinyLlama deliberately
+as a lower-capability baseline alongside Qwen2.5-Coder 1.5B and SmolLM2 1.7B.
+Registry records—not experiment definitions—carry backend and model-size
+details, so later 3B–4B models require no experiment rewrite.
+
+```bash
+python -m pip install -e '.[dev]'
+neural1 validate-campaign configs/neural1/pilot-001/campaign.json \
+  configs/neural1/pilot-001/model-registry.template.json
+python tools/neural1_validate.py .
+```
+
+The template registry is intentionally unqualified and cannot execute a real
+campaign. Qualification must replace every pending digest, quantization, and
+license field with locally observed metadata.
+
 ## Heritage visual reference
 
 David Schmenk's [Apple1-Slideshow](docs/reference/apple1-slideshow.md), pinned

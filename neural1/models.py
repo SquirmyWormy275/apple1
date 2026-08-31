@@ -2,12 +2,13 @@
 
 from __future__ import annotations
 
-from dataclasses import asdict, dataclass, field
 import json
-from pathlib import Path
 import subprocess
+from collections.abc import Callable, Mapping, Sequence
+from dataclasses import asdict, dataclass, field
+from pathlib import Path
 from time import perf_counter
-from typing import Callable, Mapping, Protocol, Sequence
+from typing import Protocol
 from urllib import error as urlerror
 from urllib import request as urlrequest
 from urllib.parse import urlparse
@@ -77,7 +78,7 @@ class OllamaHttpProvider:
 
     def generate(self, prompt: str, *, agent_id: str, seed: int) -> GenerationResult:
         body = json.dumps({"model": self.model, "prompt": prompt, "stream": False, "options": {**self.options, "seed": seed}}).encode("utf-8")
-        request = urlrequest.Request(f"{self.base_url.rstrip('/')}/api/generate", body, {"Content-Type": "application/json"}, method="POST")
+        request = urlrequest.Request(f"{self.base_url.rstrip('/')}/api/generate", body, {"Content-Type": "application/json"}, method="POST")  # noqa: S310 - base URL is validated as local HTTP
         start = perf_counter()
         try:
             raw = self.opener(request, self.timeout_seconds) if self.opener else self._open(request, self.timeout_seconds)
@@ -125,7 +126,7 @@ class LlamaCppProvider:
 
     @staticmethod
     def _run(command: list[str], timeout: float) -> tuple[str, str]:
-        completed = subprocess.run(command, check=True, capture_output=True, text=True, timeout=timeout, shell=False)
+        completed = subprocess.run(command, check=True, capture_output=True, text=True, timeout=timeout, shell=False)  # noqa: S603 - qualified local executable, shell disabled
         return completed.stdout, completed.stderr
 
 

@@ -2,13 +2,13 @@
 
 from __future__ import annotations
 
-from dataclasses import asdict, dataclass
-from typing import Any, Callable, Mapping
+from collections.abc import Callable, Mapping
+from dataclasses import dataclass
+from typing import Any
 
 from .core import Neural1Error, sha256_bytes
 from .lineage import LineageGraph
 from .world import VirtualApple1World, WozMonSession
-
 
 EXPERIMENTS = ("4k-mind", "1976-multiverse", "selfhost1", "256-byte-universe", "ram-republic")
 

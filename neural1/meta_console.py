@@ -4,8 +4,9 @@ from __future__ import annotations
 
 import argparse
 import json
+from collections.abc import Sequence
 from pathlib import Path
-from typing import Sequence
+from typing import Any
 
 from .meta_store import ResearchDatabase
 
@@ -26,6 +27,7 @@ def main(argv: Sequence[str] | None = None) -> int:
     args = parser.parse_args(argv)
     database = ResearchDatabase(args.db)
     try:
+        result: Any
         if args.command == "claim":
             result = database.claim(args.claim_id) or {"status": "INSUFFICIENT_EVIDENCE", "claim_id": args.claim_id}
         elif args.command == "history":

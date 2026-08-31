@@ -1,0 +1,12 @@
+{
+  "$schema": "https://json-schema.org/draft/2020-12/schema",
+  "title": "NEURAL1 release bundle manifest",
+  "type": "object",
+  "required": ["schema_version", "files", "reproduction_command"],
+  "properties": {
+    "schema_version": {"const": "neural1-release-bundle-0.1"},
+    "files": {"type": "object", "additionalProperties": {"type": "object", "required": ["sha256", "bytes"], "properties": {"sha256": {"type": "string", "pattern": "^[0-9a-f]{64}$"}, "bytes": {"type": "integer", "minimum": 0}}, "additionalProperties": false}},
+    "reproduction_command": {"type": "string", "minLength": 1}
+  },
+  "additionalProperties": false
+}

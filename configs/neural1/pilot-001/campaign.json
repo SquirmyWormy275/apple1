@@ -1,0 +1,29 @@
+{
+  "agents_per_cell": 2,
+  "campaign_id": "N1-P-057141928BD15B0C",
+  "experiments": [
+    "4k-mind",
+    "1976-multiverse",
+    "selfhost1",
+    "256-byte-universe",
+    "ram-republic"
+  ],
+  "generation_settings": {
+    "context_reset_each_generation": true,
+    "logical_agent_context": "isolated",
+    "temperature": 0.2,
+    "top_p": 0.9
+  },
+  "generations": 12,
+  "matched_control": "identical zero-filled 4K world, driver version, generation count, agent count, and seed across model families",
+  "max_tokens": 192,
+  "model_ids": [
+    "qwen25-coder-15b",
+    "smollm2-17b",
+    "tinyllama-11b"
+  ],
+  "ram_budget": 4096,
+  "schema_version": "neural1-campaign-0.1",
+  "seeds": [101, 211, 307],
+  "wall_clock_limit_seconds": 43200
+}

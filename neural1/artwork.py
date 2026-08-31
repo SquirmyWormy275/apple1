@@ -2,10 +2,9 @@
 
 from __future__ import annotations
 
+import json
 from dataclasses import asdict, dataclass
 from pathlib import Path
-import json
-from typing import Iterable
 
 from .core import Neural1Error
 

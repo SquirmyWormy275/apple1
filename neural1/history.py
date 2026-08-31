@@ -2,11 +2,10 @@
 
 from __future__ import annotations
 
+import json
 from dataclasses import asdict, dataclass
 from datetime import date
-import json
 from pathlib import Path
-from typing import Any, Mapping
 
 from .core import Neural1Error, canonical_json, sha256_bytes
 from .experiments import HistoricalComponent

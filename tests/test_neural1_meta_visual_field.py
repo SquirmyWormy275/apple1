@@ -1,10 +1,20 @@
 from __future__ import annotations
 
-from neural1.field_library import FieldLibraryAssistant, LessonCorpus, UNSUPPORTED
+from neural1.field_library import FieldLibraryAssistant, LessonCorpus
 from neural1.interface import Mode, Portal
 from neural1.meta import ClaimGraph, compile_experiment, falsification_plan, proof_capsule
 from neural1.models import FakeProvider
-from neural1.visualization import lint_provenance, rom_genome, run_sigil, validate_frame
+from neural1.visualization import (
+    compare_rom_genomes,
+    lineage_tree,
+    lint_provenance,
+    multiverse_design,
+    ram_republic_map,
+    rom_genome,
+    run_sigil,
+    transition_frames,
+    validate_frame,
+)
 
 
 def test_claim_graph_capsule_and_falsification_are_traceable() -> None:
@@ -42,3 +52,26 @@ def test_field_library_trace_uses_emulator_evidence() -> None:
     answer = assistant.explain_program("M03", "software/ram-only/line-input-0300.hex", "HI\r")
     assert answer.deterministic_evidence["screen_text"] == "HI\r"
     assert answer.deterministic_evidence["returned_to_monitor"] is True
+
+
+def test_field_library_search_citations_and_assembler_are_deterministic() -> None:
+    corpus = LessonCorpus()
+    assert any("M05" in path for path in corpus.search("MONITOR WARM ENTRY", limit=10))
+    assistant = FieldLibraryAssistant(corpus, FakeProvider(default="THE PROGRAM RETURNS TO MONITOR."))
+    answer = assistant.assemble_explain("M03", "LDA #$41\nJSR $FFEF\nJMP $FF1F")
+    assert answer.deterministic_evidence["screen_text"] == "A"
+    assert answer.deterministic_evidence["stop_reason"] == "MONITOR_WARM_ENTRY"
+    assert answer.source_keys
+    assert "SOURCES:" in answer.text
+
+
+def test_state_driven_visual_families_are_valid_and_deterministic() -> None:
+    visuals = [
+        lineage_tree({"ROOT": (), "CHILD": ("ROOT",)}),
+        ram_republic_map([(0x200, 64, "A"), (0x220, 64, "B")]),
+        multiverse_design("SYNTHETIC", [("CPU", "SOURCE REQUIRED"), ("RAM", "UNKNOWN")]),
+        compare_rom_genomes(bytes(256), bytes([1]) + bytes(255)),
+    ]
+    assert all(validate_frame(visual) == [] for visual in visuals)
+    frames = transition_frames("NEURAL1", ["WORLD READY", "MODEL READY"])
+    assert frames[-1] == "NEURAL1\nWORLD READY\nMODEL READY"

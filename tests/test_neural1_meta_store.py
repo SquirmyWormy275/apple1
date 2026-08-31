@@ -1,8 +1,8 @@
 from __future__ import annotations
 
 from neural1.meta import ClaimGraph
-from neural1.meta_store import ResearchDatabase
 from neural1.meta_console import main
+from neural1.meta_store import ResearchDatabase
 
 
 def test_persistent_claim_query_history_and_rule_based_tribunal(tmp_path) -> None:
@@ -45,3 +45,13 @@ def test_meta_console_queries_without_a_model(tmp_path, capsys) -> None:
     database.close()
     assert main(["--db", str(path), "queue"]) == 0
     assert "QUESTION" in capsys.readouterr().out
+
+
+def test_concepts_roles_and_counterfactuals_are_structured(tmp_path) -> None:
+    database = ResearchDatabase(tmp_path / "meta.sqlite3")
+    occurrence = database.record_concept("CHECKSUM", "ART", "RUN", "UNCERTAIN", "classifier-v1")
+    assert occurrence.startswith("N1-CO-")
+    assert database.concept_occurrences("CHECKSUM")[0]["classification"] == "UNCERTAIN"
+    assert database.role_review("CLAIM", "SKEPTIC", {"confounder": "seed"}).startswith("N1-TR-")
+    assert database.role_review("CLAIM", "EVIDENCE_JUDGE", {"verdict": "INSUFFICIENT"}).startswith("N1-TR-")
+    assert database.counterfactual("RUN", "GEN 5", "REMOVE ROUTINE", "SAME SEED").startswith("N1-CF-")

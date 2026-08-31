@@ -3,12 +3,11 @@
 from __future__ import annotations
 
 import argparse
-from dataclasses import asdict
 import json
+from collections.abc import Sequence
+from dataclasses import asdict
 from pathlib import Path
-from typing import Sequence
 
-from .core import sha256_bytes
 from .artwork import ArtworkCandidate, RightsRegistry
 from .commissioning import evaluate_physical_qualification
 from .experiments import FourKMind, RamRepublic, RomUniverse, SelfHost

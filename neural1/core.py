@@ -2,12 +2,12 @@
 
 from __future__ import annotations
 
-from dataclasses import asdict, dataclass, is_dataclass
-from enum import StrEnum
 import hashlib
 import json
-from typing import Any, Mapping
-
+from collections.abc import Mapping
+from dataclasses import asdict, dataclass, is_dataclass
+from enum import StrEnum
+from typing import Any, cast
 
 SCHEMA_VERSION = "neural1-0.1"
 
@@ -32,7 +32,7 @@ class Maturity(StrEnum):
 
 def canonical_json(value: Any) -> str:
     if is_dataclass(value):
-        value = asdict(value)
+        value = asdict(cast(Any, value))
     return json.dumps(value, sort_keys=True, separators=(",", ":"), ensure_ascii=True)
 
 

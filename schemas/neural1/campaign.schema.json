@@ -1,0 +1,21 @@
+{
+  "$schema": "https://json-schema.org/draft/2020-12/schema",
+  "title": "NEURAL1 campaign",
+  "type": "object",
+  "required": ["schema_version", "campaign_id", "experiments", "model_ids", "seeds", "generations", "agents_per_cell", "ram_budget", "max_tokens", "generation_settings", "matched_control", "wall_clock_limit_seconds"],
+  "properties": {
+    "schema_version": {"const": "neural1-campaign-0.1"},
+    "campaign_id": {"type": "string", "pattern": "^N1-P-[0-9A-F]{16}$"},
+    "experiments": {"type": "array", "minItems": 1, "uniqueItems": true},
+    "model_ids": {"type": "array", "minItems": 1, "uniqueItems": true},
+    "seeds": {"type": "array", "minItems": 1, "uniqueItems": true, "items": {"type": "integer"}},
+    "generations": {"type": "integer", "minimum": 1},
+    "agents_per_cell": {"type": "integer", "minimum": 1},
+    "ram_budget": {"enum": [1024, 2048, 3072, 4096]},
+    "max_tokens": {"type": "integer", "minimum": 1},
+    "generation_settings": {"type": "object"},
+    "matched_control": {"type": "string", "minLength": 1},
+    "wall_clock_limit_seconds": {"type": "integer", "minimum": 1}
+  },
+  "additionalProperties": false
+}

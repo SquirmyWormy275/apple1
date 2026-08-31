@@ -2,14 +2,15 @@
 
 from __future__ import annotations
 
+import json
+from collections.abc import Iterable, Mapping
 from dataclasses import asdict, dataclass, field
 from datetime import UTC, datetime
 from enum import StrEnum
-import json
 from pathlib import Path
-from typing import Any, Iterable, Mapping
+from typing import Any
 
-from .core import SCHEMA_VERSION, canonical_json, sha256_bytes, stable_id
+from .core import SCHEMA_VERSION, stable_id
 
 
 class CausalStatus(StrEnum):

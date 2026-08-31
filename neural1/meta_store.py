@@ -2,12 +2,13 @@
 
 from __future__ import annotations
 
+import json
+import sqlite3
+from collections.abc import Iterable, Mapping
 from dataclasses import asdict, dataclass
 from datetime import UTC, datetime
-import json
 from pathlib import Path
-import sqlite3
-from typing import Any, Iterable, Mapping
+from typing import Any
 
 from .core import canonical_json, stable_id
 from .meta import Claim, Evidence
@@ -48,6 +49,9 @@ class ResearchDatabase:
         CREATE TABLE IF NOT EXISTS forecasts (forecast_id TEXT PRIMARY KEY, question TEXT NOT NULL, probability REAL NOT NULL, payload TEXT NOT NULL, revealed INTEGER NOT NULL DEFAULT 0, outcome INTEGER, brier_score REAL);
         CREATE TABLE IF NOT EXISTS blind_reviews (review_id TEXT PRIMARY KEY, payload TEXT NOT NULL, revealed INTEGER NOT NULL DEFAULT 0);
         CREATE TABLE IF NOT EXISTS discoveries (discovery_id TEXT PRIMARY KEY, payload TEXT NOT NULL, status TEXT NOT NULL);
+        CREATE TABLE IF NOT EXISTS concepts (occurrence_id TEXT PRIMARY KEY, payload TEXT NOT NULL);
+        CREATE TABLE IF NOT EXISTS role_reviews (review_id TEXT PRIMARY KEY, claim_id TEXT NOT NULL, role TEXT NOT NULL, payload TEXT NOT NULL);
+        CREATE TABLE IF NOT EXISTS counterfactuals (counterfactual_id TEXT PRIMARY KEY, payload TEXT NOT NULL, status TEXT NOT NULL);
         """)
         self.connection.commit()
 
@@ -153,3 +157,34 @@ class ResearchDatabase:
         qualifying = [item for item in support if item["causal_level"] >= minimum_causal_level]
         verdict = "SUPPORTED" if qualifying and not oppose else "CONTESTED" if qualifying and oppose else "INSUFFICIENT_EVIDENCE"
         return {"claim_id": claim_id, "verdict": verdict, "rule": {"minimum_causal_level": minimum_causal_level, "opposing_evidence_blocks_unqualified_support": True}, "supporting": [item["evidence_id"] for item in support], "opposing": [item["evidence_id"] for item in oppose]}
+
+    def record_concept(self, concept: str, artifact_id: str, run_id: str, classification: str, classifier_version: str) -> str:
+        if classification not in {"INHERITED", "INDEPENDENT", "UNCERTAIN"}:
+            raise ValueError("invalid concept relationship classification")
+        payload = {"concept": concept, "artifact_id": artifact_id, "run_id": run_id, "classification": classification, "classifier_version": classifier_version}
+        occurrence_id = stable_id("N1-CO", payload)
+        self.connection.execute("INSERT OR IGNORE INTO concepts VALUES(?,?)", (occurrence_id, canonical_json(payload)))
+        self._event("concept_recorded", occurrence_id, payload)
+        self.connection.commit()
+        return occurrence_id
+
+    def concept_occurrences(self, concept: str) -> list[dict[str, Any]]:
+        return [payload for (raw,) in self.connection.execute("SELECT payload FROM concepts ORDER BY occurrence_id") if (payload := json.loads(raw))["concept"] == concept]
+
+    def role_review(self, claim_id: str, role: str, findings: Mapping[str, Any]) -> str:
+        if role not in {"ADVOCATE", "SKEPTIC", "REPLICATOR", "EVIDENCE_JUDGE"}:
+            raise ValueError("invalid tribunal role")
+        payload = {"claim_id": claim_id, "role": role, "findings": dict(findings), "recorded_at": self._now()}
+        review_id = stable_id("N1-TR", payload)
+        self.connection.execute("INSERT INTO role_reviews VALUES(?,?,?,?)", (review_id, claim_id, role, canonical_json(payload)))
+        self._event("tribunal_role_review", claim_id, {"review_id": review_id, **payload})
+        self.connection.commit()
+        return review_id
+
+    def counterfactual(self, base_run_id: str, fork_point: str, changed_factor: str, seed_relationship: str) -> str:
+        payload = {"base_run_id": base_run_id, "fork_point": fork_point, "changed_factor": changed_factor, "seed_relationship": seed_relationship, "target": "VIRTUAL", "status": "PLANNED"}
+        counterfactual_id = stable_id("N1-CF", payload)
+        self.connection.execute("INSERT OR IGNORE INTO counterfactuals VALUES(?,?,?)", (counterfactual_id, canonical_json(payload), "PLANNED"))
+        self._event("counterfactual_planned", counterfactual_id, payload)
+        self.connection.commit()
+        return counterfactual_id
