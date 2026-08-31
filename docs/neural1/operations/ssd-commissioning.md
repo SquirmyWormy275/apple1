@@ -33,7 +33,9 @@ neural1-storage plan-migration /path/to/temporary/NEURAL1 /mnt/neural1-ssd \
   --manifest ~/.local/state/neural1/storage-migration.json
 ```
 
-Planning hashes every regular payload file. Symlinks are not migrated as payload files.
+Planning hashes every regular payload file. Symlinks are not migrated as payload files. The manifest records source and destination paths separately so the existing pre-SSD layout can be normalized into the canonical SSD layout. In particular, the current temporary `pi-images/` tree maps to `preservation/pi-images/`, and the temporary root `README.md` maps to `manifests/temporary-storage-README.md`. Any destination-path collision aborts planning.
+
+Review the generated manifest before copying. It is the exact allowlist for both copying and later source deletion.
 
 ## Copy
 
@@ -60,7 +62,7 @@ neural1-storage finalize-migration ~/.local/state/neural1/storage-migration.json
   --confirm-delete DELETE_VERIFIED_TEMPORARY_NEURAL1_COPY
 ```
 
-The finalizer re-runs byte-size/SHA-256 verification immediately before deletion. It deletes only files enumerated by the verified migration manifest. It writes the migration receipt to `manifests/storage-migration-verified.json` on the SSD before deleting the source payload.
+The finalizer re-runs byte-size/SHA-256 verification immediately before deletion. It deletes only source files enumerated by the verified migration manifest and rejects manifest paths that escape either storage root. It writes the migration receipt to `manifests/storage-migration-verified.json` on the SSD before deleting the source payload.
 
 If no unexpected files were added to the temporary root, the temporary role marker and empty source directories are also removed. If unexpected residual paths exist, they are preserved and recorded rather than deleted implicitly.
 

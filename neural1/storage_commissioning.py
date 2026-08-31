@@ -261,6 +261,15 @@ def _safe_payload_path(root: Path, relative_text: str) -> Path:
     return candidate
 
 
+def _destination_relative(source_relative: Path) -> Path:
+    """Normalize the known pre-SSD temporary layout into the canonical SSD layout."""
+    if source_relative == Path("README.md"):
+        return Path("manifests/temporary-storage-README.md")
+    if source_relative.parts and source_relative.parts[0] == "pi-images":
+        return Path("preservation/pi-images").joinpath(*source_relative.parts[1:])
+    return source_relative
+
+
 def _iter_payload_files(root: Path) -> Iterator[Path]:
     excluded = {TEMP_MARKER_NAME}
     for path in sorted(root.rglob("*")):
@@ -275,9 +284,22 @@ def build_migration_manifest(source_root: str | Path, destination_root: str | Pa
     _load_role_marker(source, TEMP_MARKER_NAME, TEMP_ROLE)
     destination_marker = _load_role_marker(destination, SSD_MARKER_NAME, SSD_ROLE)
     items: list[dict[str, Any]] = []
+    destination_paths: set[str] = set()
     for path in _iter_payload_files(source):
-        relative = path.relative_to(source).as_posix()
-        items.append({"path": relative, "size_bytes": path.stat().st_size, "sha256": sha256_file(path)})
+        source_relative = path.relative_to(source)
+        destination_relative = _destination_relative(source_relative)
+        destination_text = destination_relative.as_posix()
+        if destination_text in destination_paths:
+            raise ValueError(f"multiple source files map to one destination: {destination_text}")
+        destination_paths.add(destination_text)
+        items.append(
+            {
+                "source_path": source_relative.as_posix(),
+                "destination_path": destination_text,
+                "size_bytes": path.stat().st_size,
+                "sha256": sha256_file(path),
+            }
+        )
     return {
         "schema_version": MANIFEST_VERSION,
         "state": "PLANNED",
@@ -301,21 +323,24 @@ def _validate_manifest_roots(manifest: dict[str, Any]) -> tuple[Path, Path]:
     return source, destination
 
 
+def _manifest_paths(source: Path, destination: Path, item: dict[str, Any]) -> tuple[Path, Path]:
+    source_text = str(item["source_path"])
+    destination_text = str(item["destination_path"])
+    return _safe_payload_path(source, source_text), _safe_payload_path(destination, destination_text)
+
+
 def copy_migration(manifest: dict[str, Any]) -> dict[str, Any]:
     source, destination = _validate_manifest_roots(manifest)
     for item in manifest.get("items", []):
-        relative_text = str(item["path"])
-        relative = Path(relative_text)
-        source_path = _safe_payload_path(source, relative_text)
-        destination_path = _safe_payload_path(destination, relative_text)
+        source_path, destination_path = _manifest_paths(source, destination, item)
         if not source_path.is_file() or source_path.is_symlink():
-            raise ValueError(f"source payload is missing or unsafe: {relative}")
+            raise ValueError(f"source payload is missing or unsafe: {item['source_path']}")
         if source_path.stat().st_size != item["size_bytes"] or sha256_file(source_path) != item["sha256"]:
-            raise ValueError(f"source payload changed after planning: {relative}")
+            raise ValueError(f"source payload changed after planning: {item['source_path']}")
         destination_path.parent.mkdir(parents=True, exist_ok=True)
         if destination_path.exists():
             if destination_path.stat().st_size != item["size_bytes"] or sha256_file(destination_path) != item["sha256"]:
-                raise ValueError(f"destination already exists with different content: {relative}")
+                raise ValueError(f"destination already exists with different content: {item['destination_path']}")
             continue
         shutil.copy2(source_path, destination_path)
     copied = dict(manifest)
@@ -326,20 +351,17 @@ def copy_migration(manifest: dict[str, Any]) -> dict[str, Any]:
 def verify_migration(manifest: dict[str, Any]) -> dict[str, Any]:
     source, destination = _validate_manifest_roots(manifest)
     for item in manifest.get("items", []):
-        relative_text = str(item["path"])
-        relative = Path(relative_text)
-        source_path = _safe_payload_path(source, relative_text)
-        destination_path = _safe_payload_path(destination, relative_text)
+        source_path, destination_path = _manifest_paths(source, destination, item)
         if not source_path.is_file() or source_path.is_symlink():
-            raise ValueError(f"source payload is missing or unsafe: {relative}")
+            raise ValueError(f"source payload is missing or unsafe: {item['source_path']}")
         if not destination_path.is_file() or destination_path.is_symlink():
-            raise ValueError(f"destination payload is missing or unsafe: {relative}")
+            raise ValueError(f"destination payload is missing or unsafe: {item['destination_path']}")
         expected_size = int(item["size_bytes"])
         expected_hash = str(item["sha256"])
         if source_path.stat().st_size != expected_size or sha256_file(source_path) != expected_hash:
-            raise ValueError(f"source verification failed: {relative}")
+            raise ValueError(f"source verification failed: {item['source_path']}")
         if destination_path.stat().st_size != expected_size or sha256_file(destination_path) != expected_hash:
-            raise ValueError(f"destination verification failed: {relative}")
+            raise ValueError(f"destination verification failed: {item['destination_path']}")
     verified = dict(manifest)
     verified["state"] = "VERIFIED"
     return verified
@@ -353,8 +375,8 @@ def finalize_migration(manifest: dict[str, Any], *, confirmation: str) -> dict[s
     destination_record = destination / "manifests/storage-migration-verified.json"
     _write_json(destination_record, verified)
     for item in verified.get("items", []):
-        relative_text = str(item["path"])
-        _safe_payload_path(source, relative_text).unlink()
+        source_path, _ = _manifest_paths(source, destination, item)
+        source_path.unlink()
     (source / TEMP_MARKER_NAME).unlink()
     directories = sorted((path for path in source.rglob("*") if path.is_dir()), key=lambda path: len(path.parts), reverse=True)
     for directory in directories:
