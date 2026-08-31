@@ -1,0 +1,59 @@
+{
+  "$schema": "https://json-schema.org/draft/2020-12/schema",
+  "title": "NEURAL1 historical research staging index",
+  "type": "object",
+  "required": [
+    "schema_version",
+    "world_id",
+    "cutoff_date",
+    "status",
+    "authoritative_runtime_records",
+    "promotion_policy",
+    "research_inputs",
+    "unresolved_high_impact"
+  ],
+  "properties": {
+    "schema_version": {"const": "neural1-historical-research-index-0.1"},
+    "world_id": {"type": "string", "minLength": 1},
+    "cutoff_date": {"type": "string", "format": "date"},
+    "status": {"enum": ["RESEARCH_STAGING", "PARTIALLY_PROMOTED", "AUTHORITATIVE"]},
+    "authoritative_runtime_records": {"type": "integer", "minimum": 0},
+    "runtime_authoritative_component_ids": {
+      "type": "array",
+      "items": {"type": "string", "minLength": 1},
+      "uniqueItems": true
+    },
+    "promotion_policy": {
+      "type": "object",
+      "required": ["requires_sha256", "requires_claim_review", "requires_cutoff_validation", "missing_prices_remain_null", "no_llm_estimates"],
+      "properties": {
+        "requires_sha256": {"const": true},
+        "requires_claim_review": {"const": true},
+        "requires_cutoff_validation": {"const": true},
+        "missing_prices_remain_null": {"const": true},
+        "no_llm_estimates": {"const": true}
+      },
+      "additionalProperties": false
+    },
+    "research_inputs": {
+      "type": "array",
+      "minItems": 1,
+      "items": {
+        "type": "object",
+        "required": ["path", "role", "authority_status"],
+        "properties": {
+          "path": {"type": "string", "minLength": 1},
+          "role": {"type": "string", "minLength": 1},
+          "authority_status": {"enum": ["RESEARCH_ONLY", "HASH_VERIFIED_SOURCE", "AUTHORITATIVE_RUNTIME"]}
+        },
+        "additionalProperties": false
+      }
+    },
+    "unresolved_high_impact": {
+      "type": "array",
+      "items": {"type": "string", "minLength": 1},
+      "uniqueItems": true
+    }
+  },
+  "additionalProperties": false
+}
