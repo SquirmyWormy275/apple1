@@ -1,0 +1,9 @@
+----------------------------------------
+               APPLE-1
+----------------------------------------
+1 COMPUTER        ORIGINAL ENVIRONMENT
+2 FIELD LIBRARY   LEARN / EXPLORE
+3 NEURAL1         EXPERIMENTAL LAB
+? ABOUT
+----------------------------------------
+SELECT:

@@ -1,4 +1,23 @@
-# Apple1 Replica 1 Plus
+# Apple-1 / Replica 1 Plus / NEURAL1
+
+This repository preserves an Apple-1 / Replica 1 Plus collection, teaches the
+machine through a source-grounded Field Library, and develops **NEURAL1**: a
+virtual-first research environment in which small local language models must
+work through Apple-1 constraints. It is not "ChatGPT on an Apple-1." Models
+propose; deterministic execution verifies; recorded evidence supports claims.
+
+```text
+APPLE-1
+  +-- COMPUTER       ORDINARY APPLE-1 COMPUTING
+  +-- FIELD LIBRARY  SOURCE-GROUNDED LEARNING
+  +-- NEURAL1        EXPERIMENTAL COMPUTING LAB
+        +-- META/1   CLAIMS / EVIDENCE / TESTS
+```
+
+`COMPUTER` is sovereign: no hidden AI, no required Pi, and physical Reset
+remains the ultimate recovery route to the ordinary Monitor. The portal and
+all NEURAL1 results are currently virtual prototypes. The exact CFFA1/physical
+launcher remains deliberately unresolved.
 
 This repository preserves evidence and off-device tooling for a Replica 1 Plus
 serial investigation. It does not authorize a firmware load, EEPROM write,
@@ -31,6 +50,37 @@ temporary wiring, soldering, or other physical modification.
 - [Apple-1 Field Library curriculum scaffold](docs/apple1-learning-library-curriculum.md):
   structured, content-ready lessons for the CF-card educational catalog, with
   off-device and preservation boundaries.
+- [NEURAL1 overview](docs/neural1/README.md): architecture, five flagship
+  experiments, META/1, methods, maturity, and reproducible demonstrations.
+- [Initial technical report](docs/neural1/publications/technical-report.md) and
+  [visual system](docs/visual-system/design-language.md).
+
+## NEURAL1 foundation
+
+The Python package provides a shared virtual Apple-1 world, modeled WozMon-only
+agent surface, deterministic fake/replay model providers, stable run manifests,
+content-addressed artifacts, snapshots, forks, replay metadata, lineage, five
+experiment prototypes, META/1 claim graphs and proof capsules, Field Library
+grounding, and state-driven ASCII visualizations. Tests require no model and
+never open serial hardware.
+
+```bash
+python -m neural1.demos --out out/neural1-demo
+python -m neural1.benchmark
+python -m pytest tests/test_neural1_runtime.py tests/test_neural1_experiments.py \
+  tests/test_neural1_meta_visual_field.py -q
+```
+
+Demo output is labeled prototype evidence, not a research finding or physical
+result. There are no cameras, firmware loaders, EEPROM writers, CFFA1 writers,
+or enabled physical adapters in NEURAL1.
+
+## Heritage visual reference
+
+David Schmenk's [Apple1-Slideshow](docs/reference/apple1-slideshow.md), pinned
+at `d436e3b088f94919f135e48af6303295058b3d51`, is the quality and format
+reference. Its redistribution license is not established; upstream artwork is
+excluded from this repository and from releases.
 - [Apple1-Slideshow heritage artwork provenance](docs/reference/apple1-slideshow.md):
   pinned source and mandatory attribution record for the classic Apple-1
   Jobs/Woz and Apple-logo visual reference. Redistribution remains blocked

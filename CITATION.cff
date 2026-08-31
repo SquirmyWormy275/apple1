@@ -1,0 +1,10 @@
+cff-version: 1.2.0
+message: "If you use this software or methods, cite the repository and exact revision."
+title: "Apple-1 Preservation, Field Library, and NEURAL1"
+type: software
+authors:
+  - name: "SquirmyWormy275/apple1 contributors"
+repository-code: "https://github.com/SquirmyWormy275/apple1"
+license: "NOASSERTION"
+version: "0.1.0-neural1-foundation"
+date-released: 2026-08-30
