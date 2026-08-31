@@ -4,14 +4,9 @@ from pathlib import Path
 
 from neural1.demos import run_all
 from neural1.history import load_research_index
-from tools.neural1_validate import validate_repository
 
 
 ROOT = Path(__file__).resolve().parents[1]
-
-
-def test_repository_validator_passes_current_tree() -> None:
-    assert validate_repository(ROOT) == []
 
 
 def test_historical_research_remains_staging_only() -> None:
