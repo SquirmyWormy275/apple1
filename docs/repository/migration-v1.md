@@ -16,22 +16,24 @@ The audit found that the substantive repository domains are already more mature 
 |---|---|
 | `docs/PROJECT-MAP.md` | Human `START HERE` map across preservation, COMPUTER, Field Library, NEURAL1, META/1, Pilot 001, MULTIVERSE, displays, CF-card, and art. |
 | `docs/repository/README.md` | Repository-governance index. |
-| `docs/repository/audit-2026-08-30.md` | Repository-wide inventory and risk audit. |
+| `docs/repository/audit-2026-08-30.md` | Repository-wide map, findings, risks, and consolidation conclusions. |
+| `docs/repository/inventory-v1.md` | Authority-aware inventory with owner, source/generated, preservation, authority, currentness, duplication, destination, and concern fields. |
 | `docs/repository/architecture.md` | Durable taxonomy and authority model. |
 | `docs/repository/git-archaeology-2026-08-30.md` | Live branch classification and unique-lineage analysis. |
 | `docs/repository/provenance-audit-2026-08-30.md` | Provenance, rights, hash, and authority status. |
 | `docs/repository/migration-v1.md` | This ledger. |
-| `docs/repository/fresh-checkout-validation.md` | Final acceptance record, completed after CI/fresh-checkout gates. |
+| `docs/repository/fresh-checkout-validation.md` | Acceptance commands and validation evidence. |
+| `docs/plans/README.md` | Current-status index for historical plans; the old serial-repair plan is explicitly blocked as execution authority by later STOP evidence. |
+| `tests/test_neural1_repository.py` | Regression checks that historical research remains staging-only and deterministic demos never open physical serial. |
 
 ## Updated
 
-The implementation phase is expected to update these existing files without changing their domain meaning:
+- `README.md` — now points new contributors to the project map/governance layer and explicitly names the authority classes and current physical boundary.
+- `docs/repository/README.md` — indexes the governance deliverables, including the authority-aware inventory.
+- `tools/neural1_validate.py` — now validates durable repository anchors, all first-party Markdown relative links, existing schema instances, the full MULTIVERSE promotion policy, ASCII constraints, and art provenance.
+- `.github/workflows/ci.yml` — retains every prior acceptance command and adds an explicit `serial_opened == false` assertion plus `git diff --exit-code` after validation/demo generation.
 
-- `README.md` — point new contributors to the project map and repository-governance index.
-- `docs/plans/2026-08-25-1324-fix-replica1-propeller-serial-plan.md` — mark the historical implementation-ready plan superseded/blocked by the later FT232R STOP evidence; original plan body remains preserved.
-- `tools/neural1_validate.py` — expand repository validation to first-party Markdown and durable structural anchors while retaining historical-research and art gates.
-- `.github/workflows/ci.yml` — if needed, add explicit post-demo assertions/clean-tree validation without removing any existing command.
-- tests — add regression coverage for repository structure/validator behavior as justified.
+The historical file `docs/plans/2026-08-25-1324-fix-replica1-propeller-serial-plan.md` itself is deliberately **not edited**. Its original `implementation-ready` front matter is part of planning history. `docs/plans/README.md` supplies the current status and links the later STOP evidence so old planning state cannot be mistaken for present execution authority.
 
 ## Intentionally not moved
 
@@ -44,8 +46,10 @@ The implementation phase is expected to update these existing files without chan
 | `firmware/vendor/110REV03/` | Candidate firmware provenance is established at this path; do not churn hash-sensitive preserved source. |
 | `cf-card/` | Already a host-side manifest/export control plane, not the raw preserved card. |
 | `docs/field-library/` | Mature product-like corpus with extensive internal links and status records. |
-| `docs/peripherals/displays/` | Newly coherent research product with evidence/rights/source separation. |
+| `docs/peripherals/displays/` | Coherent research product with evidence/rights/source separation. |
 | `wiki/` | Retained as derived GitHub-wiki-facing navigation; documented as non-authoritative rather than duplicated/rebuilt. |
+
+No file or directory move was required in v1. That is intentional: the audit found that moving mature evidence-heavy trees would add history/link risk without repairing an authority boundary.
 
 ## Similar material retained, not deduplicated
 
@@ -58,15 +62,28 @@ The implementation phase is expected to update these existing files without chan
 
 No preserved artifact, scientific evidence package, branch, or unique research file is deleted in v1.
 
-The old serial repair plan remains at its historical path but receives a current-status warning rather than being moved. This preserves incoming links and plan history while preventing date-guessing from being the only signal that physical execution is blocked.
+The old serial repair plan remains at its historical path and is de-authorized through the plans status index rather than rewritten or moved. This preserves incoming links and planning history while preventing date-guessing from being the only signal that physical execution is blocked.
 
 ## Branch handling
 
 No existing branch is deleted. In particular:
 
-- `archive/neural1-1976-research-2026-08-30` remains frozen at `f1ac1958...`;
+- `archive/neural1-1976-research-2026-08-30` remains frozen at `f1ac1958c2e8906510fc963422ed1801f0231b1b`;
 - `integration/neural1-1976-research` remains available as unique integration lineage even though audited core blobs are already present on main;
 - preservation/backup/recovery refs remain intact.
+
+## Validation changes
+
+The validator and CI changes are additive:
+
+1. require durable repository anchors instead of assuming documentation topology;
+2. check relative links across all first-party Markdown rather than selected NEURAL1/art/wiki subsets;
+3. independently enforce all historical-promotion safety flags, including null prices and the ban on LLM estimates;
+4. run the existing full test suite plus new repository safety regressions;
+5. require the deterministic demo summary to report `serial_opened=false`;
+6. require validation/demo execution to leave tracked files unchanged.
+
+A fresh GitHub Actions checkout at branch commit `7aed69c71e7ed987700c876d6d46bacfcd71f69f` passed editable install, Ruff, mypy (34 source files), all 99 tests, repository validation, deterministic demo, explicit serial safety assertion, and clean-tree assertion. Final documentation commits are re-run through the same gate before merge.
 
 ## Physical boundary
 
@@ -74,4 +91,4 @@ No migration step opens a serial port, transmits to the Replica, loads firmware,
 
 ## Completion rule
 
-This ledger is complete only after the branch has passed the fresh-checkout acceptance commands, deterministic demo, repository validator, clean-tree/adversarial review, and final current-main reconciliation. The exact final evidence is recorded in `fresh-checkout-validation.md`.
+This ledger is complete only after the final branch documentation head has passed the same fresh-checkout acceptance commands, deterministic demo, repository validator, clean-tree/adversarial review, current-main reconciliation, and archive-ref check. Exact evidence is recorded in `fresh-checkout-validation.md` and in the final project report.
