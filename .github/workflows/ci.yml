@@ -18,3 +18,7 @@ jobs:
       - run: python -m pytest -q
       - run: python tools/neural1_validate.py .
       - run: python -m neural1.demos --out out/neural1-demo
+      - name: Assert deterministic demo remained off-device
+        run: python -c "import json; from pathlib import Path; data=json.loads(Path('out/neural1-demo/summary.json').read_text(encoding='ascii')); assert data['serial_opened'] is False"
+      - name: Assert validation did not modify tracked files
+        run: git diff --exit-code
