@@ -1,0 +1,59 @@
+{
+  "schema_version": "neural1-historical-research-index-0.1",
+  "world_id": "DESIGN_1976_03_10",
+  "cutoff_date": "1976-03-10",
+  "status": "RESEARCH_STAGING",
+  "authoritative_runtime_records": 0,
+  "runtime_authoritative_component_ids": [],
+  "promotion_policy": {
+    "requires_sha256": true,
+    "requires_claim_review": true,
+    "requires_cutoff_validation": true,
+    "missing_prices_remain_null": true,
+    "no_llm_estimates": true
+  },
+  "research_inputs": [
+    {
+      "path": "data/neural1/history/source-acquisition-ledger.json",
+      "role": "hashed-source acquisition state",
+      "authority_status": "HASH_VERIFIED_SOURCE"
+    },
+    {
+      "path": "docs/neural1/research/1976-multiverse-source-seed.json",
+      "role": "candidate source inventory and cutoff eligibility",
+      "authority_status": "RESEARCH_ONLY"
+    },
+    {
+      "path": "docs/neural1/research/1976-multiverse-price-snapshot-1976-01.json",
+      "role": "period price observations with declared economic regime",
+      "authority_status": "RESEARCH_ONLY"
+    },
+    {
+      "path": "docs/neural1/research/apple1-capability-contract-v1.json",
+      "role": "source-backed blind comparison target pending runtime claim promotion",
+      "authority_status": "RESEARCH_ONLY"
+    },
+    {
+      "path": "docs/neural1/research/apple1-procurement-cashflow-v1.json",
+      "role": "commercial and procurement observations kept outside strict design knowledge",
+      "authority_status": "RESEARCH_ONLY"
+    },
+    {
+      "path": "docs/neural1/research/multiverse-challenge-001-strict-march-1976.md",
+      "role": "preregistered blind experiment protocol N1-MV-C001",
+      "authority_status": "RESEARCH_ONLY"
+    }
+  ],
+  "unresolved_high_impact": [
+    "MK4096 strict-R1 or Apple procurement price",
+    "DS0025 strict pre-cutoff low-quantity price",
+    "Intel/MMI 3601 exact pre-cutoff price",
+    "LM320MP-5 exact Apple package price",
+    "LM320MP-12 exact Apple package price",
+    "LM340MP-12 exact Apple package price",
+    "14.31818 MHz crystal price before 1976-03-10",
+    "exact passives sockets and connectors",
+    "per-unit PCB fabrication cost",
+    "per-unit assembly labor"
+  ]
+}
