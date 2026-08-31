@@ -7,7 +7,6 @@ import json
 import re
 from collections.abc import Sequence
 from pathlib import Path
-from urllib.parse import unquote
 
 from jsonschema import Draft202012Validator
 
@@ -48,7 +47,7 @@ def _validate_markdown_links(root: Path, path: Path) -> list[str]:
         link = link.strip().strip("<>")
         if not link or link.startswith("#") or re.match(r"^[A-Za-z][A-Za-z0-9+.-]*:", link):
             continue
-        raw_target = unquote(link.split("#", 1)[0].split("?", 1)[0])
+        raw_target = link.split("#", 1)[0].split("?", 1)[0]
         if not raw_target:
             continue
         target = (root / raw_target.lstrip("/")) if raw_target.startswith("/") else (path.parent / raw_target)
