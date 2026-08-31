@@ -36,7 +36,7 @@
       "supplied_bytes": 4096,
       "automatic_dynamic_refresh": true,
       "static_memory_permitted_by_manual": true,
-      "expansion_described_to_bytes": 66560
+      "expansion_description_original_wording": "fully expandable to 65K via the edge connector"
     },
     "human_interface": {
       "keyboard": "ASCII encoded keyboard",
@@ -66,8 +66,8 @@
       "keyboard_input",
       "human_readable_video_or_declared_equivalent_output_meeting_experiment_requirement",
       "ability_to_enter_or_load_program_code",
-      "ability_to inspect_or otherwise debug stored program state under the declared experiment contract",
-      "ability_to_execute user programs"
+      "ability_to_inspect_or_otherwise_debug_stored_program_state_under_the_declared_experiment_contract",
+      "ability_to_execute_user_programs"
     ],
     "historical_cutoff_default": "DESIGN_1976_03_10",
     "unsupported_cost_fields_must_remain_null": true
@@ -77,6 +77,6 @@
     "It does not establish component procurement cost.",
     "It does not describe the current Replica 1 Plus state.",
     "Exact candidate equivalence criteria must be preregistered per experiment.",
-    "The 65K expansion statement follows the manual wording and should not be silently reinterpreted as a modern address-space convention without source notes."
+    "The manual's 65K expansion wording is preserved as text rather than silently converted into a modern byte count."
   ]
 }
