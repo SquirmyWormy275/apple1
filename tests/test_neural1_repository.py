@@ -5,7 +5,6 @@ from pathlib import Path
 from neural1.demos import run_all
 from neural1.history import load_research_index
 
-
 ROOT = Path(__file__).resolve().parents[1]
 
 
