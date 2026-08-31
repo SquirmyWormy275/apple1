@@ -55,6 +55,9 @@ temporary wiring, soldering, or other physical modification.
 - [Initial technical report](docs/neural1/publications/technical-report.md) and
   [visual system](docs/visual-system/design-language.md).
 - [Next-eight implementation status](docs/neural1/phase-2-status.md).
+- [Pilot 001 research package](docs/neural1/research/pilot-001/README.md):
+  an honestly incomplete model-validated pilot, thermal stop, negative results,
+  META/1 record, and reproducibility report.
 
 ## NEURAL1 foundation
 

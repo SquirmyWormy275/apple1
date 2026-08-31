@@ -1,0 +1,17 @@
+{
+  "campaign_id": "N1-P-057141928BD15B0C",
+  "capsule_id": "N1-PC-1325AE4EF01FD58C",
+  "causal_status": "OBSERVED",
+  "claim": "PILOT 001 COMPLETED THE RECORDED MATRIX CELLS UNDER THE FROZEN CAMPAIGN RUNTIME.",
+  "completed_cells": 6,
+  "dataset_hash": "ce6467703c4a1aed38969a7114f7639e386a1d65c4382d788f7614324f8a62d7",
+  "evidence": [
+    "campaign spec",
+    "cell checkpoints",
+    "model recordings",
+    "transcripts"
+  ],
+  "incomplete_cells": 39,
+  "scientific_findings": [],
+  "status": "OBSERVED"
+}
