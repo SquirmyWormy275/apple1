@@ -1,0 +1,148 @@
+{
+  "target_identity": {
+    "by_id": "/dev/serial/by-id/usb-FTDI_FT232R_USB_UART_00000000-if00-port0",
+    "by_path": "/dev/serial/by-path/platform-xhci-hcd.0-usbv2-0:2:1.0-port0",
+    "by_path_alternate": "/dev/serial/by-path/platform-xhci-hcd.0-usb-0:2:1.0-port0",
+    "device": "/dev/ttyUSB0",
+    "usb_vid_pid": "0403:6001",
+    "kernel_driver": "ftdi_sio",
+    "note": "Both by-id and by-path resolved to /dev/ttyUSB0 immediately before the open. A third path, the usb- variant listed as by_path_alternate, also resolves to the same node; the handover recorded only two."
+  },
+  "timestamp_utc": "2026-09-02T03:16:05.950187+00:00",
+  "board_revision": "UNVERIFIED",
+  "board_identification": "Silkscreen reads 'replica I plus', www.brielcomputers.com, 'Distributed By: ReActiveMicro.com'. No revision marking was observed. Revision 0 is asserted by the operator from purchase provenance, not read from the board.",
+  "power_source": "UNVERIFIED. Board powered over a single micro-USB cable from a Raspberry Pi 5 USB-A host port, which supplies 5 V and enumerates the FT232R. The board also carries a physical ON/OFF switch, set to ON. No second supply was connected. Whether the Pi USB port is the sole supply was not independently verified.",
+  "usb_topology": "platform-xhci-hcd.0-usbv2-0:2:1.0-port0",
+  "load_topology": "CFFA1 CompactFlash interface seated in the 44-pin expansion connector with a Lexar 128 MB card installed, sharing the board 5 V rail. Not removed; removal would have constituted a physical change.",
+  "evidence_format_version": 2,
+  "execution_status": "COMPLETE",
+  "result": "INCONCLUSIVE",
+  "packet_status": "COMPLETE_WITH_EXTERNAL_MEDIA",
+  "portability_status": "NOT_SELF_CONTAINED_MEDIA",
+  "follow_on_live_authority": "NONE",
+  "test_card": "FT232R open with no transmit, logic-analyzer instrumented",
+  "physical_changes": "none",
+  "control_policy_requested": {
+    "dtr": false,
+    "rts": false
+  },
+  "analyzer": {
+    "model": "SparkFun TOL-18627, USB Logic Analyzer 24MHz/8-Channel",
+    "vendor_part_numbers": "DigiKey 1568-18627-ND / SparkFun MFR PN 18627",
+    "provenance": "Retained DigiKey packaging label, invoice 131719348, 27-AUG-2026",
+    "usb_identity_pre_firmware": "0925:3881 Lakeview Research Saleae Logic",
+    "usb_identity_post_firmware": "0925:3881, descriptors sigrok / fx2lafw / Saleae Logic",
+    "input_rating": "5.25 V maximum, 2.0 V minimum for a high logic level, vendor-published for this part number; not measured on this unit",
+    "firmware": "sigrok-firmware-fx2lafw 0.1.7-1, uploaded to device RAM at capture time",
+    "software": "sigrok-cli 0.7.2-3, libsigrok 0.5.2-26, on Omarchy, kernel 7.1.9-arch1-2, host strathex-P1",
+    "probe_type": "Female-to-female flying jumper leads supplied with the analyzer. No IC clips or micro-grabbers available.",
+    "power_source": "USB from the Omarchy laptop. No analyzer power or reference output lead was connected to the Replica.",
+    "trigger": "NONE. This analyzer class has no hardware trigger and no onboard capture memory. Continuous host-streamed capture was used with the owner JSONL timestamp as the correlation marker.",
+    "measurement_limitation": "Detects logic threshold crossings only. Cannot measure voltage amplitude, supply droop, ringing, or overshoot. A power-domain disturbance would be invisible to this instrument."
+  },
+  "channels": [
+    {
+      "channel": 0,
+      "logical_name": "FT232R TX-O",
+      "physical_point": "Pin labelled TX-O on the four-pin header of the FT232R Breakout, seated in the mainboard USB INTERFACE position",
+      "physical_point_evidence": "Silkscreen label on the breakout PCB, photographed and read directly",
+      "verified_domain": "3.3 V, from the breakout voltage-select switch position read by the operator as 3.3V; not measured",
+      "direction_note": "TX-O is labelled from the FT232R perspective: the FTDI driving toward the Propeller.",
+      "safe": true
+    },
+    {
+      "channel": 1,
+      "logical_name": "FT232R RX-I",
+      "physical_point": "Pin labelled RX-I on the same four-pin header",
+      "physical_point_evidence": "Silkscreen label on the breakout PCB, photographed and read directly",
+      "verified_domain": "3.3 V, same switch-derived basis as channel 0; not measured",
+      "direction_note": "RX-I is the FTDI receive input, driven by the board.",
+      "safe": true
+    }
+  ],
+  "ground_reference": {
+    "physical_point": "Pin labelled GND on the four-pin USB INTERFACE header",
+    "evidence": "Silkscreen label",
+    "analyzer_side": "GND position adjacent to CH7. SparkFun publishes a caution that on some units the GND adjacent to input six is not a ground and appears to carry a clock signal; the CH7-side position was used to avoid it. No continuity verification was possible, as no multimeter was available.",
+    "verified": false
+  },
+  "resn_unavailable_reason": "The Propeller RESn net has no silkscreen-labelled or otherwise evidenced accessible point on this board, no applicable schematic for this revision was available, and no multimeter was on hand for power-off continuity identification. The probe harness has only female jumper sockets and no IC clips, so probing an unlabelled IC leg was neither safe nor permitted. RESn was therefore not captured, and this run can neither establish nor exclude a reset-path event.",
+  "unrouted_signals": "DTR# and RTS# are not routed through the installed four-conductor breakout-to-mainboard interconnect. That interconnect exposes 3.3V, TX-O, RX-I, and GND; DTR and RTS are present as unpopulated breakout pads and were not probed.",
+  "raw_capture_files": [
+    "passive-idle.sr",
+    "host-open-no-transmit.sr"
+  ],
+  "capture_parameters": {
+    "sample_rate": "4000000",
+    "channels_enabled": "D0, D1",
+    "passive_idle_duration_s": 12,
+    "passive_idle_sample_count": 48000000,
+    "controlled_open_duration_s": 30,
+    "controlled_open_sample_count": 120000000,
+    "samples_per_9600_baud_bit": 417,
+    "pre_event_margin_s": "approximately 8 to 10",
+    "post_event_margin_s": "approximately 20"
+  },
+  "worksheet": "worksheet.md",
+  "display_evidence": {
+    "availability": "external_hash_identified",
+    "record_file": "display-video-record.md",
+    "external_manifest": "external-media-manifest.json",
+    "local_copy_absent_reason": "The MOV files remain in external custody on the operator's iPhone and in the preceding assistant session; no repository copy was supplied for this closure task.",
+    "codex_inspected_bytes": false,
+    "artifacts": [
+      {
+        "filename": "IMG_1353.mov",
+        "sha256": "daa8c84f62bdcc12e59a513ca72d3689745b4ccfafda10dac64640e864871ae1",
+        "duration_seconds": 62.73,
+        "size_observed": "60.7 MB",
+        "custody": ["operator_iphone", "preceding_assistant_sandbox"],
+        "local_repository_copy": false,
+        "inspection": {
+          "performed": true,
+          "inspector": "preceding assistant session",
+          "method": "direct frame inspection",
+          "frame_exact_sync_claimed": false,
+          "summary": "Eyoyo LCD; dense pseudo-random ASCII; no clean Monitor prompt; clip spans blank-blue and garbage states."
+        }
+      },
+      {
+        "filename": "IMG_1354.mov",
+        "sha256": "2c72eeb1af73cb76aaabc3f21ad2ffaeb83617aab2beca960dd754965d7061bb",
+        "duration_seconds": 9.87,
+        "size_observed": "10.8 MB",
+        "custody": ["operator_iphone", "preceding_assistant_sandbox"],
+        "local_repository_copy": false,
+        "inspection": {
+          "performed": true,
+          "inspector": "preceding assistant session",
+          "method": "direct frame inspection",
+          "frame_exact_sync_claimed": false,
+          "summary": "Eyoyo LCD showing dense pseudo-random ASCII; no clean Monitor prompt."
+        }
+      }
+    ]
+  },
+  "probe_point_evidence": {
+    "availability": "recorded_observation",
+    "record_file": "probe-point-record.md",
+    "local_photos_present": false,
+    "identification_basis": "Visible silkscreen on the installed breakout four-pin header and observations recorded during the session."
+  },
+  "owner_jsonl": "owner.jsonl",
+  "tool_provenance": {
+    "serial_owner_sha256": "b93a91e57351ffed5e5017ba2976d21939fe5979ecdf322808af3cd454fccd4b",
+    "note": "Identical hash on the Pi at ~/apple1-serial-recovery/tools/serial_owner.py and on the laptop at Projects/apple1/tools/serial_owner.py. This is the same binary that produced the 2026-08-27 evidence."
+  },
+  "observations": [
+    "Passive idle, 12 s: D0 and D1 both held constant high for the entire capture. No transitions. The Monitor prompt with flashing @ remained stable throughout.",
+    "Controlled open, 30 s: the FT232R session opened at 03:16:05.950187Z, drained zero startup bytes at 03:16:06.150539Z, and closed at 03:16:06.152701Z. Total session 202.5 ms. No transmit event was emitted.",
+    "Across all 120,000,000 samples of the controlled-open capture, D0 and D1 each held constant high. Not one transition occurred on either channel.",
+    "The Replica display became garbage during the session.",
+    "Physical Reset restarted the processor and restored a live flashing cursor, but the pre-existing garbage remained on screen. Reset does not clear the video buffer; CLEAR was deliberately not pressed, per the test card."
+  ],
+  "recovery": "Physical Reset. Processor restarted and the cursor resumed. Static garbage persisted in the video buffer because Reset does not clear it. CLEAR was not pressed and the serial open was not repeated.",
+  "conclusion": "The 2026-09-02 run reproduced display corruption during one controlled FT232R host open with DTR and RTS requested false, no transmitted payload, and no received startup bytes. Across the complete 30-second, 4 MS/s capture, the installed TX-O and RX-I nets remained digitally high with zero threshold crossings. The installed four-conductor breakout-to-mainboard interconnect exposes 3.3V, TX-O, RX-I, and GND; DTR# and RTS# are not routed through that interconnect. The evidence therefore does not support a UART-data-transition mechanism or a wired DTR/RTS-control-line mechanism. It does not exclude an unobserved Propeller RESn event, analog perturbation below the analyzer's threshold, disturbance of the 3.3 V or 5 V rail, ground-reference movement, regulator/FT232R power behavior, or shared-load interaction involving the installed CFFA1. The test is complete as executed and INCONCLUSIVE as to root cause.",
+  "permitted_next_step": "No follow-on live authority. The single controlled open is spent. Later verified transfer of the external MOV files may upgrade packet portability without rerunning or changing the experiment.",
+  "operator": "Alex Kaper"
+}

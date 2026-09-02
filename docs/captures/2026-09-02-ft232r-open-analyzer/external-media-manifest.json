@@ -1,0 +1,35 @@
+{
+  "schema": "apple1.external-media-manifest",
+  "version": 1,
+  "hash_provenance": "Supplied by the preceding assistant session that directly inspected the media; not recomputed by Codex because the MOV bytes were unavailable.",
+  "codex_inspected_bytes": false,
+  "frame_exact_sync_claimed": false,
+  "artifacts": [
+    {
+      "filename": "IMG_1353.mov",
+      "duration_seconds": 62.73,
+      "size_observed": "60.7 MB",
+      "sha256": "daa8c84f62bdcc12e59a513ca72d3689745b4ccfafda10dac64640e864871ae1",
+      "custody": ["operator_iphone", "preceding_assistant_sandbox"],
+      "local_repository_copy": false,
+      "inspection": {
+        "inspector": "preceding assistant session",
+        "method": "direct frame inspection",
+        "summary": "Eyoyo LCD; dense pseudo-random ASCII; no clean Monitor prompt; long clip spans blank-blue and garbage states."
+      }
+    },
+    {
+      "filename": "IMG_1354.mov",
+      "duration_seconds": 9.87,
+      "size_observed": "10.8 MB",
+      "sha256": "2c72eeb1af73cb76aaabc3f21ad2ffaeb83617aab2beca960dd754965d7061bb",
+      "custody": ["operator_iphone", "preceding_assistant_sandbox"],
+      "local_repository_copy": false,
+      "inspection": {
+        "inspector": "preceding assistant session",
+        "method": "direct frame inspection",
+        "summary": "Eyoyo LCD showing dense pseudo-random ASCII; no clean Monitor prompt."
+      }
+    }
+  ]
+}
