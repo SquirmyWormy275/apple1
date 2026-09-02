@@ -44,7 +44,7 @@ rather than filling a gap from memory.
 | Sample rate and retained pre-trigger duration | `UNFILLED` | `UNFILLED` |
 | Trigger signal/edge | `UNFILLED` | `UNFILLED` |
 | UART decoder settings, if used | `NOT USED / UNFILLED` | `NOT USED / UNFILLED` |
-| Display-video file and timing method | `UNFILLED` | `UNFILLED` |
+| Display evidence location/custody, hashes, and timing method | `UNFILLED` | `UNFILLED` |
 | Host owner JSONL file and SHA-256 | `not applicable` | `UNFILLED` |
 | Board display before test | `UNFILLED` | `UNFILLED` |
 | Board display after test | `UNFILLED` | `UNFILLED` |
@@ -96,10 +96,11 @@ python3 tools/serial_owner.py session --capture \
 ## Evidence checklist
 
 - [ ] Native, unmodified analyzer files retained.
-- [ ] Display video retained.
+- [ ] Display evidence retained locally or externally with hashes, custody, and inspection record.
 - [ ] Owner JSONL retained for the controlled-open phase.
-- [ ] Probe-point photos and identification evidence retained.
+- [ ] Probe-point evidence retained locally or externally with identification basis.
+- [ ] Packet status records whether media are local, externally held, or missing.
 - [ ] Manifest validates with `python3 tools/capture_manifest.py metadata.json`.
-- [ ] Raw capture, video, host log, and worksheet agree on ordering.
+- [ ] Raw capture, display record, host log, and worksheet agree on ordering.
 - [ ] No transmit, firmware, EEPROM, jumper, power-source, or wiring change occurred.
 - [ ] Result is classified `PASS`, `STOP`, or `INCONCLUSIVE` and recovery is recorded.

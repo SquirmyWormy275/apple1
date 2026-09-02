@@ -12,7 +12,11 @@ host open. Do not transmit bytes, change firmware, compile/load firmware,
 program EEPROM, move jumpers, alter the FT232R voltage switch, or attach a
 CA2-to-Propeller wire. Do not repeat the host open after a STOP result.
 
-**Status:** prepared; not yet authorized/executed.
+**Status:** protocol card; execution state belongs to each capture packet.
+
+The authorized sequence was executed once on 2026-09-02. Its completed
+[evidence packet](2026-09-02-ft232r-open-analyzer/README.md) marks that
+controlled open spent and grants no follow-on live authority.
 
 ## Decision forks
 
@@ -122,7 +126,7 @@ YYYY-MM-DD-ft232r-open-analyzer/
   passive-idle.<instrument-extension>
   host-open-no-transmit.<instrument-extension>
   host-open-no-transmit.csv              # export only if native raw file is retained
-  display-video.<extension>
+  display-video.<extension>              # or a local external-custody record
   owner.jsonl
   worksheet.md
   photos/
@@ -154,7 +158,14 @@ Symptom -> Hypothesis -> Test -> Result -> Conclusion
 
 ## Completion condition
 
-This test card is complete only when raw traces, display evidence, host owner
-log, probe-point evidence, and recovery outcome coexist in one capture packet.
+This test card is complete when raw traces, display evidence, host owner log,
+probe-point evidence, and recovery outcome coexist in one capture packet.
+Display or probe media may be retained locally or represented as externally
+held, cryptographically identified evidence with documented custody,
+direct-inspection attribution, observations, and portability limitations.
+External evidence does not become a local repository file merely because it is
+documented. Packet status must distinguish complete local media, complete
+external media, and incomplete evidence; result classification remains
+separate from packet completeness.
 It never authorizes firmware loading, EEPROM programming, soldering, a 100 kOhm
 pull-up, or a CA2 connection.
