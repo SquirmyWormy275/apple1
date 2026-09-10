@@ -22,6 +22,16 @@ The console shows only implemented operations:
   browse actual persisted run observations and their evidence relationships.
 - `EXPORT run-id` makes a verified bundle including referenced snapshots and
   a consistent SQLite backup. `OPEN bundle-path` verifies and reopens it.
+- `SELFHOST` lists the persistent artifact archive. `SELFHOST INGEST run-id`
+  imports verified SELFHOST stage-one run evidence. `SELFHOST REBUILD artifact-id`
+  repeats its recorded virtual construction and checks exact bytes.
+  `SELFHOST QUALIFY evidence-path` evaluates later-stage ancestry, virtual builds,
+  exact repeat reconstruction, and declared behavioral controls from an SSD file.
+  It records a negative result when the actual candidate fails; it does not
+  supply or invent an assembler. `SELFHOST EXPORT artifact-id` includes its
+  dependency closure; `SELFHOST OPEN bundle-path` verifies and reopens it.
+  Operation receipts also appear in META. Synthetic/replayed origins retain
+  that label through every descendant.
 - `LESSONS` lists existing lesson folders. `SOURCE lesson sources`,
   `ASK lesson question`, `HINT`, `EXPLAIN`, and `CHECK` use the real corpus.
   `TRACE lesson "assembly with \n separators"` assembles and executes through
@@ -58,7 +68,8 @@ The tested source revision is recorded separately from deployment acceptance.
 
 On the expected SSD, console output lives under `runs/console/campaigns/ID`,
 content-addressed snapshots under `runs/console/artifacts`, META under
-`meta/console.sqlite`, and provider/worker logs under `logs`. Historical model
+`meta/console.sqlite`, and provider/worker logs under `logs`. SELFHOST artifacts,
+ancestry, evidence, and operation receipts live under `research/selfhost`. Historical model
 registries are preserved; each run retains its effective generation registry.
 Ollama uses its native `blobs`/`manifests` layout on the same verified volume.
 
@@ -73,7 +84,10 @@ unique startup identity and durable logs. The installer records the account's
 prior linger setting before enabling it when needed for logout persistence.
 A two-second watchdog checks temperature, available memory, storage identity,
 capacity and current Pi throttling flags; violations interrupt the client.
-Transport/output bounds limit inference. Actual provider cancellation latency
+Transport/output bounds limit inference. Foreground Field Library model calls
+run in a bounded child process; the console checks resources while waiting and
+terminates that child on failure, timeout, or cancellation. It does not retain a
+watchdog thread after the operation. Actual provider cancellation latency
 and cooling still require measurement on the installed Pi; a log alone is not
 acceptance. No automatic retry loop repeats failed scientific work.
 

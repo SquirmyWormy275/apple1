@@ -394,3 +394,93 @@ def test_stop_is_available_when_thermal_launch_check_fails(configured, monkeypat
     assert json.loads((root / 'CANCEL').read_text()) == {'owner': 'neural1-campaign', 'campaign_id': spec.campaign_id}
     with pytest.raises(Neural1Error, match='thermal stop'):
         app.start(spec.campaign_id)
+
+
+def test_selfhost_console_ingest_rebuild_reopen_and_meta(configured, monkeypatch):
+    """Synthetic provider bytes exercise archive persistence, never live acceptance."""
+    import hashlib
+    config, app = configured
+    spec = preset('selfhost1', 'fixture', seed=81)
+    root = config.output / 'campaigns' / spec.campaign_id
+    spec.save(root / 'spec.json')
+    monkeypatch.setattr('neural1.application.signal.signal', lambda *args: None)
+    monkeypatch.setattr('neural1.application.provider_for', lambda *args, **kwargs: FakeProvider(default='0200: A9 41 20 EF FF 4C 1F FF\n0200R'))
+    assert worker(config, spec.campaign_id, False) == 0
+    imported = app.command('SELFHOST INGEST ' + spec.campaign_id)
+    assert imported['result']
+    artifact = imported['result'][0]
+    assert artifact['origin_run_id'] == spec.campaign_id
+    assert artifact['evidence_class'] == 'SYNTHETIC_OR_REPLAY'
+    assert artifact['qualified']
+    reopened = Application(config)
+    assert reopened.command('SELFHOST') == app.command('SELFHOST LIST')
+    rebuilt = reopened.command('SELFHOST REBUILD ' + artifact['artifact_id'])
+    assert rebuilt['result']
+    claim = app.command('META CLAIM ' + rebuilt['claim_id'])
+    assert claim['scope']['target'] == 'VIRTUAL'
+    assert claim['scope']['evidence_hash'] == hashlib.sha256(Path(rebuilt['receipt']).read_bytes()).hexdigest()
+    assert app.command('META HISTORY ' + rebuilt['claim_id'])
+    assert app.command('META QUEUE')
+    exported = reopened.command('SELFHOST EXPORT ' + artifact['artifact_id'])
+    bundle = Path(exported['result']['destination'])
+    verified = reopened.command('SELFHOST OPEN ' + str(bundle))
+    assert verified['valid']
+    assert verified['records'][0]['evidence_class'] == 'SYNTHETIC_OR_REPLAY'
+    image = bundle / artifact['artifact_id'] / 'image.bin'
+    image.write_bytes(bytes(4096))
+    with pytest.raises(Neural1Error):
+        reopened.command('SELFHOST OPEN ' + str(bundle))
+
+
+def test_selfhost_archive_commands_refuse_external_evidence(configured, tmp_path):
+    _, app = configured
+    external = tmp_path / 'outside-evidence.json'
+    external.write_text('{}')
+    with pytest.raises(Neural1Error, match='configured SSD'):
+        app.command('SELFHOST QUALIFY ' + str(external))
+    with pytest.raises(Neural1Error, match='configured SSD'):
+        app.command('SELFHOST OPEN ' + str(external))
+
+
+def test_selfhost_mutations_wait_for_active_campaign(configured, monkeypatch):
+    _, app = configured
+    monkeypatch.setattr(app, 'running', lambda: True)
+    with pytest.raises(Neural1Error, match='active campaign'):
+        app.command('SELFHOST INGEST N1-P-example')
+
+
+def test_foreground_operation_is_stopped_on_resource_failure(configured, monkeypatch):
+    import multiprocessing
+    import time
+
+    from neural1.application import monitored_call
+    config, _ = configured
+    baseline = {process.pid for process in multiprocessing.active_children()}
+    checks = 0
+
+    def check(self):
+        nonlocal checks
+        checks += 1
+        if checks > 1:
+            raise Neural1Error('synthetic thermal threshold')
+        return {}
+
+    monkeypatch.setattr(ApplicationConfig, 'check', check)
+    started = time.monotonic()
+    with pytest.raises(Neural1Error, match='thermal threshold'):
+        monitored_call(config, lambda: time.sleep(30), timeout_seconds=40)
+    assert time.monotonic() - started < 5
+    assert {process.pid for process in multiprocessing.active_children()} == baseline
+
+
+def test_foreground_operation_success_and_timeout_leave_no_child(configured):
+    import multiprocessing
+    import time
+
+    from neural1.application import monitored_call
+    config, _ = configured
+    baseline = {process.pid for process in multiprocessing.active_children()}
+    assert monitored_call(config, lambda: {'synthetic': True}, timeout_seconds=5) == {'synthetic': True}
+    with pytest.raises(Neural1Error, match='time limit'):
+        monitored_call(config, lambda: time.sleep(30), timeout_seconds=0.1)
+    assert {process.pid for process in multiprocessing.active_children()} == baseline

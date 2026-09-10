@@ -4,6 +4,7 @@ from __future__ import annotations
 import argparse
 import fcntl
 import json
+import multiprocessing
 import os
 import secrets
 import shlex
@@ -15,6 +16,7 @@ import sys
 import textwrap
 import threading
 import time
+from collections.abc import Callable
 from dataclasses import asdict, dataclass, replace
 from pathlib import Path
 from typing import Any
@@ -65,7 +67,7 @@ class ApplicationConfig:
     def storage_check(self) -> Any:
         from .deployment import verify_storage
         try:
-            return verify_storage(self.ssd, self.uuid, write_paths=(self.output, self.database, self.ssd / 'logs', self.ssd / 'exports'), min_free_bytes=0)
+            return verify_storage(self.ssd, self.uuid, write_paths=(self.output, self.database, self.ssd / 'logs', self.ssd / 'exports', self.ssd / 'research/selfhost'), min_free_bytes=0)
         except (OSError, ValueError, subprocess.SubprocessError) as error:
             raise Neural1Error(f'storage unavailable: {error}') from error
 
@@ -88,6 +90,62 @@ class ApplicationConfig:
             if throttling & 0xF:
                 raise Neural1Error(f'Pi power/clock/thermal stop: current flags {throttling & 0xF:#x}')
         return {'storage': {**asdict(identity), 'root': str(identity.root)}, 'temperatures_c': temperatures, 'available_memory_bytes': available, 'throttling_flags': throttling}
+
+
+def monitored_call(config: ApplicationConfig, action: Callable[[], Any], *, timeout_seconds: float) -> Any:
+    """Bound a foreground operation and stop its isolated process on resource loss."""
+    if timeout_seconds <= 0 or timeout_seconds > 600:
+        raise Neural1Error('foreground operation timeout must be between zero and 600 seconds')
+    config.check()
+    context = multiprocessing.get_context('fork')
+    receiving, sending = context.Pipe(duplex=False)
+
+    def execute() -> None:
+        receiving.close()
+        try:
+            sending.send({'ok': True, 'result': action()})
+        except Exception as error:
+            sending.send({'ok': False, 'error': str(error), 'type': type(error).__name__})
+        finally:
+            sending.close()
+
+    process = context.Process(target=execute, daemon=True)
+    try:
+        process.start()
+    except Exception:
+        receiving.close()
+        sending.close()
+        process.close()
+        raise
+    sending.close()
+    deadline = time.monotonic() + timeout_seconds
+    next_check = time.monotonic()
+    try:
+        while time.monotonic() < deadline:
+            if time.monotonic() >= next_check:
+                config.check()
+                next_check = time.monotonic() + 1
+            if receiving.poll(0.2):
+                try:
+                    message = receiving.recv()
+                except EOFError as error:
+                    raise Neural1Error('foreground operation exited without a result') from error
+                config.check()
+                if not message['ok']:
+                    raise Neural1Error(f"foreground operation failed ({message['type']}): {message['error']}")
+                return message['result']
+            if not process.is_alive():
+                raise Neural1Error('foreground operation exited without a result')
+        raise Neural1Error('foreground operation reached its time limit')
+    finally:
+        receiving.close()
+        if process.is_alive():
+            process.terminate()
+        process.join(timeout=2)
+        if process.is_alive():
+            process.kill()
+            process.join(timeout=2)
+        process.close()
 
 
 def check_model(registry: ModelRegistry, model_id: str) -> dict[str, Any]:
@@ -271,6 +329,59 @@ class Application:
         finally:
             database.close()
 
+    def selfhost(self, arguments: list[str]) -> Any:
+        from .selfhost_workflow import SelfHostArchive
+
+        operation = arguments[0].upper() if arguments else 'LIST'
+        if operation == 'LIST' and len(arguments) <= 1:
+            return SelfHostArchive(self.config.ssd / 'research/selfhost').records()
+        if operation not in {'INGEST', 'REBUILD', 'QUALIFY', 'EXPORT', 'OPEN'} or len(arguments) != 2:
+            raise Neural1Error('SELFHOST expects LIST, INGEST run-id, REBUILD artifact-id, QUALIFY evidence-path, EXPORT artifact-id, or OPEN bundle-path')
+        self.config.check()
+        if self.running():
+            raise Neural1Error('wait for or stop the active campaign before SELFHOST archive operations')
+        archive = SelfHostArchive(self.config.ssd / 'research/selfhost')
+        identifier = arguments[1]
+        if operation == 'INGEST':
+            result: Any = archive.ingest_run(self.root(identifier))
+        elif operation == 'REBUILD':
+            result = archive.rebuild(identifier)
+        elif operation == 'QUALIFY':
+            evidence = Path(identifier).resolve(strict=True)
+            if not evidence.is_relative_to(self.config.ssd.resolve()) or not evidence.is_file():
+                raise Neural1Error('SELFHOST qualification evidence must be a file on the configured SSD')
+            result = archive.qualify(evidence)
+        elif operation == 'EXPORT':
+            destination = self.config.ssd / 'exports' / f'selfhost-{time.time_ns()}'
+            result = archive.export(destination, artifact_ids=[identifier])
+        else:
+            from .selfhost_workflow import verify_export
+            bundle = Path(identifier).resolve(strict=True)
+            if not bundle.is_relative_to(self.config.ssd.resolve()):
+                raise Neural1Error('SELFHOST bundle must be on the configured SSD')
+            return verify_export(bundle)
+        self.config.storage_check()
+        payload = {'operation': operation, 'argument': identifier, 'result': result, 'target': 'VIRTUAL'}
+        operation_id = stable_id('N1-SH-OP', payload)
+        receipt = self.config.ssd / 'research/selfhost/operations' / f'{operation_id}.json'
+        CampaignEngine._atomic_json(receipt, payload)
+        digest = sha256_bytes(receipt.read_bytes())
+        claim_id = stable_id('N1-C', {'selfhost_operation': operation_id})
+        statement = f'SELFHOST virtual {operation} recorded operation {operation_id}; inspect qualification and evidence class.'
+        database = ResearchDatabase(self.config.database)
+        try:
+            existing = database.claim(claim_id)
+            if existing is None:
+                database.put_claim(Claim(claim_id, statement, {'target': 'VIRTUAL', 'operation': operation_id, 'receipt': str(receipt.relative_to(self.config.ssd)), 'evidence_hash': digest}, causal_status=CausalStatus.OBSERVED))
+            evidence_id = stable_id('N1-E', {'selfhost_receipt_hash': digest})
+            database.put_evidence(Evidence(evidence_id, 'SELFHOST_OPERATION_RECORD', digest, (operation_id,), statement))
+            database.relate(evidence_id, 'supports', claim_id)
+            if existing is None:
+                database.enqueue(f'Assess SELFHOST operation {operation_id}', uncertainty=1, novelty=0, information_gain=0.5, cross_experiment_relevance=0, normalized_compute_cost=0.1)
+        finally:
+            database.close()
+        return {'operation': operation, 'result': result, 'receipt': str(receipt), 'claim_id': claim_id}
+
     def command(self, line: str) -> Any:
         self.config.storage_check()
         args = shlex.split(line)
@@ -280,6 +391,8 @@ class Application:
         if op in ('1', '2', '3', '4', '5'):
             self.family = EXPERIMENTS[int(op) - 1]
             return {'selected': LABELS[int(op) - 1]}
+        if op == 'SELFHOST':
+            return self.selfhost(args[1:])
         if op == 'MODELS':
             return [asdict(model) for model in self.registry.models.values()]
         if op == 'MODEL' and len(args) == 2:
@@ -327,10 +440,14 @@ class Application:
                 return {'sources': paths, 'text': context}
             self.config.check()
             check_model(self.registry, self.model_id)
-            assistant = FieldLibraryAssistant(corpus, provider_for(self.registry.require(self.model_id), record_path=self.config.ssd / 'logs/field-library.jsonl'))
-            if op == 'TRACE':
-                return asdict(assistant.assemble_explain(args[1], ' '.join(args[2:]).replace('\\n', '\n')))
-            return asdict(assistant.answer(op, args[1], ' '.join(args[2:])))
+            def operation() -> dict[str, Any]:
+                assistant = FieldLibraryAssistant(corpus, provider_for(self.registry.require(self.model_id), record_path=self.config.ssd / 'logs/field-library.jsonl'))
+                if op == 'TRACE':
+                    return asdict(assistant.assemble_explain(args[1], ' '.join(args[2:]).replace('\\n', '\n')))
+                return asdict(assistant.answer(op, args[1], ' '.join(args[2:])))
+
+            bound = min(600.0, float(self.registry.require(self.model_id).generation_defaults.get('timeout_seconds', 120)) + 10)
+            return monitored_call(self.config, operation, timeout_seconds=bound)
         raise Neural1Error('unknown command or missing argument; HELP lists implemented operations')
 
 
@@ -347,6 +464,11 @@ STOP run-id / RESUME run-id
 EXPORT run-id / OPEN bundle-path
 META / META CLAIM claim-id
 META HISTORY claim-id / META QUEUE
+SELFHOST / SELFHOST INGEST run-id
+SELFHOST REBUILD artifact-id
+SELFHOST QUALIFY evidence-path
+SELFHOST EXPORT artifact-id
+SELFHOST OPEN bundle-path
 LESSONS
 ASK|HINT|EXPLAIN|CHECK lesson question
 SOURCE lesson sources
