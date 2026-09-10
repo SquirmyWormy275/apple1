@@ -98,3 +98,40 @@ def test_operation_guidance_and_explicit_length_truncation(tmp_path):
     assert result.text.startswith('The exact unfinished response')
     assert result.output_truncated and 'incomplete' in result.support_note
     assert result.prompt_bytes <= PROMPT_BYTES
+
+
+def test_actual_check_teaching_survives_answer_key_and_sources_remain_private():
+    context, paths = LessonCorpus().excerpts('M01', 'Does examining a byte change that byte?', budget=1500, include_answers=True)
+    assert '*Inspect.*' in context and '*Change.*' in context
+    assert context.index('[README.md]') < context.index('[ANSWERS.md]')
+    assert context.count('[ANSWERS.md]') == 1
+    assert any(path.endswith('ANSWERS.md') for path in paths)
+
+
+def test_ask_alignment_preserves_original_question_and_selects_one_teaching_fact():
+    provider = Capture()
+    question = 'What does a Woz Monitor deposit command do?'
+    answer = FieldLibraryAssistant(LessonCorpus(), provider).answer('ASK', 'M01', question)
+    assert answer.original_question == question
+    assert answer.effective_question == 'What does a Woz Monitor deposit/change command do?'
+    assert question in provider.prompts[0] and answer.effective_question in provider.prompts[0]
+    assert '*Change.*' in provider.prompts[0]
+    assert 'Cover it and write down' not in provider.prompts[0]
+    assert 'Why it is not an operating system' not in provider.prompts[0]
+    assert '[ACTIVITY.md]' not in provider.prompts[0]
+    assert answer.prompt_bytes < 1800
+
+
+def test_trace_places_exact_small_evidence_next_to_specific_question():
+    provider = Capture()
+    answer = FieldLibraryAssistant(LessonCorpus(), provider).assemble_explain('M01', 'LDA #$41\nJSR $FFEF\nJMP $FF1F')
+    prompt = provider.prompts[0]
+    assert '"screen_text":"A"' in prompt
+    assert '"instructions":4' in prompt
+    assert '"stop_reason":"MONITOR_WARM_ENTRY"' in prompt
+    assert '"trace":[' in prompt  # Complete short traces fit; no artificial omission.
+    assert 'Why it is not an operating system' not in prompt
+    assert '[README.md]' not in prompt
+    assert prompt.index('DETERMINISTIC EVIDENCE') > prompt.index('SOURCES (selected')
+    assert answer.deterministic_evidence['screen_text'] == 'A'
+    assert answer.prompt_bytes <= PROMPT_BYTES

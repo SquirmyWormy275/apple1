@@ -31,6 +31,8 @@ class GroundedAnswer:
     support_note: str | None = None
     prompt_bytes: int = 0
     output_truncated: bool = False
+    original_question: str | None = None
+    effective_question: str | None = None
 
 
 class LessonCorpus:
@@ -50,7 +52,7 @@ class LessonCorpus:
         paths = tuple(str(matches[0] / name) for name in names if (matches[0] / name).exists())
         return "\n\n".join(Path(path).read_text(encoding="utf-8") for path in paths), paths
 
-    def excerpts(self, lesson_id: str, query: str, *, budget: int, include_answers: bool = False) -> tuple[str, tuple[str, ...]]:
+    def excerpts(self, lesson_id: str, query: str, *, budget: int, include_answers: bool = False, primary_limit: int = 2) -> tuple[str, tuple[str, ...]]:
         """Select verbatim paragraphs deterministically; never supply answer keys outside CHECK."""
         _, paths = self.context(lesson_id, include_answers=include_answers)
         ignored = {'THE', 'AND', 'FOR', 'WITH', 'DOES', 'WHAT', 'HOW', 'CAN', 'THIS', 'THAT', 'ONLY', 'EXPLAIN', 'FROM', 'ARE'}
@@ -88,27 +90,56 @@ class LessonCorpus:
                 if not score:
                     continue
                 priority = 0 if filename == 'README.md' else 1 if filename == 'SOURCE-NOTES.md' else 2 if filename == 'STATUS.md' else 3
-                if include_answers and filename == 'ANSWERS.md':
-                    priority = -1
+                if re.match(r'^\*(?:Inspect|Change|Run)\.\*', paragraph, re.IGNORECASE):
+                    score += 12
                 candidates.append((priority, -score, path, index, paragraph))
         candidates.sort()
         selected: list[str] = []
         selected_paths: list[str] = []
-        citation_candidates = [item for item in candidates if Path(item[2]).name == 'SOURCE-NOTES.md']
-        citation_budget = min(450, budget // 4) if citation_candidates else 0
-        primary_budget = budget - citation_budget
-        # Reserve a small citation allowance rather than letting metadata displace teaching.
-        ordered = [item for item in candidates if item not in citation_candidates] + citation_candidates
-        for _, _, path, _, paragraph in ordered:
-            block = f'[{Path(path).name}]\n{paragraph}'
-            proposed = '\n\n'.join([*selected, block])
-            limit = budget if Path(path).name == 'SOURCE-NOTES.md' else primary_budget
-            if len(proposed.encode('utf-8')) > limit:
-                continue
-            selected.append(block)
-            if path not in selected_paths:
-                selected_paths.append(path)
+
+        def add(items: list[tuple[int, int, str, int, str]], count: int, allowance: int) -> None:
+            added = 0
+            used = 0
+            for _, _, path, _, paragraph in items:
+                block = f'[{Path(path).name}]\n{paragraph}'
+                size = len(block.encode('utf-8'))
+                proposed = '\n\n'.join([*selected, block])
+                if added >= count or used + size > allowance or len(proposed.encode('utf-8')) > budget:
+                    continue
+                selected.append(block)
+                used += size
+                added += 1
+                if path not in selected_paths:
+                    selected_paths.append(path)
+
+        teaching = [item for item in candidates if Path(item[2]).name == 'README.md']
+        add(teaching, primary_limit, max(0, budget - 300))
+        if not selected:
+            add([item for item in candidates if Path(item[2]).name not in {'ANSWERS.md', 'SOURCE-NOTES.md'}], 1, max(0, budget - 300))
+        # A short answer-key match may supplement CHECK; it never displaces teaching.
+        if include_answers:
+            add([item for item in candidates if Path(item[2]).name == 'ANSWERS.md'], 1, 350)
+        add([item for item in candidates if Path(item[2]).name == 'SOURCE-NOTES.md'], 2, 450)
         return '\n\n'.join(selected), tuple(selected_paths)
+
+    def execution_notes(self, lesson_id: str) -> tuple[str, tuple[str, ...]]:
+        """Only original citation rows for modeled ECHO/Monitor return, not a general lecture."""
+        _, paths = self.context(lesson_id)
+        selected: list[str] = []
+        used_paths: list[str] = []
+        for path in paths:
+            if Path(path).name != 'SOURCE-NOTES.md':
+                continue
+            for row in Path(path).read_text(encoding='utf-8').splitlines():
+                if not row.startswith('|') or not re.search(r'E-EXIT|E-ECHO|E-EMU-SCOPE', row):
+                    continue
+                block = f'[SOURCE-NOTES.md]\n{row}'
+                if len('\n'.join([*selected, block]).encode('utf-8')) > 450:
+                    continue
+                selected.append(block)
+                if path not in used_paths:
+                    used_paths.append(path)
+        return '\n'.join(selected), tuple(used_paths)
 
     def search(self, query: str, *, limit: int = 5) -> tuple[str, ...]:
         terms = {term for term in re.findall(r"[A-Z0-9$-]+", query.upper()) if len(term) > 2}
@@ -137,21 +168,28 @@ class FieldLibraryAssistant:
         if not question.strip() or len(question.encode('utf-8')) > QUESTION_BYTES:
             return GroundedAnswer(operation, UNSUPPORTED, (), evidence, grounded=False, support_note='Question is empty or exceeds the bounded 512-byte question limit.')
         supplied_evidence = dict(evidence) if evidence is not None else None
-        if supplied_evidence is not None and 'trace' in supplied_evidence:
+        if supplied_evidence is not None and 'trace' in supplied_evidence and len(json.dumps(supplied_evidence).encode('utf-8')) > 1400:
             trace = supplied_evidence.pop('trace')
             encoded = json.dumps(trace, sort_keys=True).encode('utf-8')
             supplied_evidence['trace_detail'] = {'omitted_from_model_prompt': True, 'sha256': hashlib.sha256(encoded).hexdigest(), 'full_trace_retained_in_deterministic_evidence': True}
         evidence_text = '' if supplied_evidence is None else '\nDETERMINISTIC EVIDENCE (authoritative):\n' + json.dumps(supplied_evidence, ensure_ascii=False, separators=(',', ':'))
         actions = {'ASK': 'Answer the question directly.', 'HINT': 'Give one small helpful hint without a full solution.', 'EXPLAIN': 'Briefly explain the requested concept.', 'CHECK': 'Evaluate the statement against the supplied facts and answer evidence.', 'TRACE': 'Explain the supplied deterministic execution evidence.'}
         action = actions.get(operation, 'Help with the requested lesson operation.')
+        effective_question = re.sub(r'\bdeposit(?:s|ing)?\b', lambda match: match[0] + '/change', question, flags=re.IGNORECASE)
+        effective_question = re.sub(r'\bexamin(?:e|es|ing)\b', lambda match: match[0] + '/inspect', effective_question, flags=re.IGNORECASE)
         policy = f'Use only the supplied source facts and deterministic evidence. Never infer omitted trace details. Answer when the facts are present; only when the needed facts are absent, respond exactly: {UNSUPPORTED}'
-        prefix = f'POLICY: {policy}{evidence_text}\nSOURCES (selected verbatim paragraphs, not the whole lesson):\n'
-        suffix = f'\nOPERATION: {operation}. {action}\nQUESTION: {question}\nRespond in 1–3 short sentences.'
+        prefix = f'POLICY: {policy}\nSOURCES (selected verbatim paragraphs, not the whole lesson):\n'
+        suffix = f'{evidence_text}\nOPERATION: {operation}. {action}\nORIGINAL QUESTION: {question}\nQUESTION (Monitor terminology aligned): {effective_question}\nRespond in 1–3 short sentences.'
         available = PROMPT_BYTES - len((prefix + suffix).encode('utf-8'))
         if available < 400:
             return GroundedAnswer(operation, UNSUPPORTED, (), evidence, grounded=False, support_note='Exact deterministic evidence exceeds the bounded prompt budget; evidence retained without model interpretation.')
-        context, paths = self.corpus.excerpts(lesson_id, question, budget=min(2200, available), include_answers=operation == 'CHECK')
-        if not context:
+        if operation == 'TRACE' and supplied_evidence is not None:
+            context, paths = self.corpus.execution_notes(lesson_id)
+            if len(context.encode('utf-8')) > available:
+                context, paths = '', ()
+        else:
+            context, paths = self.corpus.excerpts(lesson_id, question, budget=min(1500, available), include_answers=operation == 'CHECK', primary_limit=1 if operation in {'ASK', 'HINT'} else 2)
+        if not context and evidence is None:
             return GroundedAnswer(operation, UNSUPPORTED, paths, evidence, grounded=False, support_note='No relevant complete source paragraph fits the bounded prompt.')
         prompt = prefix + context + suffix
         assert len(prompt.encode('utf-8')) <= PROMPT_BYTES
@@ -162,7 +200,7 @@ class FieldLibraryAssistant:
             text += '\n\nSOURCES: ' + ', '.join(keys)
         truncated = (response.provider_metadata or {}).get('done_reason') == 'length'
         note = 'Model output reached its length limit; the returned text is incomplete.' if truncated else None
-        return GroundedAnswer(operation, text, paths, evidence, keys, text != UNSUPPORTED, support_note=note, prompt_bytes=len(prompt.encode('utf-8')), output_truncated=truncated)
+        return GroundedAnswer(operation, text, paths, evidence, keys, text != UNSUPPORTED, support_note=note, prompt_bytes=len(prompt.encode('utf-8')), output_truncated=truncated, original_question=question, effective_question=effective_question)
 
     def answer(self, operation: str, lesson_id: str, question: str, *, seed: int = 0) -> GroundedAnswer:
         operation = operation.upper()
@@ -173,11 +211,11 @@ class FieldLibraryAssistant:
     def explain_program(self, lesson_id: str, program: str | Path, keyboard_input: str, *, seed: int = 0) -> GroundedAnswer:
         result: EmulatorResult = Apple1RamHarness.from_program_file(program).run_keyboard_line(keyboard_input)
         evidence = {"screen_text": result.screen_text, "buffer_text": result.buffer_text, "returned_to_monitor": result.returned_to_monitor, "instructions": result.instructions}
-        return self._answer('TRACE', lesson_id, 'Explain the deterministic program output, memory buffer and return to Monitor.', seed=seed, agent_id='FIELD-LIBRARY-CODE', evidence=evidence)
+        return self._answer('TRACE', lesson_id, 'State the recorded screen_text, buffer_text, instructions and returned_to_monitor result.', seed=seed, agent_id='FIELD-LIBRARY-CODE', evidence=evidence)
 
     def assemble_explain(self, lesson_id: str, source: str, *, origin: int = 0x0200, seed: int = 0) -> GroundedAnswer:
         assembled, execution = LessonAssembler().assemble_and_run(source, origin=origin)
         evidence: dict[str, object] = {"origin": origin, "bytes": assembled.payload.hex(" ").upper(), "symbols": assembled.symbols, "diagnostics": [diagnostic.__dict__ for diagnostic in assembled.diagnostics]}
         if execution is not None:
             evidence.update({"stop_reason": execution.stop_reason, "screen_text": execution.screen_text, "instructions": execution.instructions, "trace": trace_records(execution)})
-        return self._answer('TRACE', lesson_id, 'Explain the deterministic assembly bytes, screen output, instructions and return to Monitor.', seed=seed, agent_id='FIELD-LIBRARY-ASSEMBLER', evidence=evidence)
+        return self._answer('TRACE', lesson_id, 'State the recorded screen_text, instructions and stop_reason. Identify the recorded program bytes. Do not describe unrecorded behavior.', seed=seed, agent_id='FIELD-LIBRARY-ASSEMBLER', evidence=evidence)
