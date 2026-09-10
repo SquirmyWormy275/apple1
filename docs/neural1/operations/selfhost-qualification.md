@@ -62,3 +62,7 @@ cannot reconstruct a candidate. Reopening/rebuilding applies this production
 check as well. These are bounded declared-language controls, not a claim of
 general compiler correctness from two vectors; stage-one raw transcript replay
 remains explicitly distinct from later-stage builder execution.
+An in-place retained-bootstrap rebuild with an identical final image is accepted
+only if CPU execution actually writes within its output region; an unchanged
+image returned by NOP/BRK is insufficient. Unchanged bytes need not all be
+rewritten, and all changed bytes still require CPU-write provenance.

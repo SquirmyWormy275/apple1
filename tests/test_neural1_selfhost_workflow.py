@@ -172,3 +172,20 @@ def test_write_observer_preserves_exact_candidate_memory_policy() -> None:
     result = world.execute(0x200, candidate_limit=256, write_observer=written.add)
     assert result.stop_reason == "EXECUTION_MEMORY_POLICY"
     assert 0x300 not in written
+
+
+def test_identical_rebuild_requires_actual_output_write():
+    from neural1.selfhost_workflow import _execute
+
+    image = bytearray(4096)
+    # Clear host-loaded source; final image is identical to retained image.
+    image[0x40:0x46] = bytes.fromhex("A9 00 8D 00 04 00")
+    plan = evidence("parent", "candidate")["build"]
+    output, result = _execute(bytes(image), plan)
+    assert output == bytes(image) and result["execution_produced_output"]
+    assert result["required_written_addresses"] == []
+    image[0x40:0x42] = bytes.fromhex("EA 00")
+    plan["input_address"] = 0x1100
+    plan["output_bytes"] = 256
+    output, result = _execute(bytes(image), plan)
+    assert output == image[:256] and not result["execution_produced_output"]

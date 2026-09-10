@@ -81,7 +81,7 @@ def _execute(image: bytes, plan: Mapping[str, Any], *, expected: bool = False) -
     # retain unchanged bootstrap bytes, but every changed final byte must have
     # a CPU write, even when source loading already supplied its final value.
     required_writes = set(range(output_start, output_start + output_length)) if expected else {output_start + offset for offset, (before, after) in enumerate(zip(before_input, output, strict=True)) if before != after}
-    produced = bool(required_writes) and required_writes <= written
+    produced = bool(written.intersection(range(output_start, output_start + output_length))) and required_writes <= written
     return output, {"stop_reason": result.stop_reason, "instructions": result.instructions, "output_sha256": sha256_bytes(output), "screen_text": result.screen_text,
                     "production_policy": "cpu-writes-v1", "execution_produced_output": produced,
                     "cpu_written_addresses": sorted(written), "required_written_addresses": sorted(required_writes),

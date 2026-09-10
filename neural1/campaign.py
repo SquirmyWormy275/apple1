@@ -265,7 +265,8 @@ class CampaignEngine:
                         record = {"generation": generation, "agent_id": agent_id, "prompt": prompt, "response": result.text, "proposal": proposal, "outputs": proposal["outputs"], "accepted_proposals": proposal["accepted_proposals"], "result": asdict(result)}
                     else:
                         commands = list(command_parser(result.text))
-                        outputs = [WozMonSession(world).transact(command) for command in commands]
+                        session = WozMonSession(world, candidate_limit=256 if cell.experiment_id == "256-byte-universe" else None)
+                        outputs = [session.transact(command) for command in commands]
                         accepted = sum(not output.startswith("ERR") for output in outputs)
                         record = {"generation": generation, "agent_id": agent_id, "prompt": prompt, "response": result.text, "commands": commands, "outputs": outputs, "observations": observations, "accepted_commands": accepted, "result": asdict(result)}
                 except Exception as error:
@@ -289,7 +290,7 @@ class CampaignEngine:
         if cell.experiment_id == "1976-multiverse":
             # A parsed, scientifically rejected genome is a completed negative
             # evaluation. A malformed response never supplied a candidate.
-            accepted_total = sum(isinstance(proposal, Mapping) and isinstance(proposal.get("genome"), Mapping) for record in records if (proposal := record.get("proposal")) is not None)
+            accepted_total = sum(isinstance(recorded_proposal, Mapping) and isinstance(recorded_proposal.get("genome"), Mapping) for record in records if (recorded_proposal := record.get("proposal")) is not None)
         terminal_errors = [error for error in errors if error.get("type") != "ResourceStop"]
         status = "COMPLETED" if accepted_total and not terminal_errors else "FAILED" if terminal_errors else "NO_ACCEPTED_COMMANDS"
         if family_result.get("status") == "BLOCKED":

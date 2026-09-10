@@ -35,3 +35,10 @@ padding around the eight-byte routine. The application never fills omitted
 bytes. Its declared call stack and Monitor API scope and strict execution-memory
 checks remain unchanged. This variant is a bounded executable control, not a
 blinded replacement-monitor result.
+
+The 256-byte preset applies its boundary during live Monitor turns as well as
+independent evaluation. Deposits, examinations, and requested entry points are
+restricted to 0200-02FF. CPU execution permits only candidate memory, the declared
+NMOS call stack, and the existing Monitor services; an escape yields explicit
+error feedback without exposing outside-memory output. Other families retain
+their normal 4K Monitor surface.
