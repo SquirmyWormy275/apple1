@@ -255,7 +255,16 @@ def install(args: argparse.Namespace) -> dict[str, Any]:
     command(['/usr/sbin/logrotate', '--debug', '/etc/logrotate.d/neural1-ollama'])
     command(['systemctl', 'is-enabled', 'logrotate.timer'])
     write(fstab, new_fstab.encode())
-    write(Path('/etc/systemd/system/ollama.service.d/90-neural1-storage.conf'), override.encode())
+    # The existing conventional override.conf sorts after numeric drop-ins.
+    # Keep it intact, while making this deployment's bounded settings effective.
+    dropins = Path('/etc/systemd/system/ollama.service.d')
+    legacy = dropins / '90-neural1-storage.conf'
+    retired = b'# NEURAL1 settings moved to zz-neural1-storage.conf.\n'
+    if legacy.exists() and legacy.read_bytes() not in (override.encode(), retired):
+        raise ValueError('earlier NEURAL1 drop-in differs from task content; preserve and inspect it')
+    write(dropins / 'zz-neural1-storage.conf', override.encode())
+    if legacy.exists():
+        write(legacy, retired)
     guard()
     command(['systemctl', 'daemon-reload'])
     environment = shlex.split(command(['systemctl', 'show', 'ollama.service', '--property=Environment', '--value']))
