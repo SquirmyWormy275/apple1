@@ -16,28 +16,13 @@ from .core import Neural1Error, sha256_bytes
 from .experiments import EXPERIMENTS, FourKMind, HistoricalComponent, MachineGenome, MultiverseValidator, RamRepublic, RomUniverse, SelfHost
 from .world import VirtualApple1World, WozMonSession
 
-_COMMON = (
-    "ISA-guided execution control, not a discovery task. Use the supplied NMOS 6502 baseline.\n"
-    "ISA reference: LDA immediate = A9 byte; JSR absolute = 20 low-byte high-byte; "
-    "JMP absolute = 4C low-byte high-byte. ASCII A = 41. "
-    "Monitor ECHO = FFEF; Monitor return = FF1F.\n"
-    "The complete eight-byte baseline is: A9 41 20 EF FF 4C 1F FF.\n"
-    "Return uppercase Woz Monitor commands only. No prose, Markdown, fences, numbering or assembly mnemonics.\n"
-)
-
-_THREE_LINE_FORMAT = (
-    "Output exactly three lines and nothing else.\n"
-    "Line 1: deposit exactly the eight baseline bytes at 0200 using ADDRESS: XX XX syntax. "
-    "Do not append zeros or any other bytes.\n"
-    "Line 2: 0200.0207\n"
-    "Line 3: 0200R\n"
-)
+_COMMON = 'This is an instruction-guided Woz Monitor formatting control, not a discovery task.\nA valid example prints ASCII B from address 0400:\n0400: A9 42 20 EF FF 4C 1F FF\n0400.0407\n0400R\nThe bytes A9 42 load B, 20 EF FF call Monitor ECHO at FFEF, and 4C 1F FF return to the Monitor.\nNow produce the corresponding program at address 0200 that prints ASCII A (hexadecimal 41).\nReturn only the three new command lines: the eight-byte deposit at 0200, the examination of 0200.0207, and 0200R.\nUse space-separated TWO-DIGIT uppercase byte pairs. Do not repeat the example, add padding, fences, labels, assembly syntax, or explanations.'
 
 _ROM_FORMAT = (
     "Output exactly eighteen lines and nothing else.\n"
     "The first sixteen lines deposit sixteen bytes each at addresses 0200, 0210, 0220, 0230, "
     "0240, 0250, 0260, 0270, 0280, 0290, 02A0, 02B0, 02C0, 02D0, 02E0, 02F0. "
-    "Use ADDRESS: XX XX syntax. The 0200 line contains the eight baseline bytes followed by eight 00 bytes. "
+    "Use ADDRESS: XX XX syntax. The 0200 line contains the eight new program bytes followed by eight 00 bytes. "
     "Every other deposit line contains sixteen 00 bytes. Write every byte explicitly, with no ellipses.\n"
     "Line 17: 0200.0207\n"
     "Line 18: 0200R\n"
@@ -67,8 +52,12 @@ def family_objective(family: str) -> str:
         "256-byte-universe": "The candidate is exactly 256 bytes at 0200 through 02FF. Code and data stay inside this range; only the NMOS call stack at 0100-01FF and declared Monitor calls are external. This ISA-guided task tests output and Monitor return, not a complete or blinded monitor.",
         "ram-republic": "Read the supplied CURRENT SHARED MONITOR EXAMINATION before answering. It is the allowed view of other participants through RAM; private contexts remain isolated. This ISA-guided routine is a shared-memory execution control, not protocol discovery.",
     }
-    response_format = _ROM_FORMAT if family == "256-byte-universe" else _THREE_LINE_FORMAT
-    return _COMMON + additions[family] + "\n" + response_format
+    if family == "256-byte-universe":
+        # Retain the qualified format example while replacing its final three-line
+        # and no-padding instructions with the separate exact-size contract.
+        example = "\n".join(_COMMON.splitlines()[:-2])
+        return additions[family] + "\n" + example + "\n" + _ROM_FORMAT
+    return additions[family] + "\n" + _COMMON
 
 
 def _output_task(image: bytes) -> bool:
@@ -96,7 +85,9 @@ def evaluate_family(
     if family not in EXPERIMENTS:
         raise Neural1Error("unknown experiment family")
     guided = any("ISA-guided execution control" in str(record.get("prompt", "")) for record in records)
-    base: dict[str, Any] = {"family": family, "target": "VIRTUAL", "task": "isa-guided-output-and-return-v2" if guided else "bounded-output-and-return-v1", "passed": False}
+    format_guided = any("instruction-guided Woz Monitor formatting control" in str(record.get("prompt", "")) for record in records)
+    task = "guided-format-output-and-return-v3" if format_guided else "isa-guided-output-and-return-v2" if guided else "bounded-output-and-return-v1"
+    base: dict[str, Any] = {"family": family, "target": "VIRTUAL", "task": task, "passed": False}
     if family == "1976-multiverse":
         base["task"] = "period-component-structure-validation-v1"
         if genome is not None and corpus is not None:

@@ -1,5 +1,7 @@
 # ISA-guided execution control
 
+Historical v2 proposal; superseded by the [instruction-guided format control](guided-format-execution-control.md). The unsuccessful evidence described here is preserved.
+
 Status: **UNQUALIFIED — NATIVE ACCEPTANCE PENDING**. Recorded Qwen and Phi
 provider probes have not established the required complete accepted execution.
 The Pi became unreachable before this revision could be accepted. Preserve all

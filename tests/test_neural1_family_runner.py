@@ -165,16 +165,18 @@ def test_selfhost_hash_covers_dependency_beyond_first_256_bytes() -> None:
 
 
 def test_guided_starting_prompts_bound_response_without_provider_fallback() -> None:
-    baseline = "A9 41 20 EF FF 4C 1F FF"
+    example = "0400: A9 42 20 EF FF 4C 1F FF\n0400.0407\n0400R"
     for family in ("4k-mind", "selfhost1", "ram-republic"):
         prompt = family_objective(family)
-        assert baseline in prompt and "not a discovery task" in prompt
-        assert "exactly three lines" in prompt
-        assert "Do not append zeros" in prompt
-        assert "Line 3: 0200R" in prompt
+        assert example in prompt and "not a discovery task" in prompt
+        assert "only the three new command lines" in prompt
+        assert "Do not repeat the example, add padding" in prompt
+        assert "the examination of 0200.0207, and 0200R" in prompt
+        assert "0200: A9 41" not in prompt  # requested answer is not a substitute response
     rom = family_objective("256-byte-universe")
-    assert baseline in rom and "exactly eighteen lines" in rom
-    assert "exactly three lines" not in rom
+    assert example in rom and "exactly eighteen lines" in rom
+    assert "only the three new command lines" not in rom
+    assert "Do not repeat the example, add padding" not in rom
     assert "sixteen 00 bytes" in rom and "Line 18: 0200R" in rom
     assert "not a complete or blinded monitor" in rom
 
@@ -184,7 +186,21 @@ def test_guided_criterion_is_recorded_only_for_guided_actual_prompts() -> None:
     records = transcript(world)
     assert evaluate_family("4k-mind", world, records)["task"] == "bounded-output-and-return-v1"
     for record in records:
+        record["prompt"] = "ISA-guided execution control, not a discovery task."
+    assert evaluate_family("4k-mind", world, records)["task"] == "isa-guided-output-and-return-v2"
+    for record in records:
         record["prompt"] = family_objective("4k-mind")
     result = evaluate_family("4k-mind", world, records)
-    assert result["task"] == "isa-guided-output-and-return-v2"
+    assert result["task"] == "guided-format-output-and-return-v3"
     assert result["passed"]
+
+
+def test_qualified_format_example_is_not_executed_as_the_new_program() -> None:
+    world = VirtualApple1World()
+    response = "0400: A9 42 20 EF FF 4C 1F FF\n0400.0407\n0400R"
+    from neural1.drivers import parse_commands
+    commands = parse_commands(response)
+    record = {"generation": 0, "agent_id": "A", "prompt": family_objective("selfhost1"), "response": response, "outputs": [WozMonSession(world).transact(command) for command in commands]}
+    result = evaluate_family("selfhost1", world, [record])
+    assert not result["passed"] and not result["execution_requested"]
+    assert world.host_read(0x200, 8) == bytes(8)
