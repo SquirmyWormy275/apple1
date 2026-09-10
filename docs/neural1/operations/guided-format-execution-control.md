@@ -63,3 +63,18 @@ file. Legacy ROM runs retain their recorded generation-zero objective on every
 turn; a legacy run without a first response uses the original full-candidate v3
 objective. Missing registries or unknown protocol versions fail clearly rather
 than silently migrating the experiment. Old run files and results stay intact.
+
+`staged-rom-v5` replaces the failed v4 default with 18 turns: the exact previously
+accepted 4K program prompt deposits eight bytes first; an eight-byte zero deposit
+at 0208 follows; fifteen sixteen-byte deposits cover 0210 through 02FF; the final
+turn requests examination/run only. The compact eight- and sixteen-byte padding
+prompts both produced exact accepted native Phi4-mini chat responses in bounded
+qualification. Their example deposits are at 0400; the model must emit the new
+address. No response is repaired or inserted by the runner. Per-run settings
+remain 96 tokens, 180-second request bounds, 600-second campaign bound, two CPU
+threads, and the 75°C guard. Private feedback/reset semantics remain unchanged,
+so the complete campaign still requires native acceptance. First-program prompt
+mentions the actual 4K virtual world; the Monitor and evaluator enforce the
+256-byte candidate boundary throughout. The task criterion is
+`compact-rom-output-and-return-v5`; v4 and legacy protocols remain available only
+for faithful resume of their recorded specs.

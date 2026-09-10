@@ -166,7 +166,7 @@ def check_model(registry: ModelRegistry, model_id: str) -> dict[str, Any]:
 def preset(family: str, model_id: str, *, seed: int | None = None) -> CampaignSpec:
     if family not in EXPERIMENTS:
         raise Neural1Error('unknown experiment family')
-    return CampaignSpec.create(experiments=(family,), model_ids=(model_id,), seeds=(seed if seed is not None else time.time_ns() % 2147483647,), generations=17 if family == '256-byte-universe' else 3, agents_per_cell=2 if family == 'ram-republic' else 1, ram_budget=4096, max_tokens=96 if family == '256-byte-universe' else 512 if family == '1976-multiverse' else 192, generation_settings={'preset': 'bounded-console-v1', 'context_reset_generations': 2, **({'objective_protocol': 'staged-rom-v4'} if family == '256-byte-universe' else {})}, matched_control='deterministic family evaluator; controls are separate from model evidence', wall_clock_limit_seconds=600)
+    return CampaignSpec.create(experiments=(family,), model_ids=(model_id,), seeds=(seed if seed is not None else time.time_ns() % 2147483647,), generations=18 if family == '256-byte-universe' else 3, agents_per_cell=2 if family == 'ram-republic' else 1, ram_budget=4096, max_tokens=96 if family == '256-byte-universe' else 512 if family == '1976-multiverse' else 192, generation_settings={'preset': 'bounded-console-v1', 'context_reset_generations': 2, **({'objective_protocol': 'staged-rom-v5'} if family == '256-byte-universe' else {})}, matched_control='deterministic family evaluator; controls are separate from model evidence', wall_clock_limit_seconds=600)
 
 
 def effective_run_registry(registry: ModelRegistry, spec: CampaignSpec) -> ModelRegistry:
@@ -206,8 +206,8 @@ def execution_objective(spec: CampaignSpec, root: Path, family: str, generation:
     if family != '256-byte-universe':
         return family_objective(family, generation)
     protocol = spec.generation_settings.get('objective_protocol')
-    if protocol == 'staged-rom-v4':
-        return family_objective(family, generation)
+    if protocol in {'staged-rom-v4', 'staged-rom-v5'}:
+        return family_objective(family, generation, protocol=protocol)
     if protocol is not None:
         raise Neural1Error('unknown ROM objective protocol; resume with its compatible release')
     # Old runs requested the full candidate each turn. Preserve their actual

@@ -35,7 +35,7 @@ def test_resume_retains_registry_bytes_and_checks_recorded_live_identity(tmp_pat
 
 def test_legacy_rom_resumes_recorded_constant_objective_not_new_stages(tmp_path):
     staged = preset('256-byte-universe', 'test', seed=1)
-    assert staged.generation_settings['objective_protocol'] == 'staged-rom-v4'
+    assert staged.generation_settings['objective_protocol'] == 'staged-rom-v5'
     legacy = replace(staged, generations=3, max_tokens=1024, generation_settings={'context_reset_generations': 2})
     transcript = tmp_path / 'cells/CELL/transcript.jsonl'
     transcript.parent.mkdir(parents=True)
@@ -44,6 +44,8 @@ def test_legacy_rom_resumes_recorded_constant_objective_not_new_stages(tmp_path)
     for generation in (1, 2):
         assert execution_objective(legacy, tmp_path, '256-byte-universe', generation) == original
     assert execution_objective(staged, tmp_path, '256-byte-universe', 2) == family_objective('256-byte-universe', 2)
+    old_staged = replace(staged, generations=17, generation_settings={'objective_protocol': 'staged-rom-v4'})
+    assert 'Staged instruction-guided ROM control' in execution_objective(old_staged, tmp_path, '256-byte-universe', 2)
     transcript.unlink()
     assert execution_objective(legacy, tmp_path, '256-byte-universe', 2) == legacy_rom_objective()
     assert 'exactly eighteen lines' in legacy_rom_objective()

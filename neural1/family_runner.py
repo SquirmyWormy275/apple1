@@ -33,7 +33,7 @@ def legacy_rom_objective() -> str:
     return scope + "\n" + "\n".join(_COMMON.splitlines()[:-2]) + "\n" + format_contract
 
 
-def family_objective(family: str, generation: int = 0) -> str:
+def _family_objective_v4(family: str, generation: int = 0) -> str:
     if family not in EXPERIMENTS:
         raise Neural1Error("unknown experiment family")
     if family == "1976-multiverse":
@@ -86,6 +86,29 @@ def family_objective(family: str, generation: int = 0) -> str:
     return additions[family] + "\n" + _COMMON
 
 
+def family_objective(family: str, generation: int = 0, *, protocol: str = "staged-rom-v5") -> str:
+    if family != "256-byte-universe" or protocol == "staged-rom-v4":
+        return _family_objective_v4(family, generation)
+    if protocol != "staged-rom-v5" or not 0 <= generation <= 17:
+        raise Neural1Error("unknown staged ROM protocol or generation")
+    if generation == 0:
+        # Byte-identical to the previously accepted native first-program prompt.
+        # The virtual world remains4K; Monitor/evaluator enforce256 candidate.
+        return _family_objective_v4("4k-mind")
+    if generation <= 16:
+        count, address = (8, 0x208) if generation == 1 else (16, 0x200 + 16 * (generation - 1))
+        words = "eight" if count == 8 else "sixteen"
+        return (
+            f"A valid Woz Monitor deposit writes {words} zero bytes at 0400:\n0400: "
+            + " ".join(["00"] * count)
+            + f"\nWrite {words} zero bytes at {address:04X} instead. Return only the corresponding single Monitor deposit line, including the address and colon. No other text."
+        )
+    return (
+        "A valid Woz Monitor sequence examines and runs code at 0400:\n0400.0407\n0400R\n"
+        "Examine and run the code at 0200 instead. Return only the corresponding two Monitor command lines. No other text."
+    )
+
+
 def _output_task(image: bytes) -> bool:
     world = VirtualApple1World()
     world.host_write(0x200, image)
@@ -113,7 +136,8 @@ def evaluate_family(
     guided = any("ISA-guided execution control" in str(record.get("prompt", "")) for record in records)
     format_guided = any("instruction-guided Woz Monitor formatting control" in str(record.get("prompt", "")) for record in records)
     staged_rom = any("Staged instruction-guided ROM control" in str(record.get("prompt", "")) for record in records)
-    task = "staged-rom-output-and-return-v4" if staged_rom else "guided-format-output-and-return-v3" if format_guided else "isa-guided-output-and-return-v2" if guided else "bounded-output-and-return-v1"
+    compact_rom = family == "256-byte-universe" and any("A valid Woz Monitor deposit writes" in str(record.get("prompt", "")) for record in records)
+    task = "compact-rom-output-and-return-v5" if compact_rom else "staged-rom-output-and-return-v4" if staged_rom else "guided-format-output-and-return-v3" if format_guided else "isa-guided-output-and-return-v2" if guided else "bounded-output-and-return-v1"
     base: dict[str, Any] = {"family": family, "target": "VIRTUAL", "task": task, "passed": False}
     if family == "1976-multiverse":
         base["task"] = "period-component-structure-validation-v1"
