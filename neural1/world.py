@@ -4,6 +4,7 @@ from __future__ import annotations
 
 import re
 from dataclasses import dataclass
+from typing import Any
 
 from py65.devices.mpu6502 import MPU
 
@@ -13,6 +14,31 @@ MEMORY_SIZE = 0x10000
 DEFAULT_START = 0x0200
 MONITOR_ECHO = 0xFFEF
 MONITOR_WARM_ENTRY = 0xFF1F
+
+
+class _ExecutionMemory(list[int]):
+    """CPU-only access policy; privileged snapshot capture uses a plain copy."""
+
+    def __init__(self, values: list[int], start: int, end: int) -> None:
+        super().__init__(values)
+        self.start, self.end = start, end
+
+    def _check_access(self, key: Any, *, writing: bool) -> None:
+        indices = range(*key.indices(len(self))) if isinstance(key, slice) else (key,)
+        for index in indices:
+            if self.start <= index < self.end or 0x100 <= index < 0x200:
+                continue
+            if not writing and index == MONITOR_ECHO:
+                continue
+            raise Neural1Error("CPU access outside exact candidate and declared call stack")
+
+    def __getitem__(self, key: Any) -> Any:
+        self._check_access(key, writing=False)
+        return super().__getitem__(key)
+
+    def __setitem__(self, key: Any, value: Any) -> None:
+        self._check_access(key, writing=True)
+        super().__setitem__(key, value)
 
 
 @dataclass(frozen=True)
@@ -101,18 +127,26 @@ class VirtualApple1World:
         for index in range(address, address + length):
             self._memory[index] = 0 if xor_mask == 0 else self._memory[index] ^ xor_mask
 
-    def execute(self, address: int, *, max_instructions: int = 10_000, trace_limit: int = 2_000) -> ExecutionResult:
+    def execute(self, address: int, *, max_instructions: int = 10_000, trace_limit: int = 2_000, candidate_limit: int | None = None) -> ExecutionResult:
         """Execute deposited NMOS 6502 bytes under a bounded virtual policy.
 
         This is deterministic software evidence, not cycle/electrical hardware
         evidence. Execution stops at BRK, Monitor warm entry, budget escape, or
         the instruction bound. Only the Monitor ECHO stub exists outside RAM.
+        An optional candidate_limit confines CPU reads/writes and instruction
+        fetches to that artifact, with an explicitly declared NMOS call-stack
+        page and read-only Monitor ECHO stub. Other families retain their policy.
         """
         self._check(address)
         if not 1 <= max_instructions <= 1_000_000 or trace_limit < 0:
             raise Neural1Error("invalid execution bound")
-        mpu = MPU(memory=list(self._memory))
-        mpu.memory[MONITOR_ECHO] = 0x60
+        if candidate_limit is not None and not 1 <= candidate_limit <= self.ram_budget:
+            raise Neural1Error("invalid exact candidate limit")
+        memory = list(self._memory)
+        memory[MONITOR_ECHO] = 0x60
+        if candidate_limit is not None:
+            memory = _ExecutionMemory(memory, self.ram_start, self.ram_start + candidate_limit)
+        mpu = MPU(memory=memory)
         mpu.pc = address
         screen: list[int] = []
         trace: list[ExecutionTraceEntry] = []
@@ -122,7 +156,7 @@ class VirtualApple1World:
             if mpu.pc == MONITOR_WARM_ENTRY:
                 reason = "MONITOR_WARM_ENTRY"
                 break
-            if mpu.pc != MONITOR_ECHO and not self.ram_start <= mpu.pc < self.ram_end:
+            if mpu.pc != MONITOR_ECHO and not self.ram_start <= mpu.pc < self.ram_start + (candidate_limit or self.ram_budget):
                 reason = "EXECUTION_LEFT_ALLOWED_RAM"
                 break
             opcode = mpu.memory[mpu.pc]
@@ -133,9 +167,13 @@ class VirtualApple1World:
                 break
             if mpu.pc == MONITOR_ECHO:
                 screen.append(mpu.a & 0x7F)
-            mpu.step()
+            try:
+                mpu.step()
+            except Neural1Error:
+                reason = "EXECUTION_MEMORY_POLICY"
+                break
             completed += 1
-        self._memory[self.ram_start : self.ram_end] = bytes(mpu.memory[self.ram_start : self.ram_end])
+        self._memory[self.ram_start : self.ram_end] = bytes(list(mpu.memory)[self.ram_start : self.ram_end])
         return ExecutionResult(address, reason, completed, bytes(screen).decode("ascii", errors="replace"), mpu.pc, mpu.a, mpu.x, mpu.y, mpu.sp, mpu.p, tuple(trace))
 
 

@@ -45,7 +45,7 @@ def family_objective(family: str) -> str:
     additions = {
         "4k-mind": "Your world persists across generations within 4K. No host memory access is available.",
         "selfhost1": "Stage 1 only: establish a raw machine-code validation routine. This does not qualify an assembler or compiler.",
-        "256-byte-universe": "Exact-size starting task: explicitly deposit all 256 candidate bytes at 0200 through 02FF; remaining bytes may be 00. Stay inside this range. This task tests output and Monitor return, not a complete monitor.",
+        "256-byte-universe": "Exact-size starting task: explicitly deposit all 256 candidate bytes at 0200 through 02FF; remaining bytes may be 00. Code and data stay inside this range; only the NMOS call stack at 0100-01FF and declared Monitor calls are external. This task tests output and Monitor return, not a complete monitor.",
         "ram-republic": "First examine 0200.020F to observe other participants through shared RAM. You have no access to their private contexts. Contribute or repair the routine without assuming a communication protocol.",
     }
     return _COMMON + additions[family]
@@ -54,7 +54,7 @@ def family_objective(family: str) -> str:
 def _output_task(image: bytes) -> bool:
     world = VirtualApple1World()
     world.host_write(0x200, image)
-    result = world.execute(0x200, max_instructions=128, trace_limit=0)
+    result = world.execute(0x200, max_instructions=128, trace_limit=0, candidate_limit=256)
     return result.screen_text == "A" and result.stop_reason == "MONITOR_WARM_ENTRY"
 
 
@@ -117,7 +117,7 @@ def evaluate_family(
                 observed_agents.add(agent)
     image = world.host_read(0x200, min(256, world.ram_budget))
     checked_world = VirtualApple1World.restore(world.snapshot())
-    execution = checked_world.execute(0x200, max_instructions=128, trace_limit=16)
+    execution = checked_world.execute(0x200, max_instructions=128, trace_limit=16, candidate_limit=256 if family == "256-byte-universe" else None)
     behavior = execution.screen_text == "A" and execution.stop_reason == "MONITOR_WARM_ENTRY"
     base.update(status="EVALUATED", accepted_transactions=accepted, execution_requested=execution_requested, independent_execution=asdict(execution), artifact_sha256=sha256_bytes(image))
     healthy = accepted > 0 and execution_requested and not any("error" in record for record in records)
@@ -127,13 +127,15 @@ def evaluate_family(
         good = bytes.fromhex("A9 41 20 EF FF 4C 1F FF") + bytes(248)
         score = RomUniverse().evaluate(image, {"output-A-and-return": _output_task}, known_good=good, known_bad=bytes(256))
         exact = covered == set(range(0x200, 0x300)) and not outside_rom
-        return {**base, "passed": healthy and exact and score.passed, "score": asdict(score), "explicit_candidate_bytes": len(covered), "exact_deposition": exact}
+        return {**base, "passed": healthy and exact and score.passed, "score": asdict(score), "explicit_candidate_bytes": len(covered), "exact_deposition": exact, "memory_policy": {"candidate": "0200-02FF", "call_stack": "0100-01FF", "external_services": ["FFEF read-only ECHO stub", "FF1F stop sentinel"], "expanded_code_or_data": "REJECTED"}}
     if family == "selfhost1":
         bootstrap = SelfHost()
-        score = bootstrap.qualify(1, sha256_bytes(image))
+        artifact = world.host_read(world.ram_start, world.ram_budget)
+        artifact_hash = sha256_bytes(artifact)
+        score = bootstrap.qualify(1, artifact_hash)
         # Stage-one qualification additionally requires the declared executable task.
-        bootstrap.artifacts[sha256_bytes(image)]["qualified"] = healthy and behavior
-        return {**base, "passed": healthy and behavior and score.passed, "stage": 1, "artifacts": bootstrap.artifacts, "later_stages": "not attempted; qualified ancestry and exact rebuild required"}
+        bootstrap.artifacts[artifact_hash]["qualified"] = healthy and behavior
+        return {**base, "passed": healthy and behavior and score.passed, "stage": 1, "artifact_sha256": artifact_hash, "artifact_start": world.ram_start, "artifact_bytes": len(artifact), "artifacts": bootstrap.artifacts, "later_stages": "not attempted; qualified ancestry and exact rebuild required"}
     if family == "4k-mind":
         replay = FourKMind(VirtualApple1World(ram_budget=4096))
         generations = [replay.generation(commands_by_generation[key]) for key in sorted(commands_by_generation)]

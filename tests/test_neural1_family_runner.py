@@ -133,3 +133,32 @@ def test_exact_256_sixteen_lines_fit_strict_parser_and_bad_code_fails() -> None:
         result = evaluate_family("256-byte-universe", world, records)
         assert result["exact_deposition"]
         assert result["passed"] is passed
+
+
+def test_exact_rom_rejects_generated_code_and_external_data_access() -> None:
+    from neural1.family_runner import _output_task
+
+    routine = bytes.fromhex("A9 41 20 EF FF 4C 1F FF")
+    # Exact-size loader expands a program at 0300; this used to pass.
+    loader = b"".join(bytes([0xA9, byte, 0x8D, index, 3]) for index, byte in enumerate(routine)) + bytes.fromhex("4C 00 03")
+    assert not _output_task(loader + bytes(256 - len(loader)))
+    # Even an irrelevant external read is outside the declared candidate workspace.
+    external_read = bytes.fromhex("AD 00 03") + routine
+    assert not _output_task(external_read + bytes(256 - len(external_read)))
+    assert _output_task(routine + bytes(248))  # declared Monitor call stack remains available
+
+
+def test_selfhost_hash_covers_dependency_beyond_first_256_bytes() -> None:
+    from neural1.core import sha256_bytes
+
+    hashes = []
+    for ascii_byte, passed in (("41", True), ("42", False)):
+        world = VirtualApple1World()
+        commands = ["0200: 4C 00 03", f"0300: A9 {ascii_byte} 20 EF FF 4C 1F FF", "0200R"]
+        records = [{"agent_id": "A", "generation": 0, "response": "\n".join(commands), "outputs": [WozMonSession(world).transact(command) for command in commands]}]
+        result = evaluate_family("selfhost1", world, records)
+        assert result["passed"] is passed
+        assert result["artifact_bytes"] == 4096
+        assert result["artifact_sha256"] == sha256_bytes(world.host_read(0x200, 4096))
+        hashes.append(result["artifact_sha256"])
+    assert hashes[0] != hashes[1]
