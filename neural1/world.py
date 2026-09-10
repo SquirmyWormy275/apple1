@@ -3,6 +3,7 @@
 from __future__ import annotations
 
 import re
+from collections.abc import Callable
 from dataclasses import dataclass
 from typing import Any
 
@@ -19,9 +20,10 @@ MONITOR_WARM_ENTRY = 0xFF1F
 class _ExecutionMemory(list[int]):
     """CPU-only access policy; privileged snapshot capture uses a plain copy."""
 
-    def __init__(self, values: list[int], start: int, end: int) -> None:
+    def __init__(self, values: list[int], start: int, end: int, write_observer: Callable[[int], None] | None = None) -> None:
         super().__init__(values)
         self.start, self.end = start, end
+        self.write_observer = write_observer
 
     def _check_access(self, key: Any, *, writing: bool) -> None:
         indices = range(*key.indices(len(self))) if isinstance(key, slice) else (key,)
@@ -39,6 +41,10 @@ class _ExecutionMemory(list[int]):
     def __setitem__(self, key: Any, value: Any) -> None:
         self._check_access(key, writing=True)
         super().__setitem__(key, value)
+        if self.write_observer is not None:
+            indices = range(*key.indices(len(self))) if isinstance(key, slice) else (key,)
+            for index in indices:
+                self.write_observer(index)
 
 
 @dataclass(frozen=True)
@@ -127,7 +133,7 @@ class VirtualApple1World:
         for index in range(address, address + length):
             self._memory[index] = 0 if xor_mask == 0 else self._memory[index] ^ xor_mask
 
-    def execute(self, address: int, *, max_instructions: int = 10_000, trace_limit: int = 2_000, candidate_limit: int | None = None) -> ExecutionResult:
+    def execute(self, address: int, *, max_instructions: int = 10_000, trace_limit: int = 2_000, candidate_limit: int | None = None, write_observer: Callable[[int], None] | None = None) -> ExecutionResult:
         """Execute deposited NMOS 6502 bytes under a bounded virtual policy.
 
         This is deterministic software evidence, not cycle/electrical hardware
@@ -136,6 +142,8 @@ class VirtualApple1World:
         An optional candidate_limit confines CPU reads/writes and instruction
         fetches to that artifact, with an explicitly declared NMOS call-stack
         page and read-only Monitor ECHO stub. Other families retain their policy.
+        An optional write_observer receives successful CPU write addresses,
+        excluding host preload and Monitor stub setup, even for identical writes.
         """
         self._check(address)
         if not 1 <= max_instructions <= 1_000_000 or trace_limit < 0:
@@ -144,8 +152,10 @@ class VirtualApple1World:
             raise Neural1Error("invalid exact candidate limit")
         memory = list(self._memory)
         memory[MONITOR_ECHO] = 0x60
-        if candidate_limit is not None:
-            memory = _ExecutionMemory(memory, self.ram_start, self.ram_start + candidate_limit)
+        if candidate_limit is not None or write_observer is not None:
+            start = self.ram_start if candidate_limit is not None else 0
+            end = self.ram_start + candidate_limit if candidate_limit is not None else MEMORY_SIZE
+            memory = _ExecutionMemory(memory, start, end, write_observer)
         mpu = MPU(memory=memory)
         mpu.pc = address
         screen: list[int] = []

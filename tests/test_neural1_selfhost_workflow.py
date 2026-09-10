@@ -122,3 +122,53 @@ def test_stage_four_removes_declared_compiler_and_rebuilds_exactly(tmp_path: Pat
     path.write_text(json.dumps(retained))
     with pytest.raises(Neural1Error, match="own retained bootstrap|compiler region remains"):
         archive.qualify(path)
+
+
+def test_behavioral_vectors_cannot_select_prefilled_output_tables(tmp_path: Path) -> None:
+    plan = evidence("N1-SH-parent", "N1-SH-candidate")
+    plan["tests"][1]["output_address"] = 0x510
+    path = tmp_path / "table.json"
+    path.write_text(json.dumps(plan))
+    with pytest.raises(Neural1Error, match="fixed calling convention"):
+        SelfHostArchive(tmp_path / "archive").qualify(path)
+
+
+def test_execution_provenance_rejects_prefilled_nop_and_accepts_identical_cpu_writes() -> None:
+    from neural1.selfhost_workflow import _execute
+
+    image = bytearray(4096)
+    image[0x60:0x62] = bytes.fromhex("EA 00")
+    image[0x300:0x302] = bytes.fromhex("A9 01")
+    vector = evidence("parent", "candidate")["tests"][0]
+    output, result = _execute(bytes(image), vector, expected=True)
+    assert output == bytes.fromhex("A9 01") and not result["execution_produced_output"]
+    image[0x60:0x6B] = bytes.fromhex("A9 A9 8D 00 05 A9 01 8D 01 05 00")
+    output, result = _execute(bytes(image), vector, expected=True)
+    assert output == bytes.fromhex("A9 01") and result["execution_produced_output"]
+    assert result["cpu_written_addresses"] == [0x500, 0x501]
+
+
+def test_host_input_cannot_supply_rebuilt_artifact_or_behavioral_output() -> None:
+    from neural1.selfhost_workflow import _execute
+
+    image = bytearray(4096)
+    image[0x40:0x42] = bytes.fromhex("EA 00")
+    plan = evidence("parent", "candidate")["build"]
+    plan["input_address"] = 0x300
+    output, result = _execute(bytes(image), plan)
+    assert output[0x100] == 2
+    assert not result["execution_produced_output"]
+    assert result["missing_written_addresses"] == [0x300]
+    vector = evidence("parent", "candidate")["tests"][0]
+    vector["input_address"] = vector["output_address"]
+    with pytest.raises(Neural1Error, match="must be disjoint"):
+        _execute(bytes(image), vector, expected=True)
+
+
+def test_write_observer_preserves_exact_candidate_memory_policy() -> None:
+    world = VirtualApple1World()
+    world.host_write(0x200, bytes.fromhex("A9 01 8D 00 03 00"))
+    written: set[int] = set()
+    result = world.execute(0x200, candidate_limit=256, write_observer=written.add)
+    assert result.stop_reason == "EXECUTION_MEMORY_POLICY"
+    assert 0x300 not in written

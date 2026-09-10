@@ -49,3 +49,16 @@ verifies immutable record/evidence/image identities and repeats reconstruction.
 Normal archive operations also produce queryable META evidence through the
 console. A later-stage evidence file is experiment input, not software setup;
 there is no fabricated compiler example promoted as live scientific evidence.
+
+Qualification now records `cpu-writes-v1` provenance: addresses actually written
+by executing 6502 instructions, the addresses required for acceptance, and any
+missing writes. Host source loading is excluded. All behavioral vectors use the
+same input address, entry point, and output address, with disjoint input/output
+regions. Every behavioral output byte must receive a CPU write; overwriting an
+identical prefilled byte is valid, while returning a prefilled table with NOP/BRK
+is not. Rebuilds may retain unchanged bootstrap bytes, but every byte changed
+from the retained image must receive a CPU write, so input preloading alone
+cannot reconstruct a candidate. Reopening/rebuilding applies this production
+check as well. These are bounded declared-language controls, not a claim of
+general compiler correctness from two vectors; stage-one raw transcript replay
+remains explicitly distinct from later-stage builder execution.

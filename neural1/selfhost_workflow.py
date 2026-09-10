@@ -69,10 +69,23 @@ def _execute(image: bytes, plan: Mapping[str, Any], *, expected: bool = False) -
     prior = world.host_read(plan["input_address"], len(source))
     if any(prior):
         raise Neural1Error("source loading overlaps retained bootstrap/candidate bytes")
+    output_start = plan["output_address"]
+    before_input = world.host_read(output_start, output_length)
+    if expected and max(plan["input_address"], output_start) < min(plan["input_address"] + len(source), output_start + output_length):
+        raise Neural1Error("behavioral input and output regions must be disjoint")
     world.host_write(plan["input_address"], source)
-    result = world.execute(plan["entrypoint"], max_instructions=plan["max_instructions"], trace_limit=16)
+    written: set[int] = set()
+    result = world.execute(plan["entrypoint"], max_instructions=plan["max_instructions"], trace_limit=16, write_observer=written.add)
     output = world.host_read(plan["output_address"], output_length)
-    return output, {"stop_reason": result.stop_reason, "instructions": result.instructions, "output_sha256": sha256_bytes(output), "screen_text": result.screen_text}
+    # Behavioral outputs must all be written by the candidate. A rebuild may
+    # retain unchanged bootstrap bytes, but every changed final byte must have
+    # a CPU write, even when source loading already supplied its final value.
+    required_writes = set(range(output_start, output_start + output_length)) if expected else {output_start + offset for offset, (before, after) in enumerate(zip(before_input, output, strict=True)) if before != after}
+    produced = bool(required_writes) and required_writes <= written
+    return output, {"stop_reason": result.stop_reason, "instructions": result.instructions, "output_sha256": sha256_bytes(output), "screen_text": result.screen_text,
+                    "production_policy": "cpu-writes-v1", "execution_produced_output": produced,
+                    "cpu_written_addresses": sorted(written), "required_written_addresses": sorted(required_writes),
+                    "missing_written_addresses": sorted(required_writes - written), "before_input_output_sha256": sha256_bytes(before_input)}
 
 
 class SelfHostArchive:
@@ -177,7 +190,7 @@ class SelfHostArchive:
             if not parent["qualified"]:
                 raise Neural1Error("retained builder parent is no longer qualified")
             rebuilt, result = _execute(builder, evidence["build"])
-        return {"artifact_id": artifact_id, "stage": record["stage"], "qualified": record["qualified"], "passed": rebuilt == image, "expected_sha256": sha256_bytes(image), "rebuilt_sha256": sha256_bytes(rebuilt), "evidence_class": record["evidence_class"], **result}
+        return {"artifact_id": artifact_id, "stage": record["stage"], "qualified": record["qualified"], "passed": rebuilt == image and (record["stage"] == 1 or result["execution_produced_output"]), "expected_sha256": sha256_bytes(image), "rebuilt_sha256": sha256_bytes(rebuilt), "evidence_class": record["evidence_class"], **result}
 
     def qualify(self, evidence_path: str | Path) -> dict[str, Any]:
         evidence = dict(_json(Path(evidence_path)))
@@ -195,6 +208,9 @@ class SelfHostArchive:
             raise Neural1Error("two to eight meaningful behavioral vectors are required")
         if len({item.get("input_hex") for item in tests}) < 2 or len({item.get("expected_hex") for item in tests}) < 2:
             raise Neural1Error("behavioral vectors require distinct inputs and expected outputs")
+        convention = ("input_address", "entrypoint", "output_address")
+        if any(tuple(vector.get(key) for key in convention) != tuple(tests[0].get(key) for key in convention) for vector in tests[1:]):
+            raise Neural1Error("all behavioral vectors require one fixed calling convention")
         if evidence["stage"] == 2:
             from .assembler import LessonAssembler
             for vector in tests:
@@ -237,14 +253,14 @@ class SelfHostArchive:
             graph.qualify(evidence["stage"], "PENDING", parents=tuple(evidence["parents"]), rebuild=lambda: b"", expected=image)
             rebuilt, build_result = _execute(builder, evidence["build"])
             repeated, repeated_result = _execute(builder, evidence["build"])
-            exact = rebuilt == image and repeated == image and build_result["instructions"] > 0 and build_result["stop_reason"] in {"BRK", "MONITOR_WARM_ENTRY"}
+            exact = rebuilt == image and repeated == image and build_result["execution_produced_output"] and repeated_result["execution_produced_output"] and build_result["instructions"] > 0 and build_result["stop_reason"] in {"BRK", "MONITOR_WARM_ENTRY"}
             outcomes = []
             for vector in tests:
                 output, execution = _execute(image, vector, expected=True)
                 bad_output, bad_execution = _execute(bytes(4096), vector, expected=True)
                 expected_output = bytes.fromhex(vector["expected_hex"])
-                good = output == expected_output and execution["instructions"] > 0 and execution["stop_reason"] in {"BRK", "MONITOR_WARM_ENTRY"}
-                bad_rejected = bad_output != expected_output or bad_execution["instructions"] == 0
+                good = output == expected_output and execution["execution_produced_output"] and execution["instructions"] > 0 and execution["stop_reason"] in {"BRK", "MONITOR_WARM_ENTRY"}
+                bad_rejected = bad_output != expected_output or not bad_execution["execution_produced_output"] or bad_execution["instructions"] == 0
                 outcomes.append({"passed": good and bad_rejected, "execution": execution, "zero_candidate_control_rejected": bad_rejected})
             graph.artifacts.pop("PENDING")
             score = graph.qualify(evidence["stage"], "QUALIFIED", parents=tuple(evidence["parents"]), rebuild=lambda: rebuilt, expected=image)
