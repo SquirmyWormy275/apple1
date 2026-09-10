@@ -169,6 +169,18 @@ def preset(family: str, model_id: str, *, seed: int | None = None) -> CampaignSp
     return CampaignSpec.create(experiments=(family,), model_ids=(model_id,), seeds=(seed if seed is not None else time.time_ns() % 2147483647,), generations=3, agents_per_cell=2 if family == 'ram-republic' else 1, ram_budget=4096, max_tokens=1024 if family == '256-byte-universe' else 512 if family == '1976-multiverse' else 192, generation_settings={'preset': 'bounded-console-v1', 'context_reset_generations': 2}, matched_control='deterministic family evaluator; controls are separate from model evidence', wall_clock_limit_seconds=600)
 
 
+def effective_run_registry(registry: ModelRegistry, spec: CampaignSpec) -> ModelRegistry:
+    """Apply family wire format only to this run; retain historical registry data."""
+    models = {}
+    for name in spec.model_ids:
+        model = registry.require(name)
+        settings = {**model.generation_defaults, 'max_tokens': spec.max_tokens}
+        if spec.experiments == ('1976-multiverse',) and model.backend == 'ollama':
+            settings['format'] = 'json'
+        models[name] = replace(model, generation_defaults=settings)
+    return ModelRegistry(models)
+
+
 def ingest(config: ApplicationConfig, root: Path) -> str:
     """Index actual persisted evidence; never turn negative outcomes into success."""
     files = sorted(root.glob('cells/*/family-result.json')) + sorted(root.glob('cells/*/checkpoint.json'))
@@ -590,7 +602,7 @@ def worker(config: ApplicationConfig, campaign_id: str, resume: bool, launch_id:
         signal.signal(signal.SIGTERM, interrupted)
         signal.signal(signal.SIGINT, interrupted)
         threading.Thread(target=watch, daemon=True).start()
-        run_registry = ModelRegistry({name: replace(app.registry.require(name), generation_defaults={**app.registry.require(name).generation_defaults, "max_tokens": spec.max_tokens}) for name in spec.model_ids})
+        run_registry = effective_run_registry(app.registry, spec)
         run_registry.save(root / "effective-registry.json")
         providers = {name: provider_for(run_registry.require(name), record_path=root / f'provider-{name}.jsonl') for name in spec.model_ids}
         engine = CampaignEngine(config.output, run_registry, providers)

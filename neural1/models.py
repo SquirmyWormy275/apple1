@@ -66,6 +66,7 @@ class OllamaHttpProvider:
     opener: Callable[[urlrequest.Request, float], bytes] | None = None
     api: str = "generate"
     keep_alive: str | int | float | None = None
+    format: str | None = None
     model_hash: str = "UNAVAILABLE"
     quantization: str = "UNAVAILABLE"
     context_limit: int | None = None
@@ -79,9 +80,11 @@ class OllamaHttpProvider:
             raise Neural1Error("Ollama timeout must be positive")
         if self.api not in {"generate", "chat"}:
             raise Neural1Error("Ollama api must be explicitly generate or chat")
+        if self.format is not None and self.format != "json":
+            raise Neural1Error("Ollama format must be json or unset")
         if isinstance(self.keep_alive, bool) or (self.keep_alive is not None and not isinstance(self.keep_alive, str | int | float)):
             raise Neural1Error("Ollama keep_alive must be a duration string or number")
-        if any(key in self.options for key in ("api", "base_url", "keep_alive", "timeout_seconds")):
+        if any(key in self.options for key in ("api", "base_url", "keep_alive", "timeout_seconds", "format")):
             raise Neural1Error("Ollama transport settings must not be generation options")
         if self.model_hash != "UNAVAILABLE" and (len(self.model_hash) != 64 or any(value not in "0123456789abcdefABCDEF" for value in self.model_hash)):
             raise Neural1Error("Ollama qualified model hash must be a SHA-256 manifest digest")
@@ -95,6 +98,8 @@ class OllamaHttpProvider:
     @property
     def record(self) -> ModelRecord:
         generation = {**self.options, "api": self.api, "base_url": self.base_url, "timeout_seconds": self.timeout_seconds}
+        if self.format is not None:
+            generation["format"] = self.format
         if self.keep_alive is not None:
             generation["keep_alive"] = self.keep_alive
         if self.model_hash != "UNAVAILABLE":
@@ -107,6 +112,8 @@ class OllamaHttpProvider:
             body_fields["messages"] = [{"role": "user", "content": prompt}]
         else:
             body_fields["prompt"] = prompt
+        if self.format is not None:
+            body_fields["format"] = self.format
         if self.keep_alive is not None:
             body_fields["keep_alive"] = self.keep_alive
         body = json.dumps(body_fields).encode("utf-8")
@@ -131,7 +138,7 @@ class OllamaHttpProvider:
         if not isinstance(text, str) or not text.strip():
             raise Neural1Error("Ollama returned an empty response")
         latency = (perf_counter() - start) * 1000
-        metadata = {"agent_id": agent_id, "seed": seed, "api": self.api, "endpoint": endpoint, "done_reason": payload.get("done_reason"), "response_payload": payload, "raw_response_utf8": raw_text, "raw_response_sha256": sha256_bytes(raw)}
+        metadata = {"agent_id": agent_id, "seed": seed, "api": self.api, "format": self.format, "endpoint": endpoint, "done_reason": payload.get("done_reason"), "response_payload": payload, "raw_response_utf8": raw_text, "raw_response_sha256": sha256_bytes(raw)}
         return GenerationResult(text, payload.get("prompt_eval_count"), payload.get("eval_count"), latency, metadata)
 
     @staticmethod
