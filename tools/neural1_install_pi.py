@@ -276,9 +276,13 @@ def install(args: argparse.Namespace) -> dict[str, Any]:
     command(['systemctl', 'is-active', 'ollama.service'])
     linger = ensure_linger(args.user, account.pw_uid, backup, guard)
     command(['runuser', '-u', args.user, '--', '/usr/local/bin/neural1', 'console', '--command', 'STATUS'], cwd='/')
+    model_probe = ('import sys; from neural1.application import ApplicationConfig, DEFAULT_CONFIG, check_model; '
+                   'from neural1.registry import ModelRegistry; config=ApplicationConfig.load(DEFAULT_CONFIG); '
+                   'check_model(ModelRegistry.load(config.registry), sys.argv[1])')
     for attempt in range(5):
         try:
-            command(['runuser', '-u', args.user, '--', '/usr/local/bin/neural1', 'console', '--command', 'MODEL ' + shlex.quote(args.default_model)], cwd='/')
+            # MODEL is a user preference change; installation must not reset it.
+            command(['runuser', '-u', args.user, '--', '/usr/bin/env', f'PYTHONPATH={release}', 'PYTHONDONTWRITEBYTECODE=1', str(python), '-c', model_probe, args.default_model], cwd='/')
             break
         except subprocess.CalledProcessError:
             if attempt == 4:
