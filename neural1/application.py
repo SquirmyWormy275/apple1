@@ -199,6 +199,32 @@ def ingest(config: ApplicationConfig, root: Path) -> str:
         database.close()
 
 
+def _verified_worker_running(root: Path, config_path: Path, *, proc_root: Path = Path('/proc')) -> bool:
+    """Read-only identity check; stale PID/summary files are never liveness proof."""
+    try:
+        info = json.loads((root / 'worker.json').read_text())
+        if not isinstance(info, dict) or info.get('status') != 'RUNNING' or type(info.get('pid')) is not int or info['pid'] <= 0:
+            return False
+        proc = proc_root / str(info['pid'])
+        stat = proc.joinpath('stat').read_text()
+        # Linux comm can contain spaces; fields after its closing parenthesis
+        # start at field 3 (state), so starttime field 22 is index 19 here.
+        fields = stat.rsplit(') ', 1)[1].split()
+        if fields[0] in {'Z', 'X'} or fields[19] != str(info.get('process_start', '')):
+            return False
+        arguments = proc.joinpath('cmdline').read_bytes().split(b'\0')
+
+        def matches(flag: bytes, value: str) -> bool:
+            return arguments.count(flag) == 1 and arguments.index(flag) + 1 < len(arguments) and arguments[arguments.index(flag) + 1] == value.encode()
+
+        if not matches(b'-m', 'neural1.application') or not matches(b'--worker', root.name) or not matches(b'--config', str(config_path)):
+            return False
+        launch_id = info.get('launch_id')
+        return isinstance(launch_id, str) and bool(launch_id) and matches(b'--launch-id', launch_id)
+    except (OSError, ValueError, KeyError, IndexError, TypeError):
+        return False
+
+
 class Application:
     def __init__(self, config: ApplicationConfig):
         self.config = config
@@ -330,7 +356,9 @@ class Application:
         for path in sorted((self.config.output / 'campaigns').glob('*/spec.json')):
             root = path.parent
             summary = json.loads((root / 'summary.json').read_text()) if (root / 'summary.json').exists() else {'status': 'INTERRUPTED_OR_STARTING'}
-            result.append({'campaign_id': root.name, 'family': json.loads(path.read_text())['experiments'][0], 'status': summary['status'], 'turns': sum(len(p.read_text().splitlines()) for p in root.glob('cells/*/transcript.jsonl'))})
+            active = _verified_worker_running(root, self.config.path)
+            displayed = 'RUNNING' if active else 'INTERRUPTED' if summary['status'] == 'RUNNING' else summary['status']
+            result.append({'campaign_id': root.name, 'family': json.loads(path.read_text())['experiments'][0], 'status': displayed, 'recorded_status': summary['status'], 'worker_active': active, 'turns': sum(len(p.read_text().splitlines()) for p in root.glob('cells/*/transcript.jsonl'))})
         return result
 
     def export(self, campaign_id: str) -> str:
@@ -457,7 +485,8 @@ class Application:
         if op == 'STOP' and len(args) == 2:
             return self.cancel(args[1])
         if op in ('RUNS', 'STATUS'):
-            return {'worker_active': self.running(), 'runs': self.browse(), 'resources': self.config.check(), 'selected_model': self.model_id, 'preference_warning': self.preference_warning}
+            runs = self.browse()
+            return {'worker_active': any(run['worker_active'] for run in runs), 'worker_lock_held': self.running(), 'runs': runs, 'resources': self.config.check(), 'selected_model': self.model_id, 'preference_warning': self.preference_warning}
         if op == 'TRANSCRIPT' and len(args) == 2:
             root = self.root(args[1])
             return {str(path.relative_to(root)): [json.loads(line) for line in path.read_text().splitlines()[-12:]] for path in root.glob('cells/*/transcript.jsonl')}
