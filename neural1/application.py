@@ -17,6 +17,7 @@ import tempfile
 import textwrap
 import threading
 import time
+from collections import deque
 from collections.abc import Callable
 from dataclasses import asdict, dataclass, replace
 from pathlib import Path
@@ -541,9 +542,36 @@ class Application:
         if op in ('RUNS', 'STATUS'):
             runs = self.browse()
             return {'worker_active': any(run['worker_active'] for run in runs), 'worker_lock_held': self.running(), 'runs': runs, 'resources': self.config.check(), 'selected_model': self.model_id, 'preference_warning': self.preference_warning}
-        if op == 'TRANSCRIPT' and len(args) == 2:
+        if op == 'TRANSCRIPT':
+            if len(args) not in (2, 3):
+                raise Neural1Error('TRANSCRIPT expects run-id and optional nonnegative page number')
+            page = None
+            if len(args) == 3:
+                try:
+                    page = int(args[2])
+                except ValueError as error:
+                    raise Neural1Error('transcript page must be a nonnegative integer') from error
+                if page < 0:
+                    raise Neural1Error('transcript page must be a nonnegative integer')
             root = self.root(args[1])
-            return {str(path.relative_to(root)): [json.loads(line) for line in path.read_text().splitlines()[-12:]] for path in root.glob('cells/*/transcript.jsonl')}
+            transcripts = {}
+            totals = {}
+            for path in sorted(root.glob('cells/*/transcript.jsonl')):
+                key = str(path.relative_to(root))
+                selected: deque[str] = deque(maxlen=12)
+                total = 0
+                with path.open() as stream:
+                    for index, line in enumerate(stream):
+                        total += 1
+                        if page is None or page * 12 <= index < (page + 1) * 12:
+                            selected.append(line)
+                transcripts[key] = [json.loads(line) for line in selected]
+                totals[key] = total
+            if page is None:
+                return transcripts  # Preserve legacy latest-twelve map consumers.
+            if page > 0 and page * 12 >= max(totals.values(), default=0):
+                raise Neural1Error('transcript page is out of range; page 0 starts at the first record')
+            return {'page': page, 'page_size': 12, 'total_records': totals, 'transcripts': transcripts}
         if op == 'SHOW' and len(args) == 2:
             root = self.root(args[1])
             return {str(path.relative_to(root)): json.loads(path.read_text()) for path in sorted(root.glob('cells/*/family-result.json')) + sorted(root.glob('cells/*/checkpoint.json'))}
@@ -594,7 +622,8 @@ HELP = '''[V] NEURAL1 / VIRTUAL APPLE-1
 5  RAM REPUBLIC
 MODELS / MODEL model-id
 START / STATUS / RUNS / SHOW run-id
-TRANSCRIPT run-id
+TRANSCRIPT run-id (latest 12 per cell)
+TRANSCRIPT run-id page (0 first 12)
 STOP run-id / RESUME run-id
 EXPORT run-id / OPEN bundle-path
 META / META CLAIM claim-id
