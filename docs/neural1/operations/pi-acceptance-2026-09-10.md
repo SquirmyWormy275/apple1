@@ -1,6 +1,6 @@
 # Native Pi acceptance — 2026-09-10
 
-Status: **PARTIAL**. The tested application revision is
+Status: **BLOCKED** on preservation transfer; the installed application is usable. The tested application revision is
 `4f06e6d10bcbffca47c0f7554800972555085c78`. This record describes actual
 Raspberry Pi 5 Model B Rev 1.1 execution, ARM64, 8 GB RAM. The Apple-1 world
 remains **VIRTUAL**. No physical serial commissioning was performed.
@@ -89,10 +89,16 @@ needed. Active acceptance used Phi4-mini Q4_K_M with manifest SHA256
   is preserved; an owned incomplete destination is not a verified migration.
   A revised image-only transfer skipped redundant small-file checks and added
   about 1.2 GB, but the host reached 81°C and the 75°C guard stopped it. The
-  3,776,086,007-byte partial remains; no final image was promoted. This followed
+  3,911,385,074-byte partial remains; no final image was promoted. This followed
   another host thermal stop at 83°C under verified efficiency-core affinity and
   a 5% CPU limit. No unchanged transfer retry is queued.
-- Private reports record PARTIAL. Task privilege helpers and sleep inhibitors
+- A later controller proved three cooling pauses/resumptions on the actual
+  transfer, with frozen CPU work verified and no thermal transport restart.
+  It then stopped at a critical host spike of 102.05°C. The source and partial
+  were retained, and task workers/inhibitors were removed. The Pi remained on.
+  Host airflow/cooling clarification is now the external prerequisite; this is
+  not a missing Pi software installation task.
+- Private reports record BLOCKED on the remaining host transfer. Task privilege helpers and sleep inhibitors
   have been removed; the usable Pi application, provider and SSD remain on.
 
 Private device identities, credentials, account configuration, complete logs,
