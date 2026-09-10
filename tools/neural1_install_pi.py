@@ -34,6 +34,12 @@ def command(args: list[str], **kwargs: Any) -> str:
     return str(result.stdout).strip()
 
 
+def require_provider_environment(environment: list[str], store: Path) -> None:
+    required = {f'OLLAMA_MODELS={store}', 'OLLAMA_NUM_PARALLEL=1', 'OLLAMA_MAX_LOADED_MODELS=1', 'OLLAMA_MAX_QUEUE=4', 'OLLAMA_KEEP_ALIVE=60s', 'OLLAMA_NO_CLOUD=1', 'LLAMA_ARG_CACHE_RAM=256'}
+    if not required.issubset(environment):
+        raise ValueError('another service override prevents required storage/resource/local-only settings')
+
+
 def require_pi(*, machine: str | None = None, model_path: Path = Path('/proc/device-tree/model')) -> str:
     machine = machine or platform.machine()
     model = model_path.read_bytes().rstrip(b'\0').decode()
@@ -258,7 +264,7 @@ def _install(args: argparse.Namespace) -> dict[str, Any]:
     guard_script = f'#!/bin/sh\nexport PYTHONPATH={release}\nexport PYTHONDONTWRITEBYTECODE=1\nexec {python} -c \'from neural1.deployment import verify_storage; verify_storage("{args.ssd}", "{args.uuid}", min_free_bytes=536870912)\'\n'
     write(Path('/usr/local/libexec/neural1-storage-check'), guard_script.encode(), 0o755)
     mount_unit = command(['systemd-escape', '--path', '--suffix=mount', str(args.ssd)])
-    override = f'[Unit]\nRequires={mount_unit}\nAfter={mount_unit}\nStartLimitIntervalSec=60\nStartLimitBurst=2\n\n[Service]\nEnvironment="OLLAMA_MODELS={store}"\nEnvironment="OLLAMA_NUM_PARALLEL=1"\nEnvironment="OLLAMA_MAX_LOADED_MODELS=1"\nEnvironment="OLLAMA_MAX_QUEUE=4"\nEnvironment="OLLAMA_KEEP_ALIVE=60s"\nEnvironment="OLLAMA_NO_CLOUD=1"\nExecStartPre=/usr/local/libexec/neural1-storage-check\nRestart=on-failure\nRestartSec=10\n'
+    override = f'[Unit]\nRequires={mount_unit}\nAfter={mount_unit}\nStartLimitIntervalSec=60\nStartLimitBurst=2\n\n[Service]\nEnvironment="OLLAMA_MODELS={store}"\nEnvironment="OLLAMA_NUM_PARALLEL=1"\nEnvironment="OLLAMA_MAX_LOADED_MODELS=1"\nEnvironment="OLLAMA_MAX_QUEUE=4"\nEnvironment="OLLAMA_KEEP_ALIVE=60s"\nEnvironment="OLLAMA_NO_CLOUD=1"\nEnvironment="LLAMA_ARG_CACHE_RAM=256"\nExecStartPre=/usr/local/libexec/neural1-storage-check\nRestart=on-failure\nRestartSec=10\n'
     override += f'StandardOutput=append:{provider_log}\nStandardError=append:{provider_log}\n'
     if not Path('/usr/sbin/logrotate').is_file():
         raise ValueError('native logrotate is required for durable bounded provider logs')
@@ -281,9 +287,7 @@ def _install(args: argparse.Namespace) -> dict[str, Any]:
     guard()
     command(['systemctl', 'daemon-reload'])
     environment = shlex.split(command(['systemctl', 'show', 'ollama.service', '--property=Environment', '--value']))
-    required_environment = {f'OLLAMA_MODELS={store}', 'OLLAMA_NUM_PARALLEL=1', 'OLLAMA_MAX_LOADED_MODELS=1', 'OLLAMA_MAX_QUEUE=4', 'OLLAMA_KEEP_ALIVE=60s', 'OLLAMA_NO_CLOUD=1'}
-    if not required_environment.issubset(environment):
-        raise ValueError('another service override prevents required storage/resource/local-only settings')
+    require_provider_environment(environment, store)
     command(['systemctl', 'enable', 'ollama.service'])
     command(['systemctl', 'restart', 'ollama.service'])
     command(['systemctl', 'is-active', 'ollama.service'])

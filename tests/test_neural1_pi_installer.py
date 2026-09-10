@@ -94,3 +94,16 @@ def test_linger_preserves_prior_state_and_enables_only_target(tmp_path, monkeypa
     assert len(enables) == int(previous == 'no')
     assert result['changed'] == (previous == 'no')
     assert ['systemctl', 'is-active', 'user@1001.service'] in calls
+
+
+def test_effective_provider_environment_requires_bounded_native_prompt_cache():
+    from tools.neural1_install_pi import require_provider_environment
+
+    store = Path('/mnt/neural1-ssd/models/canonical/ollama')
+    environment = [f'OLLAMA_MODELS={store}', 'OLLAMA_NUM_PARALLEL=1', 'OLLAMA_MAX_LOADED_MODELS=1', 'OLLAMA_MAX_QUEUE=4', 'OLLAMA_KEEP_ALIVE=60s', 'OLLAMA_NO_CLOUD=1', 'OTHER_PROJECT_SETTING=preserved']
+    with pytest.raises(ValueError, match='resource'):
+        require_provider_environment(environment, store)
+    with pytest.raises(ValueError, match='resource'):
+        require_provider_environment([*environment, 'LLAMA_ARG_CACHE_RAM=8192'], store)
+    require_provider_environment([*environment, 'LLAMA_ARG_CACHE_RAM=256'], store)
+    assert environment[-1] == 'OTHER_PROJECT_SETTING=preserved'
