@@ -28,7 +28,7 @@ def run(engine, spec, **kwargs):
 
 def test_endpoint_is_transport_not_generation_option(tmp_path):
     engine, _ = setup(tmp_path)
-    model = replace(engine.registry.require("test"), backend="ollama", generation_defaults={"base_url": "http://127.0.0.1:11439", "max_tokens": 32})
+    model = replace(engine.registry.require("test"), backend="ollama", digest="a" * 64, generation_defaults={"base_url": "http://127.0.0.1:11439", "max_tokens": 32})
     provider = provider_for(model)
     assert isinstance(provider, OllamaHttpProvider)
     assert provider.base_url == "http://127.0.0.1:11439"

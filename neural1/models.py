@@ -13,7 +13,7 @@ from urllib import error as urlerror
 from urllib import request as urlrequest
 from urllib.parse import urlparse
 
-from .core import GenerationResult, ModelRecord, Neural1Error
+from .core import GenerationResult, ModelRecord, Neural1Error, sha256_bytes
 
 
 class ModelProvider(Protocol):
@@ -64,6 +64,12 @@ class OllamaHttpProvider:
     timeout_seconds: float = 120.0
     options: Mapping[str, object] = field(default_factory=dict)
     opener: Callable[[urlrequest.Request, float], bytes] | None = None
+    api: str = "generate"
+    keep_alive: str | int | float | None = None
+    model_hash: str = "UNAVAILABLE"
+    quantization: str = "UNAVAILABLE"
+    context_limit: int | None = None
+    model_family: str | None = None
 
     def __post_init__(self) -> None:
         parsed = urlparse(self.base_url)
@@ -71,25 +77,62 @@ class OllamaHttpProvider:
             raise Neural1Error("Ollama adapter permits explicit local HTTP endpoints only")
         if self.timeout_seconds <= 0:
             raise Neural1Error("Ollama timeout must be positive")
+        if self.api not in {"generate", "chat"}:
+            raise Neural1Error("Ollama api must be explicitly generate or chat")
+        if isinstance(self.keep_alive, bool) or (self.keep_alive is not None and not isinstance(self.keep_alive, str | int | float)):
+            raise Neural1Error("Ollama keep_alive must be a duration string or number")
+        if any(key in self.options for key in ("api", "base_url", "keep_alive", "timeout_seconds")):
+            raise Neural1Error("Ollama transport settings must not be generation options")
+        if self.model_hash != "UNAVAILABLE" and (len(self.model_hash) != 64 or any(value not in "0123456789abcdefABCDEF" for value in self.model_hash)):
+            raise Neural1Error("Ollama qualified model hash must be a SHA-256 manifest digest")
+        if self.context_limit is not None:
+            if self.context_limit <= 0:
+                raise Neural1Error("Ollama context limit must be positive")
+            self.options = {"num_ctx": self.context_limit, **self.options}
+            if self.options["num_ctx"] != self.context_limit:
+                raise Neural1Error("Ollama recorded context limit differs from requested num_ctx")
 
     @property
     def record(self) -> ModelRecord:
-        return ModelRecord(provider="ollama-http", family=self.model.split(":", 1)[0], name=self.model, generation=dict(self.options))
+        generation = {**self.options, "api": self.api, "base_url": self.base_url, "timeout_seconds": self.timeout_seconds}
+        if self.keep_alive is not None:
+            generation["keep_alive"] = self.keep_alive
+        if self.model_hash != "UNAVAILABLE":
+            generation["hash_kind"] = "ollama-manifest; not the GGUF weight blob"
+        return ModelRecord(provider="ollama-http", family=self.model_family or self.model.split(":", 1)[0], name=self.model, hash=self.model_hash, quantization=self.quantization, context_limit=self.context_limit, generation=generation)
 
     def generate(self, prompt: str, *, agent_id: str, seed: int) -> GenerationResult:
-        body = json.dumps({"model": self.model, "prompt": prompt, "stream": False, "options": {**self.options, "seed": seed}}).encode("utf-8")
-        request = urlrequest.Request(f"{self.base_url.rstrip('/')}/api/generate", body, {"Content-Type": "application/json"}, method="POST")  # noqa: S310 - base URL is validated as local HTTP
+        body_fields: dict[str, object] = {"model": self.model, "stream": False, "options": {**self.options, "seed": seed}}
+        if self.api == "chat":
+            body_fields["messages"] = [{"role": "user", "content": prompt}]
+        else:
+            body_fields["prompt"] = prompt
+        if self.keep_alive is not None:
+            body_fields["keep_alive"] = self.keep_alive
+        body = json.dumps(body_fields).encode("utf-8")
+        endpoint = f"{self.base_url.rstrip('/')}/api/{self.api}"
+        request = urlrequest.Request(endpoint, body, {"Content-Type": "application/json"}, method="POST")  # noqa: S310 - base URL is validated as local HTTP
         start = perf_counter()
         try:
             raw = self.opener(request, self.timeout_seconds) if self.opener else self._open(request, self.timeout_seconds)
-            payload = json.loads(raw)
+            raw_text = raw.decode("utf-8")
+            payload = json.loads(raw_text)
         except (OSError, ValueError, KeyError, urlerror.URLError) as error:
             raise Neural1Error("Ollama request failed or returned invalid JSON") from error
-        text = payload.get("response", "")
+        if not isinstance(payload, dict):
+            raise Neural1Error("Ollama returned a non-object response")
+        if self.api == "chat":
+            message = payload.get("message")
+            if not isinstance(message, dict):
+                raise Neural1Error("Ollama chat returned no assistant message")
+            text = message.get("content", "")
+        else:
+            text = payload.get("response", "")
         if not isinstance(text, str) or not text.strip():
             raise Neural1Error("Ollama returned an empty response")
         latency = (perf_counter() - start) * 1000
-        return GenerationResult(text, payload.get("prompt_eval_count"), payload.get("eval_count"), latency, {"agent_id": agent_id, "done_reason": payload.get("done_reason")})
+        metadata = {"agent_id": agent_id, "seed": seed, "api": self.api, "endpoint": endpoint, "done_reason": payload.get("done_reason"), "response_payload": payload, "raw_response_utf8": raw_text, "raw_response_sha256": sha256_bytes(raw)}
+        return GenerationResult(text, payload.get("prompt_eval_count"), payload.get("eval_count"), latency, metadata)
 
     @staticmethod
     def _open(request: urlrequest.Request, timeout: float) -> bytes:
