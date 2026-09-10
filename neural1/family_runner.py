@@ -17,11 +17,30 @@ from .experiments import EXPERIMENTS, FourKMind, HistoricalComponent, MachineGen
 from .world import VirtualApple1World, WozMonSession
 
 _COMMON = (
-    "Bounded starting task: enter raw NMOS 6502 machine code at 0200 that loads ASCII A "
-    "into accumulator, calls Monitor ECHO at FFEF, then returns to Monitor at FF1F. "
-    "Use only strict uppercase hexadecimal Woz Monitor lines. Deposit syntax: ADDRESS: XX XX; "
-    "examine syntax: ADDRESS.END; execute syntax: ADDRESSR. No prose, fences or assembly mnemonics. "
-    "Examine deposited bytes and execute 0200R. Later turns may repair using your own monitor observations. "
+    "ISA-guided execution control, not a discovery task. Use the supplied NMOS 6502 baseline.\n"
+    "ISA reference: LDA immediate = A9 byte; JSR absolute = 20 low-byte high-byte; "
+    "JMP absolute = 4C low-byte high-byte. ASCII A = 41. "
+    "Monitor ECHO = FFEF; Monitor return = FF1F.\n"
+    "The complete eight-byte baseline is: A9 41 20 EF FF 4C 1F FF.\n"
+    "Return uppercase Woz Monitor commands only. No prose, Markdown, fences, numbering or assembly mnemonics.\n"
+)
+
+_THREE_LINE_FORMAT = (
+    "Output exactly three lines and nothing else.\n"
+    "Line 1: deposit exactly the eight baseline bytes at 0200 using ADDRESS: XX XX syntax. "
+    "Do not append zeros or any other bytes.\n"
+    "Line 2: 0200.0207\n"
+    "Line 3: 0200R\n"
+)
+
+_ROM_FORMAT = (
+    "Output exactly eighteen lines and nothing else.\n"
+    "The first sixteen lines deposit sixteen bytes each at addresses 0200, 0210, 0220, 0230, "
+    "0240, 0250, 0260, 0270, 0280, 0290, 02A0, 02B0, 02C0, 02D0, 02E0, 02F0. "
+    "Use ADDRESS: XX XX syntax. The 0200 line contains the eight baseline bytes followed by eight 00 bytes. "
+    "Every other deposit line contains sixteen 00 bytes. Write every byte explicitly, with no ellipses.\n"
+    "Line 17: 0200.0207\n"
+    "Line 18: 0200R\n"
 )
 
 
@@ -45,10 +64,11 @@ def family_objective(family: str) -> str:
     additions = {
         "4k-mind": "Your world persists across generations within 4K. No host memory access is available.",
         "selfhost1": "Stage 1 only: establish a raw machine-code validation routine. This does not qualify an assembler or compiler.",
-        "256-byte-universe": "Exact-size starting task: explicitly deposit all 256 candidate bytes at 0200 through 02FF; remaining bytes may be 00. Code and data stay inside this range; only the NMOS call stack at 0100-01FF and declared Monitor calls are external. This task tests output and Monitor return, not a complete monitor.",
-        "ram-republic": "First examine 0200.020F to observe other participants through shared RAM. You have no access to their private contexts. Contribute or repair the routine without assuming a communication protocol.",
+        "256-byte-universe": "The candidate is exactly 256 bytes at 0200 through 02FF. Code and data stay inside this range; only the NMOS call stack at 0100-01FF and declared Monitor calls are external. This ISA-guided task tests output and Monitor return, not a complete or blinded monitor.",
+        "ram-republic": "Read the supplied CURRENT SHARED MONITOR EXAMINATION before answering. It is the allowed view of other participants through RAM; private contexts remain isolated. This ISA-guided routine is a shared-memory execution control, not protocol discovery.",
     }
-    return _COMMON + additions[family]
+    response_format = _ROM_FORMAT if family == "256-byte-universe" else _THREE_LINE_FORMAT
+    return _COMMON + additions[family] + "\n" + response_format
 
 
 def _output_task(image: bytes) -> bool:
@@ -75,7 +95,8 @@ def evaluate_family(
 
     if family not in EXPERIMENTS:
         raise Neural1Error("unknown experiment family")
-    base: dict[str, Any] = {"family": family, "target": "VIRTUAL", "task": "bounded-output-and-return-v1", "passed": False}
+    guided = any("ISA-guided execution control" in str(record.get("prompt", "")) for record in records)
+    base: dict[str, Any] = {"family": family, "target": "VIRTUAL", "task": "isa-guided-output-and-return-v2" if guided else "bounded-output-and-return-v1", "passed": False}
     if family == "1976-multiverse":
         base["task"] = "period-component-structure-validation-v1"
         if genome is not None and corpus is not None:

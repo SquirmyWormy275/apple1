@@ -162,3 +162,29 @@ def test_selfhost_hash_covers_dependency_beyond_first_256_bytes() -> None:
         assert result["artifact_sha256"] == sha256_bytes(world.host_read(0x200, 4096))
         hashes.append(result["artifact_sha256"])
     assert hashes[0] != hashes[1]
+
+
+def test_guided_starting_prompts_bound_response_without_provider_fallback() -> None:
+    baseline = "A9 41 20 EF FF 4C 1F FF"
+    for family in ("4k-mind", "selfhost1", "ram-republic"):
+        prompt = family_objective(family)
+        assert baseline in prompt and "not a discovery task" in prompt
+        assert "exactly three lines" in prompt
+        assert "Do not append zeros" in prompt
+        assert "Line 3: 0200R" in prompt
+    rom = family_objective("256-byte-universe")
+    assert baseline in rom and "exactly eighteen lines" in rom
+    assert "exactly three lines" not in rom
+    assert "sixteen 00 bytes" in rom and "Line 18: 0200R" in rom
+    assert "not a complete or blinded monitor" in rom
+
+
+def test_guided_criterion_is_recorded_only_for_guided_actual_prompts() -> None:
+    world = VirtualApple1World()
+    records = transcript(world)
+    assert evaluate_family("4k-mind", world, records)["task"] == "bounded-output-and-return-v1"
+    for record in records:
+        record["prompt"] = family_objective("4k-mind")
+    result = evaluate_family("4k-mind", world, records)
+    assert result["task"] == "isa-guided-output-and-return-v2"
+    assert result["passed"]
