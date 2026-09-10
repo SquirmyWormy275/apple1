@@ -22,7 +22,12 @@ the ext4 SSD appears after boot. The service requires its configured mount and
 checks storage identity before writing. Native udev validation and nine focused
 installer tests passed. A physical off/on test of the new rule has not been
 performed. This rule controls service startup, not enclosure power. The Pi and
-SSD are left powered and mounted while preservation work continues.
+SSD are left powered and mounted. Final ordinary-login run
+`N1-P-FC1298236505CB0F` passed with three genuine responses, eight accepted
+commands and independently checked A/Monitor return. Saved META and the ROM
+export reopened. This run peaked at 65.55°C, with zero throttling flags and at
+least 4.37 GB available memory. The temporary privileged operator was removed
+without stopping the provider or unmounting the SSD.
 
 ## Actual family evidence
 
@@ -80,13 +85,15 @@ needed. Active acceptance used Phi4-mini Q4_K_M with manifest SHA256
 
 - End-to-end physical late-power/startup acceptance remains unverified. Do not
   repeat power tests against the user’s instruction to keep both devices on.
-- Exercise the ordinary launcher in the final powered operating state. The
-  post-restart model, results, META and export checks above passed after manual
-  enclosure activation; they do not prove unattended hardware power recovery.
 - Finish and verify the existing historical image migration. The original image
   is preserved; an owned incomplete destination is not a verified migration.
-- Finish the private morning report and machine ledger, then remove temporary
-  task helpers/inhibitors while leaving the usable Pi and SSD operating.
+  A revised image-only transfer skipped redundant small-file checks and added
+  about 1.2 GB, but the host reached 81°C and the 75°C guard stopped it. The
+  3,776,086,007-byte partial remains; no final image was promoted. This followed
+  another host thermal stop at 83°C under verified efficiency-core affinity and
+  a 5% CPU limit. No unchanged transfer retry is queued.
+- Private reports record PARTIAL. Task privilege helpers and sleep inhibitors
+  have been removed; the usable Pi application, provider and SSD remain on.
 
 Private device identities, credentials, account configuration, complete logs,
 backups, weights and raw images are kept outside Git. The private acceptance
