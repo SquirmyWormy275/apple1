@@ -484,3 +484,81 @@ def test_foreground_operation_success_and_timeout_leave_no_child(configured):
     with pytest.raises(Neural1Error, match='time limit'):
         monitored_call(config, lambda: time.sleep(30), timeout_seconds=0.1)
     assert {process.pid for process in multiprocessing.active_children()} == baseline
+
+
+def test_model_selection_persists_across_console_instances(configured, monkeypatch):
+    import json
+    import os
+    config, app = configured
+    registry = ModelRegistry.load(config.registry)
+    registry.add(RegisteredModel('second', 'synthetic', 'test', 'fake', 'fake-v2', '0', 'NONE', 4096, 'fixture', 'TEST-ONLY', {}))
+    registry.save(config.registry)
+    app = Application(config)
+    check = Mock(return_value={'model_id': 'second', 'validated': 'synthetic'})
+    monkeypatch.setattr('neural1.application.check_model', check)
+    assert app.command('MODEL second')['validated'] == 'synthetic'
+    check.assert_called_once_with(app.registry, 'second')
+    assert Application(config).model_id == 'second'
+    preference = json.loads(app.preferences.read_text())
+    assert preference['uid'] == os.getuid()
+    assert preference['model_id'] == 'second'
+    assert app.preferences.stat().st_mode & 0o777 == 0o600
+    assert app.command('STATUS')['selected_model'] == 'second'
+
+
+def test_failed_live_model_validation_never_changes_preference(configured, monkeypatch):
+    config, app = configured
+    app.command('MODEL fixture')
+    before = app.preferences.read_bytes()
+    monkeypatch.setattr('neural1.application.check_model', Mock(side_effect=Neural1Error('manifest mismatch')))
+    with pytest.raises(Neural1Error, match='manifest mismatch'):
+        app.command('MODEL missing')
+    assert app.preferences.read_bytes() == before
+    assert Application(config).model_id == 'fixture'
+
+
+@pytest.mark.parametrize('content', ['not-json', '{"schema_version":1,"uid":-1,"model_id":"fixture"}'])
+def test_corrupt_model_preference_falls_back_and_model_command_repairs(configured, content):
+    config, app = configured
+    app.preferences.write_text(content)
+    reopened = Application(config)
+    assert reopened.model_id == config.default_model
+    assert reopened.preference_warning
+    assert reopened.command('STATUS')['preference_warning']
+    reopened.command('MODEL fixture')
+    assert Application(config).preference_warning is None
+
+
+def test_symlink_model_preference_is_replaced_without_touching_target(configured, tmp_path):
+    config, app = configured
+    protected = tmp_path / 'unrelated.json'
+    protected.write_text('unrelated data')
+    app.preferences.symlink_to(protected)
+    reopened = Application(config)
+    assert reopened.preference_warning
+    reopened.command('MODEL fixture')
+    assert not app.preferences.is_symlink()
+    assert protected.read_text() == 'unrelated data'
+
+
+def test_removed_registry_model_preference_falls_back(configured):
+    import json
+    import os
+    config, app = configured
+    app.preferences.write_text(json.dumps({'schema_version': 1, 'uid': os.getuid(), 'model_id': 'removed'}))
+    reopened = Application(config)
+    assert reopened.model_id == config.default_model
+    assert reopened.preference_warning
+
+
+def test_directory_in_preference_slot_is_preserved_and_recovered(configured):
+    config, app = configured
+    app.preferences.mkdir()
+    (app.preferences / 'retain.txt').write_text('retain this unrelated content')
+    reopened = Application(config)
+    assert reopened.preference_warning
+    reopened.command('MODEL fixture')
+    assert Application(config).preference_warning is None
+    backups = list(app.preferences.parent.glob('.neural1-invalid-preference-*/prior/retain.txt'))
+    assert len(backups) == 1
+    assert backups[0].read_text() == 'retain this unrelated content'

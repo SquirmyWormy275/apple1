@@ -10,7 +10,12 @@ The console shows only implemented operations:
 - `1` through `5` select 4K MIND, 1976 MULTIVERSE, SELFHOST/1,
   256-BYTE UNIVERSE, or RAM REPUBLIC.
 - `MODELS` lists the deployment registry; `MODEL model-id` verifies the live
-  local Ollama manifest identity before selecting it.
+  local Ollama manifest identity before selecting it. A successful selection
+  persists for the current Linux account across normal console launches, in
+  `meta/preferences-UID.json` on the guarded SSD. Invalid or stale preferences
+  fall back to the deployment default with a visible warning; `MODEL model-id`
+  validates and replaces the preference without hand-editing files. `STATUS`
+  and the console greeting show the selected model.
 - `START` creates a bounded preset with its own seed and campaign ID.
   `STATUS`, `RUNS`, `SHOW run-id`, and `TRANSCRIPT run-id` expose progress,
   checkpoints, actual family evaluation, and recorded model/Monitor exchanges.

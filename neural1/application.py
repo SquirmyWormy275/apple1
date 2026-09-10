@@ -13,6 +13,7 @@ import signal
 import sqlite3
 import subprocess
 import sys
+import tempfile
 import textwrap
 import threading
 import time
@@ -204,7 +205,59 @@ class Application:
         config.storage_check()
         self.registry = ModelRegistry.load(config.registry)
         self.model_id = config.default_model
+        self.preference_warning: str | None = None
+        self.preferences = config.ssd / 'meta' / f'preferences-{os.getuid()}.json'
+        if self.preferences.exists() or self.preferences.is_symlink():
+            try:
+                if self.preferences.is_symlink() or self.preferences.stat().st_size > 4096:
+                    raise ValueError('unsafe or oversized preferences')
+                preference = json.loads(self.preferences.read_text())
+                if not isinstance(preference, dict) or preference.get('schema_version') != 1 or preference.get('uid') != os.getuid():
+                    raise ValueError('invalid preference schema/account')
+                identifier = preference.get('model_id')
+                if not isinstance(identifier, str):
+                    raise ValueError('invalid model preference')
+                self.registry.require(identifier)
+                self.model_id = identifier
+            except (OSError, ValueError, Neural1Error) as error:
+                self.preference_warning = f'Saved model preference unavailable ({type(error).__name__}); using {config.default_model}. MODEL model-id replaces the preference.'
         self.family = EXPERIMENTS[0]
+
+    def select_model(self, identifier: str) -> dict[str, Any]:
+        """Validate the live model, then atomically persist this account's choice."""
+        value = check_model(self.registry, identifier)
+        self.config.storage_check()
+        self.preferences.parent.mkdir(parents=True, exist_ok=True)
+        if self.preferences.is_dir() and not self.preferences.is_symlink():
+            quarantine = Path(tempfile.mkdtemp(prefix='.neural1-invalid-preference-', dir=self.preferences.parent))
+            os.rename(self.preferences, quarantine / 'prior')
+        temporary: Path | None = None
+        try:
+            with tempfile.NamedTemporaryFile(mode='w', encoding='utf-8', prefix='.neural1-preference-', suffix='.tmp', dir=self.preferences.parent, delete=False) as stream:
+                temporary = Path(stream.name)
+                json.dump({'schema_version': 1, 'uid': os.getuid(), 'model_id': identifier}, stream)
+                stream.write('\n')
+                stream.flush()
+                os.fsync(stream.fileno())
+            self.config.storage_check()
+            os.replace(temporary, self.preferences)
+            temporary = None
+            directory = os.open(self.preferences.parent, os.O_RDONLY | os.O_DIRECTORY)
+            try:
+                os.fsync(directory)
+            finally:
+                os.close(directory)
+        finally:
+            if temporary is not None:
+                # Do not touch an unrelated fallback directory after SSD loss.
+                try:
+                    self.config.storage_check()
+                    temporary.unlink(missing_ok=True)
+                except (OSError, Neural1Error):
+                    pass
+        self.model_id = identifier
+        self.preference_warning = None
+        return value
 
     def root(self, campaign_id: str) -> Path:
         if not campaign_id.startswith('N1-P-') or Path(campaign_id).name != campaign_id:
@@ -396,9 +449,7 @@ class Application:
         if op == 'MODELS':
             return [asdict(model) for model in self.registry.models.values()]
         if op == 'MODEL' and len(args) == 2:
-            value = check_model(self.registry, args[1])
-            self.model_id = args[1]
-            return value
+            return self.select_model(args[1])
         if op == 'START':
             return {'started': self.start()}
         if op == 'RESUME' and len(args) == 2:
@@ -406,7 +457,7 @@ class Application:
         if op == 'STOP' and len(args) == 2:
             return self.cancel(args[1])
         if op in ('RUNS', 'STATUS'):
-            return {'worker_active': self.running(), 'runs': self.browse(), 'resources': self.config.check()}
+            return {'worker_active': self.running(), 'runs': self.browse(), 'resources': self.config.check(), 'selected_model': self.model_id, 'preference_warning': self.preference_warning}
         if op == 'TRANSCRIPT' and len(args) == 2:
             root = self.root(args[1])
             return {str(path.relative_to(root)): [json.loads(line) for line in path.read_text().splitlines()[-12:]] for path in root.glob('cells/*/transcript.jsonl')}
@@ -555,10 +606,13 @@ def main(argv: list[str] | None = None) -> int:
         if args.worker:
             return worker(config, args.worker, args.resume, args.launch_id)
         app = Application(config)
+        if app.preference_warning:
+            print(app.preference_warning, file=sys.stderr)
         if args.command:
             print(json.dumps(app.command(args.command), indent=2, default=str))
             return 0
         print(HELP)
+        print(f'Model: {app.model_id}')
         while True:
             try:
                 line = input(f'[V] {app.family}> ')
