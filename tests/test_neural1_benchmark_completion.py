@@ -10,6 +10,19 @@ from neural1.core import Neural1Error
 from neural1.models import FakeProvider
 
 
+def test_installed_archive_reports_recorded_revision(tmp_path: Path, monkeypatch: pytest.MonkeyPatch) -> None:
+    import importlib
+    module = importlib.import_module("neural1.benchmark")
+    package = tmp_path / "neural1"
+    package.mkdir()
+    monkeypatch.setattr(module, "__file__", str(package / "benchmark.py"))
+    marker = tmp_path / ".neural1-revision"
+    marker.write_text("a" * 40 + "\n")
+    assert module.hardware_report(tmp_path)["revision"] == "a" * 40
+    marker.write_text("unqualified-placeholder\n")
+    assert module.hardware_report(tmp_path)["revision"] is None
+
+
 def test_hardware_report_requires_absolute_new_output(tmp_path: Path) -> None:
     with pytest.raises(SystemExit):
         main(["--hardware-report", "--output", "relative.json"])

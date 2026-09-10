@@ -6,6 +6,7 @@ import argparse
 import json
 import os
 import platform
+import re
 import shutil
 import subprocess
 import sys
@@ -103,6 +104,12 @@ def hardware_report(path: Path) -> dict[str, Any]:
         revision = subprocess.run(  # noqa: S603 - fixed read-only command
             ["/usr/bin/git", "rev-parse", "HEAD"], cwd=Path(__file__).resolve().parents[1], capture_output=True, text=True, check=True, timeout=5,
         ).stdout.strip()
+    if revision is None:
+        # Installed releases are pinned git archives, without a .git directory.
+        with suppress(OSError):
+            marker = (Path(__file__).resolve().parents[1] / ".neural1-revision").read_text().strip()
+            if re.fullmatch(r"[0-9a-f]{40}", marker):
+                revision = marker
     throttling = "UNAVAILABLE"
     executable = shutil.which("vcgencmd")
     if executable:
