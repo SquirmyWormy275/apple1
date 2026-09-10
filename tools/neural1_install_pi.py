@@ -40,6 +40,15 @@ def require_provider_environment(environment: list[str], store: Path) -> None:
         raise ValueError('another service override prevents required storage/resource/local-only settings')
 
 
+def storage_arrival_rule(uuid: str) -> str:
+    """Start the guarded provider when its dedicated filesystem appears late."""
+    if not re.fullmatch(r'[0-9a-fA-F]{8}(?:-[0-9a-fA-F]{4}){3}-[0-9a-fA-F]{12}', uuid):
+        raise ValueError('a canonical filesystem UUID is required')
+    return (f'ACTION=="add|change", SUBSYSTEM=="block", ENV{{DEVTYPE}}=="partition", '
+            f'ENV{{ID_FS_UUID}}=="{uuid}", ENV{{ID_FS_TYPE}}=="ext4", '
+            'TAG+="systemd", ENV{SYSTEMD_WANTS}+="ollama.service"\n')
+
+
 def require_pi(*, machine: str | None = None, model_path: Path = Path('/proc/device-tree/model')) -> str:
     machine = machine or platform.machine()
     model = model_path.read_bytes().rstrip(b'\0').decode()
@@ -274,6 +283,10 @@ def _install(args: argparse.Namespace) -> dict[str, Any]:
     command(['/usr/sbin/logrotate', '--debug', '/etc/logrotate.d/neural1-ollama'])
     command(['systemctl', 'is-enabled', 'logrotate.timer'])
     write(fstab, new_fstab.encode())
+    # An enclosure may be switched on after boot's nofail mount timed out.
+    # The provider already requires the UUID mount and checks its storage role.
+    write(Path('/etc/udev/rules.d/99-neural1-storage.rules'), storage_arrival_rule(args.uuid).encode())
+    command(['udevadm', 'control', '--reload-rules'])
     # The existing conventional override.conf sorts after numeric drop-ins.
     # Keep it intact, while making this deployment's bounded settings effective.
     dropins = Path('/etc/systemd/system/ollama.service.d')

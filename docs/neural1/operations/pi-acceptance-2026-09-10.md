@@ -6,12 +6,23 @@ Raspberry Pi 5 Model B Rev 1.1 execution, ARM64, 8 GB RAM. The Apple-1 world
 remains **VIRTUAL**. No physical serial commissioning was performed.
 
 The installed normal entry point is `neural1`. It was exercised from a normal
-runtime-account login outside the checkout. The final post-reboot workflow is
-not yet accepted: the Pi rebooted and reconnected with its verified SSH identity,
-but its USB controller did not enumerate the SSD. Reconnecting the SSD restored
-its identity. The mount/provider recovery and a stable boot connection remain
-unresolved at this record's preparation. The application refused the missing
-mount instead of writing fallback data to the microSD.
+runtime-account login outside the checkout. After the first restart and manual
+SSD activation, run `N1-P-601F189D870A1210` produced three genuine responses,
+eight accepted Monitor commands and independently checked A output/Monitor
+return. Saved META and the ROM export reopened intact.
+
+Both controlled restart attempts lacked SSD enumeration until manual activation.
+The operator subsequently clarified that the enclosure must be clicked back on;
+the earlier assumption of unattended Pi/SSD restart was not established. Further
+reboots, shutdowns and USB power cycling were stopped at the user's direction.
+The prepared USB power test never reached its power-changing operation.
+
+A UUID-scoped udev rule now requests the existing guarded Ollama service when
+the ext4 SSD appears after boot. The service requires its configured mount and
+checks storage identity before writing. Native udev validation and nine focused
+installer tests passed. A physical off/on test of the new rule has not been
+performed. This rule controls service startup, not enclosure power. The Pi and
+SSD are left powered and mounted while preservation work continues.
 
 ## Actual family evidence
 
@@ -67,10 +78,11 @@ needed. Active acceptance used Phi4-mini Q4_K_M with manifest SHA256
 
 ## Remaining contract requirements
 
-- Resolve SSD availability across normal boot/reboot and restore its guarded
-  mount/provider without leaving a setup task for the user.
-- Repeat the ordinary launch and a small real-model workflow after the final
-  restart; verify persistent models, results, META and export reopening.
+- End-to-end physical late-power/startup acceptance remains unverified. Do not
+  repeat power tests against the user’s instruction to keep both devices on.
+- Exercise the ordinary launcher in the final powered operating state. The
+  post-restart model, results, META and export checks above passed after manual
+  enclosure activation; they do not prove unattended hardware power recovery.
 - Finish and verify the existing historical image migration. The original image
   is preserved; an owned incomplete destination is not a verified migration.
 - Finish the private morning report and machine ledger, then remove temporary

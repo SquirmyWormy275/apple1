@@ -6,6 +6,21 @@ import pytest
 from tools.neural1_install_pi import fstab_content, require_pi
 
 
+def test_storage_arrival_rule_is_scoped_and_cannot_inject_rules():
+    from tools.neural1_install_pi import storage_arrival_rule
+
+    uuid = '12345678-1234-1234-1234-123456789abc'
+    rule = storage_arrival_rule(uuid)
+    assert f'ENV{{ID_FS_UUID}}=="{uuid}"' in rule
+    assert 'ENV{ID_FS_TYPE}=="ext4"' in rule
+    assert 'ENV{DEVTYPE}=="partition"' in rule
+    assert 'ENV{SYSTEMD_WANTS}+="ollama.service"' in rule
+    assert 'RUN' not in rule
+    for invalid in ('', '*', uuid + '\nRUN+="unsafe"', '/dev/sda1'):
+        with pytest.raises(ValueError, match='UUID'):
+            storage_arrival_rule(invalid)
+
+
 def test_installer_rejects_host_even_with_pi_model_fixture(tmp_path):
     model = tmp_path / 'model'
     model.write_bytes(b'Raspberry Pi 5 Model B Rev 1.0\0')
