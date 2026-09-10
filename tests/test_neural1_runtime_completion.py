@@ -134,7 +134,7 @@ def test_multiverse_dispatches_design_validator_not_monitor(tmp_path, monkeypatc
     proposals = []
     def process(text):
         proposals.append(text)
-        return {"accepted_proposals": 0, "genome": None, "errors": ["unsupported component"], "outputs": ["unsupported component"]}
+        return {"accepted_proposals": 0, "genome": {"genome_id": "synthetic-negative", "components": ["unsupported"], "interconnections": [], "memory_map": {}, "timing_assumptions": []}, "errors": ["unsupported component"], "outputs": ["unsupported component"]}
     monkeypatch.setattr(family_runner, "process_multiverse_response", process, raising=False)
     monkeypatch.setattr(family_runner, "evaluate_family", lambda family, world, records: {"family": family, "status": "EVALUATED", "passed": False})
     engine, spec = setup(tmp_path, FakeProvider(default='{"cpu":"unsupported"}'), experiments=["1976-multiverse"], agents_per_cell=1)
@@ -147,3 +147,24 @@ def test_multiverse_dispatches_design_validator_not_monitor(tmp_path, monkeypatc
     assert "DESIGN VALIDATOR:unsupported component" in records[1]["prompt"]
     assert records[0]["proposal"]["accepted_proposals"] == 0
     assert "accepted_commands" not in records[0]
+
+
+@pytest.mark.parametrize("response", ["not JSON", "{}", "[]"])
+def test_malformed_multiverse_response_is_incomplete(tmp_path, response):
+    engine, spec = setup(tmp_path, FakeProvider(default=response), experiments=["1976-multiverse"], agents_per_cell=1, generations=1)
+    assert run(engine, spec).status == "INCOMPLETE"
+    checkpoint = json.loads(next(tmp_path.rglob("checkpoint.json")).read_text())
+    assert checkpoint["status"] == "NO_ACCEPTED_COMMANDS"
+    record = json.loads(next(tmp_path.rglob("transcript.jsonl")).read_text())
+    assert record["response"] == response
+    assert record["proposal"]["genome"] is None
+
+
+def test_parsed_multiverse_rejection_remains_completed_negative(tmp_path):
+    response = json.dumps({"genome_id": "synthetic-unsupported", "components": ["unsupported"], "interconnections": [], "memory_map": {}, "timing_assumptions": []})
+    engine, spec = setup(tmp_path, FakeProvider(default=response), experiments=["1976-multiverse"], agents_per_cell=1, generations=1)
+    assert run(engine, spec).status == "COMPLETED"
+    result = json.loads(next(tmp_path.rglob("family-result.json")).read_text())
+    assert result["passed"] is False
+    assert result["proposals"][0]["genome"]["genome_id"] == "synthetic-unsupported"
+    assert result["proposals"][0]["accepted_proposals"] == 0

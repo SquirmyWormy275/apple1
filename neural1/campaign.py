@@ -287,8 +287,9 @@ class CampaignEngine:
         self._atomic_json(cell_root / "family-result.json", family_result)
         accepted_total = sum(record.get("accepted_commands", sum(not output.startswith("ERR") for output in record.get("outputs", []))) for record in records)
         if cell.experiment_id == "1976-multiverse":
-            # A scientifically rejected candidate is a completed evaluation, not parser success.
-            accepted_total = sum("proposal" in record for record in records)
+            # A parsed, scientifically rejected genome is a completed negative
+            # evaluation. A malformed response never supplied a candidate.
+            accepted_total = sum(isinstance(proposal, Mapping) and isinstance(proposal.get("genome"), Mapping) for record in records if (proposal := record.get("proposal")) is not None)
         terminal_errors = [error for error in errors if error.get("type") != "ResourceStop"]
         status = "COMPLETED" if accepted_total and not terminal_errors else "FAILED" if terminal_errors else "NO_ACCEPTED_COMMANDS"
         if family_result.get("status") == "BLOCKED":
