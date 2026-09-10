@@ -18,6 +18,21 @@ from .world import VirtualApple1World, WozMonSession
 
 _COMMON = 'This is an instruction-guided Woz Monitor formatting control, not a discovery task.\nA valid example prints ASCII B from address 0400:\n0400: A9 42 20 EF FF 4C 1F FF\n0400.0407\n0400R\nThe bytes A9 42 load B, 20 EF FF call Monitor ECHO at FFEF, and 4C 1F FF return to the Monitor.\nNow produce the corresponding program at address 0200 that prints ASCII A (hexadecimal 41).\nReturn only the three new command lines: the eight-byte deposit at 0200, the examination of 0200.0207, and 0200R.\nUse space-separated TWO-DIGIT uppercase byte pairs. Do not repeat the example, add padding, fences, labels, assembly syntax, or explanations.'
 
+def legacy_rom_objective() -> str:
+    """Unchanged full-candidate v3 objective for a legacy run before turn zero."""
+    scope = "The candidate is exactly 256 bytes at 0200 through 02FF. Code and data stay inside this range; only the NMOS call stack at 0100-01FF and declared Monitor calls are external. This ISA-guided task tests output and Monitor return, not a complete or blinded monitor."
+    format_contract = (
+        "Output exactly eighteen lines and nothing else.\n"
+        "The first sixteen lines deposit sixteen bytes each at addresses 0200, 0210, 0220, 0230, "
+        "0240, 0250, 0260, 0270, 0280, 0290, 02A0, 02B0, 02C0, 02D0, 02E0, 02F0. "
+        "Use ADDRESS: XX XX syntax. The 0200 line contains the eight new program bytes followed by eight 00 bytes. "
+        "Every other deposit line contains sixteen 00 bytes. Write every byte explicitly, with no ellipses.\n"
+        "Line 17: 0200.0207\n"
+        "Line 18: 0200R\n"
+    )
+    return scope + "\n" + "\n".join(_COMMON.splitlines()[:-2]) + "\n" + format_contract
+
+
 def family_objective(family: str, generation: int = 0) -> str:
     if family not in EXPERIMENTS:
         raise Neural1Error("unknown experiment family")

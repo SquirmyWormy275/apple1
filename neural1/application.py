@@ -166,7 +166,7 @@ def check_model(registry: ModelRegistry, model_id: str) -> dict[str, Any]:
 def preset(family: str, model_id: str, *, seed: int | None = None) -> CampaignSpec:
     if family not in EXPERIMENTS:
         raise Neural1Error('unknown experiment family')
-    return CampaignSpec.create(experiments=(family,), model_ids=(model_id,), seeds=(seed if seed is not None else time.time_ns() % 2147483647,), generations=17 if family == '256-byte-universe' else 3, agents_per_cell=2 if family == 'ram-republic' else 1, ram_budget=4096, max_tokens=96 if family == '256-byte-universe' else 512 if family == '1976-multiverse' else 192, generation_settings={'preset': 'bounded-console-v1', 'context_reset_generations': 2}, matched_control='deterministic family evaluator; controls are separate from model evidence', wall_clock_limit_seconds=600)
+    return CampaignSpec.create(experiments=(family,), model_ids=(model_id,), seeds=(seed if seed is not None else time.time_ns() % 2147483647,), generations=17 if family == '256-byte-universe' else 3, agents_per_cell=2 if family == 'ram-republic' else 1, ram_budget=4096, max_tokens=96 if family == '256-byte-universe' else 512 if family == '1976-multiverse' else 192, generation_settings={'preset': 'bounded-console-v1', 'context_reset_generations': 2, **({'objective_protocol': 'staged-rom-v4'} if family == '256-byte-universe' else {})}, matched_control='deterministic family evaluator; controls are separate from model evidence', wall_clock_limit_seconds=600)
 
 
 def effective_run_registry(registry: ModelRegistry, spec: CampaignSpec) -> ModelRegistry:
@@ -183,6 +183,43 @@ def effective_run_registry(registry: ModelRegistry, spec: CampaignSpec) -> Model
             settings.update(timeout_seconds=180, num_thread=2)
         models[name] = replace(model, generation_defaults=settings)
     return ModelRegistry(models)
+
+
+def registry_for_execution(registry: ModelRegistry, spec: CampaignSpec, root: Path, *, resume: bool) -> ModelRegistry:
+    """Select immutable per-run transport/model identity before live validation."""
+    recorded = root / 'effective-registry.json'
+    if resume:
+        if not recorded.is_file() or recorded.is_symlink():
+            raise Neural1Error('resume requires the original effective registry; use a compatible release/recovery copy')
+        selected = ModelRegistry.load(recorded)
+        for name in spec.model_ids:
+            selected.require(name)
+        return selected
+    if recorded.exists():
+        raise Neural1Error('effective registry already exists; resume this run instead')
+    return effective_run_registry(registry, spec)
+
+
+def execution_objective(spec: CampaignSpec, root: Path, family: str, generation: int) -> str:
+    from .family_runner import family_objective, legacy_rom_objective
+
+    if family != '256-byte-universe':
+        return family_objective(family, generation)
+    protocol = spec.generation_settings.get('objective_protocol')
+    if protocol == 'staged-rom-v4':
+        return family_objective(family, generation)
+    if protocol is not None:
+        raise Neural1Error('unknown ROM objective protocol; resume with its compatible release')
+    # Old runs requested the full candidate each turn. Preserve their actual
+    # objective even if the current default and generation count have changed.
+    for path in sorted((root / 'cells').glob('*/transcript.jsonl')):
+        with path.open() as stream:
+            for line in stream:
+                record = json.loads(line)
+                recorded_prompt = record.get('prompt')
+                if record.get('generation') == 0 and isinstance(recorded_prompt, str):
+                    return recorded_prompt.split('\nYOUR PRIVATE MONITOR OBSERVATIONS:\n', 1)[0]
+    return legacy_rom_objective()
 
 
 def ingest(config: ApplicationConfig, root: Path) -> str:
@@ -333,7 +370,8 @@ class Application:
         else:
             root = self.root(campaign_id)
             spec = CampaignSpec.load(root / 'spec.json')
-            check_model(self.registry, spec.model_ids[0])
+            recorded_registry = registry_for_execution(self.registry, spec, root, resume=True)
+            check_model(recorded_registry, spec.model_ids[0])
         log = self.config.ssd / 'logs' / f'{spec.campaign_id}.log'
         launch_id = secrets.token_hex(12)
         with log.open('ab') as stream:
@@ -585,7 +623,10 @@ def worker(config: ApplicationConfig, campaign_id: str, resume: bool, launch_id:
         root = app.root(campaign_id)
         spec = CampaignSpec.load(root / 'spec.json')
         config.check()
-        identity = check_model(app.registry, spec.model_ids[0])
+        run_registry = registry_for_execution(app.registry, spec, root, resume=resume)
+        identity = check_model(run_registry, spec.model_ids[0])
+        if not resume:
+            run_registry.save(root / 'effective-registry.json')
         (root / 'worker.json').write_text(json.dumps({'pid': os.getpid(), 'process_start': Path('/proc/self/stat').read_text().split()[21], 'started_at': time.time(), 'model': identity, 'launch_id': launch_id, 'status': 'RUNNING'}, indent=2))
         stop = threading.Event()
         violations: list[str] = []
@@ -606,18 +647,15 @@ def worker(config: ApplicationConfig, campaign_id: str, resume: bool, launch_id:
         signal.signal(signal.SIGTERM, interrupted)
         signal.signal(signal.SIGINT, interrupted)
         threading.Thread(target=watch, daemon=True).start()
-        run_registry = effective_run_registry(app.registry, spec)
-        run_registry.save(root / "effective-registry.json")
         providers = {name: provider_for(run_registry.require(name), record_path=root / f'provider-{name}.jsonl') for name in spec.model_ids}
         engine = CampaignEngine(config.output, run_registry, providers)
-        from .family_runner import family_objective
 
         def safety_check() -> None:
             config.check()
 
         try:
             execute = engine.resume if resume else engine.run
-            summary = execute(spec, objective_factory=lambda cell, generation: family_objective(cell.experiment_id, generation), command_parser=parse_commands, safety_check=safety_check)
+            summary = execute(spec, objective_factory=lambda cell, generation: execution_objective(spec, root, cell.experiment_id, generation), command_parser=parse_commands, safety_check=safety_check)
             print(json.dumps(asdict(summary)), flush=True)
             return 0 if summary.status == 'COMPLETED' else 2
         except KeyboardInterrupt:

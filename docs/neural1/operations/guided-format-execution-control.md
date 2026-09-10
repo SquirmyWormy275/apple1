@@ -55,3 +55,11 @@ output tokens and 180 seconds, with 17 turns under the 600-second campaign bound
 two provider CPU threads, and the existing 75°C watchdog. The old single enormous
 response attempt remains failed evidence, not a qualified preset. This staged
 interaction requires native acceptance; it is instructional control, not discovery.
+
+New staged ROM specs pin `objective_protocol: staged-rom-v4`. Resume reads the
+original `effective-registry.json`, validates that recorded model against the
+live daemon, and retains its transport/resource settings without rewriting the
+file. Legacy ROM runs retain their recorded generation-zero objective on every
+turn; a legacy run without a first response uses the original full-candidate v3
+objective. Missing registries or unknown protocol versions fail clearly rather
+than silently migrating the experiment. Old run files and results stay intact.

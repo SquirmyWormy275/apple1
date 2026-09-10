@@ -70,6 +70,7 @@ def test_stop_resume_preserves_completed_turns_and_other_run_cancel(configured, 
 def test_start_passes_explicit_paths_and_resume_to_worker(configured, monkeypatch):
     config, app = configured
     spec, root = saved_spec(config)
+    app.registry.save(root / 'effective-registry.json')
     (root / 'worker.json').write_text('{"launch_id":"synthetic-launch-id"}')
     monkeypatch.setattr(app, 'running', Mock(side_effect=[False, True]))
     process = Mock()
@@ -327,6 +328,7 @@ with patch.object(ApplicationConfig, "check", return_value={}), patch.object(App
 def test_systemd_run_success_alone_does_not_confirm_running(configured, monkeypatch, locked, marker_present):
     config, app = configured
     spec, root = saved_spec(config)
+    app.registry.save(root / 'effective-registry.json')
     if marker_present:
         (root / 'worker.json').write_text('{"launch_id":"synthetic-launch-id"}')
     monkeypatch.setattr(app, 'running', Mock(side_effect=[False] + [locked] * 50))
@@ -341,6 +343,7 @@ def test_systemd_run_success_alone_does_not_confirm_running(configured, monkeypa
 def test_start_waits_for_worker_lock_and_marker_after_service_submission(configured, monkeypatch):
     config, app = configured
     spec, root = saved_spec(config)
+    app.registry.save(root / 'effective-registry.json')
     running = Mock(side_effect=[False, False, True, True])
     monkeypatch.setattr(app, 'running', running)
     process = Mock()
@@ -364,6 +367,7 @@ def test_stale_launch_marker_never_confirms_new_start(configured, monkeypatch, a
     import json
     config, app = configured
     spec, root = saved_spec(config)
+    app.registry.save(root / 'effective-registry.json')
     (root / 'worker.json').write_text(json.dumps({'launch_id': 'old-launch', 'status': status}))
     monkeypatch.setattr(app, 'running', Mock(side_effect=[False] + [active] * 50))
     process = Mock()
@@ -377,6 +381,7 @@ def test_stale_launch_marker_never_confirms_new_start(configured, monkeypatch, a
 def test_same_launch_finished_worker_is_confirmed(configured, monkeypatch):
     config, app = configured
     spec, root = saved_spec(config)
+    app.registry.save(root / 'effective-registry.json')
     (root / 'worker.json').write_text('{"launch_id":"synthetic-launch-id","status":"FINISHED"}')
     monkeypatch.setattr(app, 'running', lambda: False)
     process = Mock()
