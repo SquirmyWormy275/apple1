@@ -16,6 +16,7 @@ from .models import ModelProvider
 OPERATIONS = {"ASK", "HINT", "EXPLAIN", "SIMPLER", "DEEPER", "SOURCE", "CHECK", "TRACE", "COMPARE", "CHALLENGE"}
 PROMPT_BYTES = 3000
 QUESTION_BYTES = 512
+LESSON_ID_PATTERN = r"[A-Za-z]{1,2}[0-9]{2}(?:-[a-z0-9-]+)?"
 
 UNSUPPORTED = "NOT ESTABLISHED BY THE AVAILABLE LIBRARY SOURCES."
 
@@ -39,8 +40,12 @@ class LessonCorpus:
     def __init__(self, root: str | Path = "docs/field-library") -> None:
         self.root = Path(root)
 
+    def lessons(self) -> tuple[str, ...]:
+        """Enumerate actual lesson identifiers using the same syntax as resolution."""
+        return tuple(path.name for path in sorted(self.root.iterdir()) if re.fullmatch(LESSON_ID_PATTERN, path.name) and path.is_dir() and (path / 'README.md').is_file())
+
     def context(self, lesson_id: str, *, include_answers: bool = False) -> tuple[str, tuple[str, ...]]:
-        if not re.fullmatch(r"[A-Za-z][0-9]{2}(?:-[a-z0-9-]+)?", lesson_id):
+        if not re.fullmatch(LESSON_ID_PATTERN, lesson_id):
             raise ValueError("invalid lesson ID")
         exact = self.root / lesson_id
         matches = [exact] if exact.is_dir() else sorted(self.root.glob(f"{lesson_id}-*"))

@@ -565,7 +565,8 @@ class Application:
         if op == 'META':
             return self.meta(args[1].upper() if len(args) > 1 else 'LIST', args[2] if len(args) > 2 else '')
         if op == 'LESSONS':
-            return [path.name for path in sorted((self.config.checkout / 'docs/field-library').glob('*-*')) if (path / 'README.md').exists()]
+            from .field_library import LessonCorpus
+            return list(LessonCorpus(self.config.checkout / 'docs/field-library').lessons())
         if op in ('ASK', 'HINT', 'EXPLAIN', 'SOURCE', 'CHECK', 'TRACE') and len(args) >= 3:
             from .field_library import FieldLibraryAssistant, LessonCorpus
             corpus = LessonCorpus(self.config.checkout / 'docs/field-library')
