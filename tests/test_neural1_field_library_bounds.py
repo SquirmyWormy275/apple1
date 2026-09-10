@@ -70,3 +70,31 @@ def test_oversized_authoritative_evidence_is_not_silently_truncated(tmp_path):
     result = FieldLibraryAssistant(corpus(tmp_path), provider)._answer('TRACE', 'M01', 'Explain memory bytes.', seed=0, agent_id='SYNTHETIC', evidence=evidence)
     assert result.text == UNSUPPORTED and not provider.prompts
     assert result.deterministic_evidence == evidence and not result.grounded
+
+
+def test_actual_m01_monitor_aliases_select_teaching_not_unrelated_citation_table():
+    source = LessonCorpus()
+    for question, expected in [('What does a Woz Monitor deposit command do?', '*Change.*'), ('How can I inspect a memory byte?', '*Inspect.*'), ('Explain examining and depositing memory.', '*Change.*')]:
+        context, paths = source.excerpts('M01', question, budget=2200)
+        assert expected in context
+        if 'examining' in question:
+            assert '*Inspect.*' in context
+        assert '| The Altair used lights and switches |' not in context
+        assert 'R-MON-SYNTAX' in context or 'R-MON-8' in context
+        assert not any(path.endswith('ANSWERS.md') for path in paths)
+        assert len(context.encode()) <= 2200
+
+
+def test_operation_guidance_and_explicit_length_truncation(tmp_path):
+    class Limited(Capture):
+        def generate(self, prompt, **kwargs):
+            self.prompts.append(prompt)
+            return GenerationResult('The exact unfinished response', provider_metadata={'done_reason': 'length'})
+    provider = Limited()
+    result = FieldLibraryAssistant(corpus(tmp_path), provider).answer('HINT', 'M01', 'How can I examine memory bytes?')
+    assert 'one small helpful hint' in provider.prompts[0]
+    assert provider.prompts[0].endswith('Respond in 1–3 short sentences.')
+    assert provider.prompts[0].index(UNSUPPORTED) < provider.prompts[0].index('SOURCES (selected')
+    assert result.text.startswith('The exact unfinished response')
+    assert result.output_truncated and 'incomplete' in result.support_note
+    assert result.prompt_bytes <= PROMPT_BYTES

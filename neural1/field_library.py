@@ -30,6 +30,7 @@ class GroundedAnswer:
     grounded: bool = True
     support_note: str | None = None
     prompt_bytes: int = 0
+    output_truncated: bool = False
 
 
 class LessonCorpus:
@@ -53,29 +54,56 @@ class LessonCorpus:
         """Select verbatim paragraphs deterministically; never supply answer keys outside CHECK."""
         _, paths = self.context(lesson_id, include_answers=include_answers)
         ignored = {'THE', 'AND', 'FOR', 'WITH', 'DOES', 'WHAT', 'HOW', 'CAN', 'THIS', 'THAT', 'ONLY', 'EXPLAIN', 'FROM', 'ARE'}
-        terms = set(re.findall(r'[A-Z0-9$-]{3,}', query.upper())) - ignored
+        aliases = {word: 'CHANGE' for word in ('DEPOSIT', 'DEPOSITS', 'DEPOSITING', 'STORE', 'STORES', 'STORING', 'WRITE', 'WRITES', 'WRITING', 'CHANGE', 'CHANGES', 'CHANGING')}
+        aliases.update({word: 'INSPECT' for word in ('INSPECT', 'INSPECTS', 'INSPECTING', 'EXAMINE', 'EXAMINES', 'EXAMINING', 'READ', 'READS', 'READING', 'SHOW', 'SHOWS', 'SHOWING')})
+
+        def terms(text: str) -> set[str]:
+            result = set()
+            for word in re.findall(r'[A-Z0-9$-]{3,}', text.upper()):
+                if word in ignored:
+                    continue
+                if word in aliases:
+                    result.add(aliases[word])
+                elif len(word) > 4 and word.endswith('S'):
+                    result.add(word[:-1])
+                else:
+                    result.add(word)
+            return result
+
+        query_terms = terms(query)
+        if query_terms & {'CHANGE', 'INSPECT'}:
+            query_terms -= {'MONITOR', 'WOZ', 'COMMAND'}
         candidates = []
         for path in paths:
-            for index, paragraph in enumerate(re.split(r'\n\s*\n', Path(path).read_text(encoding='utf-8'))):
+            filename = Path(path).name
+            paragraphs = re.split(r'\n\s*\n', Path(path).read_text(encoding='utf-8'))
+            # Citation tables contribute relevant original rows, never whole unrelated tables.
+            blocks = [line for paragraph in paragraphs for line in (paragraph.splitlines() if paragraph.lstrip().startswith('|') else [paragraph])]
+            for index, paragraph in enumerate(blocks):
                 paragraph = paragraph.strip()
-                if not paragraph:
+                if not paragraph or paragraph.startswith('#') or paragraph.count('?') > 1:
                     continue
-                score = sum(min(paragraph.upper().count(term), 3) for term in terms)
-                if score:
-                    candidates.append((score, path, index, paragraph))
-        candidates.sort(key=lambda item: (-item[0], item[1], item[2]))
-        if include_answers:
-            # Reserve the best matching actual answer paragraph before general sources.
-            answer = next((item for item in candidates if Path(item[1]).name == 'ANSWERS.md'), None)
-            if answer:
-                candidates.remove(answer)
-                candidates.insert(0, answer)
+                overlap = terms(paragraph) & query_terms
+                score = len(overlap) + 4 * len(overlap & {'CHANGE', 'INSPECT'})
+                if not score:
+                    continue
+                priority = 0 if filename == 'README.md' else 1 if filename == 'SOURCE-NOTES.md' else 2 if filename == 'STATUS.md' else 3
+                if include_answers and filename == 'ANSWERS.md':
+                    priority = -1
+                candidates.append((priority, -score, path, index, paragraph))
+        candidates.sort()
         selected: list[str] = []
         selected_paths: list[str] = []
-        for _, path, _, paragraph in candidates:
+        citation_candidates = [item for item in candidates if Path(item[2]).name == 'SOURCE-NOTES.md']
+        citation_budget = min(450, budget // 4) if citation_candidates else 0
+        primary_budget = budget - citation_budget
+        # Reserve a small citation allowance rather than letting metadata displace teaching.
+        ordered = [item for item in candidates if item not in citation_candidates] + citation_candidates
+        for _, _, path, _, paragraph in ordered:
             block = f'[{Path(path).name}]\n{paragraph}'
             proposed = '\n\n'.join([*selected, block])
-            if len(proposed.encode('utf-8')) > budget:
+            limit = budget if Path(path).name == 'SOURCE-NOTES.md' else primary_budget
+            if len(proposed.encode('utf-8')) > limit:
                 continue
             selected.append(block)
             if path not in selected_paths:
@@ -114,8 +142,11 @@ class FieldLibraryAssistant:
             encoded = json.dumps(trace, sort_keys=True).encode('utf-8')
             supplied_evidence['trace_detail'] = {'omitted_from_model_prompt': True, 'sha256': hashlib.sha256(encoded).hexdigest(), 'full_trace_retained_in_deterministic_evidence': True}
         evidence_text = '' if supplied_evidence is None else '\nDETERMINISTIC EVIDENCE (authoritative):\n' + json.dumps(supplied_evidence, ensure_ascii=False, separators=(',', ':'))
-        prefix = f'OPERATION: {operation}\nQUESTION:\n{question}{evidence_text}\nSOURCES (selected verbatim paragraphs, not the whole lesson):\n'
-        suffix = f'\nUse only these SOURCES and supplied deterministic evidence. Never infer omitted trace details. If unsupported, answer exactly: {UNSUPPORTED}'
+        actions = {'ASK': 'Answer the question directly.', 'HINT': 'Give one small helpful hint without a full solution.', 'EXPLAIN': 'Briefly explain the requested concept.', 'CHECK': 'Evaluate the statement against the supplied facts and answer evidence.', 'TRACE': 'Explain the supplied deterministic execution evidence.'}
+        action = actions.get(operation, 'Help with the requested lesson operation.')
+        policy = f'Use only the supplied source facts and deterministic evidence. Never infer omitted trace details. Answer when the facts are present; only when the needed facts are absent, respond exactly: {UNSUPPORTED}'
+        prefix = f'POLICY: {policy}{evidence_text}\nSOURCES (selected verbatim paragraphs, not the whole lesson):\n'
+        suffix = f'\nOPERATION: {operation}. {action}\nQUESTION: {question}\nRespond in 1–3 short sentences.'
         available = PROMPT_BYTES - len((prefix + suffix).encode('utf-8'))
         if available < 400:
             return GroundedAnswer(operation, UNSUPPORTED, (), evidence, grounded=False, support_note='Exact deterministic evidence exceeds the bounded prompt budget; evidence retained without model interpretation.')
@@ -129,7 +160,9 @@ class FieldLibraryAssistant:
         keys = self.corpus.source_keys(context)
         if text != UNSUPPORTED and keys:
             text += '\n\nSOURCES: ' + ', '.join(keys)
-        return GroundedAnswer(operation, text, paths, evidence, keys, text != UNSUPPORTED, prompt_bytes=len(prompt.encode('utf-8')))
+        truncated = (response.provider_metadata or {}).get('done_reason') == 'length'
+        note = 'Model output reached its length limit; the returned text is incomplete.' if truncated else None
+        return GroundedAnswer(operation, text, paths, evidence, keys, text != UNSUPPORTED, support_note=note, prompt_bytes=len(prompt.encode('utf-8')), output_truncated=truncated)
 
     def answer(self, operation: str, lesson_id: str, question: str, *, seed: int = 0) -> GroundedAnswer:
         operation = operation.upper()
