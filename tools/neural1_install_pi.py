@@ -9,6 +9,7 @@ from __future__ import annotations
 
 import argparse
 import fcntl
+import grp
 import hashlib
 import json
 import os
@@ -223,6 +224,18 @@ def install(args: argparse.Namespace) -> dict[str, Any]:
         directory = args.ssd / name
         directory.mkdir(exist_ok=True)
         os.chown(directory, account.pw_uid, account.pw_gid)
+    provider_logs = args.ssd / 'logs/provider'
+    provider_log = provider_logs / 'ollama.log'
+    guard()
+    if provider_logs.is_symlink() or provider_log.is_symlink():
+        raise ValueError('provider log paths must not be symlinks')
+    provider_logs.mkdir(exist_ok=True)
+    provider_account = pwd.getpwnam(service_user)
+    os.chown(provider_logs, provider_account.pw_uid, provider_account.pw_gid)
+    provider_logs.chmod(0o750)
+    provider_log.touch(exist_ok=True)
+    os.chown(provider_log, provider_account.pw_uid, provider_account.pw_gid)
+    provider_log.chmod(0o640)
     config = {'ssd': str(args.ssd), 'uuid': args.uuid, 'registry': str(registry), 'checkout': str(release), 'default_model': args.default_model, 'temperature_limit': 75.0, 'minimum_free_bytes': 2 * 1024**3}
     write(Path('/etc/neural1/config.json'), (json.dumps(config, indent=2) + '\n').encode())
     session_environment = 'export XDG_RUNTIME_DIR="${XDG_RUNTIME_DIR:-/run/user/$(id -u)}"\nexport DBUS_SESSION_BUS_ADDRESS="${DBUS_SESSION_BUS_ADDRESS:-unix:path=$XDG_RUNTIME_DIR/bus}"\n'
@@ -233,6 +246,14 @@ def install(args: argparse.Namespace) -> dict[str, Any]:
     write(Path('/usr/local/libexec/neural1-storage-check'), guard_script.encode(), 0o755)
     mount_unit = command(['systemd-escape', '--path', '--suffix=mount', str(args.ssd)])
     override = f'[Unit]\nRequires={mount_unit}\nAfter={mount_unit}\nStartLimitIntervalSec=60\nStartLimitBurst=2\n\n[Service]\nEnvironment="OLLAMA_MODELS={store}"\nEnvironment="OLLAMA_NUM_PARALLEL=1"\nEnvironment="OLLAMA_MAX_LOADED_MODELS=1"\nEnvironment="OLLAMA_MAX_QUEUE=4"\nEnvironment="OLLAMA_KEEP_ALIVE=60s"\nEnvironment="OLLAMA_NO_CLOUD=1"\nExecStartPre=/usr/local/libexec/neural1-storage-check\nRestart=on-failure\nRestartSec=10\n'
+    override += f'StandardOutput=append:{provider_log}\nStandardError=append:{provider_log}\n'
+    if not Path('/usr/sbin/logrotate').is_file():
+        raise ValueError('native logrotate is required for durable bounded provider logs')
+    provider_group = grp.getgrgid(provider_account.pw_gid).gr_name
+    rotation = f'{provider_log} {{\n    daily\n    maxsize 16M\n    rotate 4\n    missingok\n    notifempty\n    compress\n    delaycompress\n    copytruncate\n    su {service_user} {provider_group}\n    prerotate\n        /usr/local/libexec/neural1-storage-check\n    endscript\n}}\n'
+    write(Path('/etc/logrotate.d/neural1-ollama'), rotation.encode())
+    command(['/usr/sbin/logrotate', '--debug', '/etc/logrotate.d/neural1-ollama'])
+    command(['systemctl', 'is-enabled', 'logrotate.timer'])
     write(fstab, new_fstab.encode())
     write(Path('/etc/systemd/system/ollama.service.d/90-neural1-storage.conf'), override.encode())
     guard()
@@ -254,7 +275,7 @@ def install(args: argparse.Namespace) -> dict[str, Any]:
             if attempt == 4:
                 raise
             time.sleep(1)
-    result = {'status': 'INSTALLED_NEEDS_LIVE_ACCEPTANCE', 'pi_model': model, 'revision': revision, 'launch': 'neural1', 'release': str(release), 'backup': str(backup), 'user': args.user, 'linger': linger}
+    result = {'status': 'INSTALLED_NEEDS_LIVE_ACCEPTANCE', 'pi_model': model, 'revision': revision, 'launch': 'neural1', 'release': str(release), 'backup': str(backup), 'user': args.user, 'linger': linger, 'provider_log': str(provider_log)}
     guard()
     (backup / 'installation.json').write_text(json.dumps(result, indent=2) + '\n')
     return result
