@@ -179,9 +179,10 @@ def effective_run_registry(registry: ModelRegistry, spec: CampaignSpec) -> Model
             settings['format'] = 'json'
         if spec.experiments == ('256-byte-universe',) and model.backend == 'ollama':
             # Native Pi: explicit 256-byte output exceeded the former 180 s
-            # request bound. One lower-concurrency attempt retains the 600 s
+            # request bound; a cold one-thread load then exceeded 420 s.
+            # One lower-concurrency attempt retains the 600 s
             # campaign deadline and independent 75 C application watchdog.
-            settings.update(timeout_seconds=420, num_thread=1)
+            settings.update(timeout_seconds=570, num_thread=1)
         models[name] = replace(model, generation_defaults=settings)
     return ModelRegistry(models)
 

@@ -10,7 +10,7 @@ def test_rom_gets_one_long_bounded_request_without_mutating_source_registry():
     assert spec.generations == 1 and spec.agents_per_cell == 1
     assert spec.max_tokens == 1024 and spec.wall_clock_limit_seconds == 600
     configured = effective_run_registry(registry, spec).require('test')
-    assert configured.generation_defaults['timeout_seconds'] == 420
+    assert configured.generation_defaults['timeout_seconds'] == 570
     assert configured.generation_defaults['num_thread'] == 1
     assert configured.generation_defaults['max_tokens'] == 1024
     assert source.generation_defaults['timeout_seconds'] == 180
