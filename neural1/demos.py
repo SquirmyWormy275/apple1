@@ -37,7 +37,7 @@ def run_all(root: str | Path) -> dict[str, object]:
     republic_result = republic.round()
 
     rom = bytes(range(256))
-    rom_score = RomUniverse().evaluate(rom, {"nonempty-reset-vector-fixture": lambda image: image[-1] != 0})
+    rom_score = RomUniverse().evaluate(rom, {"nonempty-reset-vector-fixture": lambda image: image[-1] != 0}, known_good=rom, known_bad=bytes(256))
 
     selfhost = SelfHost()
     selfhost.qualify(1, "RAW")

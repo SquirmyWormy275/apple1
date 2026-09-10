@@ -108,6 +108,10 @@ rules.
 
 ## NEURAL1 foundation
 
+The installed [terminal application](docs/neural1/operations/terminal-application.md)
+uses `neural1` for virtual experiments, lifecycle controls, META and Field Library.
+Native Pi commissioning remains a separate measured acceptance requirement.
+
 The Python package provides a shared virtual Apple-1 world, modeled WozMon-only
 agent surface, deterministic fake/replay model providers, stable run manifests,
 content-addressed artifacts, snapshots, forks, replay metadata, lineage, five
@@ -117,7 +121,7 @@ never open serial hardware.
 
 ```bash
 python -m neural1.demos --out out/neural1-demo
-python -m neural1.benchmark
+python -m neural1.benchmark --hardware-report --output /tmp/neural1-native-hardware.json
 python -m pytest tests/test_neural1_runtime.py tests/test_neural1_experiments.py \
   tests/test_neural1_meta_visual_field.py -q
 ```

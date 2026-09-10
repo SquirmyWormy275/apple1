@@ -30,7 +30,10 @@ class LessonCorpus:
         self.root = Path(root)
 
     def context(self, lesson_id: str, *, include_answers: bool = False) -> tuple[str, tuple[str, ...]]:
-        matches = sorted(self.root.glob(f"{lesson_id}-*"))
+        if not re.fullmatch(r"[A-Za-z][0-9]{2}(?:-[a-z0-9-]+)?", lesson_id):
+            raise ValueError("invalid lesson ID")
+        exact = self.root / lesson_id
+        matches = [exact] if exact.is_dir() else sorted(self.root.glob(f"{lesson_id}-*"))
         if len(matches) != 1:
             raise ValueError("lesson ID does not resolve uniquely")
         names = ["README.md", "SOURCE-NOTES.md", "STATUS.md", "ACTIVITY.md"]
