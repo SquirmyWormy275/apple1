@@ -42,3 +42,16 @@ restricted to 0200-02FF. CPU execution permits only candidate memory, the declar
 NMOS call stack, and the existing Monitor services; an escape yields explicit
 error feedback without exposing outside-memory output. Other families retain
 their normal 4K Monitor surface.
+
+The ROM console preset now uses `staged-rom-output-and-return-v4`: sixteen
+successive turns each request one model-authored sixteen-byte deposit, then a
+seventeenth turn requests examination and execution of the retained candidate.
+The first prompt shows a sixteen-byte B-output example at 0400 and requests the
+A-output counterpart at 0200; later turns request explicit zero padding at their
+own addresses. No command or byte is inserted into the live world by the runner.
+The model can still fail; exact 256-byte coverage, CPU boundaries, and independent
+positive/negative evaluator controls remain unchanged. Requests are capped at 96
+output tokens and 180 seconds, with 17 turns under the 600-second campaign bound,
+two provider CPU threads, and the existing 75°C watchdog. The old single enormous
+response attempt remains failed evidence, not a qualified preset. This staged
+interaction requires native acceptance; it is instructional control, not discovery.

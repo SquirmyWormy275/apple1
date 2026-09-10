@@ -174,10 +174,10 @@ def test_guided_starting_prompts_bound_response_without_provider_fallback() -> N
         assert "the examination of 0200.0207, and 0200R" in prompt
         assert "0200: A9 41" not in prompt  # requested answer is not a substitute response
     rom = family_objective("256-byte-universe")
-    assert example in rom and "exactly eighteen lines" in rom
+    assert "0400: A9 42 20 EF FF 4C 1F FF 00 00" in rom
     assert "only the three new command lines" not in rom
     assert "Do not repeat the example, add padding" not in rom
-    assert "sixteen 00 bytes" in rom and "Line 18: 0200R" in rom
+    assert "exactly sixteen" in rom and "Do not run or examine yet" in rom
     assert "not a complete or blinded monitor" in rom
 
 

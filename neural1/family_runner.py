@@ -18,18 +18,7 @@ from .world import VirtualApple1World, WozMonSession
 
 _COMMON = 'This is an instruction-guided Woz Monitor formatting control, not a discovery task.\nA valid example prints ASCII B from address 0400:\n0400: A9 42 20 EF FF 4C 1F FF\n0400.0407\n0400R\nThe bytes A9 42 load B, 20 EF FF call Monitor ECHO at FFEF, and 4C 1F FF return to the Monitor.\nNow produce the corresponding program at address 0200 that prints ASCII A (hexadecimal 41).\nReturn only the three new command lines: the eight-byte deposit at 0200, the examination of 0200.0207, and 0200R.\nUse space-separated TWO-DIGIT uppercase byte pairs. Do not repeat the example, add padding, fences, labels, assembly syntax, or explanations.'
 
-_ROM_FORMAT = (
-    "Output exactly eighteen lines and nothing else.\n"
-    "The first sixteen lines deposit sixteen bytes each at addresses 0200, 0210, 0220, 0230, "
-    "0240, 0250, 0260, 0270, 0280, 0290, 02A0, 02B0, 02C0, 02D0, 02E0, 02F0. "
-    "Use ADDRESS: XX XX syntax. The 0200 line contains the eight new program bytes followed by eight 00 bytes. "
-    "Every other deposit line contains sixteen 00 bytes. Write every byte explicitly, with no ellipses.\n"
-    "Line 17: 0200.0207\n"
-    "Line 18: 0200R\n"
-)
-
-
-def family_objective(family: str) -> str:
+def family_objective(family: str, generation: int = 0) -> str:
     if family not in EXPERIMENTS:
         raise Neural1Error("unknown experiment family")
     if family == "1976-multiverse":
@@ -53,10 +42,32 @@ def family_objective(family: str) -> str:
         "ram-republic": "Read the supplied CURRENT SHARED MONITOR EXAMINATION before answering. It is the allowed view of other participants through RAM; private contexts remain isolated. This ISA-guided routine is a shared-memory execution control, not protocol discovery.",
     }
     if family == "256-byte-universe":
-        # Retain the qualified format example while replacing its final three-line
-        # and no-padding instructions with the separate exact-size contract.
-        example = "\n".join(_COMMON.splitlines()[:-2])
-        return additions[family] + "\n" + example + "\n" + _ROM_FORMAT
+        if not 0 <= generation <= 16:
+            raise Neural1Error("staged ROM construction requires generations 0 through 16")
+        scope = additions[family] + "\nStaged instruction-guided ROM control, not discovery. "
+        if generation == 0:
+            return scope + (
+                "Your persistent candidate will be built in sixteen separate deposit turns. "
+                "This turn writes only the first sixteen bytes. A format example at 0400 prints B and pads to 16 bytes:\n"
+                "0400: A9 42 20 EF FF 4C 1F FF 00 00 00 00 00 00 00 00\n"
+                "A9 42 loads B, 20 EF FF calls ECHO at FFEF, 4C 1F FF returns to the Monitor. "
+                "Construct the corresponding A-output program at 0200 (ASCII A is 41), followed by eight 00 padding bytes. "
+                "Return ONLY one deposit line at 0200 containing exactly sixteen space-separated TWO-DIGIT uppercase byte pairs. "
+                "Do not run or examine yet. No prose, fences, repeated example, or additional bytes."
+            )
+        if generation < 16:
+            return scope + (
+                f"Construction turn {generation + 1} of 16. Retain all previous RAM unchanged. "
+                f"Return ONLY one deposit line at {0x200 + 16 * generation:04X} containing exactly sixteen 00 padding bytes. "
+                "Use ADDRESS: followed by sixteen space-separated TWO-DIGIT byte pairs. "
+                "Ignore old deposit addresses in observations; write only this turn's requested address. "
+                "No other deposits, run commands, examination, prose, fences, or ellipses."
+            )
+        return scope + (
+            "All sixteen construction turns are over; retain the existing candidate unchanged. "
+            "Return ONLY these two Monitor commands on separate lines: 0200.0207 then 0200R. "
+            "Do not deposit, repair, repeat observations, or add prose/fences."
+        )
     return additions[family] + "\n" + _COMMON
 
 
@@ -86,7 +97,8 @@ def evaluate_family(
         raise Neural1Error("unknown experiment family")
     guided = any("ISA-guided execution control" in str(record.get("prompt", "")) for record in records)
     format_guided = any("instruction-guided Woz Monitor formatting control" in str(record.get("prompt", "")) for record in records)
-    task = "guided-format-output-and-return-v3" if format_guided else "isa-guided-output-and-return-v2" if guided else "bounded-output-and-return-v1"
+    staged_rom = any("Staged instruction-guided ROM control" in str(record.get("prompt", "")) for record in records)
+    task = "staged-rom-output-and-return-v4" if staged_rom else "guided-format-output-and-return-v3" if format_guided else "isa-guided-output-and-return-v2" if guided else "bounded-output-and-return-v1"
     base: dict[str, Any] = {"family": family, "target": "VIRTUAL", "task": task, "passed": False}
     if family == "1976-multiverse":
         base["task"] = "period-component-structure-validation-v1"

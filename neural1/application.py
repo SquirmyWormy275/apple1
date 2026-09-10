@@ -166,7 +166,7 @@ def check_model(registry: ModelRegistry, model_id: str) -> dict[str, Any]:
 def preset(family: str, model_id: str, *, seed: int | None = None) -> CampaignSpec:
     if family not in EXPERIMENTS:
         raise Neural1Error('unknown experiment family')
-    return CampaignSpec.create(experiments=(family,), model_ids=(model_id,), seeds=(seed if seed is not None else time.time_ns() % 2147483647,), generations=1 if family == '256-byte-universe' else 3, agents_per_cell=2 if family == 'ram-republic' else 1, ram_budget=4096, max_tokens=1024 if family == '256-byte-universe' else 512 if family == '1976-multiverse' else 192, generation_settings={'preset': 'bounded-console-v1', 'context_reset_generations': 2}, matched_control='deterministic family evaluator; controls are separate from model evidence', wall_clock_limit_seconds=600)
+    return CampaignSpec.create(experiments=(family,), model_ids=(model_id,), seeds=(seed if seed is not None else time.time_ns() % 2147483647,), generations=17 if family == '256-byte-universe' else 3, agents_per_cell=2 if family == 'ram-republic' else 1, ram_budget=4096, max_tokens=96 if family == '256-byte-universe' else 512 if family == '1976-multiverse' else 192, generation_settings={'preset': 'bounded-console-v1', 'context_reset_generations': 2}, matched_control='deterministic family evaluator; controls are separate from model evidence', wall_clock_limit_seconds=600)
 
 
 def effective_run_registry(registry: ModelRegistry, spec: CampaignSpec) -> ModelRegistry:
@@ -178,11 +178,9 @@ def effective_run_registry(registry: ModelRegistry, spec: CampaignSpec) -> Model
         if spec.experiments == ('1976-multiverse',) and model.backend == 'ollama':
             settings['format'] = 'json'
         if spec.experiments == ('256-byte-universe',) and model.backend == 'ollama':
-            # Native Pi: explicit 256-byte output exceeded the former 180 s
-            # request bound; a cold one-thread load then exceeded 420 s.
-            # One lower-concurrency attempt retains the 600 s
-            # campaign deadline and independent 75 C application watchdog.
-            settings.update(timeout_seconds=570, num_thread=1)
+            # Each staged deposit has at most16 bytes; retain ordinary request
+            # bounds instead of stretching a repeated-output response.
+            settings.update(timeout_seconds=180, num_thread=2)
         models[name] = replace(model, generation_defaults=settings)
     return ModelRegistry(models)
 
@@ -619,7 +617,7 @@ def worker(config: ApplicationConfig, campaign_id: str, resume: bool, launch_id:
 
         try:
             execute = engine.resume if resume else engine.run
-            summary = execute(spec, objective_factory=lambda cell, generation: family_objective(cell.experiment_id), command_parser=parse_commands, safety_check=safety_check)
+            summary = execute(spec, objective_factory=lambda cell, generation: family_objective(cell.experiment_id, generation), command_parser=parse_commands, safety_check=safety_check)
             print(json.dumps(asdict(summary)), flush=True)
             return 0 if summary.status == 'COMPLETED' else 2
         except KeyboardInterrupt:
