@@ -1,5 +1,9 @@
 # Revision 3 execution status
 
+This is the preserved pre-deployment checkpoint. It is superseded by
+[native Pi acceptance](pi-acceptance-2026-09-10.md), which records the installed
+application, actual Pi runs and remaining preservation work.
+
 Status: **PARTIAL — native Pi deployment and acceptance blocked by local access.**
 
 The execution branch began from a clean checkout and freshly fetched upstream

@@ -1,6 +1,6 @@
 # Native Pi acceptance — 2026-09-10
 
-Status: **BLOCKED** on preservation transfer; the installed application is usable. The tested application revision is
+Status: **RUNNING** a guarded preservation transfer; the installed application is usable. The tested application revision is
 `4f06e6d10bcbffca47c0f7554800972555085c78`. This record describes actual
 Raspberry Pi 5 Model B Rev 1.1 execution, ARM64, 8 GB RAM. The Apple-1 world
 remains **VIRTUAL**. No physical serial commissioning was performed.
@@ -96,10 +96,32 @@ needed. Active acceptance used Phi4-mini Q4_K_M with manifest SHA256
   transfer, with frozen CPU work verified and no thermal transport restart.
   It then stopped at a critical host spike of 102.05°C. The source and partial
   were retained, and task workers/inhibitors were removed. The Pi remained on.
-  Host airflow/cooling clarification is now the external prerequisite; this is
-  not a missing Pi software installation task.
-- Private reports record BLOCKED on the remaining host transfer. Task privilege helpers and sleep inhibitors
-  have been removed; the usable Pi application, provider and SSD remain on.
+  The operator subsequently confirmed clear vents. Actual fan readings showed
+  both fans spinning, while the host platform profile was set to performance.
+  A temporary supported power-saver hold changed that profile to low-power.
+  A ten-minute resumed transfer then peaked at 58°C with no cooling pauses and
+  advanced the owned partial to 4,791,648,232 bytes. A second ten-minute trial
+  with a 4 MiB/s transfer cap and 25% CPU allowance also peaked at 58°C without
+  cooling pauses, reaching 5,822,611,424 bytes. The longer guarded continuation
+  uses those measured limits; this is not yet full-image verification.
+- The guarded transfer owns its temporary sleep inhibitor and power-saver hold;
+  the watchdog stops on loss of the qualified power profile. Existing thermal,
+  UUID, capacity, partial-ownership and full-hash promotion guards remain in
+  force. No automatic transport retry or final completion claim is made.
+  Privileged setup helpers are removed; the Pi application, provider and SSD
+  remain on. No further device power changes are scheduled.
+- Cleanup now requires successful termination and no live task processes before
+  thawing for service cleanup. A native synthetic frozen-service test verified
+  that a rejected kill leaves the worker frozen, followed by successful kill
+  and cleanup without more work. Watcher cleanup is pinned to its originating
+  transfer invocation, and long-run qualification binds the reviewed controls.
+
+Saved-data persistence is established. Automatic startup following a genuine
+post-install SSD activation remains unobserved; earlier recovery used an
+authenticated mount operation. If no such observation becomes available under
+the current power constraints, the final contract status remains **PARTIAL**
+even after image verification. Current service status or rule validation alone
+does not replace that acceptance test.
 
 Private device identities, credentials, account configuration, complete logs,
 backups, weights and raw images are kept outside Git. The private acceptance
