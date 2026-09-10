@@ -17,6 +17,38 @@ def test_installer_rejects_host_even_with_pi_model_fixture(tmp_path):
         require_pi(machine='aarch64', model_path=model)
 
 
+@pytest.mark.parametrize('fail', [False, True])
+def test_installer_code_mask_is_explicit_and_callers_mask_restored(tmp_path, monkeypatch, fail):
+    import argparse
+    import os
+    import stat
+
+    from tools import neural1_install_pi as installer
+
+    def build(args):
+        directory = tmp_path / 'release'
+        directory.mkdir()
+        payload = directory / 'code.py'
+        payload.write_text('pass\n')
+        assert stat.S_IMODE(directory.stat().st_mode) == 0o755
+        assert stat.S_IMODE(payload.stat().st_mode) == 0o644
+        if fail:
+            raise RuntimeError('synthetic installation failure')
+        return {'synthetic': True}
+
+    monkeypatch.setattr(installer, '_install', build)
+    original = os.umask(0o077)
+    try:
+        if fail:
+            with pytest.raises(RuntimeError, match='synthetic'):
+                installer.install(argparse.Namespace())
+        else:
+            assert installer.install(argparse.Namespace()) == {'synthetic': True}
+        assert os.umask(0o077) == 0o077
+    finally:
+        os.umask(original)
+
+
 def test_fstab_mount_is_uuid_based_nofail_and_idempotent():
     original = 'proc /proc proc defaults 0 0\n'
     result = fstab_content(original, 'aaaa-bbbb', Path('/mnt/neural1-ssd'))

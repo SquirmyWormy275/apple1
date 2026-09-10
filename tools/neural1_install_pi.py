@@ -88,6 +88,16 @@ def ensure_linger(user: str, uid: int, backup: Path, guard: Callable[[], None]) 
 
 
 def install(args: argparse.Namespace) -> dict[str, Any]:
+    # Code must be readable by the runtime/service accounts even when invoked
+    # by a private operator service. Backup directories retain explicit 0700.
+    previous_umask = os.umask(0o022)
+    try:
+        return _install(args)
+    finally:
+        os.umask(previous_umask)
+
+
+def _install(args: argparse.Namespace) -> dict[str, Any]:
     sys.dont_write_bytecode = True
     model = require_pi()
     if os.geteuid() != 0:
@@ -218,6 +228,9 @@ def install(args: argparse.Namespace) -> dict[str, Any]:
             raise ValueError('only an explicit py65 1.2.0 wheel is accepted') from None
         guard()
         command([str(python), '-m', 'pip', 'install', '--no-index', '--no-deps', str(wheel)])
+    # Verify account access before changing the active launchers or provider.
+    for identity in sorted({args.user, service_user}):
+        command(['runuser', '-u', identity, '--', 'env', f'PYTHONPATH={release}', 'PYTHONDONTWRITEBYTECODE=1', str(python), '-c', 'import neural1.application'])
     command([str(python), '-c', 'from importlib.metadata import version; assert version("py65") == "1.2.0"'])
     for name in ('runs', 'meta', 'logs', 'exports'):
         guard()
