@@ -1,9 +1,15 @@
-# Propeller overnight preparation — 2026-09-11
+# Propeller preparation — executed 2026-09-11
 
-Status: PREPARED WORK ORDER. This document is not an executed experiment.
+Status: PREPARATION COMPLETE. The user directed execution immediately; the
+scheduled duplicate was disabled. No live experiment has been executed.
 Authority class: DERIVED DOCUMENTATION.
 Repository: SquirmyWormy275/apple1.
 Starting main commit: 2c40f1c5c63a083184eb724df4500cd1427bd3d2.
+
+Completed deliverables and validation are in the
+[execution report](../hardware/propeller-overnight-report-2026-09-11.md).
+The work order below is retained to show scope. References to overnight/morning
+describe its original scheduling, not deferred or still-running work.
 
 ## Objective
 
@@ -46,7 +52,7 @@ and pyproject.toml. Reuse these facilities where appropriate.
 | Open capture | Both channels high throughout 30 seconds at 4 MS/s: 120,000,000 samples, no recorded transitions |
 | Serial action | One 202.5 ms open/drain/close; requested DTR=false and RTS=false; no transmit event; empty startup drain |
 | Display | Corruption reproduced; physical Reset restored a live cursor; stale garbage remained |
-| DTR/RTS | Not routed through the installed four-conductor breakout connection |
+| DTR/RTS | September 2 recorded an unrouted four-conductor connection; the newly retrieved drawing depicts DTR/C9/Q1, requiring physical reconciliation |
 | Missing measurement | Propeller RESn; analog 3.3 V/5 V supply and ground behavior |
 | Physical access gap | No verified RESn point, no multimeter, and no IC grabbers were available during that session |
 | Board identity | replica I plus; revision not independently verified from board markings |

@@ -1,6 +1,6 @@
 # Prepared session: Propeller reset and power investigation
 
-Status: PREPARED / NOT EXECUTED.
+Status: PREPARATION COMPLETE / LIVE SESSION NOT EXECUTED.
 Authority class: DERIVED DOCUMENTATION.
 This card adds measurement coverage after the completed September 2 capture.
 It does not change that packet's INCONCLUSIVE scientific result.
@@ -32,6 +32,18 @@ measurements must identify the chip package/orientation and accessible RESn
 point. Record a specific point, voltage domain, and supporting evidence.
 A package pin number alone does not verify a board test point.
 
+The newly retrieved Briel Revision 0 drawing identifies **RST at U7 pin 11
+and Q1 collector** as the Propeller reset net. Its **RESET** button net instead
+resets the 6502/6821. It also shows DTR coupled through C9/Q1, whereas the old
+session recorded only four connected conductors. Inspect the actual breakout's
+top and underside and check routing before deciding whether DTR is connected.
+See the [source and candidate-point guide](../hardware/propeller-reset-power-reference.md).
+
+Resolve the power-selector discrepancy before the live comparison: the old
+record says 3.3V, while generic manufacturer programming instructions say 5V.
+Identify what the installed module actually switches and measure its rails;
+the documentation difference alone is not a reason to move the selector.
+
 Use secure insulated clips suitable for the point. Attach/reposition probes
 with board power off. Ground goes first. The old session used analyzer ground
 on the CH7 side: SparkFun warns against the GND position adjacent to CH6 on
@@ -50,8 +62,9 @@ checked for this actual setup.
 | GND | Board reference | Prior labelled USB INTERFACE GND; verify current setup |
 | CH0 | FT232R TX-O | Prior labelled header point; verify current setup |
 | CH1 | FT232R RX-I | Prior labelled header point; verify current setup |
-| CH2 | Propeller RESn | UNVERIFIED; requires physical identification |
-| Optional additional | Relevant clock/reset/bus observation | Only after source review and safe point identification |
+| CH2 | Propeller RESn / RST | Candidate U7 pin 11 or Q1 collector net; actual access UNVERIFIED |
+| Optional CH3 | Breakout DTR | Only if installed routing and secure access are verified |
+| Optional CH4 | PHI0 / CPU clock | Candidate U7 P15, physical pin 20; actual access UNVERIFIED |
 
 Do not attach a probe to an unverified IC leg. Do not treat the board RESET
 button as proof that it is connected to Propeller RESn.
@@ -61,6 +74,10 @@ button as proof that it is connected to Propeller RESn.
 Starting comparison settings: 4 MS/s, named channels, 12-second passive
 baseline, then a separate 30-second continuous recording with at least
 5 seconds before and after the event. Verify host throughput/sample counts.
+At 4 MS/s the sample interval is 250 ns; a shorter disturbance may be missed.
+If PHI0 timing is included, prefer a verified 12 MS/s acquisition (360 MB of
+one-byte samples for 30 seconds before compression). Rehearsal does not establish
+that either host can sustain this rate. Record any early stop as a partial trace.
 
 Use streamed recording for the fx2lafw analyzer. An event-trigger assumption
 must not eliminate pre-event samples. Record Pi and laptop clocks and their
@@ -77,7 +94,7 @@ native files before making derived exports.
 2. Establish and record the physical map with Alex. Capture readiness requires
    verified RESn coverage, correct ground, secure probes, and a stable display.
 3. Save passive baseline. Unexplained behavior ends the sequence.
-4. With Alex present and the measurement setup ready for the newly approved
+4. With Alex present and the measurement setup verified for the
    test, start fresh recording, retain pre-event coverage, then invoke the
    existing exclusive owner's no-transmit session once.
 5. Save the raw trace and owner log. If the display changes or another stop
@@ -104,6 +121,9 @@ experiment has run. Firmware changes and EEPROM programming are outside this
 card.
 
 References:
+- [Completed preparation report](../hardware/propeller-overnight-report-2026-09-11.md)
+- [Local Codex handoff](../hardware/propeller-codex-handoff.md)
+- [Reset and power sources](../hardware/propeller-reset-power-reference.md)
 - [Completed worksheet](2026-09-02-ft232r-open-analyzer/worksheet.md)
 - [Serial protocol](../serial-test-protocol.md)
 - [Overnight work order](../plans/2026-09-11-propeller-overnight-preparation.md)
