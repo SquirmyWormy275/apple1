@@ -1,6 +1,6 @@
 # Native Pi acceptance — 2026-09-10
 
-Status: **PARTIAL**, awaiting coordinated final physical startup acceptance.
+Status: **DONE**. The final coordinated physical startup and live workflow passed.
 The installed application is usable and preservation verification has passed.
 The tested application revision is
 `4f06e6d10bcbffca47c0f7554800972555085c78`. This record describes actual
@@ -21,9 +21,22 @@ profile was lost, at 49°C. That failed attempt and earlier thermal stops remain
 preserved as historical evidence. Native verification reused the completed
 transfer; no image recopy or model download was needed.
 
-The user authorized coordinated power on/off testing after preservation
-verification. The final baseline is recorded; no new power operation has yet
-been performed. The Pi remains powered while physical readiness is confirmed.
+The final clean shutdown and user-assisted boot with the SSD disconnected
+passed: the actual Pi booted normally, the application returned a clear missing
+storage error, and the underlying mountpoint remained empty. Connecting and
+powering the identified SSD then automatically mounted it and started the local
+Ollama service. No manual mount, service start or reset-failed command was used.
+Two initial `.local` resolution attempts failed; strict host-key authentication
+at the existing Wi-Fi address established the same Pi and its new boot.
+
+Final post-power run `N1-P-5898735E8998CC35` produced three genuine responses and
+eight accepted strict Monitor commands. Independent replay/execution printed A
+and returned to `MONITOR_WARM_ENTRY`. Turn two received its private Monitor
+observations; the configured context reset applied at turn three. The run took
+111.291 seconds, peaked at 63.9°C, reported zero throttling flags, and retained
+at least 4,407,525,376 bytes of available memory. Normal-login `neural1` from `/`
+passed, prior META and a saved ROM export reopened, and the new run's export
+verified all 13 files and reopened with its actual META claim.
 
 The installed normal entry point is `neural1`. It was exercised from a normal
 runtime-account login outside the checkout. After the first restart and manual
@@ -40,8 +53,7 @@ The prepared USB power test never reached its power-changing operation.
 A UUID-scoped udev rule now requests the existing guarded Ollama service when
 the ext4 SSD appears after boot. The service requires its configured mount and
 checks storage identity before writing. Native udev validation and nine focused
-installer tests passed. A physical off/on test of the new rule has not been
-performed. This rule controls service startup, not enclosure power. The Pi and
+installer tests passed. The final physical arrival test above passed. This rule controls service startup, not enclosure power. The Pi and
 SSD are left powered and mounted. Final ordinary-login run
 `N1-P-FC1298236505CB0F` passed with three genuine responses, eight accepted
 commands and independently checked A/Monitor return. Saved META and the ROM
@@ -101,24 +113,23 @@ needed. Active acceptance used Phi4-mini Q4_K_M with manifest SHA256
 `78fad5d182a7c33065e153a5f8ba210754207ba9d91973f57dffa7f487363753` and GGUF SHA256
 `3c168af1dea0a414299c7d9077e100ac763370e5a98b3c53801a958a47f0a5db`.
 
-## Remaining contract requirements
+## Final operating state
 
-The final coordinated test must establish normal Pi boot without the SSD,
-clear application refusal without fallback writes, automatic mounting and
-provider startup after the identified SSD is connected, and a fresh ordinary
-launch with genuine model output, accepted Monitor execution and reopened
-prior evidence. Earlier restarts required manual recovery before the new
-UUID-scoped startup rule was installed. Rule validation and current service
-status do not establish this remaining behavior.
+All required gates passed. The SSD enclosure still needs its normal physical
+activation and connects at USB 2 speed with the existing cable. Its arrival now
+starts storage-dependent software automatically; no software setup remains.
+The Pi, SSD and local Ollama service remain on. Task-owned host sleep inhibition
+and completed temporary helpers are stopped. Writes were flushed; the active
+SSD was not unmounted. Originals and historical failed attempts remain retained.
 
-All preservation verification is complete. The native finish receipt and
-aggregate audit establish migration only; they do not claim application DONE.
-The final physical test and application judgment remain pending. Task-owned
-sleep inhibition is temporary and will be removed when this work ends.
+Application release remains `4f06e6d10bcbffca47c0f7554800972555085c78`;
+late-SSD wiring is from `462ec40fdb41a5f009574b84b824442ebabd9be6`.
+Implementation and this sanitized acceptance record are committed on
+`neural1/pi-completion-r3`; they have not been pushed.
 
 Private device identities, credentials, account configuration, complete logs,
 backups, weights and raw images are kept outside Git. The private acceptance
 ledger contains exact paths, hashes, gate evidence and recovery receipts. A final
 four-file launcher/config rollback-and-restore rehearsal passed on the actual
-installed revision; no full-system restore is claimed. **DONE has not been
-established.**
+installed revision; no full-system restore is claimed. The complete private morning report and machine-readable gate ledger are
+available to the normal Pi account.
