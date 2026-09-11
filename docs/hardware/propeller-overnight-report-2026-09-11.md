@@ -8,6 +8,9 @@ Authority: DERIVED DOCUMENTATION, with separately labelled synthetic fixtures.
 Repository: [Apple1 PR #6](https://github.com/SquirmyWormy275/apple1/pull/6).
 Evidence baseline: `2c40f1c5c63a083184eb724df4500cd1427bd3d2`.
 Preparation work order: `f4f257acaf14d03c10a15a506e015978e4f5261d`.
+Completed implementation and validated helpers:
+`8fb55d19a5a88d967e2abf9aa0de387c96afea42`.
+The following documentation commit records that exact execution revision.
 
 ## Completed work
 
