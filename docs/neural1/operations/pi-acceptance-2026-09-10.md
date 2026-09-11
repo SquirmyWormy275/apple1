@@ -1,9 +1,20 @@
 # Native Pi acceptance — 2026-09-10
 
-Status: **RUNNING** a guarded preservation transfer; the installed application is usable. The tested application revision is
+Status: **RUNNING** native preservation verification; the installed application is usable. The tested application revision is
 `4f06e6d10bcbffca47c0f7554800972555085c78`. This record describes actual
 Raspberry Pi 5 Model B Rev 1.1 execution, ARM64, 8 GB RAM. The Apple-1 world
 remains **VIRTUAL**. No physical serial commissioning was performed.
+
+All 127,865,454,592 image bytes have reached the SSD. The earlier host guard
+stopped during full-hash verification when its required power profile was lost;
+the host was at 49°C, and this was not a thermal-limit incident. The complete
+partial and the earlier NOT_READY audit remain preserved. A bounded native Pi
+user service now runs the existing receiver's full-hash verification and guarded
+promotion independently of the ThinkPad. Its active process and advancing hash
+log were verified, at approximately 40 MB/s and 50°C. A separate bounded audit
+waits for that exact native invocation and its verified final-file receipt.
+No image recopy, model download, power cycle or mount change was needed. Final
+image verification is still pending; prior transfer stages below are historical.
 
 The installed normal entry point is `neural1`. It was exercised from a normal
 runtime-account login outside the checkout. After the first restart and manual
@@ -123,8 +134,9 @@ the current power constraints, the final contract status remains **PARTIAL**
 even after image verification. Current service status or rule validation alone
 does not replace that acceptance test.
 
-A bounded host audit service now waits for the exact running preservation
-transfer to finish. Its process and startup log were verified. It requires the
+A bounded host audit service waited for the original preservation transfer;
+it recorded NOT_READY when the host guard stopped that invocation. The current
+native-finish audit requires the
 image completion marker, the receiver's full-hash receipt and unchanged final
 file identity, then checks all 195 smaller destinations against their saved
 verification fingerprints. Changed or missing evidence fails the audit; it does
