@@ -15,6 +15,9 @@ log were verified, at approximately 40 MB/s and 50°C. A separate bounded audit
 waits for that exact native invocation and its verified final-file receipt.
 No image recopy, model download, power cycle or mount change was needed. Final
 image verification is still pending; prior transfer stages below are historical.
+The user has now authorized coordinated power on/off testing at the end, after
+preservation verification. That supersedes the earlier pause on power changes.
+No new power operation has yet been performed or scheduled.
 
 The installed normal entry point is `neural1`. It was exercised from a normal
 runtime-account login outside the checkout. After the first restart and manual
@@ -94,8 +97,9 @@ needed. Active acceptance used Phi4-mini Q4_K_M with manifest SHA256
 
 ## Remaining contract requirements
 
-- End-to-end physical late-power/startup acceptance remains unverified. Do not
-  repeat power tests against the user’s instruction to keep both devices on.
+- End-to-end physical late-power/startup acceptance remains unverified. Perform
+  the newly authorized final power test after preservation verification and a
+  fresh physical handoff checkpoint with the user.
 - Finish and verify the existing historical image migration. The original image
   is preserved; an owned incomplete destination is not a verified migration.
   A revised image-only transfer skipped redundant small-file checks and added
@@ -129,8 +133,8 @@ needed. Active acceptance used Phi4-mini Q4_K_M with manifest SHA256
 
 Saved-data persistence is established. Automatic startup following a genuine
 post-install SSD activation remains unobserved; earlier recovery used an
-authenticated mount operation. If no such observation becomes available under
-the current power constraints, the final contract status remains **PARTIAL**
+authenticated mount operation. Until the newly authorized final test establishes
+that behavior, the final contract status remains **PARTIAL**
 even after image verification. Current service status or rule validation alone
 does not replace that acceptance test.
 
