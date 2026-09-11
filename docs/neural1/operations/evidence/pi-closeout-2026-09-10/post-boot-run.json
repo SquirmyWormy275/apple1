@@ -1,0 +1,258 @@
+{
+  "campaign_id": "N1-P-5898735E8998CC35",
+  "classification": "SANITIZED_EXISTING_NATIVE_RUN_EVIDENCE",
+  "elapsed_seconds": 111.29100337099999,
+  "export_and_meta": {
+    "meta": {
+      "artifact_hash": "3e7d93859b8c8c5247ecf62fd6b55da4325183ffa314403f3bf66e15d2c35dba",
+      "claim_id": "N1-C-5DA21D6803488059",
+      "evidence_id": "N1-E-694DA0598B352569"
+    },
+    "summary": {
+      "campaign_id": "N1-P-5898735E8998CC35",
+      "cancelled_cells": [],
+      "completed_cells": [
+        "N1-CELL-BD2C702F10EE90AB"
+      ],
+      "elapsed_seconds": 111.29100337099999,
+      "incomplete_cells": [],
+      "status": "COMPLETED"
+    },
+    "verification": {
+      "checked_files": 13,
+      "errors": [],
+      "valid": true
+    }
+  },
+  "family_result": {
+    "accepted_transactions": 8,
+    "artifact_sha256": "b9d97716ca762e80d4f3bba402595c6efaca45eec8ec27a5e608ca588a251912",
+    "execution_requested": true,
+    "family": "4k-mind",
+    "generations": [
+      {
+        "generation": 1,
+        "lineage": "LIN-02A02C1586ACCEEF",
+        "ram_sha256": "6ca793c229cfd75eab3751e68312e3641c4eeffc4b4759d10ccb7258c90a9730",
+        "transcript": {
+          "N1-CELL-BD2C702F10EE90AB-A001": [
+            "0200: A9 41 20 EF FF 4C 1F FF",
+            "0200: A9 41 20 EF FF 4C 1F FF",
+            "0200: STOP=MONITOR_WARM_ENTRY STEPS=4 OUTPUT='A'"
+          ]
+        }
+      },
+      {
+        "generation": 2,
+        "lineage": "LIN-CA4A3C84A628D6B7",
+        "ram_sha256": "6ca793c229cfd75eab3751e68312e3641c4eeffc4b4759d10ccb7258c90a9730",
+        "transcript": {
+          "N1-CELL-BD2C702F10EE90AB-A001": [
+            "0200: A9 41 20 EF FF 4C 1F FF",
+            "0200: A9 41 20 EF FF 4C 1F FF"
+          ]
+        }
+      },
+      {
+        "generation": 3,
+        "lineage": "LIN-92D0F8ECE704BE5C",
+        "ram_sha256": "6ca793c229cfd75eab3751e68312e3641c4eeffc4b4759d10ccb7258c90a9730",
+        "transcript": {
+          "N1-CELL-BD2C702F10EE90AB-A001": [
+            "0200: A9 41 20 EF FF 4C 1F FF",
+            "0200: A9 41 20 EF FF 4C 1F FF",
+            "0200: STOP=MONITOR_WARM_ENTRY STEPS=4 OUTPUT='A'"
+          ]
+        }
+      }
+    ],
+    "independent_execution": {
+      "final_a": 65,
+      "final_p": 48,
+      "final_pc": 65311,
+      "final_sp": 255,
+      "final_x": 0,
+      "final_y": 0,
+      "instructions": 4,
+      "screen_text": "A",
+      "start_address": 512,
+      "stop_reason": "MONITOR_WARM_ENTRY",
+      "trace": [
+        {
+          "a": 0,
+          "opcode": 169,
+          "p": 48,
+          "pc": 512,
+          "sp": 255,
+          "step": 0,
+          "x": 0,
+          "y": 0
+        },
+        {
+          "a": 65,
+          "opcode": 32,
+          "p": 48,
+          "pc": 514,
+          "sp": 255,
+          "step": 1,
+          "x": 0,
+          "y": 0
+        },
+        {
+          "a": 65,
+          "opcode": 96,
+          "p": 48,
+          "pc": 65519,
+          "sp": 253,
+          "step": 2,
+          "x": 0,
+          "y": 0
+        },
+        {
+          "a": 65,
+          "opcode": 76,
+          "p": 48,
+          "pc": 517,
+          "sp": 255,
+          "step": 3,
+          "x": 0,
+          "y": 0
+        }
+      ]
+    },
+    "lineage": [
+      {
+        "artifact_hash": "6ca793c229cfd75eab3751e68312e3641c4eeffc4b4759d10ccb7258c90a9730",
+        "kind": "ram-culture",
+        "mutation": "generation 1",
+        "node_id": "LIN-02A02C1586ACCEEF",
+        "parents": []
+      },
+      {
+        "artifact_hash": "6ca793c229cfd75eab3751e68312e3641c4eeffc4b4759d10ccb7258c90a9730",
+        "kind": "ram-culture",
+        "mutation": "generation 3",
+        "node_id": "LIN-92D0F8ECE704BE5C",
+        "parents": [
+          "LIN-CA4A3C84A628D6B7"
+        ]
+      },
+      {
+        "artifact_hash": "6ca793c229cfd75eab3751e68312e3641c4eeffc4b4759d10ccb7258c90a9730",
+        "kind": "ram-culture",
+        "mutation": "generation 2",
+        "node_id": "LIN-CA4A3C84A628D6B7",
+        "parents": [
+          "LIN-02A02C1586ACCEEF"
+        ]
+      }
+    ],
+    "passed": true,
+    "replay_matches": true,
+    "status": "EVALUATED",
+    "target": "VIRTUAL",
+    "task": "guided-format-output-and-return-v3"
+  },
+  "finished_at_utc": "2026-09-11T03:47:31.022454+00:00",
+  "model": {
+    "digest": "78fad5d182a7c33065e153a5f8ba210754207ba9d91973f57dffa7f487363753",
+    "endpoint": "http://127.0.0.1:11434",
+    "model_id": "phi4-mini-38b",
+    "name": "phi4-mini:latest",
+    "quantization": "Q4_K_M"
+  },
+  "original_private_artifact_sha256": {
+    "cells/N1-CELL-BD2C702F10EE90AB/transcript.jsonl": "035cda02653d4fe6cce59ca0f056addfc1d6e7487eb9b42bd5ffd8132456215a",
+    "effective-registry.json": "39e0ca6b221d4b6d09ccf19731e9078c1599653c3da6b20ac981852e0c2d651d",
+    "provider-phi4-mini-38b.jsonl": "3a343f72d5778266818eb5a8f270daa583bdc5cf98cf1dd9318e9e941eaf1278",
+    "resources.jsonl": "81db3c93e98fcd235e337d4a5ec4028c8f1eaa3a70c97d51eff0104c5305af79",
+    "spec.json": "fcfc322e0bcea10b634fd41512530aabb549ae9a5552a86ef6da49e31af20bde",
+    "worker.json": "125585dbf2f28f9c65cdb9c6998e719da0ebc7fcae6e361c587749966bb7934c"
+  },
+  "resources": {
+    "min_available_memory_bytes": 4407525376,
+    "min_ssd_free_bytes": 856484814848,
+    "peak_temperature_c": 63.9,
+    "request_latency_ms": [
+      86340.46228799997,
+      18185.998832999983,
+      6614.259168999979
+    ],
+    "resource_samples": 53,
+    "throttling_flags": [
+      0
+    ]
+  },
+  "runtime_revision": "4f06e6d10bcbffca47c0f7554800972555085c78",
+  "started_at_utc": "2026-09-11T03:45:39.671878+00:00",
+  "turn_numbering": "generation field is original; prose turn1/2/3 corresponds array indices0/1/2",
+  "turns": [
+    {
+      "accepted_commands": 3,
+      "commands": [
+        "0200: A9 41 20 EF FF 4C 1F FF",
+        "0200.0207",
+        "0200R"
+      ],
+      "generation": 0,
+      "observations": [],
+      "outputs": [
+        "0200: A9 41 20 EF FF 4C 1F FF",
+        "0200: A9 41 20 EF FF 4C 1F FF",
+        "0200: STOP=MONITOR_WARM_ENTRY STEPS=4 OUTPUT='A'"
+      ],
+      "prompt": "Your world persists across generations within 4K. No host memory access is available.\nThis is an instruction-guided Woz Monitor formatting control, not a discovery task.\nA valid example prints ASCII B from address 0400:\n0400: A9 42 20 EF FF 4C 1F FF\n0400.0407\n0400R\nThe bytes A9 42 load B, 20 EF FF call Monitor ECHO at FFEF, and 4C 1F FF return to the Monitor.\nNow produce the corresponding program at address 0200 that prints ASCII A (hexadecimal 41).\nReturn only the three new command lines: the eight-byte deposit at 0200, the examination of 0200.0207, and 0200R.\nUse space-separated TWO-DIGIT uppercase byte pairs. Do not repeat the example, add padding, fences, labels, assembly syntax, or explanations.",
+      "provider_result": {
+        "completion_tokens": 29,
+        "latency_ms": 86340.46228799997,
+        "prompt_tokens": 196
+      },
+      "raw_response_sha256": "9da10d05ae4f3a7f351f164a3f02bf1038c74a171a40478b30c5af8799ec45d7",
+      "response": "0200: A9 41 20 EF FF 4C 1F FF\n0200.0207\n0200R"
+    },
+    {
+      "accepted_commands": 2,
+      "commands": [
+        "0200: A9 41 20 EF FF 4C 1F FF",
+        "0200: A9 41 20 EF FF 4C 1F FF"
+      ],
+      "generation": 1,
+      "observations": [],
+      "outputs": [
+        "0200: A9 41 20 EF FF 4C 1F FF",
+        "0200: A9 41 20 EF FF 4C 1F FF"
+      ],
+      "prompt": "Your world persists across generations within 4K. No host memory access is available.\nThis is an instruction-guided Woz Monitor formatting control, not a discovery task.\nA valid example prints ASCII B from address 0400:\n0400: A9 42 20 EF FF 4C 1F FF\n0400.0407\n0400R\nThe bytes A9 42 load B, 20 EF FF call Monitor ECHO at FFEF, and 4C 1F FF return to the Monitor.\nNow produce the corresponding program at address 0200 that prints ASCII A (hexadecimal 41).\nReturn only the three new command lines: the eight-byte deposit at 0200, the examination of 0200.0207, and 0200R.\nUse space-separated TWO-DIGIT uppercase byte pairs. Do not repeat the example, add padding, fences, labels, assembly syntax, or explanations.\nYOUR PRIVATE MONITOR OBSERVATIONS:\nWOZMON:0200: A9 41 20 EF FF 4C 1F FF\nWOZMON:0200: A9 41 20 EF FF 4C 1F FF\nWOZMON:0200: STOP=MONITOR_WARM_ENTRY STEPS=4 OUTPUT='A'",
+      "provider_result": {
+        "completion_tokens": 57,
+        "latency_ms": 18185.998832999983,
+        "prompt_tokens": 272
+      },
+      "raw_response_sha256": "d03f9783d51539cdbd6f71473c4eff9f5c38d3d4e7e3afbac5c819a1086db392",
+      "response": "0200: A9 41 20 EF FF 4C 1F FF\n0200: A9 41 20 EF FF 4C 1F FF\n0200: STOP=MONITOR_WARM_ENTRY STEPS=4 OUTPUT='A'"
+    },
+    {
+      "accepted_commands": 3,
+      "commands": [
+        "0200: A9 41 20 EF FF 4C 1F FF",
+        "0200.0207",
+        "0200R"
+      ],
+      "generation": 2,
+      "observations": [],
+      "outputs": [
+        "0200: A9 41 20 EF FF 4C 1F FF",
+        "0200: A9 41 20 EF FF 4C 1F FF",
+        "0200: STOP=MONITOR_WARM_ENTRY STEPS=4 OUTPUT='A'"
+      ],
+      "prompt": "Your world persists across generations within 4K. No host memory access is available.\nThis is an instruction-guided Woz Monitor formatting control, not a discovery task.\nA valid example prints ASCII B from address 0400:\n0400: A9 42 20 EF FF 4C 1F FF\n0400.0407\n0400R\nThe bytes A9 42 load B, 20 EF FF call Monitor ECHO at FFEF, and 4C 1F FF return to the Monitor.\nNow produce the corresponding program at address 0200 that prints ASCII A (hexadecimal 41).\nReturn only the three new command lines: the eight-byte deposit at 0200, the examination of 0200.0207, and 0200R.\nUse space-separated TWO-DIGIT uppercase byte pairs. Do not repeat the example, add padding, fences, labels, assembly syntax, or explanations.",
+      "provider_result": {
+        "completion_tokens": 29,
+        "latency_ms": 6614.259168999979,
+        "prompt_tokens": 196
+      },
+      "raw_response_sha256": "095c71b75ebe1bda84fbcd8d77293da23db23d29f6daca1d2c369cbf55c1191d",
+      "response": "0200: A9 41 20 EF FF 4C 1F FF\n0200.0207\n0200R"
+    }
+  ]
+}

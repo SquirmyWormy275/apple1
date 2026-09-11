@@ -1,0 +1,97 @@
+{
+  "accepted_commands_per_turn": [
+    3,
+    2,
+    3
+  ],
+  "accepted_commands_total": 8,
+  "campaign": "N1-P-5898735E8998CC35",
+  "classification": "SANITIZED_EXISTING_EVIDENCE_EXTRACT",
+  "deployed_revision": "4f06e6d10bcbffca47c0f7554800972555085c78",
+  "documented_context_reset_turn2_verified": true,
+  "evidence_sha256": {
+    "cells/N1-CELL-BD2C702F10EE90AB/transcript.jsonl": "035cda02653d4fe6cce59ca0f056addfc1d6e7487eb9b42bd5ffd8132456215a",
+    "effective-registry.json": "39e0ca6b221d4b6d09ccf19731e9078c1599653c3da6b20ac981852e0c2d651d",
+    "provider-phi4-mini-38b.jsonl": "3a343f72d5778266818eb5a8f270daa583bdc5cf98cf1dd9318e9e941eaf1278",
+    "resources.jsonl": "81db3c93e98fcd235e337d4a5ec4028c8f1eaa3a70c97d51eff0104c5305af79",
+    "spec.json": "fcfc322e0bcea10b634fd41512530aabb549ae9a5552a86ef6da49e31af20bde",
+    "worker.json": "125585dbf2f28f9c65cdb9c6998e719da0ebc7fcae6e361c587749966bb7934c"
+  },
+  "execution": {
+    "instructions": 4,
+    "screen_text": "A",
+    "stop_reason": "MONITOR_WARM_ENTRY"
+  },
+  "independent_replay_location": "host memory only; supporting review of original native evidence, no new native acceptance claim",
+  "min_available_memory_bytes": 4407525376,
+  "min_ssd_free_bytes": 856484814848,
+  "new_export_reopen": {
+    "meta": {
+      "artifact_hash": "3e7d93859b8c8c5247ecf62fd6b55da4325183ffa314403f3bf66e15d2c35dba",
+      "claim_id": "N1-C-5DA21D6803488059",
+      "evidence_id": "N1-E-694DA0598B352569"
+    },
+    "summary": {
+      "campaign_id": "N1-P-5898735E8998CC35",
+      "cancelled_cells": [],
+      "completed_cells": [
+        "N1-CELL-BD2C702F10EE90AB"
+      ],
+      "elapsed_seconds": 111.29100337099999,
+      "incomplete_cells": [],
+      "status": "COMPLETED"
+    },
+    "verification": {
+      "checked_files": 13,
+      "errors": [],
+      "valid": true
+    }
+  },
+  "new_run_meta_link_verified": true,
+  "note": "Turn1 echoed prior monitor output; strict parser excluded noncommand STOP text and accepted only two genuine deposits. Turns0/2 performed actual runs.",
+  "parser_and_outputs_independently_replayed": true,
+  "peak_temperature_c": 63.9,
+  "post_power_evidence_sha256": "186dbd11125cc037ae054e214b15f23f74c22a1ea81f3ae3853a4b215631b2e1",
+  "post_run_meta_claims": 18,
+  "private_feedback_turn1_verified": true,
+  "provider_errors": 0,
+  "provider_responses": 3,
+  "raw_response_sha256_verified": true,
+  "reopened_export": {
+    "meta": {
+      "artifact_hash": "94b36023277f59e3ecab14f350f5bdf621f94302d7e2248449c4dead91e362dd",
+      "claim_id": "N1-C-0ABD3790493BF61D",
+      "evidence_id": "N1-E-456A3FBB1FBEC727"
+    },
+    "summary": {
+      "campaign_id": "N1-P-B90E14C4EEF3FC2D",
+      "cancelled_cells": [],
+      "completed_cells": [
+        "N1-CELL-31B311A51C71ECBF"
+      ],
+      "elapsed_seconds": 244.69572119400254,
+      "incomplete_cells": [],
+      "status": "COMPLETED"
+    },
+    "verification": {
+      "checked_files": 13,
+      "errors": [],
+      "valid": true
+    }
+  },
+  "reopened_meta_claims": 17,
+  "request_latency_ms": [
+    86340.46228799997,
+    18185.998832999983,
+    6614.259168999979
+  ],
+  "resource_samples": 53,
+  "reviewed_at_utc": "2026-09-11T03:49:32.893694+00:00",
+  "scientific_scope": "instruction-guided formatting control; no discovery claimed",
+  "scope_limit": "This review does not independently rerun all five families or physical power transitions; those have separate retained acceptance.",
+  "status": "PASSED",
+  "target": "actual native Pi; Apple1 VIRTUAL",
+  "throttling_flags": [
+    0
+  ]
+}

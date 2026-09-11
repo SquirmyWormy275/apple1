@@ -1,0 +1,98 @@
+{
+  "classification": "SANITIZED_COMPLETION_LEDGER",
+  "downloads": [
+    {
+      "artifact": "Debian git package and required dependencies",
+      "reason": "Native Pi lacked git; needed pinned checkout verification/deployment; installed without OS upgrade."
+    },
+    {
+      "bytes": 13724906,
+      "filename": "mypy-1.20.2-cp313-cp313-manylinux2014_aarch64.manylinux_2_17_aarch64.manylinux_2_28_aarch64.whl",
+      "metadata_url": "https://pypi.org/pypi/mypy/1.20.2/json",
+      "package": "mypy",
+      "reason": "Required native tool/runtime absent; host extension architecture and Python ABI incompatible.",
+      "sha256": "7488448de6007cd5177c6cea0517ac33b4c0f5ee9b5e9f2be51ce75511a85517",
+      "url": "https://files.pythonhosted.org/packages/92/8f/75bbc92f41725fbd585fb17b440b1119b576105df1013622983e18640a93/mypy-1.20.2-cp313-cp313-manylinux2014_aarch64.manylinux_2_17_aarch64.manylinux_2_28_aarch64.whl",
+      "version": "1.20.2"
+    },
+    {
+      "bytes": 502568,
+      "filename": "librt-0.15.0-cp313-cp313-manylinux2014_aarch64.manylinux_2_17_aarch64.manylinux_2_28_aarch64.whl",
+      "metadata_url": "https://pypi.org/pypi/librt/0.15.0/json",
+      "package": "librt",
+      "reason": "Required native tool/runtime absent; host extension architecture and Python ABI incompatible.",
+      "sha256": "55456ea87d8df21808446d03817be2f65e20391c1c615d9187440dff28cd08dc",
+      "url": "https://files.pythonhosted.org/packages/c9/b6/ed5071f9325845e670bd36012757419767fbf56af77ed483077b9e4db541/librt-0.15.0-cp313-cp313-manylinux2014_aarch64.manylinux_2_17_aarch64.manylinux_2_28_aarch64.whl",
+      "version": "0.15.0"
+    }
+  ],
+  "gates": {
+    "all_five_families": {
+      "evidence": "ActualPi:4K andSELFHOST positiveA/Monitorreturn; RAM isolatedsharedstate validnegative; historicaltypedgenomes provenance-aware validationnegative; ROMcef N1-P-B90E14C4EEF3FC2D18realresponses21strictcommands, initialAreturn thenmodelwrongaddresswrites,232explicitbytes, independentBRK and exactcoverage rejection. Meaningfulpositive/negativecontrols passed. Independentfullraw/hash/feedbackaudits retained; noforcedpositive.",
+      "state": "VERIFIED_EXISTING"
+    },
+    "existing_work_preserved": {
+      "evidence": "Compatible runtimes/models, historical registries/results, six META databases and source image retained. All196 preservation files verified; final127865454592-byte image SHA matched and promoted.",
+      "state": "VERIFIED_EXISTING"
+    },
+    "final_usable_state": {
+      "evidence": "Fresh normal-account bashlogin cwd/ resolves neural1 and executes HELP/STATUS/RUNS/QUIT. Final3response8accepted A/Monitorreturn workflow passed. Pi/SSD/Ollama lefton; taskhelpers/inhibitionremoved; writesflushed.",
+      "state": "VERIFIED_EXISTING"
+    },
+    "independent_use": {
+      "evidence": "NativePi release, local loopbackOllama/models, installedresources and durableSSDdata. Physicalstartup passed after provisioning session ended and privilegedhelper removal. No hostmodeldaemon or hostpath required.",
+      "state": "VERIFIED_EXISTING"
+    },
+    "lifecycle": {
+      "evidence": "Installed41fa Phi N1-P-BB49DACBD19E575B cancelled after1committedturn in1.280s, resumed sameID to3turns8accepted, checkedA/Monitorreturn. Original effective-registry SHA39e0ca6b221d4b6d09ccf19731e9078c1599653c3da6b20ac981852e0c2d651d preserved. All Ollama-service process CPU ticks stable over2s after cancellation. META claimN1-C-4A044FDE5D01B5DB, export1789060619930946895 reopen passed.",
+      "state": "VERIFIED_EXISTING"
+    },
+    "meta": {
+      "evidence": "Prior claim N1-C-0ABD3790493BF61D and ROM export reopened after power cycle. New run claim N1-C-5DA21D6803488059 persisted; new export verified13files and reopened.",
+      "state": "VERIFIED_EXISTING"
+    },
+    "persistence": {
+      "evidence": "Actual new boot b0f1bde0-743e-4742-b994-94b1c18b4f91 withoutSSD passed; clear storage refusal and empty fallback tree. IdentifiedSSD arrival automatically mounted and startedOllama without manual commands. Savedmodels/results/META/export survived; finalgenuineworkflow passed.",
+      "state": "VERIFIED_EXISTING"
+    },
+    "real_provider": {
+      "evidence": "Post-power N1-P-5898735E8998CC35:3 genuine local native Ollama/Phi4-mini responses; pinned manifest/weight identity and raw response hashes retained.",
+      "state": "VERIFIED_EXISTING"
+    },
+    "real_target": {
+      "evidence": "Pinned SSH host key verified, BatchMode key login works on actual Pi5 ARM64 8GB; native sudo authenticated.",
+      "state": "VERIFIED_EXISTING"
+    },
+    "resource_behavior": {
+      "evidence": "Post-power run111.291s, peak63.9C, throttlingflags0, min4407525376B available memory, min856484814848B SSDfree. PriorROMpeak73.25C. Enforced75Cguard and256MiBpromptcache; no observed PiOOM or matching storageI/O errors.",
+      "state": "VERIFIED_EXISTING"
+    },
+    "runtime_end_to_end": {
+      "evidence": "Final installed4f06 run N1-P-5898735E8998CC35:8 strict accepted commands, independent replay and execution printed A and reached MONITOR_WARM_ENTRY. Turn2 private observation feedback and turn3 configured context reset verified.",
+      "state": "VERIFIED_EXISTING"
+    },
+    "user_entry_point": {
+      "evidence": "Native ARM64 installation, normal account fresh bash login cwd / resolves neural1; model manifest identity/status/lessons/menu passed.",
+      "state": "VERIFIED_EXISTING"
+    }
+  },
+  "limitations": [
+    "SSD enclosure requires usual physical activation; current connection USB2 480Mb/s",
+    "Poor Wi-Fi and intermittent mDNS; preserved host identity verified via existing address",
+    "Bounded instructional presets; no discovery or later-stage self-hosting success claim",
+    "RAM, multiverse and exact256 negative scientific outcomes retained",
+    "Field CHECK abstention is not a definitive false classification",
+    "Historical host thermal stops and provider/parser failures retained separately",
+    "Rollback rehearsed four launcher/config files only, not full OS restoration"
+  ],
+  "preservation": {
+    "bytes": 127870246926,
+    "files": 196,
+    "image_bytes": 127865454592,
+    "image_sha256": "58e46686e02a54fbe8c7060afdb8a2fdc5eea5e3107478366c7881c7957169da",
+    "sources_retained": true,
+    "state": "VERIFIED_EXISTING"
+  },
+  "status": "DONE",
+  "target": "native Raspberry Pi; virtual Apple-1 worlds; physical Replica qualification excluded"
+}

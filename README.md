@@ -110,7 +110,9 @@ rules.
 
 The installed [terminal application](docs/neural1/operations/terminal-application.md)
 uses `neural1` for virtual experiments, lifecycle controls, META and Field Library.
-Native Pi commissioning remains a separate measured acceptance requirement.
+The completed [native Pi commissioning closeout](docs/neural1/operations/pi-closeout-2026-09-10.md)
+records real-model, lifecycle, storage-startup and power-test evidence. Physical
+Replica qualification remains separate.
 
 The Python package provides a shared virtual Apple-1 world, modeled WozMon-only
 agent surface, deterministic fake/replay model providers, stable run manifests,

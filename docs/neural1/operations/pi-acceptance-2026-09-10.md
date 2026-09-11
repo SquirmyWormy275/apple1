@@ -1,5 +1,7 @@
 # Native Pi acceptance — 2026-09-10
 
+Consolidated publication: [Pi commissioning closeout](pi-closeout-2026-09-10.md).
+
 Status: **DONE**. The final coordinated physical startup and live workflow passed.
 The installed application is usable and preservation verification has passed.
 The tested application revision is
@@ -125,7 +127,7 @@ SSD was not unmounted. Originals and historical failed attempts remain retained.
 Application release remains `4f06e6d10bcbffca47c0f7554800972555085c78`;
 late-SSD wiring is from `462ec40fdb41a5f009574b84b824442ebabd9be6`.
 Implementation and this sanitized acceptance record are committed on
-`neural1/pi-completion-r3`; they have not been pushed.
+`neural1/pi-completion-r3`; publication status is recorded in the consolidated GitHub handover.
 
 Private device identities, credentials, account configuration, complete logs,
 backups, weights and raw images are kept outside Git. The private acceptance
