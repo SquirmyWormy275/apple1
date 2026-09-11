@@ -4,6 +4,10 @@ Status: PREPARATION COMPLETE / LIVE SESSION NOT EXECUTED.
 Authority class: DERIVED DOCUMENTATION.
 This card adds measurement coverage after the completed September 2 capture.
 It does not change that packet's INCONCLUSIVE scientific result.
+The [capture runner](../hardware/propeller-unattended-capture.md) implements this
+initial attended cycle with the three required channels. A successful attended
+checkout plus an observed stable display can qualify one subsequent unattended
+cycle on the unchanged setup. No such qualification has been performed here.
 
 ## Question
 

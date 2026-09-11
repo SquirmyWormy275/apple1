@@ -1,5 +1,10 @@
 # Local Codex handoff: ready the Propeller measurements
 
+Updated: the bounded live capture runner is now implemented. Follow the
+[unattended capture setup](propeller-unattended-capture.md) to deploy and rehearse
+it on P1/Pi, perform the first attended checkout, and then launch one qualified
+unattended job. Hardware qualification has not happened in the cloud session.
+
 Run this task in local Codex on **strathex-P1**, in the existing Apple1 checkout.
 Repository: https://github.com/SquirmyWormy275/apple1
 Preparation PR: https://github.com/SquirmyWormy275/apple1/pull/6
@@ -41,10 +46,13 @@ From the repository root (choose a fresh output path for each run):
 
 ```bash
 python -m tools.propeller_rehearsal --out out/propeller-local-rehearsal
+python -m tools.propeller_capture_job rehearse --out out/propeller-controller-rehearsal
 ```
 
-This runs six synthetic scenarios with the real SerialOwner class and a fake
-transport. It never imports/constructs a live serial backend. A successful
+The first command runs six original synthetic scenarios with the real
+SerialOwner class and a fake transport. The second runs ten scenarios through
+the production capture controller and synthetic subprocesses. Neither constructs
+a live serial backend. A successful
 rehearsal does not validate host USB throughput, SSH timing, physical probes,
 power, or the board's behavior.
 
