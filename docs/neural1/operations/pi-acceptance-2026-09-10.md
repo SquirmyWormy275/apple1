@@ -123,6 +123,16 @@ the current power constraints, the final contract status remains **PARTIAL**
 even after image verification. Current service status or rule validation alone
 does not replace that acceptance test.
 
+A bounded host audit service now waits for the exact running preservation
+transfer to finish. Its process and startup log were verified. It requires the
+image completion marker, the receiver's full-hash receipt and unchanged final
+file identity, then checks all 195 smaller destinations against their saved
+verification fingerprints. Changed or missing evidence fails the audit; it does
+not silently assume a match or repeat a full-image read. The audit pins its
+verifier hash, rejects a replaced transfer, and publishes a result without
+overwriting earlier evidence. Its synthetic failure controls passed. The audit
+has not yet run against a completed image and cannot establish application DONE.
+
 Private device identities, credentials, account configuration, complete logs,
 backups, weights and raw images are kept outside Git. The private acceptance
 ledger contains exact paths, hashes, gate evidence and recovery receipts. A final
