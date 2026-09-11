@@ -1,23 +1,29 @@
 # Native Pi acceptance — 2026-09-10
 
-Status: **RUNNING** native preservation verification; the installed application is usable. The tested application revision is
+Status: **PARTIAL**, awaiting coordinated final physical startup acceptance.
+The installed application is usable and preservation verification has passed.
+The tested application revision is
 `4f06e6d10bcbffca47c0f7554800972555085c78`. This record describes actual
 Raspberry Pi 5 Model B Rev 1.1 execution, ARM64, 8 GB RAM. The Apple-1 world
 remains **VIRTUAL**. No physical serial commissioning was performed.
 
-All 127,865,454,592 image bytes have reached the SSD. The earlier host guard
-stopped during full-hash verification when its required power profile was lost;
-the host was at 49°C, and this was not a thermal-limit incident. The complete
-partial and the earlier NOT_READY audit remain preserved. A bounded native Pi
-user service now runs the existing receiver's full-hash verification and guarded
-promotion independently of the ThinkPad. Its active process and advancing hash
-log were verified, at approximately 40 MB/s and 50°C. A separate bounded audit
-waits for that exact native invocation and its verified final-file receipt.
-No image recopy, model download, power cycle or mount change was needed. Final
-image verification is still pending; prior transfer stages below are historical.
-The user has now authorized coordinated power on/off testing at the end, after
-preservation verification. That supersedes the earlier pause on power changes.
-No new power operation has yet been performed or scheduled.
+The historical 127,865,454,592-byte image was fully hashed on the native Pi,
+matched SHA256 `58e46686e02a54fbe8c7060afdb8a2fdc5eea5e3107478366c7881c7957169da`,
+and was promoted to its final SSD destination. The aggregate audit passed all
+196 preservation files, totaling 127,870,246,926 bytes. Existing verification
+fingerprints were reused for the 195 smaller files; source checks passed and
+originals remain retained. Native full-image verification took 3117.69 seconds,
+with sampled temperatures around 49–51.8°C, zero throttling flags, and no
+matching kernel I/O warnings during the verification interval.
+
+The earlier host guard stopped during verification when its required power
+profile was lost, at 49°C. That failed attempt and earlier thermal stops remain
+preserved as historical evidence. Native verification reused the completed
+transfer; no image recopy or model download was needed.
+
+The user authorized coordinated power on/off testing after preservation
+verification. The final baseline is recorded; no new power operation has yet
+been performed. The Pi remains powered while physical readiness is confirmed.
 
 The installed normal entry point is `neural1`. It was exercised from a normal
 runtime-account login outside the checkout. After the first restart and manual
@@ -97,57 +103,18 @@ needed. Active acceptance used Phi4-mini Q4_K_M with manifest SHA256
 
 ## Remaining contract requirements
 
-- End-to-end physical late-power/startup acceptance remains unverified. Perform
-  the newly authorized final power test after preservation verification and a
-  fresh physical handoff checkpoint with the user.
-- Finish and verify the existing historical image migration. The original image
-  is preserved; an owned incomplete destination is not a verified migration.
-  A revised image-only transfer skipped redundant small-file checks and added
-  about 1.2 GB, but the host reached 81°C and the 75°C guard stopped it. The
-  3,911,385,074-byte partial remains; no final image was promoted. This followed
-  another host thermal stop at 83°C under verified efficiency-core affinity and
-  a 5% CPU limit. No unchanged transfer retry is queued.
-- A later controller proved three cooling pauses/resumptions on the actual
-  transfer, with frozen CPU work verified and no thermal transport restart.
-  It then stopped at a critical host spike of 102.05°C. The source and partial
-  were retained, and task workers/inhibitors were removed. The Pi remained on.
-  The operator subsequently confirmed clear vents. Actual fan readings showed
-  both fans spinning, while the host platform profile was set to performance.
-  A temporary supported power-saver hold changed that profile to low-power.
-  A ten-minute resumed transfer then peaked at 58°C with no cooling pauses and
-  advanced the owned partial to 4,791,648,232 bytes. A second ten-minute trial
-  with a 4 MiB/s transfer cap and 25% CPU allowance also peaked at 58°C without
-  cooling pauses, reaching 5,822,611,424 bytes. The longer guarded continuation
-  uses those measured limits; this is not yet full-image verification.
-- The guarded transfer owns its temporary sleep inhibitor and power-saver hold;
-  the watchdog stops on loss of the qualified power profile. Existing thermal,
-  UUID, capacity, partial-ownership and full-hash promotion guards remain in
-  force. No automatic transport retry or final completion claim is made.
-  Privileged setup helpers are removed; the Pi application, provider and SSD
-  remain on. No further device power changes are scheduled.
-- Cleanup now requires successful termination and no live task processes before
-  thawing for service cleanup. A native synthetic frozen-service test verified
-  that a rejected kill leaves the worker frozen, followed by successful kill
-  and cleanup without more work. Watcher cleanup is pinned to its originating
-  transfer invocation, and long-run qualification binds the reviewed controls.
+The final coordinated test must establish normal Pi boot without the SSD,
+clear application refusal without fallback writes, automatic mounting and
+provider startup after the identified SSD is connected, and a fresh ordinary
+launch with genuine model output, accepted Monitor execution and reopened
+prior evidence. Earlier restarts required manual recovery before the new
+UUID-scoped startup rule was installed. Rule validation and current service
+status do not establish this remaining behavior.
 
-Saved-data persistence is established. Automatic startup following a genuine
-post-install SSD activation remains unobserved; earlier recovery used an
-authenticated mount operation. Until the newly authorized final test establishes
-that behavior, the final contract status remains **PARTIAL**
-even after image verification. Current service status or rule validation alone
-does not replace that acceptance test.
-
-A bounded host audit service waited for the original preservation transfer;
-it recorded NOT_READY when the host guard stopped that invocation. The current
-native-finish audit requires the
-image completion marker, the receiver's full-hash receipt and unchanged final
-file identity, then checks all 195 smaller destinations against their saved
-verification fingerprints. Changed or missing evidence fails the audit; it does
-not silently assume a match or repeat a full-image read. The audit pins its
-verifier hash, rejects a replaced transfer, and publishes a result without
-overwriting earlier evidence. Its synthetic failure controls passed. The audit
-has not yet run against a completed image and cannot establish application DONE.
+All preservation verification is complete. The native finish receipt and
+aggregate audit establish migration only; they do not claim application DONE.
+The final physical test and application judgment remain pending. Task-owned
+sleep inhibition is temporary and will be removed when this work ends.
 
 Private device identities, credentials, account configuration, complete logs,
 backups, weights and raw images are kept outside Git. The private acceptance
