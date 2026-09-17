@@ -5,7 +5,6 @@ from types import SimpleNamespace
 from neural1.application import Application
 from neural1.field_library import LessonCorpus
 
-
 ROOT = Path(__file__).resolve().parents[1]
 
 
