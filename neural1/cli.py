@@ -4,6 +4,7 @@ from __future__ import annotations
 
 import argparse
 import json
+import sys
 from collections.abc import Sequence
 from dataclasses import asdict
 from pathlib import Path
@@ -20,8 +21,13 @@ from .registry import ModelRegistry
 
 
 def main(argv: Sequence[str] | None = None) -> int:
+    arguments = list(sys.argv[1:] if argv is None else argv)
+    if not arguments or arguments[0] == "console":
+        from .application import main as console_main
+        return console_main(arguments[1:] if arguments else [])
     parser = argparse.ArgumentParser(description=__doc__)
     commands = parser.add_subparsers(dest="command", required=True)
+    commands.add_parser("console", help="installed virtual terminal interface (also the default)")
     validate = commands.add_parser("validate-campaign")
     validate.add_argument("spec", type=Path)
     validate.add_argument("registry", type=Path)
@@ -68,8 +74,10 @@ def main(argv: Sequence[str] | None = None) -> int:
         print(json.dumps(asdict(summary), indent=2, sort_keys=True))
         return 0 if summary.status == "COMPLETED" else 2
     if args.command == "cancel-campaign":
-        args.campaign_root.mkdir(parents=True, exist_ok=True)
-        (args.campaign_root / "CANCEL").touch(exist_ok=True)
+        root = args.campaign_root.resolve()
+        if root.parent.name != "campaigns":
+            parser.error("expected OUTPUT_ROOT/campaigns/CAMPAIGN_ID")
+        CampaignEngine(root.parent.parent, ModelRegistry(), {}).cancel(root.name)
         return 0
     if args.command == "export-bundle":
         print(export_bundle(args.source, args.destination, reproduction_command=args.reproduce))

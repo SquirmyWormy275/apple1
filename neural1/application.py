@@ -1,0 +1,751 @@
+"""Installed virtual NEURAL1 console and bounded, recoverable local workers."""
+from __future__ import annotations
+
+import argparse
+import fcntl
+import json
+import multiprocessing
+import os
+import secrets
+import shlex
+import shutil
+import signal
+import sqlite3
+import subprocess
+import sys
+import tempfile
+import textwrap
+import threading
+import time
+from collections import deque
+from collections.abc import Callable
+from dataclasses import asdict, dataclass, replace
+from pathlib import Path
+from typing import Any
+from urllib.request import urlopen
+
+from .bundle import export_bundle, verify_bundle
+from .campaign import CampaignEngine, CampaignSpec
+from .core import Neural1Error, sha256_bytes, stable_id
+from .drivers import parse_commands
+from .experiments import EXPERIMENTS
+from .meta import CausalStatus, Claim, Evidence
+from .meta_store import ResearchDatabase
+from .models import OllamaHttpProvider
+from .provider_factory import provider_for
+from .registry import ModelRegistry
+
+DEFAULT_CONFIG = Path('/etc/neural1/config.json')
+LABELS = ('4K MIND', '1976 MULTIVERSE', 'SELFHOST/1', '256-BYTE UNIVERSE', 'RAM REPUBLIC')
+
+
+@dataclass(frozen=True)
+class ApplicationConfig:
+    path: Path
+    ssd: Path
+    uuid: str
+    registry: Path
+    checkout: Path
+    default_model: str
+    temperature_limit: float = 75.0
+    minimum_free_bytes: int = 2 * 1024**3
+
+    @classmethod
+    def load(cls, path: Path) -> ApplicationConfig:
+        data = json.loads(path.read_text())
+        for name in ('ssd', 'registry', 'checkout'):
+            if not Path(data[name]).is_absolute():
+                raise Neural1Error(f'{name} must be an absolute deployment path')
+        return cls(path.resolve(), Path(data['ssd']), data['uuid'], Path(data['registry']), Path(data['checkout']), data['default_model'], float(data.get('temperature_limit', 75)), int(data.get('minimum_free_bytes', 2 * 1024**3)))
+
+    @property
+    def output(self) -> Path:
+        return self.ssd / 'runs' / 'console'
+
+    @property
+    def database(self) -> Path:
+        return self.ssd / 'meta' / 'console.sqlite'
+
+    def storage_check(self) -> Any:
+        from .deployment import verify_storage
+        try:
+            return verify_storage(self.ssd, self.uuid, write_paths=(self.output, self.database, self.ssd / 'logs', self.ssd / 'exports', self.ssd / 'research/selfhost'), min_free_bytes=0)
+        except (OSError, ValueError, subprocess.SubprocessError) as error:
+            raise Neural1Error(f'storage unavailable: {error}') from error
+
+    def check(self) -> dict[str, Any]:
+        identity = self.storage_check()
+        if identity.free_bytes < self.minimum_free_bytes:
+            raise Neural1Error("resource stop: insufficient SSD working reserve")
+        temperatures = [int(path.read_text()) / 1000 for path in Path('/sys/class/thermal').glob('thermal_zone*/temp')]
+        if temperatures and max(temperatures) >= self.temperature_limit:
+            raise Neural1Error(f'thermal stop: {max(temperatures):.1f} C')
+        memory = dict(line.split(':', 1) for line in Path('/proc/meminfo').read_text().splitlines())
+        available = int(memory['MemAvailable'].split()[0]) * 1024
+        if available < 256 * 1024**2:
+            raise Neural1Error('resource stop: less than 256 MiB available RAM')
+        throttling = None
+        utility = Path('/usr/bin/vcgencmd')
+        if utility.exists():
+            response = subprocess.run([str(utility), 'get_throttled'], capture_output=True, text=True, check=True, timeout=3)  # noqa: S603 - fixed native diagnostic
+            throttling = int(response.stdout.strip().split('=')[1], 16)
+            if throttling & 0xF:
+                raise Neural1Error(f'Pi power/clock/thermal stop: current flags {throttling & 0xF:#x}')
+        return {'storage': {**asdict(identity), 'root': str(identity.root)}, 'temperatures_c': temperatures, 'available_memory_bytes': available, 'throttling_flags': throttling}
+
+
+def monitored_call(config: ApplicationConfig, action: Callable[[], Any], *, timeout_seconds: float) -> Any:
+    """Bound a foreground operation and stop its isolated process on resource loss."""
+    if timeout_seconds <= 0 or timeout_seconds > 600:
+        raise Neural1Error('foreground operation timeout must be between zero and 600 seconds')
+    config.check()
+    context = multiprocessing.get_context('fork')
+    receiving, sending = context.Pipe(duplex=False)
+
+    def execute() -> None:
+        receiving.close()
+        try:
+            sending.send({'ok': True, 'result': action()})
+        except Exception as error:
+            sending.send({'ok': False, 'error': str(error), 'type': type(error).__name__})
+        finally:
+            sending.close()
+
+    process = context.Process(target=execute, daemon=True)
+    try:
+        process.start()
+    except Exception:
+        receiving.close()
+        sending.close()
+        process.close()
+        raise
+    sending.close()
+    deadline = time.monotonic() + timeout_seconds
+    next_check = time.monotonic()
+    try:
+        while time.monotonic() < deadline:
+            if time.monotonic() >= next_check:
+                config.check()
+                next_check = time.monotonic() + 1
+            if receiving.poll(0.2):
+                try:
+                    message = receiving.recv()
+                except EOFError as error:
+                    raise Neural1Error('foreground operation exited without a result') from error
+                config.check()
+                if not message['ok']:
+                    raise Neural1Error(f"foreground operation failed ({message['type']}): {message['error']}")
+                return message['result']
+            if not process.is_alive():
+                raise Neural1Error('foreground operation exited without a result')
+        raise Neural1Error('foreground operation reached its time limit')
+    finally:
+        receiving.close()
+        if process.is_alive():
+            process.terminate()
+        process.join(timeout=2)
+        if process.is_alive():
+            process.kill()
+            process.join(timeout=2)
+        process.close()
+
+
+def check_model(registry: ModelRegistry, model_id: str) -> dict[str, Any]:
+    model = registry.require(model_id)
+    if model.backend != 'ollama':
+        raise Neural1Error('installed console requires a qualified native local Ollama provider')
+    endpoint = str(model.generation_defaults.get('base_url', 'http://127.0.0.1:11434'))
+    OllamaHttpProvider(model.backend_name, base_url=endpoint)
+    with urlopen(endpoint.rstrip('/') + '/api/tags', timeout=5) as response:  # noqa: S310 - loopback endpoint validated above
+        tags = json.load(response)['models']
+    matching = [tag for tag in tags if tag['name'] == model.backend_name and tag['digest'].removeprefix('sha256:') == model.digest]
+    if not matching:
+        raise Neural1Error('live model manifest identity differs from qualified deployment registry')
+    return {'model_id': model_id, 'name': model.backend_name, 'digest': model.digest, 'quantization': model.quantization, 'endpoint': endpoint}
+
+
+def preset(family: str, model_id: str, *, seed: int | None = None) -> CampaignSpec:
+    if family not in EXPERIMENTS:
+        raise Neural1Error('unknown experiment family')
+    return CampaignSpec.create(experiments=(family,), model_ids=(model_id,), seeds=(seed if seed is not None else time.time_ns() % 2147483647,), generations=18 if family == '256-byte-universe' else 3, agents_per_cell=2 if family == 'ram-republic' else 1, ram_budget=4096, max_tokens=96 if family == '256-byte-universe' else 512 if family == '1976-multiverse' else 192, generation_settings={'preset': 'bounded-console-v1', 'context_reset_generations': 2, **({'objective_protocol': 'staged-rom-v5'} if family == '256-byte-universe' else {})}, matched_control='deterministic family evaluator; controls are separate from model evidence', wall_clock_limit_seconds=600)
+
+
+def effective_run_registry(registry: ModelRegistry, spec: CampaignSpec) -> ModelRegistry:
+    """Apply family wire format only to this run; retain historical registry data."""
+    models = {}
+    for name in spec.model_ids:
+        model = registry.require(name)
+        settings = {**model.generation_defaults, 'max_tokens': spec.max_tokens}
+        if spec.experiments == ('1976-multiverse',) and model.backend == 'ollama':
+            settings['format'] = 'json'
+        if spec.experiments == ('256-byte-universe',) and model.backend == 'ollama':
+            # Each staged deposit has at most16 bytes; retain ordinary request
+            # bounds instead of stretching a repeated-output response.
+            settings.update(timeout_seconds=180, num_thread=2)
+        models[name] = replace(model, generation_defaults=settings)
+    return ModelRegistry(models)
+
+
+def registry_for_execution(registry: ModelRegistry, spec: CampaignSpec, root: Path, *, resume: bool) -> ModelRegistry:
+    """Select immutable per-run transport/model identity before live validation."""
+    recorded = root / 'effective-registry.json'
+    if resume:
+        if not recorded.is_file() or recorded.is_symlink():
+            raise Neural1Error('resume requires the original effective registry; use a compatible release/recovery copy')
+        selected = ModelRegistry.load(recorded)
+        for name in spec.model_ids:
+            selected.require(name)
+        return selected
+    if recorded.exists():
+        raise Neural1Error('effective registry already exists; resume this run instead')
+    return effective_run_registry(registry, spec)
+
+
+def execution_objective(spec: CampaignSpec, root: Path, family: str, generation: int) -> str:
+    from .family_runner import family_objective, legacy_rom_objective
+
+    if family != '256-byte-universe':
+        return family_objective(family, generation)
+    protocol = spec.generation_settings.get('objective_protocol')
+    if protocol in {'staged-rom-v4', 'staged-rom-v5'}:
+        return family_objective(family, generation, protocol=protocol)
+    if protocol is not None:
+        raise Neural1Error('unknown ROM objective protocol; resume with its compatible release')
+    # Old runs requested the full candidate each turn. Preserve their actual
+    # objective even if the current default and generation count have changed.
+    for path in sorted((root / 'cells').glob('*/transcript.jsonl')):
+        with path.open() as stream:
+            for line in stream:
+                record = json.loads(line)
+                recorded_prompt = record.get('prompt')
+                if record.get('generation') == 0 and isinstance(recorded_prompt, str):
+                    return recorded_prompt.split('\nYOUR PRIVATE MONITOR OBSERVATIONS:\n', 1)[0]
+    return legacy_rom_objective()
+
+
+def ingest(config: ApplicationConfig, root: Path) -> str:
+    """Index actual persisted evidence; never turn negative outcomes into success."""
+    files = sorted(root.glob('cells/*/family-result.json')) + sorted(root.glob('cells/*/checkpoint.json'))
+    summary = json.loads((root / 'summary.json').read_text()) if (root / 'summary.json').exists() else {'status': 'INTERRUPTED'}
+    payload = {'summary': summary, 'records': {str(path.relative_to(root)): json.loads(path.read_text()) for path in files}}
+    digest = sha256_bytes(json.dumps(payload, sort_keys=True).encode())
+    claim_id = stable_id('N1-C', {'campaign': root.name})
+    database = ResearchDatabase(config.database)
+    try:
+        previous = database.claim(claim_id)
+        evidence_id = stable_id('N1-E', {'hash': digest})
+        link = {'claim_id': claim_id, 'evidence_id': evidence_id, 'artifact_hash': digest}
+        link_path = root / 'meta-link.json'
+        complete = database.connection.execute("SELECT 1 FROM evidence e JOIN edges x ON x.source=e.evidence_id WHERE e.evidence_id=? AND x.target=? AND x.relation='supports'", (evidence_id, claim_id)).fetchone()
+        if previous and previous.get('scope', {}).get('evidence_hash') == digest and complete and link_path.exists() and json.loads(link_path.read_text()) == link:
+            return claim_id
+        statement = f'Virtual campaign {root.name} recorded status {summary["status"]}; inspect domain results for scientific outcome.'
+        claim = Claim(claim_id, statement, {'campaign': root.name, 'target': 'VIRTUAL', 'evidence_hash': digest}, causal_status=CausalStatus.OBSERVED)
+        if not previous or previous.get("scope", {}).get("evidence_hash") != digest:
+            database.put_claim(claim)
+        evidence = Evidence(evidence_id, 'ACTUAL_RUN_RECORDS', digest, (root.name,), statement)
+        database.put_evidence(evidence)
+        database.relate(evidence.evidence_id, 'supports', claim_id)
+        database.enqueue(f'Assess recorded outcome of {root.name}', uncertainty=1, novelty=0, information_gain=0.5, cross_experiment_relevance=0, normalized_compute_cost=0.1)
+        (root / 'meta-link.json').write_text(json.dumps({'claim_id': claim_id, 'evidence_id': evidence.evidence_id, 'artifact_hash': digest}, indent=2) + '\n')
+        return claim_id
+    finally:
+        database.close()
+
+
+def _verified_worker_running(root: Path, config_path: Path, *, proc_root: Path = Path('/proc')) -> bool:
+    """Read-only identity check; stale PID/summary files are never liveness proof."""
+    try:
+        info = json.loads((root / 'worker.json').read_text())
+        if not isinstance(info, dict) or info.get('status') != 'RUNNING' or type(info.get('pid')) is not int or info['pid'] <= 0:
+            return False
+        proc = proc_root / str(info['pid'])
+        stat = proc.joinpath('stat').read_text()
+        # Linux comm can contain spaces; fields after its closing parenthesis
+        # start at field 3 (state), so starttime field 22 is index 19 here.
+        fields = stat.rsplit(') ', 1)[1].split()
+        if fields[0] in {'Z', 'X'} or fields[19] != str(info.get('process_start', '')):
+            return False
+        arguments = proc.joinpath('cmdline').read_bytes().split(b'\0')
+
+        def matches(flag: bytes, value: str) -> bool:
+            return arguments.count(flag) == 1 and arguments.index(flag) + 1 < len(arguments) and arguments[arguments.index(flag) + 1] == value.encode()
+
+        if not matches(b'-m', 'neural1.application') or not matches(b'--worker', root.name) or not matches(b'--config', str(config_path)):
+            return False
+        launch_id = info.get('launch_id')
+        return isinstance(launch_id, str) and bool(launch_id) and matches(b'--launch-id', launch_id)
+    except (OSError, ValueError, KeyError, IndexError, TypeError):
+        return False
+
+
+class Application:
+    def __init__(self, config: ApplicationConfig):
+        self.config = config
+        config.storage_check()
+        self.registry = ModelRegistry.load(config.registry)
+        self.model_id = config.default_model
+        self.preference_warning: str | None = None
+        self.preferences = config.ssd / 'meta' / f'preferences-{os.getuid()}.json'
+        if self.preferences.exists() or self.preferences.is_symlink():
+            try:
+                if self.preferences.is_symlink() or self.preferences.stat().st_size > 4096:
+                    raise ValueError('unsafe or oversized preferences')
+                preference = json.loads(self.preferences.read_text())
+                if not isinstance(preference, dict) or preference.get('schema_version') != 1 or preference.get('uid') != os.getuid():
+                    raise ValueError('invalid preference schema/account')
+                identifier = preference.get('model_id')
+                if not isinstance(identifier, str):
+                    raise ValueError('invalid model preference')
+                self.registry.require(identifier)
+                self.model_id = identifier
+            except (OSError, ValueError, Neural1Error) as error:
+                self.preference_warning = f'Saved model preference unavailable ({type(error).__name__}); using {config.default_model}. MODEL model-id replaces the preference.'
+        self.family = EXPERIMENTS[0]
+
+    def select_model(self, identifier: str) -> dict[str, Any]:
+        """Validate the live model, then atomically persist this account's choice."""
+        value = check_model(self.registry, identifier)
+        self.config.storage_check()
+        self.preferences.parent.mkdir(parents=True, exist_ok=True)
+        if self.preferences.is_dir() and not self.preferences.is_symlink():
+            quarantine = Path(tempfile.mkdtemp(prefix='.neural1-invalid-preference-', dir=self.preferences.parent))
+            os.rename(self.preferences, quarantine / 'prior')
+        temporary: Path | None = None
+        try:
+            with tempfile.NamedTemporaryFile(mode='w', encoding='utf-8', prefix='.neural1-preference-', suffix='.tmp', dir=self.preferences.parent, delete=False) as stream:
+                temporary = Path(stream.name)
+                json.dump({'schema_version': 1, 'uid': os.getuid(), 'model_id': identifier}, stream)
+                stream.write('\n')
+                stream.flush()
+                os.fsync(stream.fileno())
+            self.config.storage_check()
+            os.replace(temporary, self.preferences)
+            temporary = None
+            directory = os.open(self.preferences.parent, os.O_RDONLY | os.O_DIRECTORY)
+            try:
+                os.fsync(directory)
+            finally:
+                os.close(directory)
+        finally:
+            if temporary is not None:
+                # Do not touch an unrelated fallback directory after SSD loss.
+                try:
+                    self.config.storage_check()
+                    temporary.unlink(missing_ok=True)
+                except (OSError, Neural1Error):
+                    pass
+        self.model_id = identifier
+        self.preference_warning = None
+        return value
+
+    def root(self, campaign_id: str) -> Path:
+        if not campaign_id.startswith('N1-P-') or Path(campaign_id).name != campaign_id:
+            raise Neural1Error('invalid campaign ID')
+        path = self.config.output / 'campaigns' / campaign_id
+        if path.is_symlink() or path.resolve().parent != (self.config.output / "campaigns").resolve():
+            raise Neural1Error("campaign path escapes its storage root")
+        if not path.is_dir():
+            raise Neural1Error('unknown campaign')
+        return path
+
+    def running(self) -> bool:
+        self.config.storage_check()
+        self.config.output.mkdir(parents=True, exist_ok=True)
+        with (self.config.output / 'worker.lock').open('a') as stream:
+            try:
+                fcntl.flock(stream, fcntl.LOCK_EX | fcntl.LOCK_NB)
+            except BlockingIOError:
+                return True
+        return False
+
+    def start(self, campaign_id: str | None = None) -> str:
+        self.config.check()
+        if self.running():
+            raise Neural1Error('a console run is already active; cancel it first')
+        if campaign_id is None:
+            check_model(self.registry, self.model_id)
+            spec = preset(self.family, self.model_id)
+            root = self.config.output / 'campaigns' / spec.campaign_id
+            spec.save(root / 'spec.json')
+        else:
+            root = self.root(campaign_id)
+            spec = CampaignSpec.load(root / 'spec.json')
+            recorded_registry = registry_for_execution(self.registry, spec, root, resume=True)
+            check_model(recorded_registry, spec.model_ids[0])
+        log = self.config.ssd / 'logs' / f'{spec.campaign_id}.log'
+        launch_id = secrets.token_hex(12)
+        with log.open('ab') as stream:
+            process = subprocess.Popen(['/usr/bin/systemd-run', '--user', '--collect', '--unit=neural1-run-' + spec.campaign_id, '--property=WorkingDirectory=' + str(self.config.checkout), '--property=StandardOutput=append:' + str(log), '--property=StandardError=append:' + str(log), '--setenv=PYTHONPATH=' + str(self.config.checkout), '--setenv=PYTHONDONTWRITEBYTECODE=1', sys.executable, '-m', 'neural1.application', '--config', str(self.config.path), '--worker', spec.campaign_id, '--launch-id', launch_id, *(['--resume'] if campaign_id else [])], stdin=subprocess.DEVNULL, stdout=stream, stderr=subprocess.STDOUT, start_new_session=True, cwd=self.config.checkout)  # noqa: S603 - fixed service command and pinned Python, argument array
+        for _ in range(50):
+            if process.poll() not in (None, 0):
+                raise Neural1Error(f'worker exited with {process.returncode}; inspect {log}')
+            active = self.running()
+            if (root / 'worker.json').exists():
+                info = json.loads((root / 'worker.json').read_text())
+                if info.get('launch_id') == launch_id and (active or info.get('status') == 'FINISHED'):
+                    return spec.campaign_id
+            time.sleep(0.1)
+        raise Neural1Error(f'worker startup unconfirmed; inspect {log}')
+
+    def cancel(self, campaign_id: str) -> dict[str, Any]:
+        self.config.storage_check()
+        root = self.root(campaign_id)
+        CampaignEngine(self.config.output, self.registry, {}).cancel(campaign_id)
+        info_path = root / 'worker.json'
+        if info_path.exists():
+            info = json.loads(info_path.read_text())
+            proc = Path('/proc') / str(info['pid'])
+            try:
+                same_start = proc.joinpath('stat').read_text().split()[21] == info['process_start']
+                arguments = proc.joinpath('cmdline').read_bytes().split(b'\0')
+                if same_start and b'neural1.application' in arguments and campaign_id.encode() in arguments:
+                    os.kill(info['pid'], signal.SIGTERM)
+            except (FileNotFoundError, ProcessLookupError):
+                pass
+        return {'campaign_id': campaign_id, 'cancellation_requested': True}
+
+    def browse(self) -> list[dict[str, Any]]:
+        self.config.storage_check()
+        result = []
+        for path in sorted((self.config.output / 'campaigns').glob('*/spec.json')):
+            root = path.parent
+            summary = json.loads((root / 'summary.json').read_text()) if (root / 'summary.json').exists() else {'status': 'INTERRUPTED_OR_STARTING'}
+            active = _verified_worker_running(root, self.config.path)
+            displayed = 'RUNNING' if active else 'INTERRUPTED' if summary['status'] == 'RUNNING' else summary['status']
+            result.append({'campaign_id': root.name, 'family': json.loads(path.read_text())['experiments'][0], 'status': displayed, 'recorded_status': summary['status'], 'worker_active': active, 'turns': sum(len(p.read_text().splitlines()) for p in root.glob('cells/*/transcript.jsonl'))})
+        return result
+
+    def export(self, campaign_id: str) -> str:
+        self.config.check()
+        if self.running():
+            raise Neural1Error('wait for or cancel the active run before exporting')
+        root = self.root(campaign_id)
+        ingest(self.config, root)
+        for checkpoint_path in root.glob("cells/*/checkpoint.json"):
+            checkpoint = json.loads(checkpoint_path.read_text())
+            relative = Path(checkpoint["snapshot_path"])
+            if relative.is_absolute() or ".." in relative.parts:
+                raise Neural1Error("unsafe snapshot dependency")
+            source = self.config.output / relative
+            if self.config.output.resolve() not in source.resolve().parents or not source.is_file():
+                raise Neural1Error("missing or escaped snapshot dependency")
+            if sha256_bytes(source.read_bytes()) != checkpoint["snapshot_sha256"]:
+                raise Neural1Error("snapshot dependency hash mismatch")
+            destination = root / relative
+            if destination.exists() and sha256_bytes(destination.read_bytes()) != checkpoint["snapshot_sha256"]:
+                raise Neural1Error("conflicting export snapshot")
+            destination.parent.mkdir(parents=True, exist_ok=True)
+            if not destination.exists():
+                shutil.copyfile(source, destination)
+        database = sqlite3.connect(self.config.database)
+        snapshot = sqlite3.connect(root / 'meta.sqlite')
+        try:
+            database.backup(snapshot)
+        finally:
+            snapshot.close()
+            database.close()
+        destination = self.config.ssd / 'exports' / f'{campaign_id}-{time.time_ns()}'
+        export_bundle(root, destination, reproduction_command=f'neural1 console; RESUME {campaign_id}')
+        if not verify_bundle(destination).valid:
+            raise Neural1Error('export verification failed')
+        return str(destination)
+
+    def meta(self, operation: str, identifier: str = '') -> Any:
+        self.config.check()
+        database = ResearchDatabase(self.config.database)
+        try:
+            if operation == 'QUEUE':
+                return database.research_queue()
+            if operation == 'HISTORY':
+                return database.claim_history(identifier)
+            if operation == 'CLAIM':
+                return database.claim(identifier)
+            return [json.loads(row[0]) for row in database.connection.execute('SELECT payload FROM claims ORDER BY updated_at DESC LIMIT 30')]
+        finally:
+            database.close()
+
+    def selfhost(self, arguments: list[str]) -> Any:
+        from .selfhost_workflow import SelfHostArchive
+
+        operation = arguments[0].upper() if arguments else 'LIST'
+        if operation == 'LIST' and len(arguments) <= 1:
+            return SelfHostArchive(self.config.ssd / 'research/selfhost').records()
+        if operation not in {'INGEST', 'REBUILD', 'QUALIFY', 'EXPORT', 'OPEN'} or len(arguments) != 2:
+            raise Neural1Error('SELFHOST expects LIST, INGEST run-id, REBUILD artifact-id, QUALIFY evidence-path, EXPORT artifact-id, or OPEN bundle-path')
+        self.config.check()
+        if self.running():
+            raise Neural1Error('wait for or stop the active campaign before SELFHOST archive operations')
+        archive = SelfHostArchive(self.config.ssd / 'research/selfhost')
+        identifier = arguments[1]
+        if operation == 'INGEST':
+            result: Any = archive.ingest_run(self.root(identifier))
+        elif operation == 'REBUILD':
+            result = archive.rebuild(identifier)
+        elif operation == 'QUALIFY':
+            evidence = Path(identifier).resolve(strict=True)
+            if not evidence.is_relative_to(self.config.ssd.resolve()) or not evidence.is_file():
+                raise Neural1Error('SELFHOST qualification evidence must be a file on the configured SSD')
+            result = archive.qualify(evidence)
+        elif operation == 'EXPORT':
+            destination = self.config.ssd / 'exports' / f'selfhost-{time.time_ns()}'
+            result = archive.export(destination, artifact_ids=[identifier])
+        else:
+            from .selfhost_workflow import verify_export
+            bundle = Path(identifier).resolve(strict=True)
+            if not bundle.is_relative_to(self.config.ssd.resolve()):
+                raise Neural1Error('SELFHOST bundle must be on the configured SSD')
+            return verify_export(bundle)
+        self.config.storage_check()
+        payload = {'operation': operation, 'argument': identifier, 'result': result, 'target': 'VIRTUAL'}
+        operation_id = stable_id('N1-SH-OP', payload)
+        receipt = self.config.ssd / 'research/selfhost/operations' / f'{operation_id}.json'
+        CampaignEngine._atomic_json(receipt, payload)
+        digest = sha256_bytes(receipt.read_bytes())
+        claim_id = stable_id('N1-C', {'selfhost_operation': operation_id})
+        statement = f'SELFHOST virtual {operation} recorded operation {operation_id}; inspect qualification and evidence class.'
+        database = ResearchDatabase(self.config.database)
+        try:
+            existing = database.claim(claim_id)
+            if existing is None:
+                database.put_claim(Claim(claim_id, statement, {'target': 'VIRTUAL', 'operation': operation_id, 'receipt': str(receipt.relative_to(self.config.ssd)), 'evidence_hash': digest}, causal_status=CausalStatus.OBSERVED))
+            evidence_id = stable_id('N1-E', {'selfhost_receipt_hash': digest})
+            database.put_evidence(Evidence(evidence_id, 'SELFHOST_OPERATION_RECORD', digest, (operation_id,), statement))
+            database.relate(evidence_id, 'supports', claim_id)
+            if existing is None:
+                database.enqueue(f'Assess SELFHOST operation {operation_id}', uncertainty=1, novelty=0, information_gain=0.5, cross_experiment_relevance=0, normalized_compute_cost=0.1)
+        finally:
+            database.close()
+        return {'operation': operation, 'result': result, 'receipt': str(receipt), 'claim_id': claim_id}
+
+    def command(self, line: str) -> Any:
+        self.config.storage_check()
+        args = shlex.split(line)
+        if not args:
+            return None
+        op = args[0].upper()
+        if op in ('1', '2', '3', '4', '5'):
+            self.family = EXPERIMENTS[int(op) - 1]
+            return {'selected': LABELS[int(op) - 1]}
+        if op == 'SELFHOST':
+            return self.selfhost(args[1:])
+        if op == 'MODELS':
+            return [asdict(model) for model in self.registry.models.values()]
+        if op == 'MODEL' and len(args) == 2:
+            return self.select_model(args[1])
+        if op == 'START':
+            return {'started': self.start()}
+        if op == 'RESUME' and len(args) == 2:
+            return {'started': self.start(args[1])}
+        if op == 'STOP' and len(args) == 2:
+            return self.cancel(args[1])
+        if op in ('RUNS', 'STATUS'):
+            runs = self.browse()
+            return {'worker_active': any(run['worker_active'] for run in runs), 'worker_lock_held': self.running(), 'runs': runs, 'resources': self.config.check(), 'selected_model': self.model_id, 'preference_warning': self.preference_warning}
+        if op == 'TRANSCRIPT':
+            if len(args) not in (2, 3):
+                raise Neural1Error('TRANSCRIPT expects run-id and optional nonnegative page number')
+            page = None
+            if len(args) == 3:
+                try:
+                    page = int(args[2])
+                except ValueError as error:
+                    raise Neural1Error('transcript page must be a nonnegative integer') from error
+                if page < 0:
+                    raise Neural1Error('transcript page must be a nonnegative integer')
+            root = self.root(args[1])
+            transcripts = {}
+            totals = {}
+            for path in sorted(root.glob('cells/*/transcript.jsonl')):
+                key = str(path.relative_to(root))
+                selected: deque[str] = deque(maxlen=12)
+                total = 0
+                with path.open() as stream:
+                    for index, line in enumerate(stream):
+                        total += 1
+                        if page is None or page * 12 <= index < (page + 1) * 12:
+                            selected.append(line)
+                transcripts[key] = [json.loads(line) for line in selected]
+                totals[key] = total
+            if page is None:
+                return transcripts  # Preserve legacy latest-twelve map consumers.
+            if page > 0 and page * 12 >= max(totals.values(), default=0):
+                raise Neural1Error('transcript page is out of range; page 0 starts at the first record')
+            return {'page': page, 'page_size': 12, 'total_records': totals, 'transcripts': transcripts}
+        if op == 'SHOW' and len(args) == 2:
+            root = self.root(args[1])
+            return {str(path.relative_to(root)): json.loads(path.read_text()) for path in sorted(root.glob('cells/*/family-result.json')) + sorted(root.glob('cells/*/checkpoint.json'))}
+        if op == 'EXPORT' and len(args) == 2:
+            return {'verified_export': self.export(args[1])}
+        if op == 'OPEN' and len(args) == 2:
+            path = Path(args[1]).resolve()
+            if self.config.ssd.resolve() not in path.parents:
+                raise Neural1Error('bundle must be on the configured SSD')
+            verification = verify_bundle(path)
+            if not verification.valid:
+                raise Neural1Error(str(verification.errors))
+            for checkpoint_path in (path / "records").glob("cells/*/checkpoint.json"):
+                checkpoint = json.loads(checkpoint_path.read_text())
+                source = (path / "records" / checkpoint["snapshot_path"]).resolve()
+                if (path / "records").resolve() not in source.parents or not source.is_file() or sha256_bytes(source.read_bytes()) != checkpoint["snapshot_sha256"]:
+                    raise Neural1Error("exported snapshot dependency is missing or invalid")
+            return {'verification': asdict(verification), 'summary': json.loads((path / 'records/summary.json').read_text()), 'meta': json.loads((path / 'records/meta-link.json').read_text())}
+        if op == 'META':
+            return self.meta(args[1].upper() if len(args) > 1 else 'LIST', args[2] if len(args) > 2 else '')
+        if op == 'LESSONS':
+            from .field_library import LessonCorpus
+            return list(LessonCorpus(self.config.checkout / 'docs/field-library').lessons())
+        if op in ('ASK', 'HINT', 'EXPLAIN', 'SOURCE', 'CHECK', 'TRACE') and len(args) >= 3:
+            from .field_library import FieldLibraryAssistant, LessonCorpus
+            corpus = LessonCorpus(self.config.checkout / 'docs/field-library')
+            context, paths = corpus.context(args[1], include_answers=op == 'CHECK')
+            if op == 'SOURCE':
+                return {'sources': paths, 'text': context}
+            self.config.check()
+            check_model(self.registry, self.model_id)
+            def operation() -> dict[str, Any]:
+                assistant = FieldLibraryAssistant(corpus, provider_for(self.registry.require(self.model_id), record_path=self.config.ssd / 'logs/field-library.jsonl'))
+                if op == 'TRACE':
+                    return asdict(assistant.assemble_explain(args[1], ' '.join(args[2:]).replace('\\n', '\n')))
+                return asdict(assistant.answer(op, args[1], ' '.join(args[2:])))
+
+            bound = min(600.0, float(self.registry.require(self.model_id).generation_defaults.get('timeout_seconds', 120)) + 10)
+            return monitored_call(self.config, operation, timeout_seconds=bound)
+        raise Neural1Error('unknown command or missing argument; HELP lists implemented operations')
+
+
+HELP = '''[V] NEURAL1 / VIRTUAL APPLE-1
+1  4K MIND
+2  1976 MULTIVERSE
+3  SELFHOST/1
+4  256-BYTE UNIVERSE
+5  RAM REPUBLIC
+MODELS / MODEL model-id
+START / STATUS / RUNS / SHOW run-id
+TRANSCRIPT run-id (latest 12 per cell)
+TRANSCRIPT run-id page (0 first 12)
+STOP run-id / RESUME run-id
+EXPORT run-id / OPEN bundle-path
+META / META CLAIM claim-id
+META HISTORY claim-id / META QUEUE
+SELFHOST / SELFHOST INGEST run-id
+SELFHOST REBUILD artifact-id
+SELFHOST QUALIFY evidence-path
+SELFHOST EXPORT artifact-id
+SELFHOST OPEN bundle-path
+LESSONS
+ASK|HINT|EXPLAIN|CHECK lesson question
+SOURCE lesson sources
+TRACE lesson "assembly with \\n lines"
+HELP / QUIT (active run continues)'''
+
+
+def worker(config: ApplicationConfig, campaign_id: str, resume: bool, launch_id: str | None = None) -> int:
+    config.check()
+    config.output.mkdir(parents=True, exist_ok=True)
+    with (config.output / 'worker.lock').open('a') as lock:
+        try:
+            fcntl.flock(lock, fcntl.LOCK_EX | fcntl.LOCK_NB)
+        except BlockingIOError:
+            raise Neural1Error('another console worker owns the run lock') from None
+        os.chdir(config.output)  # Pin the verified mount against ordinary unmount.
+        app = Application(config)
+        root = app.root(campaign_id)
+        spec = CampaignSpec.load(root / 'spec.json')
+        config.check()
+        run_registry = registry_for_execution(app.registry, spec, root, resume=resume)
+        identity = check_model(run_registry, spec.model_ids[0])
+        if not resume:
+            run_registry.save(root / 'effective-registry.json')
+        (root / 'worker.json').write_text(json.dumps({'pid': os.getpid(), 'process_start': Path('/proc/self/stat').read_text().split()[21], 'started_at': time.time(), 'model': identity, 'launch_id': launch_id, 'status': 'RUNNING'}, indent=2))
+        stop = threading.Event()
+        violations: list[str] = []
+
+        def interrupted(signum: int, frame: Any) -> None:
+            raise KeyboardInterrupt
+
+        def watch() -> None:
+            while not stop.wait(2):
+                try:
+                    sample = config.check()
+                    CampaignEngine._append_jsonl(root / "resources.jsonl", {"time": time.time(), **sample})
+                except Exception as error:
+                    violations.append(str(error))
+                    os.kill(os.getpid(), signal.SIGTERM)
+                    return
+
+        signal.signal(signal.SIGTERM, interrupted)
+        signal.signal(signal.SIGINT, interrupted)
+        threading.Thread(target=watch, daemon=True).start()
+        providers = {name: provider_for(run_registry.require(name), record_path=root / f'provider-{name}.jsonl') for name in spec.model_ids}
+        engine = CampaignEngine(config.output, run_registry, providers)
+
+        def safety_check() -> None:
+            config.check()
+
+        try:
+            execute = engine.resume if resume else engine.run
+            summary = execute(spec, objective_factory=lambda cell, generation: execution_objective(spec, root, cell.experiment_id, generation), command_parser=parse_commands, safety_check=safety_check)
+            print(json.dumps(asdict(summary)), flush=True)
+            return 0 if summary.status == 'COMPLETED' else 2
+        except KeyboardInterrupt:
+            config.storage_check()
+            engine.cancel(campaign_id)
+            CampaignEngine._atomic_json(root / 'summary.json', {'campaign_id': campaign_id, 'status': 'RESOURCE_STOP' if violations else 'INTERRUPTED', 'reasons': violations})
+            return 2
+        finally:
+            stop.set()
+            # Refuse any further SSD writes if mount identity/resource checks fail.
+            try:
+                config.storage_check()
+                ingest(config, root)
+                info = json.loads((root / "worker.json").read_text())
+                info.update(status="FINISHED", finished_at=time.time())
+                CampaignEngine._atomic_json(root / "worker.json", info)
+            except Exception as error:
+                print(f'Evidence ingestion deferred: {error}', flush=True)
+
+
+def main(argv: list[str] | None = None) -> int:
+    parser = argparse.ArgumentParser(description=__doc__)
+    parser.add_argument('--config', type=Path, default=DEFAULT_CONFIG)
+    parser.add_argument('--worker')
+    parser.add_argument('--resume', action='store_true')
+    parser.add_argument('--launch-id')
+    parser.add_argument('--command')
+    args = parser.parse_args(argv)
+    try:
+        config = ApplicationConfig.load(args.config)
+        if args.worker:
+            return worker(config, args.worker, args.resume, args.launch_id)
+        app = Application(config)
+        if app.preference_warning:
+            print(app.preference_warning, file=sys.stderr)
+        if args.command:
+            print(json.dumps(app.command(args.command), indent=2, default=str))
+            return 0
+        print(HELP)
+        print(f'Model: {app.model_id}')
+        while True:
+            try:
+                line = input(f'[V] {app.family}> ')
+                if line.strip().upper() in ('QUIT', 'EXIT', '0'):
+                    return 0
+                if line.strip().upper() in ('HELP', '?'):
+                    print(HELP)
+                    continue
+                value = app.command(line)
+                for paragraph in json.dumps(value, indent=2, default=str).splitlines():
+                    print(textwrap.fill(paragraph, width=40, replace_whitespace=False))
+            except (ValueError, OSError, Neural1Error) as error:
+                print(textwrap.fill(f'Cannot proceed: {error}', width=40))
+            except (EOFError, KeyboardInterrupt):
+                print('\nConsole closed; active worker retains state.')
+                return 0
+    except (ValueError, OSError, Neural1Error) as error:
+        print(f'NEURAL1 unavailable: {error}', file=sys.stderr)
+        return 2
+
+
+if __name__ == '__main__':
+    raise SystemExit(main())

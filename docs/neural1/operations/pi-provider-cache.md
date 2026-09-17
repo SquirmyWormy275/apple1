@@ -1,0 +1,7 @@
+# Native provider prompt cache
+
+The Pi installer adds `LLAMA_ARG_CACHE_RAM=256` to its existing Ollama service drop-in, preserving other service settings. This bounds llama-server's serialized prompt cache to 256 MiB independently of the 4096-token active context. The installer checks that systemd's effective environment contains this setting. Native runner startup must separately confirm the resulting cache limit before deployment acceptance; the environment check alone does not prove runner behavior.
+
+During commissioning, the existing ARM64 `/usr/local/lib/ollama/llama-server --help` explicitly reported `--cache-ram`, an 8192 MiB default, and `LLAMA_ARG_CACHE_RAM` as its supported environment variable. This read-only check loaded no model. The active runner command had one slot, 4096 context, and no cache override. Observed cache history reached six saved prompts totaling 412.042 MiB before runner replacement reset it. A contemporaneous runner RSS was 3,530,160 KiB with zero process swap; available system memory was 4,311,216 KiB. These observations do not show OOM or unbounded growth.
+
+The smaller configured cache budget supports repeated use on the identified 8 GB Pi without depending on the active-context size to bound retained prompt states. Model identity, inference parsing, SSD store, and accepted historical evidence remain unchanged. Private commissioning records retain native help, process accounting, and cache log excerpts; no privileged or device inventory is committed here.

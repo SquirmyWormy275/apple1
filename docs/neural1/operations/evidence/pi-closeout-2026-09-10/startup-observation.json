@@ -1,0 +1,149 @@
+{
+  "classification": "SANITIZED_EXISTING_PHYSICAL_TEST_OBSERVATIONS",
+  "events": [
+    {
+      "at_utc": "2026-09-11T03:08:37.101609+00:00",
+      "expected_device_present": true,
+      "fallback_entries": 0,
+      "mount_unit": {
+        "ActiveEnterTimestampMonotonic": "1104035152",
+        "ActiveState": "active",
+        "InactiveExitTimestampMonotonic": "1104035152",
+        "Result": "success",
+        "SubState": "mounted"
+      },
+      "new_boot_observed": false,
+      "phase": "baseline",
+      "provider_unit": {
+        "ActiveEnterTimestampMonotonic": "1104358095",
+        "ActiveState": "active",
+        "ExecMainStartTimestampMonotonic": "1104357853",
+        "InactiveExitTimestampMonotonic": "1104227737",
+        "Result": "success",
+        "SubState": "running"
+      },
+      "ssd_mounted": true,
+      "storage_role_verified": true
+    },
+    {
+      "at_utc": "2026-09-11T03:08:37.112895+00:00",
+      "phase": "baseline",
+      "result": "PASSED"
+    },
+    {
+      "at_utc": "2026-09-11T03:37:58.621157+00:00",
+      "error_class": "MDNS_NAME_RESOLUTION_FAILURE_BEFORE_CONNECTION",
+      "phase": "absent",
+      "result": "FAILED"
+    },
+    {
+      "at_utc": "2026-09-11T03:38:37.096271+00:00",
+      "error_class": "MDNS_NAME_RESOLUTION_FAILURE_BEFORE_CONNECTION",
+      "phase": "absent",
+      "result": "FAILED"
+    },
+    {
+      "at_utc": "2026-09-11T03:38:48.171922+00:00",
+      "expected_device_present": false,
+      "fallback_entries": 0,
+      "mount_unit": {
+        "ActiveEnterTimestampMonotonic": "0",
+        "ActiveState": "inactive",
+        "InactiveExitTimestampMonotonic": "0",
+        "Result": "success",
+        "SubState": "dead"
+      },
+      "new_boot_observed": true,
+      "phase": "absent",
+      "provider_unit": {
+        "ActiveEnterTimestampMonotonic": "0",
+        "ActiveState": "inactive",
+        "ExecMainStartTimestampMonotonic": "0",
+        "InactiveExitTimestampMonotonic": "0",
+        "Result": "success",
+        "SubState": "dead"
+      },
+      "ssd_mounted": false,
+      "storage_role_verified": false
+    },
+    {
+      "at_utc": "2026-09-11T03:38:48.642240+00:00",
+      "exit_code": 2,
+      "message": "NEURAL1 unavailable: storage unavailable: required SSD is not mounted at the configured root with its expected UUID",
+      "phase": "absent_status_refusal"
+    },
+    {
+      "at_utc": "2026-09-11T03:38:48.895640+00:00",
+      "expected_device_present": false,
+      "fallback_entries": 0,
+      "mount_unit": {
+        "ActiveEnterTimestampMonotonic": "0",
+        "ActiveState": "inactive",
+        "InactiveExitTimestampMonotonic": "0",
+        "Result": "success",
+        "SubState": "dead"
+      },
+      "new_boot_observed": true,
+      "phase": "absent",
+      "provider_unit": {
+        "ActiveEnterTimestampMonotonic": "0",
+        "ActiveState": "inactive",
+        "ExecMainStartTimestampMonotonic": "0",
+        "InactiveExitTimestampMonotonic": "0",
+        "Result": "success",
+        "SubState": "dead"
+      },
+      "ssd_mounted": false,
+      "storage_role_verified": false
+    },
+    {
+      "at_utc": "2026-09-11T03:38:48.897951+00:00",
+      "phase": "absent",
+      "result": "PASSED"
+    },
+    {
+      "at_utc": "2026-09-11T03:45:28.800804+00:00",
+      "expected_device_present": true,
+      "fallback_entries": 0,
+      "mount_unit": {
+        "ActiveEnterTimestampMonotonic": "447993730",
+        "ActiveState": "active",
+        "InactiveExitTimestampMonotonic": "447785060",
+        "Result": "success",
+        "SubState": "mounted"
+      },
+      "new_boot_observed": true,
+      "phase": "arrival",
+      "provider_unit": {
+        "ActiveEnterTimestampMonotonic": "448140656",
+        "ActiveState": "active",
+        "ExecMainStartTimestampMonotonic": "448140381",
+        "InactiveExitTimestampMonotonic": "447995283",
+        "Result": "success",
+        "SubState": "running"
+      },
+      "ssd_mounted": true,
+      "storage_role_verified": true
+    },
+    {
+      "at_utc": "2026-09-11T03:45:28.954933+00:00",
+      "phase": "arrival_journal"
+    },
+    {
+      "at_utc": "2026-09-11T03:45:28.964162+00:00",
+      "phase": "arrival",
+      "result": "PASSED"
+    }
+  ],
+  "host_identity_check": "preserved SSH host key, BatchMode key authentication; private address and device IDs omitted",
+  "manual_mount_or_service_start_used": false,
+  "no_power_test_repeated_for_closeout": true,
+  "result": "PASSED",
+  "sequence": "clean shutdown; operator boot without SSD; normal SSH; missing-storage refusal; operator reconnect/activate SSD; automatic mount/provider; post-boot real run",
+  "ssd_identity_verified_privately": [
+    "serial",
+    "capacity",
+    "filesystem UUID",
+    "role marker"
+  ]
+}

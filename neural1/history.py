@@ -99,3 +99,26 @@ def research_status(path: str | Path) -> dict[str, Any]:
 
 def verify_local_source(path: str | Path, expected_sha256: str) -> bool:
     return sha256_bytes(Path(path).read_bytes()).lower() == expected_sha256.lower()
+
+
+def load_console_corpus(path: str | Path | None = None) -> HistoricalCorpus:
+    """Load reviewed runtime records; research staging is never a fallback."""
+    destination = Path(path) if path is not None else Path(__file__).resolve().parents[1] / "data/neural1/history/console-corpus.json"
+    payload = json.loads(destination.read_text(encoding="utf-8"))
+    if payload.get("schema_version") != "neural1-history-0.1" or payload.get("world_id") != "YEAR_END_1976_12_31":
+        raise Neural1Error("unsupported console corpus or historical cutoff")
+    corpus = HistoricalCorpus()
+    source_root = Path(__file__).resolve().parents[1]
+    for record in payload["sources"]:
+        source = HistoricalSource(**record)
+        artifact = (source_root / source.url_or_archive_path).resolve()
+        if not artifact.is_relative_to(source_root) or not artifact.is_file() or not verify_local_source(artifact, source.sha256):
+            raise Neural1Error("console historical source artifact identity mismatch or missing")
+        corpus.add_source(source)
+    for record in payload["components"]:
+        record = dict(record)
+        record["source_ids"] = tuple(record["source_ids"])
+        corpus.add_component(HistoricalComponent(**record))
+    if not corpus.components or any(not item.authoritative for item in corpus.components.values()):
+        raise Neural1Error("console corpus requires reviewed authoritative components")
+    return corpus

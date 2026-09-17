@@ -17,7 +17,12 @@ def provider_for(model: RegisteredModel, *, record_path: str | Path | None = Non
         max_tokens = settings.pop("max_tokens", None)
         if max_tokens is not None:
             settings["num_predict"] = int(max_tokens)
-        provider = OllamaHttpProvider(model.backend_name, timeout_seconds=float(settings.pop("timeout_seconds", 120)), options=settings)
+        base_url = str(settings.pop("base_url", "http://127.0.0.1:11434"))
+        settings.setdefault("num_ctx", model.context_limit)
+        api = str(settings.pop("api", "generate"))
+        keep_alive = settings.pop("keep_alive", None)
+        response_format = settings.pop("format", None)
+        provider = OllamaHttpProvider(model.backend_name, base_url=base_url, timeout_seconds=float(settings.pop("timeout_seconds", 120)), options=settings, api=api, keep_alive=keep_alive, format=response_format, model_hash=model.digest, quantization=model.quantization, context_limit=int(settings["num_ctx"]), model_family=model.family)
     elif model.backend == "llama.cpp":
         executable = settings.pop("executable", None)
         model_path = settings.pop("model_path", None)

@@ -43,7 +43,23 @@ Review the generated manifest before copying. It is the exact allowlist for both
 neural1-storage copy-migration ~/.local/state/neural1/storage-migration.json
 ```
 
-Existing destination files are accepted only when byte size and SHA-256 already match. A conflicting destination file aborts the operation rather than being overwritten.
+Existing regular destination files are accepted only when byte size and SHA-256
+already match. Symlinks and conflicting destination files abort the operation.
+Each new file is copied to an exclusively created `.neural1-copy-*.partial`
+file on the destination filesystem, flushed, and verified before atomic
+no-overwrite publication. A retry reuses verified completed files and restarts
+incomplete files from the beginning; this is not byte-offset resume. Normal
+exceptions remove the attempt's own partial. A hard kill can leave a partial,
+which is preserved for inspection and never mistaken for a complete payload.
+The copy requires space for the full next file plus a 64 MiB reserve.
+
+An installed application must additionally call
+`neural1.deployment.verify_storage` before workloads and bulk-write stages.
+Unlike a role marker alone, this checks the actual mountpoint, expected
+filesystem UUID, writable mount, free space, and resolved write paths. Its role
+marker's `volume_id` must equal the filesystem UUID. It refuses a plain directory
+when the SSD is absent, symlink escapes, and nested write mounts. This check
+creates no directories and cannot silently fall back to microSD storage.
 
 ## Verify
 

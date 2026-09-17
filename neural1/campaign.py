@@ -2,6 +2,7 @@
 
 from __future__ import annotations
 
+import fcntl
 import json
 import os
 from collections.abc import Callable, Mapping, Sequence
@@ -117,6 +118,7 @@ class CellCheckpoint:
     errors: list[Mapping[str, Any]] = field(default_factory=list)
     updated_at: str = ""
     schema_version: str = CHECKPOINT_SCHEMA
+    next_agent: int = 0
 
 
 @dataclass(frozen=True)
@@ -148,7 +150,41 @@ class CampaignEngine:
                     f"model {model_id} max_tokens exceeds the campaign bound"
                 )
 
-    def run(self, spec: CampaignSpec, *, objective_factory: Callable[[CampaignCell, int], str], command_parser: Callable[[str], Sequence[str]]) -> CampaignSummary:
+    def campaign_path(self, campaign_id: str) -> Path:
+        if not campaign_id or Path(campaign_id).name != campaign_id or campaign_id in {".", ".."}:
+            raise Neural1Error("invalid campaign ID")
+        return self.root / "campaigns" / campaign_id
+
+    def cancel(self, campaign_id: str) -> None:
+        root = self.campaign_path(campaign_id)
+        if not (root / "spec.json").is_file():
+            raise Neural1Error("unknown campaign")
+        if not (root / "CANCEL").exists():
+            self._atomic_json(root / "CANCEL", {"owner": "neural1-campaign", "campaign_id": campaign_id})
+
+    def resume(self, spec: CampaignSpec, **kwargs: Any) -> CampaignSummary:
+        return self.run(spec, resume=True, **kwargs)
+
+    def run(self, spec: CampaignSpec, *, objective_factory: Callable[[CampaignCell, int], str], command_parser: Callable[[str], Sequence[str]], resume: bool = False, safety_check: Callable[[], None] | None = None) -> CampaignSummary:
+        root = self.campaign_path(spec.campaign_id)
+        root.mkdir(parents=True, exist_ok=True)
+        with (root / "run.lock").open("a") as lock:
+            try:
+                fcntl.flock(lock, fcntl.LOCK_EX | fcntl.LOCK_NB)
+            except BlockingIOError as error:
+                raise Neural1Error("campaign is already running") from error
+            marker = root / "CANCEL"
+            if resume and marker.exists():
+                try:
+                    owned = json.loads(marker.read_text())
+                except ValueError as error:
+                    raise Neural1Error("cannot remove an unowned cancellation marker") from error
+                if owned != {"owner": "neural1-campaign", "campaign_id": spec.campaign_id}:
+                    raise Neural1Error("cannot remove an unowned cancellation marker")
+                marker.unlink()
+            return self._run(spec, objective_factory=objective_factory, command_parser=command_parser, safety_check=safety_check)
+
+    def _run(self, spec: CampaignSpec, *, objective_factory: Callable[[CampaignCell, int], str], command_parser: Callable[[str], Sequence[str]], safety_check: Callable[[], None] | None) -> CampaignSummary:
         self.validate(spec)
         campaign_root = self.root / "campaigns" / spec.campaign_id
         campaign_root.mkdir(parents=True, exist_ok=True)
@@ -161,7 +197,7 @@ class CampaignEngine:
             if monotonic() >= deadline or (campaign_root / "CANCEL").exists():
                 cancelled.extend(item.cell_id for item in spec.cells if item.cell_id not in completed)
                 break
-            checkpoint = self._run_cell(spec, cell, deadline, objective_factory, command_parser)
+            checkpoint = self._run_cell(spec, cell, deadline, objective_factory, command_parser, safety_check)
             if checkpoint.status == "COMPLETED":
                 completed.append(cell.cell_id)
             elif checkpoint.status == "CANCELLED":
@@ -172,40 +208,115 @@ class CampaignEngine:
         self._atomic_json(campaign_root / "summary.json", asdict(summary))
         return summary
 
-    def _run_cell(self, spec: CampaignSpec, cell: CampaignCell, deadline: float, objective_factory: Callable[[CampaignCell, int], str], command_parser: Callable[[str], Sequence[str]]) -> CellCheckpoint:
-        cell_root = self.root / "campaigns" / spec.campaign_id / "cells" / cell.cell_id
+    def _run_cell(self, spec: CampaignSpec, cell: CampaignCell, deadline: float, objective_factory: Callable[[CampaignCell, int], str], command_parser: Callable[[str], Sequence[str]], safety_check: Callable[[], None] | None) -> CellCheckpoint:
+        cell_root = self.campaign_path(spec.campaign_id) / "cells" / cell.cell_id
         cell_root.mkdir(parents=True, exist_ok=True)
         checkpoint_path = cell_root / "checkpoint.json"
         checkpoint = self._load_checkpoint(checkpoint_path)
-        if checkpoint and checkpoint.status == "COMPLETED":
-            return checkpoint
         world = self._restore_checkpoint(checkpoint) if checkpoint else VirtualApple1World(ram_budget=spec.ram_budget)
         generation = checkpoint.generation if checkpoint else 0
+        next_agent = checkpoint.next_agent if checkpoint else 0
         transcript_path = cell_root / "transcript.jsonl"
+        records = self._recover_transcript(transcript_path, checkpoint)
+        if checkpoint and checkpoint.status == "COMPLETED":
+            return checkpoint
         token_use = checkpoint.token_use if checkpoint else 0
         errors = list(checkpoint.errors) if checkpoint else []
         while generation < spec.generations:
-            if monotonic() >= deadline or (self.root / "campaigns" / spec.campaign_id / "CANCEL").exists():
-                return self._checkpoint(cell, world, generation, "CANCELLED", transcript_path, token_use, errors, checkpoint_path)
-            for agent_index in range(spec.agents_per_cell):
+            for agent_index in range(next_agent, spec.agents_per_cell):
+                if monotonic() >= deadline or (self.campaign_path(spec.campaign_id) / "CANCEL").exists():
+                    return self._checkpoint(cell, world, generation, "CANCELLED", transcript_path, token_use, errors, checkpoint_path, agent_index)
+                if safety_check:
+                    try:
+                        safety_check()
+                    except Neural1Error as error:
+                        errors.append({"generation": generation, "type": "ResourceStop", "message": str(error)})
+                        return self._checkpoint(cell, world, generation, "RESOURCE_STOP", transcript_path, token_use, errors, checkpoint_path, agent_index)
                 agent_id = f"{cell.cell_id}-A{agent_index + 1:03d}"
-                prompt = objective_factory(cell, generation)
+                objective = objective_factory(cell, generation)
+                observations = []
+                if cell.experiment_id == "ram-republic":
+                    # A declared public RAM examination is the sole cross-participant channel.
+                    observations = [{"command": "0200.020F", "output": WozMonSession(world).transact("0200.020F")}]
+                    objective += "\nCURRENT SHARED MONITOR EXAMINATION:\n" + observations[0]["output"]
+                reset_every = int(spec.generation_settings.get("context_reset_generations", 0))
+                since = generation - generation % reset_every if reset_every else 0
+                private = [record for record in records if record["agent_id"] == agent_id and record["generation"] >= since][-4:]
+                feedback: list[str] = []
+                for previous in private:
+                    if "outputs" in previous:
+                        channel = "DESIGN VALIDATOR" if cell.experiment_id == "1976-multiverse" else "WOZMON"
+                        feedback.extend(f"{channel}:{output}" for output in previous["outputs"])
+                        if not previous["outputs"]:
+                            feedback.append(f"{channel}: previous response contained no valid command; follow the required output grammar.")
+                    elif "error" in previous:
+                        feedback.append("WOZMON: previous turn was rejected; emit strict monitor commands.")
+                # Conservative character bound; never expose another participant's transcript.
+                budget = max(0, self.registry.require(cell.model_id).context_limit - spec.max_tokens - len(objective) - 128)
+                history = "\n".join(feedback)[-budget:] if budget else ""
+                prompt = objective + ("\nYOUR PRIVATE MONITOR OBSERVATIONS:\n" + history if history else "")
+                result = None
                 try:
                     result = self.providers[cell.model_id].generate(prompt, agent_id=agent_id, seed=cell.seed + generation * 1009 + agent_index)
-                    outputs = [WozMonSession(world).transact(command) for command in command_parser(result.text)]
                     token_use += (result.prompt_tokens or 0) + (result.completion_tokens or 0)
-                    record = {"generation": generation, "agent_id": agent_id, "prompt": prompt, "response": result.text, "outputs": outputs, "result": asdict(result)}
+                    if cell.experiment_id == "1976-multiverse":
+                        from .family_runner import process_multiverse_response
+                        proposal = process_multiverse_response(result.text)
+                        record = {"generation": generation, "agent_id": agent_id, "prompt": prompt, "response": result.text, "proposal": proposal, "outputs": proposal["outputs"], "accepted_proposals": proposal["accepted_proposals"], "result": asdict(result)}
+                    else:
+                        commands = list(command_parser(result.text))
+                        session = WozMonSession(world, candidate_limit=256 if cell.experiment_id == "256-byte-universe" else None)
+                        outputs = [session.transact(command) for command in commands]
+                        accepted = sum(not output.startswith("ERR") for output in outputs)
+                        record = {"generation": generation, "agent_id": agent_id, "prompt": prompt, "response": result.text, "commands": commands, "outputs": outputs, "observations": observations, "accepted_commands": accepted, "result": asdict(result)}
                 except Exception as error:
                     failure = {"generation": generation, "agent_id": agent_id, "type": type(error).__name__, "message": str(error)}
                     errors.append(failure)
-                    record = {"generation": generation, "agent_id": agent_id, "error": failure}
+                    record = {"generation": generation, "agent_id": agent_id, "prompt": prompt, "error": failure}
+                    if result is not None:
+                        record.update(response=result.text, result=asdict(result))
                 self._append_jsonl(transcript_path, record)
+                records.append(record)
+                self._checkpoint(cell, world, generation, "RUNNING", transcript_path, token_use, errors, checkpoint_path, agent_index + 1)
             generation += 1
+            next_agent = 0
             world.generation = generation
             self._checkpoint(cell, world, generation, "RUNNING", transcript_path, token_use, errors, checkpoint_path)
-        return self._checkpoint(cell, world, generation, "COMPLETED", transcript_path, token_use, errors, checkpoint_path)
+        from .family_runner import evaluate_family
 
-    def _checkpoint(self, cell: CampaignCell, world: VirtualApple1World, generation: int, status: str, transcript_path: Path, token_use: int, errors: list[Mapping[str, Any]], path: Path) -> CellCheckpoint:
+        family_result = evaluate_family(cell.experiment_id, world, records)
+        self._atomic_json(cell_root / "family-result.json", family_result)
+        accepted_total = sum(record.get("accepted_commands", sum(not output.startswith("ERR") for output in record.get("outputs", []))) for record in records)
+        if cell.experiment_id == "1976-multiverse":
+            # A parsed, scientifically rejected genome is a completed negative
+            # evaluation. A malformed response never supplied a candidate.
+            accepted_total = sum(isinstance(recorded_proposal, Mapping) and isinstance(recorded_proposal.get("genome"), Mapping) for record in records if (recorded_proposal := record.get("proposal")) is not None)
+        terminal_errors = [error for error in errors if error.get("type") != "ResourceStop"]
+        status = "COMPLETED" if accepted_total and not terminal_errors else "FAILED" if terminal_errors else "NO_ACCEPTED_COMMANDS"
+        if family_result.get("status") == "BLOCKED":
+            status = "BLOCKED"
+        return self._checkpoint(cell, world, generation, status, transcript_path, token_use, errors, checkpoint_path)
+
+    @staticmethod
+    def _recover_transcript(path: Path, checkpoint: CellCheckpoint | None) -> list[dict[str, Any]]:
+        payload = path.read_bytes() if path.exists() else b""
+        expected = checkpoint.transcript_sha256 if checkpoint else sha256_bytes(b"")
+        if sha256_bytes(payload) != expected:
+            # Only discard a tail after a verified committed prefix. Preserve it for audit.
+            prefix = b""
+            for line in payload.splitlines(keepends=True):
+                if sha256_bytes(prefix) == expected:
+                    break
+                prefix += line
+            if sha256_bytes(prefix) != expected:
+                raise Neural1Error("checkpoint transcript hash mismatch")
+            orphan = path.with_name("uncommitted-" + sha256_bytes(payload) + ".jsonl")
+            orphan.write_bytes(payload[len(prefix):])
+            path.write_bytes(prefix)
+            payload = prefix
+        return [json.loads(line) for line in payload.splitlines()]
+
+    def _checkpoint(self, cell: CampaignCell, world: VirtualApple1World, generation: int, status: str, transcript_path: Path, token_use: int, errors: list[Mapping[str, Any]], path: Path, next_agent: int = 0) -> CellCheckpoint:
         snapshot = self.runtime.snapshot(world)
         transcript_hash = sha256_bytes(transcript_path.read_bytes()) if transcript_path.exists() else sha256_bytes(b"")
         snapshot_path = Path(snapshot.path)
@@ -213,7 +324,7 @@ class CampaignEngine:
             stored_path = snapshot_path.relative_to(self.root).as_posix()
         except ValueError as error:
             raise Neural1Error("snapshot escaped the campaign root") from error
-        checkpoint = CellCheckpoint(cell.cell_id, generation, status, snapshot.sha256, stored_path, transcript_hash, token_use, errors, datetime.now(UTC).isoformat())
+        checkpoint = CellCheckpoint(cell.cell_id, generation, status, snapshot.sha256, stored_path, transcript_hash, token_use, errors, datetime.now(UTC).isoformat(), next_agent=next_agent)
         self._atomic_json(path, asdict(checkpoint))
         return checkpoint
 
@@ -248,5 +359,8 @@ class CampaignEngine:
     def _atomic_json(path: Path, value: Mapping[str, Any]) -> None:
         path.parent.mkdir(parents=True, exist_ok=True)
         temporary = path.with_suffix(path.suffix + ".tmp")
-        temporary.write_text(json.dumps(value, indent=2, sort_keys=True, default=str) + "\n", encoding="utf-8")
+        with temporary.open("w", encoding="utf-8") as stream:
+            stream.write(json.dumps(value, indent=2, sort_keys=True, default=str) + "\n")
+            stream.flush()
+            os.fsync(stream.fileno())
         os.replace(temporary, path)

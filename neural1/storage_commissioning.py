@@ -5,7 +5,9 @@ from __future__ import annotations
 import argparse
 import hashlib
 import json
+import os
 import shutil
+import tempfile
 from collections.abc import Iterator, Sequence
 from dataclasses import asdict, dataclass
 from pathlib import Path
@@ -329,20 +331,66 @@ def _manifest_paths(source: Path, destination: Path, item: dict[str, Any]) -> tu
     return _safe_payload_path(source, source_text), _safe_payload_path(destination, destination_text)
 
 
+def _matching_payload(path: Path, item: dict[str, Any]) -> bool:
+    return (
+        path.is_file()
+        and not path.is_symlink()
+        and path.stat().st_size == item["size_bytes"]
+        and sha256_file(path) == item["sha256"]
+    )
+
+
+def _atomic_copy(source: Path, destination: Path, item: dict[str, Any]) -> None:
+    """Publish only complete bytes; never overwrite even a racing destination.
+
+    Each attempt owns an exclusively created partial. A killed process may leave
+    that partial for operator inspection, but retry never mistakes it for a final
+    payload or overwrites an unrelated file. Interrupted files restart from zero.
+    """
+    reserve = 64 * 1024 * 1024
+    if shutil.disk_usage(destination.parent).free < int(item["size_bytes"]) + reserve:
+        raise ValueError("insufficient destination capacity including migration reserve")
+    fd, temporary_name = tempfile.mkstemp(prefix=".neural1-copy-", suffix=".partial", dir=destination.parent)
+    temporary = Path(temporary_name)
+    try:
+        with os.fdopen(fd, "wb") as output, source.open("rb") as incoming:
+            shutil.copyfileobj(incoming, output, length=_HASH_CHUNK)
+            output.flush()
+            os.fsync(output.fileno())
+        if not _matching_payload(temporary, item):
+            raise ValueError(f"copied payload verification failed: {item['destination_path']}")
+        shutil.copystat(source, temporary)
+        # link is an atomic no-clobber publication on the same filesystem.
+        try:
+            os.link(temporary, destination)
+        except FileExistsError:
+            if not _matching_payload(destination, item):
+                raise ValueError(f"destination already exists with different content: {item['destination_path']}") from None
+        directory_fd = os.open(destination.parent, os.O_RDONLY | os.O_DIRECTORY)
+        try:
+            os.fsync(directory_fd)
+        finally:
+            os.close(directory_fd)
+    finally:
+        temporary.unlink(missing_ok=True)
+
+
 def copy_migration(manifest: dict[str, Any]) -> dict[str, Any]:
     source, destination = _validate_manifest_roots(manifest)
     for item in manifest.get("items", []):
+        # Recheck role identity each file, including after an interrupted stage.
+        _validate_manifest_roots(manifest)
         source_path, destination_path = _manifest_paths(source, destination, item)
         if not source_path.is_file() or source_path.is_symlink():
             raise ValueError(f"source payload is missing or unsafe: {item['source_path']}")
-        if source_path.stat().st_size != item["size_bytes"] or sha256_file(source_path) != item["sha256"]:
+        if not _matching_payload(source_path, item):
             raise ValueError(f"source payload changed after planning: {item['source_path']}")
         destination_path.parent.mkdir(parents=True, exist_ok=True)
-        if destination_path.exists():
-            if destination_path.stat().st_size != item["size_bytes"] or sha256_file(destination_path) != item["sha256"]:
+        if destination_path.exists() or destination_path.is_symlink():
+            if not _matching_payload(destination_path, item):
                 raise ValueError(f"destination already exists with different content: {item['destination_path']}")
             continue
-        shutil.copy2(source_path, destination_path)
+        _atomic_copy(source_path, destination_path, item)
     copied = dict(manifest)
     copied["state"] = "COPIED"
     return copied
@@ -452,6 +500,8 @@ def main(argv: Sequence[str] | None = None) -> int:
         return 0
     if args.command == "plan-migration":
         payload = build_migration_manifest(args.source, args.destination)
+        if args.manifest.resolve().is_relative_to(args.source.resolve()):
+            raise ValueError("migration manifest must be outside the source root")
         _write_json(args.manifest, payload)
         print(args.manifest)
         return 0

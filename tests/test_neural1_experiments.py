@@ -24,7 +24,7 @@ def test_ram_republic_uses_shared_ram_not_agent_chat() -> None:
 def test_rom_budget_is_exact_and_tests_are_deterministic() -> None:
     evaluator = RomUniverse()
     assert evaluator.evaluate(bytes(255), {}).passed is False
-    score = evaluator.evaluate(bytes(range(256)), {"last-byte": lambda rom: rom[-1] == 255})
+    score = evaluator.evaluate(bytes(range(256)), {"last-byte": lambda rom: rom[-1] == 255}, known_good=bytes(range(256)), known_bad=bytes(256))
     assert score.passed is True
 
 
