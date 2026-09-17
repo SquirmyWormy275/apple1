@@ -1,0 +1,88 @@
+{
+  "command": "python -m tools.propeller_capture_job rehearse --out out/propeller-controller-final",
+  "evidence_class": "TEST_FIXTURE",
+  "limits": [
+    "Synthetic subprocesses exercise the production controller, not actual USB/SSH throughput.",
+    "Service command construction is tested; P1 systemd/inhibitor/SSH environment still requires attended checkout.",
+    "No physical probe, rail, reset, or display observation was made in this validation."
+  ],
+  "live_hardware_qualification": "NOT_PERFORMED",
+  "local_checks": {
+    "deterministic_demo": "PASS, serial_opened=false",
+    "mypy": "PASS, 35 source files",
+    "pytest": "168 passed in 7.39 seconds",
+    "repository_validator": "PASS, no errors",
+    "ruff": "PASS"
+  },
+  "physical_serial_opened": false,
+  "scenarios": [
+    {
+      "owner_attempted": true,
+      "owner_confirmed_closed": true,
+      "result": "COMPLETE_DIGITAL_QUIET",
+      "run_id": "simulation-stable"
+    },
+    {
+      "owner_attempted": false,
+      "owner_confirmed_closed": false,
+      "result": "STOP",
+      "run_id": "simulation-missing-analyzer"
+    },
+    {
+      "owner_attempted": false,
+      "owner_confirmed_closed": false,
+      "result": "STOP",
+      "run_id": "simulation-unstable-idle"
+    },
+    {
+      "owner_attempted": false,
+      "owner_confirmed_closed": false,
+      "result": "STOP",
+      "run_id": "simulation-capture-not-ready"
+    },
+    {
+      "owner_attempted": true,
+      "owner_confirmed_closed": true,
+      "result": "STOP",
+      "run_id": "simulation-partial-capture"
+    },
+    {
+      "owner_attempted": true,
+      "owner_confirmed_closed": false,
+      "result": "STOP",
+      "run_id": "simulation-reset-during-open"
+    },
+    {
+      "owner_attempted": true,
+      "owner_confirmed_closed": false,
+      "result": "STOP",
+      "run_id": "simulation-owner-failure"
+    },
+    {
+      "owner_attempted": true,
+      "owner_confirmed_closed": false,
+      "result": "STOP",
+      "run_id": "simulation-ssh-loss-after-open"
+    },
+    {
+      "owner_attempted": true,
+      "owner_confirmed_closed": false,
+      "result": "STOP",
+      "run_id": "simulation-owner-timeout"
+    },
+    {
+      "owner_attempted": true,
+      "owner_confirmed_closed": false,
+      "result": "STOP",
+      "run_id": "simulation-startup-bytes"
+    }
+  ],
+  "source_sha256": {
+    "tools/propeller_capture_job.py": "ca6b019817da1db05a2659a53fe656d174534c9e790d5cb9c6fff5d387fac0f3",
+    "tools/propeller_job_simulation.py": "8fd726871ebc1d3bd4b205e3c445df7200aeff4100d19413c55406714f15ce5a",
+    "tools/propeller_remote_owner.py": "37915ee45f2c931b6ea7d984c914cfb5a217afbdab5aa47aeb94e222eca9f2b2",
+    "tools/serial_owner.py": "b93a91e57351ffed5e5017ba2976d21939fe5979ecdf322808af3cd454fccd4b",
+    "tools/sigrok_summary.py": "13b0982297f6fe677402ca98519b5fcd07e5ea3a33c09ad0e7d3c0558eea1d41"
+  },
+  "validation_date_utc": "2026-09-11"
+}
