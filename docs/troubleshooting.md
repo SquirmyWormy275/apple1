@@ -1,5 +1,26 @@
 # Replica 1 Plus serial troubleshooting record
 
+## Current position — reviewed September 16, 2026
+
+The latest executed test recorded here is the September 2 instrumented
+no-transmit open. It reproduced display corruption but did not establish the
+root cause. A working NEURAL1 Pi does not resolve or qualify this physical link.
+
+[PR #6](https://github.com/SquirmyWormy275/apple1/pull/6) preserves preparation for
+a bounded capture and worker with reset coverage. It remains a separate review
+and hardware-qualification task, not permission to launch an unattended test.
+Its reported software checks do not measure analog rails or establish display
+stability on the actual board.
+
+No new multimeter readings, reset trace, firmware repair, or successful physical
+qualification are asserted by this documentation update. Continue from the
+[September 2 packet](captures/2026-09-02-ft232r-open-analyzer/README.md) and the
+[serial protocol](serial-test-protocol.md); do not repeat an uninstrumented open
+or substitute a firmware flash for the unresolved measurement step.
+
+The dated observations below are retained unchanged. See
+[current project status](STATUS.md) for the separate Pi and integration work.
+
 ## 2026-08-27 — FT232R open with no transmit
 
 **Symptom**

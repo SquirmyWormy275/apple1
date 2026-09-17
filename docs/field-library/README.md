@@ -1,9 +1,9 @@
 # Apple-1 Field Library
 
-Forty-one lesson packets written against the brief in
-`../apple1-learning-library-curriculum.md`. Every packet follows that
-document's authoring template and contains `README.md`, `ACTIVITY.md`,
-`ANSWERS.md`, `SOURCE-NOTES.md`, `STATUS.md`, and an `assets/` directory.
+42 lesson packets cover the [curriculum](../apple1-learning-library-curriculum.md)
+and the special [SP01 board-comparison atlas](SP01-two-boards-one-computer/README.md).
+Packets include learner material, an activity, answers, source notes, and a
+status record. SP01 also contains card-facing ASCII screens under `card/`.
 
 ## Status of the whole library
 
@@ -20,7 +20,9 @@ them. No lesson changes that.
 
 **H06 has been through the review gate** as part of the display-history research
 pass. The pre-existing forty packets have not been reviewed as a set; verification
-item V-36 remains outstanding for that earlier material.
+item V-36 remains outstanding for that earlier material. Adding SP01 to this
+index corrects navigation and the packet count; it does not grant new review
+or CF-card approval to any lesson.
 
 ## Shared files
 
@@ -32,10 +34,10 @@ item V-36 remains outstanding for that earlier material.
 
 ## Companion material
 
-Four folders alongside the lessons, for using this library rather than working
-through it.
+Three companion folders and a glossary support teaching and visiting alongside
+the lesson sequence.
 
-| Folder | For | Contents |
+| Resource | For | Contents |
 |---|---|---|
 | [`visitor-mode/`](visitor-mode/README.md) | Showing the machine to someone | Spoken host scripts at 2, 5 and 15 minutes, plus a question sheet |
 | [`program-annotations/`](program-annotations/README.md) | Reading the two RAM-only programs closely | Line-by-line annotations of both existing artifacts |
@@ -127,6 +129,12 @@ brings a learner or a visitor into contact with the hardware.
 | [X03](X03-build-a-museum-demo/README.md) | Build a museum demo | BUILD | 60 minutes | S01, S04, H02, H04 |
 | [X04](X04-curate-a-mini-software-exhibit/README.md) | Curate a mini software exhibit | STUDY | 60 minutes | S04, H02, H03 |
 | [X05](X05-invent-the-next-lesson/README.md) | Invent the next lesson | BUILD | 75 minutes | A06, H04, and at least four lessons completed |
+
+### 9. Special lessons
+
+| ID | Title | Level | Time | Prerequisites |
+|---|---|---|---|---|
+| [SP01](SP01-two-boards-one-computer/README.md) | Two Boards, One Computer | STUDY / BUILD | 45–75 minutes | S01, C01, C02, M01, H02 |
 
 ## Open verification items
 

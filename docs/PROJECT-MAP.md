@@ -1,177 +1,165 @@
-# Apple1 project map
+# Apple-1 project map
 
-## What this repository is
-
-Apple1 is a long-term Apple-1 preservation, education, experimental-computing, and research repository centered on an Apple-1 / Replica 1 Plus environment.
-
-It deliberately combines several related products while keeping their evidence and authority separate.
-
-## The shortest route in
+Use this page to find the working guides, source code, and evidence. For what
+has changed recently and what is still on a branch, read
+[current status](STATUS.md) first.
 
 ```text
 APPLE1
 |
-+-- COMPUTER      ordinary Apple-1 / Replica-1 computing
-+-- FIELD LIBRARY education, lessons, visitor/teacher material
-+-- NEURAL1       constrained experimental-computing research
-|    +-- META/1   claims/evidence/falsification/research layer
-+-- PRESERVATION  source artifacts, captures, manifests, provenance
-+-- COLLECTION    physical-object history and accession research
++-- COMPUTER      ordinary Apple-1 / Replica 1 Plus computing
++-- FIELD LIBRARY lessons, exercises, teacher and visitor material
++-- NEURAL1       constrained-computing experiments
+|    +-- META/1   claims, evidence, tests, and replication
++-- PRESERVATION  original artifacts, captures, and provenance
++-- COLLECTION    physical-object history and accession records
 ```
 
-If you are unsure where something belongs, start with [repository architecture](repository/architecture.md).
+## Use NEURAL1
 
-## Current project state
+[NEURAL1 overview](neural1/README.md) explains the shared runtime and its five
+families. [Pi deployment status](STATUS.md#neural1-on-the-pi) distinguishes the
+commissioned application from the source currently on `main` and links the
+pinned operator closeout. Do not treat an old commissioning plan as a request
+to repeat completed setup.
 
-### Physical Replica / serial investigation
+| Family | Question or constraint |
+|---|---|
+| [4K MIND](neural1/experiments/4k-mind.md) | What survives context resets through a small persistent RAM world? |
+| [1976 MULTIVERSE](neural1/experiments/1976-multiverse.md) | Which machine designs satisfy explicitly sourced period constraints? |
+| [SELFHOST/1](neural1/experiments/selfhost1.md) | Can an artifact retain ancestry and meet an exact rebuild criterion? |
+| [256-BYTE UNIVERSE](neural1/experiments/256-byte-universe.md) | What can satisfy an exact 256-byte budget and deterministic tests? |
+| [RAM REPUBLIC](neural1/experiments/ram-republic.md) | How do isolated participants interact through shared RAM rather than chat? |
 
-**BLOCKED pending evidence.** A recorded no-transmit FT232R open disturbed the Replica display and required physical Reset. This repository architecture pass does not open serial hardware or advance physical qualification.
+[META/1 architecture](neural1/architecture/meta1-architecture.md) and the
+[META/1 index](neural1/meta1/) cover claim graphs, falsification, research queues,
+proof capsules, and replication. META/1 is the evidence layer, not a sixth
+experiment family.
 
-Read:
+For implementation, use [system architecture](neural1/architecture/system-overview.md),
+[data formats](neural1/data/schemas.md), and the
+[portal interface](neural1/interface/portal.md). The
+[COMPUTER-mode contract](neural1/interface/computer-mode.md) keeps ordinary
+Apple-1 use independent of NEURAL1.
 
-- [Preservation dossier](preservation-dossier.md)
-- [Troubleshooting status](troubleshooting.md)
-- [Serial test protocol](serial-test-protocol.md)
-- [Captured evidence](captures/README.md)
-- [Logic-analyzer test card](captures/logic-analyzer-open-event-test-card.md) — prepared procedure, not authorization/executed evidence
+## Learn and rehearse Apple-1 computing
 
-### COMPUTER mode
+The [Field Library](field-library/README.md) is the lesson index and review
+record. The [curriculum](apple1-learning-library-curriculum.md) supplies the
+broader learning sequence.
 
-Ordinary Apple-1 / Replica-1 use is conceptually independent from NEURAL1. The portal contract is documented in [NEURAL1 interface documentation](neural1/interface/computer-mode.md).
+- [Emulator/demo guide](emulator-demo-guide.md),
+  [RAM-only software library](apple1-software-library.md), and
+  [recorded lesson emulator runs](field-library/EMULATOR-RUNS.md).
+- [Program annotations](field-library/program-annotations/README.md),
+  [teacher material](field-library/teacher-materials/README.md), and
+  [visitor mode](field-library/visitor-mode/README.md).
+- [Virtual LLM bridge](virtual-llm-bridge.md) for an off-device 6502 rehearsal
+  with an optional local model and no physical serial path.
 
-### Field Library
+Lesson presence, emulator success, and CF-card approval are different states.
+The branch-specific lesson counts and remaining review work are summarized in
+[current status](STATUS.md).
 
-The Field Library is the educational product:
+## Continue the Replica investigation
 
-- [Library index and lesson status](field-library/README.md)
-- [Curriculum scaffold](apple1-learning-library-curriculum.md)
-- [Emulator evidence](field-library/EMULATOR-RUNS.md)
-- [Teacher material](field-library/teacher-materials/README.md)
-- [Visitor mode](field-library/visitor-mode/README.md)
-- [Program annotations](field-library/program-annotations/README.md)
-- [RAM-only software library](apple1-software-library.md)
+Begin with the [troubleshooting record](troubleshooting.md), not an old repair
+plan. It separates the observed display corruption from unproven causes and
+links the current diagnostic-preparation work.
 
-The library index currently records 41 lesson packets. H06 has passed its review gate; the older forty-packet corpus still carries an open set-level verification item. Existing lessons do not become CF-card-approved merely because they are committed.
+| Need | Record or guide |
+|---|---|
+| Read the recorded tests | [Capture index](captures/README.md) and [September 2 packet](captures/2026-09-02-ft232r-open-analyzer/README.md) |
+| Understand the next evidence gate | [Serial protocol](serial-test-protocol.md) and [logic-analyzer test card](captures/logic-analyzer-open-event-test-card.md) |
+| Inspect candidate-source provenance | [Firmware baseline](firmware-baseline.md) and [recovery ledger](recovery-evidence-ledger.md) |
+| Rehearse behavior without hardware | [Firmware behavior model](firmware-behavior-model.md) and [static audit](firmware-static-audit.md) |
+| Collect or check saved evidence | [Read-only host bundle](host-support-bundle.md) and [logic-trace validation](logic-trace-validation.md) |
+| Understand earlier plans | [Plan index and supersession notes](plans/README.md) |
 
-### NEURAL1
+A prepared test card or software worker is not an executed test. No repository
+maintenance command authorizes serial access, transmission, firmware/EEPROM/CFFA1
+writes, GPIO, or changes to wiring.
 
-Start with [NEURAL1 overview](neural1/README.md).
+## Read the research
 
-The five primary experiment families are:
+[Pilot 001](neural1/research/pilot-001/README.md) is the first model-validated
+pilot package. Its incomplete matrix, thermal stop, parser failures, bounded
+resume evidence, and zero automatic findings are preserved. Later Pi acceptance
+is a separate run with its own scope.
 
-1. [4K MIND](neural1/experiments/4k-mind.md)
-2. [1976 MULTIVERSE](neural1/experiments/1976-multiverse.md)
-3. [SELFHOST/1](neural1/experiments/selfhost1.md)
-4. [256-BYTE UNIVERSE](neural1/experiments/256-byte-universe.md)
-5. [RAM REPUBLIC](neural1/experiments/ram-republic.md)
+Start research design with the [agenda](neural1/research/research-agenda.md),
+[methodology](neural1/research/methodology.md),
+[experimental controls](neural1/research/experimental-controls.md),
+[reproducibility](neural1/research/reproducibility.md), and
+[threats to validity](neural1/research/threats-to-validity.md).
+The [initial technical report](neural1/publications/technical-report.md) and
+[phase-two record](neural1/phase-2-status.md) document earlier project stages;
+use [current status](STATUS.md) for subsequent commissioning and integration.
 
-NEURAL1 source code is under `../neural1/`; schemas under `../schemas/neural1/`; campaign configuration under `../configs/neural1/`.
+For 1976 MULTIVERSE, read [source ingestion](neural1/history/source-ingestion.md),
+the [research-tranche record](neural1/research/1976-multiverse-research-tranche-status-v1.md),
+and the [source ledger](neural1/research/1976-multiverse-source-ledger.md).
+The [structured research index](../data/neural1/history/1976-research-index.json)
+is staging, not a license to populate missing historical prices or promote
+unreviewed claims into runtime data.
 
-### META/1
+## Explore the collection
 
-META/1 is the epistemic/scientific layer, not another experiment family. Read [META/1 architecture](neural1/architecture/meta1-architecture.md) and the [META/1 documentation index](neural1/meta1/).
+The [display research index](peripherals/displays/README.md) leads to
+[Apple-1 display history](peripherals/displays/apple1-display-history.md), the
+[visual chronology](peripherals/displays/visual-chronology.md), and
+[Sanyo VM-4209 research](peripherals/displays/sanyo/vm-4209.md).
+The [acquired VM-4209 record](collection/sanyo-vm-4209-1979/README.md) keeps
+collection-specific provenance separate from general model history.
 
-It covers claim graphs, falsification, causal status, tribunals, invariants, research queues, phylogeny, proof capsules, and replication state.
+The [display evidence ledger](peripherals/displays/evidence-ledger.md) and
+[image-rights ledger](peripherals/displays/image-rights-ledger.md) contain the
+supporting qualifications rather than scattering them through every entry page.
 
-### Pilot 001
+The [preservation dossier](preservation-dossier.md) and
+[collection archive guide](collection-archive.md) explain custody and identity.
+Original bytes live under [preservation](../preservation/); interpretations live
+under `docs/`. Candidate [vendor firmware](../firmware/vendor/110REV03/) is not
+proof of what is installed on the board.
 
-[Pilot 001](neural1/research/pilot-001/README.md) is the first model-validated pilot package. Preserve its negative and incomplete results:
+## Storage, recovery, and CF exports
 
-- 45 planned cells;
-- 6 completed;
-- cooperative stop at 102 C;
-- 156 recorded turns;
-- zero strict-parser acceptances;
-- bounded resume evidence for one interrupted cell;
-- zero automatic scientific findings;
-- `physical_serial_opened: false`.
+For the deployed Pi, use the operator closeout linked from
+[current status](STATUS.md#neural1-on-the-pi). The following guides retain the
+storage design and earlier preservation/commissioning context:
 
-### 1976 MULTIVERSE historical research
+- [Storage lifecycle](neural1/architecture/storage-lifecycle.md) and
+  [dedicated SSD layout](neural1/architecture/storage-layout.md).
+- [Pi image baseline](neural1/operations/pi-image-baseline.md),
+  [preserved-image archaeology](neural1/preservation/pi-image-archaeology-2026-08-30.md),
+  [Pi recovery](neural1/operations/pi-recovery.md), and
+  [SSD commissioning](neural1/operations/ssd-commissioning.md).
 
-The historical corpus is intentionally split between research staging and future authoritative runtime evidence.
+[CF-card source control](../cf-card/README.md) combines approved project sources
+with a preserved baseline through a manifest-controlled host-side export. The
+repository tree is not a card image, and the exporter does not write a physical
+CF card.
 
-Read:
+## Art and visual references
 
-- [Source ingestion rules](neural1/history/source-ingestion.md)
-- [1976 research tranche status](neural1/research/1976-multiverse-research-tranche-status-v1.md)
-- [Source ledger](neural1/research/1976-multiverse-source-ledger.md)
-- `../data/neural1/history/1976-research-index.json`
+[Project art](../art/), the [visual-system guide](visual-system/design-language.md),
+and the [heritage-art boundary](visual-system/heritage-art.md) explain the visual
+language and ownership. [Apple1-Slideshow](reference/apple1-slideshow.md) remains
+a pinned external reference; its artwork is not vendored without established
+redistribution rights.
 
-Current status is `RESEARCH_STAGING` with zero authoritative runtime component records. Missing prices stay null. No LLM-generated price estimates.
+## Work on the repository
 
-### Display and Sanyo history
+| Directory | Role |
+|---|---|
+| `neural1/`, `tools/`, `tests/` | Runtime, host-side utilities, and deterministic tests |
+| `configs/`, `schemas/`, `data/` | Configuration, data contracts, and explicitly classified research data |
+| `docs/` | Guides, interpretations, research records, and committed evidence |
+| `preservation/`, `firmware/vendor/` | Preserved artifacts and candidate-source provenance |
+| `software/`, `cf-card/`, `art/` | Apple-1 software, host-side export control, and project visual sources |
+| `wiki/` | Repository-held wiki navigation source; not a second technical authority |
 
-Start with [display research index](peripherals/displays/README.md).
-
-Key routes:
-
-- [Apple-1 display history](peripherals/displays/apple1-display-history.md)
-- [Visual chronology](peripherals/displays/visual-chronology.md)
-- [Evidence ledger](peripherals/displays/evidence-ledger.md)
-- [Image-rights ledger](peripherals/displays/image-rights-ledger.md)
-- [Sanyo VM-4209 research](peripherals/displays/sanyo/vm-4209.md)
-- [Acquired VM-4209 collection record](collection/sanyo-vm-4209-1979/README.md)
-
-### Preservation
-
-Preserved byte artifacts live under `../preservation/`; interpretations and dossiers live under `docs/`.
-
-Important routes:
-
-- [Preservation dossier](preservation-dossier.md)
-- [Collection archive rules](collection-archive.md)
-- `../preservation/manuals/2026-08-28/`
-- `../preservation/cf-card/2026-08-28/`
-- `../firmware/vendor/110REV03/`
-
-Do not infer installed firmware, current hardware behavior, or authenticity from a preserved manual/source file alone.
-
-### CF-card work
-
-The repository tree is not the card image/layout.
-
-Read `../cf-card/README.md` for the host-side flow:
-
-```text
-preserved baseline
-+ approved project sources
--> manifest-controlled export
--> out/cf-card-staging/
--> future separately validated deployment
-```
-
-The exporter does not write a physical CF card.
-
-### Art / heritage references
-
-- `../art/` — original project art and provenance
-- [Visual-system docs](visual-system/design-language.md)
-- [Heritage-art boundary](visual-system/heritage-art.md)
-- [Apple1-Slideshow provenance record](reference/apple1-slideshow.md)
-
-The external slideshow is pinned as a reference. No redistribution license was established, so its artwork is not vendored.
-
-## Development workflow
-
-From a fresh checkout:
-
-```bash
-python -m pip install -e '.[dev]'
-ruff check neural1 tools/neural1_validate.py tests/test_neural1*.py
-mypy neural1
-python -m pytest -q
-python tools/neural1_validate.py .
-python -m neural1.demos --out out/neural1-demo
-```
-
-The deterministic demo is off-device and must report `serial_opened=false`.
-
-CI is defined at `../.github/workflows/ci.yml`.
-
-## Repository governance
-
-For why the tree is organized this way, what is authoritative, branch archaeology, provenance gaps, and migration history, see [repository governance](repository/README.md).
-
-## Non-negotiable safety boundary
-
-Repository work does not itself authorize physical experimentation. Do not use a repository tool to open the Replica serial device, transmit bytes, load firmware, program EEPROM, write CFFA1, operate GPIO, change wiring/jumpers/solder, use cameras, or conduct physical qualification without a separate explicitly approved procedure.
+Use the [development and validation commands](../README.md#development-and-validation)
+from a fresh checkout. The [repository records](repository/README.md) hold the
+architecture, audits, branch archaeology, and preservation rules. Existing
+subtrees stay in place unless moving them solves a real problem.
