@@ -14,7 +14,7 @@ recorded runs and closeouts, not a live health check of the Pi or Replica.
 | Native Pi application | September 10 closeout records usable Pi-hosted NEURAL1 with local inference, persistent SSD state, and all five family paths exercised and checked. | Review and integrate the preserved Pi branch; it was not on `main` at this review. |
 | Physical Replica / FT232R | September 2 no-transmit open reproduced display corruption. Root cause remains inconclusive. | Resolve the reset/power evidence gap through a separately approved, instrumented procedure. |
 | Propeller diagnostic preparation | PR #6 contains bounded capture/worker preparation and its reported software checks. | Review the implementation and qualify the actual setup before any unattended run. |
-| Field Library and historical research | Main's project map records 41 lesson packets; the Pi closeout records 42 lessons including SP01. The broad 1976 research index remains staging. | Preserve branch-specific scope and outstanding corpus review; do not infer CF-card approval or blanket historical authority. |
+| Field Library and historical research | The existing library index says 41 lesson packets; the Pi closeout reports 42 lessons including SP01. The broad 1976 research index remains staging. | Reconcile the index count against the actual catalog, rather than assuming a branch-specific missing lesson. Preserve outstanding corpus review and CF-card approval boundaries. |
 
 ## NEURAL1 on the Pi
 
@@ -46,14 +46,19 @@ of an assembler or compiler.
 | Role | Exact revision |
 |---|---|
 | `main` inspected for this review | `2c40f1c5c63a083184eb724df4500cd1427bd3d2` |
-| Pi completion branch inspected | `32102a1ad46210c4792680293d136cf0719f8fe7` |
+| Pi completion branch initially inspected | `32102a1ad46210c4792680293d136cf0719f8fe7` |
+| Pi review head after the formatting-only CI fix | `63012aca3eadeac6ab401399cd51e2c99fe840f2` |
 | Installed Pi application in the closeout | `4f06e6d10bcbffca47c0f7554800972555085c78` |
 | Late-SSD startup installer change applied there | `462ec40fdb41a5f009574b84b824442ebabd9be6` |
 
-At inspection, `neural1/pi-completion-r3` was **40 commits ahead and zero behind**
-`main`, across 59 changed files. Its existing work is now exposed in
-[draft PR #7](https://github.com/SquirmyWormy275/apple1/pull/7). Opening that draft
-neither merges the code nor changes the installed Pi.
+At initial inspection, `neural1/pi-completion-r3` was **40 commits ahead and zero
+behind** `main`, across 59 changed files. Its work is now exposed in
+[draft PR #7](https://github.com/SquirmyWormy275/apple1/pull/7). One subsequent
+commit removed an extra blank line in a test import block, bringing the branch
+to 41 commits ahead without changing runtime or test semantics. The resulting
+[Pi PR validation run](https://github.com/SquirmyWormy275/apple1/actions/runs/35183942893)
+passed all steps. This is software validation, not a new device acceptance run
+or a complete implementation review. The PR remains draft and unmerged.
 
 Use the pinned closeout's terminal guide and recovery notes for the deployed
 application. Do not repeat installation, model downloads, storage formatting,
@@ -96,9 +101,9 @@ photo custody, collection provenance, or artwork permissions.
 
 ## Next work, in order
 
-1. Review the Pi implementation and fresh CI in PR #7, then integrate it only
-   with merge authorization. Reconcile its README addition with the polished
-   navigation rather than dropping either. Update this page after integration.
+1. Review the Pi implementation in PR #7, then integrate it only with merge
+   authorization. Reconcile its README addition with the polished navigation
+   rather than dropping either. Update this page after integration.
 2. Keep PR #6 separate. Its next physical step needs the actual setup and an
    explicitly approved qualification procedure, not another uninstrumented open.
 3. Continue learning, virtual experiments, and source review without waiting for
