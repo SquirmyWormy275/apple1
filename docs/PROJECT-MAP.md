@@ -1,8 +1,7 @@
 # Apple-1 project map
 
-Use this page to find the working guides, source code, and evidence. For what
-has changed recently and what is still on a branch, read
-[current status](STATUS.md) first.
+Use this page to find the working guides, source code, and evidence. For recent
+changes and remaining work, read [current status](STATUS.md) first.
 
 ```text
 APPLE1
@@ -18,10 +17,11 @@ APPLE1
 ## Use NEURAL1
 
 [NEURAL1 overview](neural1/README.md) explains the shared runtime and its five
-families. [Pi deployment status](STATUS.md#neural1-on-the-pi) distinguishes the
-commissioned application from the source currently on `main` and links the
-pinned operator closeout. Do not treat an old commissioning plan as a request
-to repeat completed setup.
+families. The [operator guide](neural1/operations/terminal-application.md) covers
+the commissioned Pi's commands. [Pi deployment status](STATUS.md#neural1-on-the-pi)
+and the [native closeout](neural1/operations/pi-closeout-2026-09-10.md) distinguish
+the installed release from source publication. Do not treat an old commissioning
+plan as a request to repeat completed setup.
 
 | Family | Question or constraint |
 |---|---|
@@ -57,9 +57,10 @@ broader learning sequence.
 - [Virtual LLM bridge](virtual-llm-bridge.md) for an off-device 6502 rehearsal
   with an optional local model and no physical serial path.
 
-Lesson presence, emulator success, and CF-card approval are different states.
-The branch-specific lesson counts and remaining review work are summarized in
-[current status](STATUS.md).
+The catalog lists all 42 existing packets, including
+[SP01: Two Boards, One Computer](field-library/SP01-two-boards-one-computer/README.md).
+Lesson presence, emulator success, and CF-card approval are different states;
+remaining review work is summarized in [current status](STATUS.md).
 
 ## Continue the Replica investigation
 
@@ -124,9 +125,9 @@ proof of what is installed on the board.
 
 ## Storage, recovery, and CF exports
 
-For the deployed Pi, use the operator closeout linked from
-[current status](STATUS.md#neural1-on-the-pi). The following guides retain the
-storage design and earlier preservation/commissioning context:
+For the deployed Pi, use the
+[native operator closeout](neural1/operations/pi-closeout-2026-09-10.md). The
+following guides retain the storage design and earlier preservation context:
 
 - [Storage lifecycle](neural1/architecture/storage-lifecycle.md) and
   [dedicated SSD layout](neural1/architecture/storage-layout.md).
