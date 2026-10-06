@@ -1,0 +1,261 @@
+{
+  "command": "python -m tools.propeller_rehearsal --out out/propeller-prep/rehearsal-final",
+  "evidence_class": "TEST_FIXTURE",
+  "execution_date_utc": "2026-09-11",
+  "limits": [
+    "Synthetic 1 kHz fixtures test sequence and preservation, not physical capture or USB throughput.",
+    "Failure conditions are simulated; this is not a live acquisition controller."
+  ],
+  "physical_device_access": false,
+  "results": [
+    {
+      "events": [
+        {
+          "event": "preflight",
+          "physical_device_access": false,
+          "simulated_seconds": 0.0,
+          "synthetic": true
+        },
+        {
+          "event": "passive_capture_started",
+          "simulated_seconds": 0.0
+        },
+        {
+          "event": "passive_capture_saved",
+          "simulated_seconds": 12.0
+        },
+        {
+          "event": "event_capture_ready",
+          "simulated_seconds": 12.0
+        },
+        {
+          "event": "simulated_owner_invoked",
+          "simulated_seconds": 17.0
+        },
+        {
+          "event": "simulated_owner_closed",
+          "simulated_seconds": 17.2
+        },
+        {
+          "event": "event_capture_saved",
+          "simulated_seconds": 42.0
+        }
+      ],
+      "evidence_class": "TEST_FIXTURE",
+      "note": "SerialOwner wall-clock logs are execution timestamps, not physical capture timing. 1 kHz fixtures and simulated seconds test ordering only; they do not validate USB throughput or SSH.",
+      "physical_device_access": false,
+      "physical_serial_opened": false,
+      "result": "PASS_REHEARSAL",
+      "retry_count": 0,
+      "scenario": "stable",
+      "simulated_duration_seconds": 42.0,
+      "simulated_owner_closes": 1,
+      "simulated_owner_opens": 1,
+      "transmit_calls": 0
+    },
+    {
+      "events": [
+        {
+          "event": "preflight",
+          "physical_device_access": false,
+          "simulated_seconds": 0.0,
+          "synthetic": true
+        },
+        {
+          "event": "stop",
+          "reason": "STOP_MISSING_RESN",
+          "simulated_seconds": 0.0
+        }
+      ],
+      "evidence_class": "TEST_FIXTURE",
+      "note": "SerialOwner wall-clock logs are execution timestamps, not physical capture timing. 1 kHz fixtures and simulated seconds test ordering only; they do not validate USB throughput or SSH.",
+      "physical_device_access": false,
+      "physical_serial_opened": false,
+      "result": "STOP_MISSING_RESN",
+      "retry_count": 0,
+      "scenario": "missing-resn",
+      "simulated_duration_seconds": 0.0,
+      "simulated_owner_closes": 0,
+      "simulated_owner_opens": 0,
+      "transmit_calls": 0
+    },
+    {
+      "events": [
+        {
+          "event": "preflight",
+          "physical_device_access": false,
+          "simulated_seconds": 0.0,
+          "synthetic": true
+        },
+        {
+          "event": "passive_capture_started",
+          "simulated_seconds": 0.0
+        },
+        {
+          "event": "passive_capture_saved",
+          "simulated_seconds": 12.0
+        },
+        {
+          "event": "stop",
+          "reason": "STOP_UNSTABLE_IDLE",
+          "simulated_seconds": 12.0
+        }
+      ],
+      "evidence_class": "TEST_FIXTURE",
+      "note": "SerialOwner wall-clock logs are execution timestamps, not physical capture timing. 1 kHz fixtures and simulated seconds test ordering only; they do not validate USB throughput or SSH.",
+      "physical_device_access": false,
+      "physical_serial_opened": false,
+      "result": "STOP_UNSTABLE_IDLE",
+      "retry_count": 0,
+      "scenario": "unstable-idle",
+      "simulated_duration_seconds": 12.0,
+      "simulated_owner_closes": 0,
+      "simulated_owner_opens": 0,
+      "transmit_calls": 0
+    },
+    {
+      "events": [
+        {
+          "event": "preflight",
+          "physical_device_access": false,
+          "simulated_seconds": 0.0,
+          "synthetic": true
+        },
+        {
+          "event": "passive_capture_started",
+          "simulated_seconds": 0.0
+        },
+        {
+          "event": "passive_capture_saved",
+          "simulated_seconds": 12.0
+        },
+        {
+          "event": "stop",
+          "reason": "STOP_CAPTURE_NOT_READY",
+          "simulated_seconds": 12.0
+        }
+      ],
+      "evidence_class": "TEST_FIXTURE",
+      "note": "SerialOwner wall-clock logs are execution timestamps, not physical capture timing. 1 kHz fixtures and simulated seconds test ordering only; they do not validate USB throughput or SSH.",
+      "physical_device_access": false,
+      "physical_serial_opened": false,
+      "result": "STOP_CAPTURE_NOT_READY",
+      "retry_count": 0,
+      "scenario": "capture-not-ready",
+      "simulated_duration_seconds": 12.0,
+      "simulated_owner_closes": 0,
+      "simulated_owner_opens": 0,
+      "transmit_calls": 0
+    },
+    {
+      "events": [
+        {
+          "event": "preflight",
+          "physical_device_access": false,
+          "simulated_seconds": 0.0,
+          "synthetic": true
+        },
+        {
+          "event": "passive_capture_started",
+          "simulated_seconds": 0.0
+        },
+        {
+          "event": "passive_capture_saved",
+          "simulated_seconds": 12.0
+        },
+        {
+          "event": "event_capture_ready",
+          "simulated_seconds": 12.0
+        },
+        {
+          "event": "simulated_owner_invoked",
+          "simulated_seconds": 17.0
+        },
+        {
+          "event": "simulated_owner_closed",
+          "simulated_seconds": 17.2
+        },
+        {
+          "event": "partial_capture_saved",
+          "simulated_seconds": 17.2
+        },
+        {
+          "event": "stop",
+          "reason": "STOP_CAPTURE_FAILURE",
+          "simulated_seconds": 17.2
+        }
+      ],
+      "evidence_class": "TEST_FIXTURE",
+      "note": "SerialOwner wall-clock logs are execution timestamps, not physical capture timing. 1 kHz fixtures and simulated seconds test ordering only; they do not validate USB throughput or SSH.",
+      "physical_device_access": false,
+      "physical_serial_opened": false,
+      "result": "STOP_CAPTURE_FAILURE",
+      "retry_count": 0,
+      "scenario": "capture-failure",
+      "simulated_duration_seconds": 17.2,
+      "simulated_owner_closes": 1,
+      "simulated_owner_opens": 1,
+      "transmit_calls": 0
+    },
+    {
+      "events": [
+        {
+          "event": "preflight",
+          "physical_device_access": false,
+          "simulated_seconds": 0.0,
+          "synthetic": true
+        },
+        {
+          "event": "passive_capture_started",
+          "simulated_seconds": 0.0
+        },
+        {
+          "event": "passive_capture_saved",
+          "simulated_seconds": 12.0
+        },
+        {
+          "event": "event_capture_ready",
+          "simulated_seconds": 12.0
+        },
+        {
+          "event": "simulated_owner_invoked",
+          "simulated_seconds": 17.0
+        },
+        {
+          "event": "simulated_owner_closed",
+          "simulated_seconds": 17.2
+        },
+        {
+          "event": "stop",
+          "reason": "STOP_SIMULATED_RESET",
+          "simulated_seconds": 17.2
+        },
+        {
+          "event": "event_capture_saved",
+          "simulated_seconds": 17.2
+        },
+        {
+          "event": "operator_recovery_required",
+          "simulated": true,
+          "simulated_seconds": 17.2
+        }
+      ],
+      "evidence_class": "TEST_FIXTURE",
+      "note": "SerialOwner wall-clock logs are execution timestamps, not physical capture timing. 1 kHz fixtures and simulated seconds test ordering only; they do not validate USB throughput or SSH.",
+      "physical_device_access": false,
+      "physical_serial_opened": false,
+      "result": "STOP_SIMULATED_RESET",
+      "retry_count": 0,
+      "scenario": "reset-during-open",
+      "simulated_duration_seconds": 17.2,
+      "simulated_owner_closes": 1,
+      "simulated_owner_opens": 1,
+      "transmit_calls": 0
+    }
+  ],
+  "source_sha256": {
+    "tools/propeller_rehearsal.py": "06da374605273a7895bf24df4623598fe80b4d65d46ff915ed5556cf7752a8af",
+    "tools/serial_owner.py": "b93a91e57351ffed5e5017ba2976d21939fe5979ecdf322808af3cd454fccd4b",
+    "tools/sigrok_summary.py": "13b0982297f6fe677402ca98519b5fcd07e5ea3a33c09ad0e7d3c0558eea1d41"
+  }
+}

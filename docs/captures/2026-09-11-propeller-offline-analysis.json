@@ -1,0 +1,121 @@
+{
+  "analysis_date_utc": "2026-09-11",
+  "analyzer_source_sha256": "13b0982297f6fe677402ca98519b5fcd07e5ea3a33c09ad0e7d3c0558eea1d41",
+  "captures": [
+    {
+      "archive_chunks": 1187,
+      "device_access": false,
+      "duration_seconds": 12.0,
+      "enabled_channels": [
+        {
+          "bit": 0,
+          "falling_edges": 0,
+          "final": 1,
+          "high_samples": 48000000,
+          "initial": 1,
+          "label": "D0",
+          "low_samples": 0,
+          "rising_edges": 0,
+          "transitions": 0
+        },
+        {
+          "bit": 1,
+          "falling_edges": 0,
+          "final": 1,
+          "high_samples": 48000000,
+          "initial": 1,
+          "label": "D1",
+          "low_samples": 0,
+          "rising_edges": 0,
+          "transitions": 0
+        }
+      ],
+      "file": "passive-idle.sr",
+      "format": "sigrok-v2-single-device-unitsize-1",
+      "limits": [
+        "Only enabled bits named by probeN metadata are interpreted.",
+        "Archive consistency alone does not prove absence of upstream dropped samples.",
+        "Digital levels do not measure supply amplitude or establish physical probe placement."
+      ],
+      "sample_count": 48000000,
+      "sample_rate_hz": 4000000,
+      "sha256": "72ed1c99ed43bf9cea7a55c0cf6cc3e6edc9a29b2d8751dadb61601b8e7b9a24",
+      "total_probes": 8
+    },
+    {
+      "archive_chunks": 2967,
+      "device_access": false,
+      "duration_seconds": 30.0,
+      "enabled_channels": [
+        {
+          "bit": 0,
+          "falling_edges": 0,
+          "final": 1,
+          "high_samples": 120000000,
+          "initial": 1,
+          "label": "D0",
+          "low_samples": 0,
+          "rising_edges": 0,
+          "transitions": 0
+        },
+        {
+          "bit": 1,
+          "falling_edges": 0,
+          "final": 1,
+          "high_samples": 120000000,
+          "initial": 1,
+          "label": "D1",
+          "low_samples": 0,
+          "rising_edges": 0,
+          "transitions": 0
+        }
+      ],
+      "file": "host-open-no-transmit.sr",
+      "format": "sigrok-v2-single-device-unitsize-1",
+      "limits": [
+        "Only enabled bits named by probeN metadata are interpreted.",
+        "Archive consistency alone does not prove absence of upstream dropped samples.",
+        "Digital levels do not measure supply amplitude or establish physical probe placement."
+      ],
+      "sample_count": 120000000,
+      "sample_rate_hz": 4000000,
+      "sha256": "96de5b49b387a53b87dbe9bacd471e6c11e2989a008f517db40b43cf736e9770",
+      "total_probes": 8
+    }
+  ],
+  "evidence_class": "DERIVED_DOCUMENTATION",
+  "external_video_bytes_inspected": false,
+  "limitations": [
+    "RESn, clock, and power amplitudes were not captured in these files.",
+    "High digital samples do not establish exact voltage or exclude sub-threshold/sub-sample transients.",
+    "Sample totals and contiguous archive chunks do not independently prove uninterrupted hardware acquisition.",
+    "Host timestamp logs do not establish a frame-exact or sample-exact common timebase."
+  ],
+  "method": "tools.sigrok_summary: enabled-bit counts, numeric chunk ordering, cross-chunk transitions, ZIP CRC reads, sample-count checks",
+  "new_live_capture": false,
+  "owner": {
+    "closed_utc": "2026-09-02T03:16:06.152701+00:00",
+    "control_policy_requested": {
+      "dtr": false,
+      "rts": false
+    },
+    "events": [
+      "opened",
+      "startup_drained",
+      "closed"
+    ],
+    "opened_utc": "2026-09-02T03:16:05.950187+00:00",
+    "session_seconds": 0.202514,
+    "sha256": "97e65d983facd8a9af0f9389c5769ac24b1a8dde0d656f929eba8033b88c5e09",
+    "startup_payload_hex": "",
+    "transmit_events": 0
+  },
+  "packet_validators": {
+    "capture_manifest": "PASS",
+    "trace_packet_including_SHA256SUMS": "PASS"
+  },
+  "physical_device_access": false,
+  "scientific_result": "INCONCLUSIVE_ROOT_CAUSE",
+  "source_commit": "2c40f1c5c63a083184eb724df4500cd1427bd3d2",
+  "source_packet": "docs/captures/2026-09-02-ft232r-open-analyzer"
+}
