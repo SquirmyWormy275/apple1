@@ -26,6 +26,7 @@ The **[project map](docs/PROJECT-MAP.md)** is the full documentation directory.
 | Use NEURAL1 on the commissioned Pi | [Operator guide](docs/neural1/operations/terminal-application.md) and [native Pi closeout](docs/neural1/operations/pi-closeout-2026-09-10.md) |
 | Understand the five experiments | [NEURAL1 overview](docs/neural1/README.md) |
 | Learn Apple-1 programming | [Field Library](docs/field-library/README.md) and [emulator guide](docs/emulator-demo-guide.md) |
+| Build the wooden enclosure | [Current R04 design and fit assumptions](docs/hardware/enclosure/README.md) and [drawing](docs/hardware/enclosure/Apple1_Wooden_Enclosure_R04.pdf) |
 | Continue the Replica investigation | [Troubleshooting record](docs/troubleshooting.md) and [captured evidence](docs/captures/README.md) |
 | Explore the collection and its history | [Preservation dossier](docs/preservation-dossier.md), [display research](docs/peripherals/displays/README.md), and [Sanyo accession](docs/collection/sanyo-vm-4209-1979/README.md) |
 | Work with software or CF exports | [RAM-only software library](docs/apple1-software-library.md) and [CF source-control guide](cf-card/README.md) |

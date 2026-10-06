@@ -62,6 +62,14 @@ The catalog lists all 42 existing packets, including
 Lesson presence, emulator success, and CF-card approval are different states;
 remaining review work is summarized in [current status](STATUS.md).
 
+## Wooden enclosure
+
+The [R04 enclosure record](hardware/enclosure/README.md) is the current design
+reference: an upward-sloping keyboard deck meeting a flat rear monitor shelf.
+The [drawing](hardware/enclosure/Apple1_Wooden_Enclosure_R04.pdf) records the
+geometry and conservative CFFA1/CF budget; the record retains remaining fitting
+work and supersedes R01–R03.
+
 ## Continue the Replica investigation
 
 Begin with the [troubleshooting record](troubleshooting.md), not an old repair
