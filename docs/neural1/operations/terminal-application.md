@@ -1,5 +1,11 @@
 # Installed virtual NEURAL1 terminal
 
+This guide describes the current source version. The
+[September 10 closeout](pi-closeout-2026-09-10.md#normal-use) lists the commands
+in the recorded installed Pi release. New contextual help, readable output,
+and the shorter `SOURCE lesson` form require deploying this newer source;
+publication alone does not change the installed application.
+
 The normal installed entry point is `neural1`, from any working directory.
 `neural1 console` is equivalent. Installation alone is not Pi acceptance: the
 five real-provider workflows, reboot, resource behavior and recovery must be

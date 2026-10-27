@@ -5,13 +5,20 @@ work within its limits. Start with a recorded, repeatable demonstration. You
 need Python 3.12 or newer and a checkout of this repository; you do not need a
 Pi, model download, or physical Apple-1 connection.
 
-[Project home](../../README.md) · [Current status](../STATUS.md) ·
+[Project home](../../README.md) · [Wiki home](../../wiki/Home.md) · [Current status](../STATUS.md) ·
 [Full operator guide](operations/terminal-application.md)
 
 ## 1. Prepare a development checkout
 
+If you have not downloaded the project, start with:
+
+```bash
+git clone https://github.com/SquirmyWormy275/apple1.git
+cd apple1
+```
+
 Open a terminal in the repository root, where `pyproject.toml` lives. On Linux
-or macOS:
+or macOS, create and activate an environment:
 
 ```bash
 python3 -m venv .venv
@@ -19,8 +26,14 @@ source .venv/bin/activate
 python -m pip install -e .
 ```
 
-On Windows PowerShell, activate the environment with
-`.\.venv\Scripts\Activate.ps1` instead of `source .venv/bin/activate`.
+On Windows PowerShell, use these commands instead (Python must be 3.12 or newer):
+
+```powershell
+python -m venv .venv
+.\.venv\Scripts\Activate.ps1
+python -m pip install -e .
+```
+
 If this checkout already has an installed development environment, activate it
 and skip creating another one.
 
@@ -75,10 +88,10 @@ with `neural1`; do not repeat installation to follow this guide.
 Start by exploring without launching an experiment:
 
 ```text
-HELP 1
+HELP
 STATUS
 LESSONS
-SOURCE S01
+SOURCE S01 sources
 ```
 
 When ready, enter `1` to select 4K MIND and `START` to begin its bounded preset.
@@ -94,7 +107,11 @@ execution finished, and may include a rejected candidate or negative result.
 `STOP run-id` requests cancellation. `QUIT` closes the console while an active
 run continues in its user service.
 
-Interactive results use readable labels and adapt to the terminal width.
+The commands above work with the recorded installed Pi release. The current
+source adds `HELP command` (for example, `HELP START`), the shorter `SOURCE S01`
+form, and friendlier errors. Publishing that source does not deploy it to the Pi.
+
+In the current source, interactive results use readable labels and adapt to the terminal width.
 `neural1 console --retro` uses 40-column prose; IDs, hashes, and paths stay whole
 for copying. `neural1 console --json` shows raw JSON. One-shot
 `neural1 console --command STATUS` continues to return JSON for scripts.
@@ -112,6 +129,7 @@ for copying. `neural1 console --json` shows raw JSON. One-shot
 - **Need troubleshooting details:** add `--debug`, for example
   `neural1 console --debug`, to retain the exception traceback.
 
-For further work, use the [operator guide](operations/terminal-application.md)
-or [experiment overview](README.md). Physical Replica testing has its own
+Continue the guided tour with [What is NEURAL1?](../../wiki/What-is-NEURAL1.md),
+then [Architecture](../../wiki/Architecture.md). For operation, use the
+[operator guide](operations/terminal-application.md). Physical Replica testing has its own
 [troubleshooting record and evidence requirements](../troubleshooting.md).
