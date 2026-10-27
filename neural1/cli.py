@@ -11,6 +11,8 @@ from pathlib import Path
 
 from .bundle import export_bundle, verify_bundle
 from .campaign import CampaignEngine, CampaignSpec
+from .console_ui import friendly_error
+from .core import Neural1Error
 from .drivers import objective, parse_commands
 from .evaluation import evaluate_campaign
 from .history import research_status
@@ -22,10 +24,13 @@ from .registry import ModelRegistry
 
 def main(argv: Sequence[str] | None = None) -> int:
     arguments = list(sys.argv[1:] if argv is None else argv)
-    if not arguments or arguments[0] == "console":
+    leading_debug = arguments[:1] == ["--debug"]
+    console_arguments = arguments[1:] if leading_debug else arguments
+    if not console_arguments or console_arguments[0] == "console":
         from .application import main as console_main
-        return console_main(arguments[1:] if arguments else [])
+        return console_main((console_arguments[1:] if console_arguments else []) + (["--debug"] if leading_debug else []))
     parser = argparse.ArgumentParser(description=__doc__)
+    parser.add_argument("--debug", action="store_true", help="show tracebacks for troubleshooting")
     commands = parser.add_subparsers(dest="command", required=True)
     commands.add_parser("console", help="installed virtual terminal interface (also the default)")
     validate = commands.add_parser("validate-campaign")
@@ -57,8 +62,20 @@ def main(argv: Sequence[str] | None = None) -> int:
     qualify.add_argument("destination", type=Path)
     history = commands.add_parser("history-status")
     history.add_argument("index", type=Path, nargs="?", default=Path("data/neural1/history/1976-research-index.json"))
-    args = parser.parse_args(argv)
+    for command_parser in commands.choices.values():
+        command_parser.add_argument("--debug", action="store_true", default=argparse.SUPPRESS, help="show tracebacks for troubleshooting")
+    args = parser.parse_args(arguments)
+    try:
+        return execute(args, parser)
+    except (OSError, ValueError, Neural1Error) as error:
+        if args.debug:
+            raise
+        print(f"Cannot proceed: {friendly_error(error)}", file=sys.stderr)
+        return 2
 
+
+def execute(args: argparse.Namespace, parser: argparse.ArgumentParser) -> int:
+    """Run a parsed developer command; keep successful machine output stable."""
     if args.command == "validate-campaign":
         spec = CampaignSpec.load(args.spec)
         registry = ModelRegistry.load(args.registry, allow_unqualified=True)

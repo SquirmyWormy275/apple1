@@ -1,7 +1,9 @@
 # Apple-1 project map
 
-Use this page to find the working guides, source code, and evidence. For recent
-changes and remaining work, read [current status](STATUS.md) first.
+This is the complete directory of working guides, source code, and evidence.
+For a guided first visit, start with the [project wiki](../wiki/Home.md) or
+[five-minute walkthrough](neural1/getting-started.md). For recent changes and
+remaining work, use [current status](STATUS.md).
 
 ```text
 APPLE1

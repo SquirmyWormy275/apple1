@@ -7,14 +7,12 @@ import json
 import multiprocessing
 import os
 import secrets
-import shlex
 import shutil
 import signal
 import sqlite3
 import subprocess
 import sys
 import tempfile
-import textwrap
 import threading
 import time
 from collections import deque
@@ -26,6 +24,7 @@ from urllib.request import urlopen
 
 from .bundle import export_bundle, verify_bundle
 from .campaign import CampaignEngine, CampaignSpec
+from .console_ui import command_help, format_text, friendly_error, parse_command, render_result
 from .core import Neural1Error, sha256_bytes, stable_id
 from .drivers import parse_commands
 from .experiments import EXPERIMENTS
@@ -53,6 +52,9 @@ class ApplicationConfig:
     @classmethod
     def load(cls, path: Path) -> ApplicationConfig:
         data = json.loads(path.read_text())
+        required = ('ssd', 'uuid', 'registry', 'checkout', 'default_model')
+        if not isinstance(data, dict) or any(not isinstance(data.get(name), str) or not data[name].strip() for name in required):
+            raise Neural1Error('deployment config requires nonempty ssd, uuid, registry, checkout and default_model strings')
         for name in ('ssd', 'registry', 'checkout'):
             if not Path(data[name]).is_absolute():
                 raise Neural1Error(f'{name} must be an absolute deployment path')
@@ -519,11 +521,15 @@ class Application:
         return {'operation': operation, 'result': result, 'receipt': str(receipt), 'claim_id': claim_id}
 
     def command(self, line: str) -> Any:
-        self.config.storage_check()
-        args = shlex.split(line)
+        args = parse_command(line)
         if not args:
             return None
-        op = args[0].upper()
+        op = args[0]
+        if op == 'HELP':
+            return command_help(args[1]) if len(args) == 2 else HELP
+        if op == 'QUIT':
+            raise Neural1Error('QUIT closes the interactive console. Use STOP run-id to request run cancellation.')
+        self.config.storage_check()
         if op in ('1', '2', '3', '4', '5'):
             self.family = EXPERIMENTS[int(op) - 1]
             return {'selected': LABELS[int(op) - 1]}
@@ -595,7 +601,7 @@ class Application:
         if op == 'LESSONS':
             from .field_library import LessonCorpus
             return list(LessonCorpus(self.config.checkout / 'docs/field-library').lessons())
-        if op in ('ASK', 'HINT', 'EXPLAIN', 'SOURCE', 'CHECK', 'TRACE') and len(args) >= 3:
+        if op in ('ASK', 'HINT', 'EXPLAIN', 'SOURCE', 'CHECK', 'TRACE'):
             from .field_library import FieldLibraryAssistant, LessonCorpus
             corpus = LessonCorpus(self.config.checkout / 'docs/field-library')
             context, paths = corpus.context(args[1], include_answers=op == 'CHECK')
@@ -635,9 +641,16 @@ SELFHOST EXPORT artifact-id
 SELFHOST OPEN bundle-path
 LESSONS
 ASK|HINT|EXPLAIN|CHECK lesson question
-SOURCE lesson sources
+SOURCE lesson
 TRACE lesson "assembly with \\n lines"
-HELP / QUIT (active run continues)'''
+HELP command (example: HELP START)
+QUIT (active run continues)
+
+New here? Select 1, then START.
+STATUS shows progress; RUNS lists IDs.
+SHOW run-id reads the actual evaluation.
+Completed work is not automatically a
+successful research finding.'''
 
 
 def worker(config: ApplicationConfig, campaign_id: str, resume: bool, launch_id: str | None = None) -> int:
@@ -713,37 +726,54 @@ def main(argv: list[str] | None = None) -> int:
     parser.add_argument('--resume', action='store_true')
     parser.add_argument('--launch-id')
     parser.add_argument('--command')
+    presentation = parser.add_mutually_exclusive_group()
+    presentation.add_argument('--json', action='store_true', help='show interactive results as unwrapped JSON; --command already uses JSON')
+    presentation.add_argument('--retro', action='store_true', help='wrap interactive prose at 40 columns, preserving complete IDs and paths')
+    parser.add_argument('--debug', action='store_true', help='show tracebacks for troubleshooting')
     args = parser.parse_args(argv)
+    width = 40 if args.retro else max(20, shutil.get_terminal_size((88, 24)).columns)
     try:
+        if not args.config.exists():
+            raise Neural1Error(
+                f'No deployment configuration at {args.config}.\n'
+                'The console needs an already configured Pi installation.\n'
+                'For a model-free introduction, follow docs/neural1/getting-started.md.\n'
+                'From the repository checkout root, run:\n'
+                '  python -m neural1.demos --out out/my-first-demo\n'
+                'Use --config PATH if your deployment configuration is elsewhere.'
+            )
         config = ApplicationConfig.load(args.config)
         if args.worker:
             return worker(config, args.worker, args.resume, args.launch_id)
         app = Application(config)
         if app.preference_warning:
             print(app.preference_warning, file=sys.stderr)
-        if args.command:
+        if args.command is not None:
             print(json.dumps(app.command(args.command), indent=2, default=str))
             return 0
-        print(HELP)
+        print(format_text(HELP, width))
         print(f'Model: {app.model_id}')
         while True:
             try:
                 line = input(f'[V] {app.family}> ')
-                if line.strip().upper() in ('QUIT', 'EXIT', '0'):
+                parsed = parse_command(line)
+                if parsed and parsed[0] == 'QUIT':
+                    print('Console closed; active runs continue. Use STOP run-id to request cancellation.')
                     return 0
-                if line.strip().upper() in ('HELP', '?'):
-                    print(HELP)
-                    continue
                 value = app.command(line)
-                for paragraph in json.dumps(value, indent=2, default=str).splitlines():
-                    print(textwrap.fill(paragraph, width=40, replace_whitespace=False))
+                if value is not None:
+                    print(json.dumps(value, indent=2, default=str) if args.json else render_result(value, width=width))
             except (ValueError, OSError, Neural1Error) as error:
-                print(textwrap.fill(f'Cannot proceed: {error}', width=40))
+                if args.debug:
+                    raise
+                print(format_text(f'Cannot proceed: {friendly_error(error)}', width))
             except (EOFError, KeyboardInterrupt):
                 print('\nConsole closed; active worker retains state.')
                 return 0
     except (ValueError, OSError, Neural1Error) as error:
-        print(f'NEURAL1 unavailable: {error}', file=sys.stderr)
+        if args.debug:
+            raise
+        print(f'NEURAL1 unavailable: {friendly_error(error)}', file=sys.stderr)
         return 2
 
 

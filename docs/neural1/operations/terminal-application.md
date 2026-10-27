@@ -1,9 +1,19 @@
 # Installed virtual NEURAL1 terminal
 
+This guide describes the current source version. The
+[September 10 closeout](pi-closeout-2026-09-10.md#normal-use) lists the commands
+in the recorded installed Pi release. New contextual help, readable output,
+and the shorter `SOURCE lesson` form require deploying this newer source;
+publication alone does not change the installed application.
+
 The normal installed entry point is `neural1`, from any working directory.
 `neural1 console` is equivalent. Installation alone is not Pi acceptance: the
 five real-provider workflows, reboot, resource behavior and recovery must be
 observed on the identified target before declaring it commissioned.
+
+For a model-free introduction on a development checkout, use the
+[five-minute walkthrough](../getting-started.md). The installed console expects
+an existing deployment configuration; it does not provision one at first launch.
 
 The console shows only implemented operations:
 
@@ -37,13 +47,25 @@ The console shows only implemented operations:
   dependency closure; `SELFHOST OPEN bundle-path` verifies and reopens it.
   Operation receipts also appear in META. Synthetic/replayed origins retain
   that label through every descendant.
-- `LESSONS` lists existing lesson folders. `SOURCE lesson sources`,
+- `LESSONS` lists existing lesson folders. `SOURCE lesson` (also accepting the
+  older `SOURCE lesson sources` form),
   `ASK lesson question`, `HINT`, `EXPLAIN`, and `CHECK` use the real corpus.
   `TRACE lesson "assembly with \n separators"` assembles and executes through
   the existing deterministic harness before asking for explanation.
 - `QUIT` closes the console; an active run continues in its user service.
+- `HELP command`, such as `HELP START`, explains a command and its arguments.
+  Missing or extra arguments are rejected before execution. Typos may include a
+  suggested command; a suggestion is never executed automatically.
 
-Output is labeled `[V]` and wraps at 40 columns. These operations never open
+The console is labeled `[V]`. Interactive results use readable labels and the
+terminal width. `neural1 console --retro` wraps prose at 40 columns; IDs, hashes,
+and paths remain whole for copying even when longer than the chosen width.
+`neural1 console --json` gives unwrapped JSON results. One-shot
+`neural1 console --command STATUS` retains its JSON output for scripts.
+Expected input/file errors have short explanations; `--debug` preserves their
+tracebacks, including on developer commands such as `validate-campaign`.
+
+These operations never open
 physical transport. A valid negative domain result is distinct from provider
 failure, parser rejection, blocked data, or scientific success. Inspect the
 family result, not only the campaign summary.

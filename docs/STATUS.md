@@ -1,10 +1,23 @@
 # Current project status
 
-Updated **September 16, 2026 (Pacific time)** for the source integration and
-repository cleanup. Operational statements below describe retained acceptance
-records, not a new live health check.
+Updated **October 27, 2026 (Pacific time)** for source usability and repository
+navigation. Operational statements below describe retained acceptance records,
+not a new live health check.
 
-[Project home](../README.md) · [Full project map](PROJECT-MAP.md)
+[Project home](../README.md) · [Guided wiki](../wiki/Home.md) · [Full project map](PROJECT-MAP.md)
+
+## Source usability and navigation
+
+The current source includes strict console argument validation, contextual
+`HELP command`, readable interactive output, JSON/retro display options, and
+short explanations for expected errors. The
+[first-run walkthrough](neural1/getting-started.md) provides a model-free path.
+The [wiki](../wiki/Home.md) connects that introduction to the architecture,
+experiments, evidence, and [engineering highlights](../wiki/Project-Highlights.md).
+
+These source and documentation changes do not update the recorded Pi release.
+Its [closeout command list](neural1/operations/pi-closeout-2026-09-10.md#normal-use)
+remains the reference for that installed application.
 
 ## At a glance
 
