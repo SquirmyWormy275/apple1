@@ -23,6 +23,7 @@ The **[project map](docs/PROJECT-MAP.md)** is the full documentation directory.
 
 | Your goal | Start with |
 |---|---|
+| Try a model-free demo and learn the basics | [Your first five minutes](docs/neural1/getting-started.md) |
 | Use NEURAL1 on the commissioned Pi | [Operator guide](docs/neural1/operations/terminal-application.md) and [native Pi closeout](docs/neural1/operations/pi-closeout-2026-09-10.md) |
 | Understand the five experiments | [NEURAL1 overview](docs/neural1/README.md) |
 | Learn Apple-1 programming | [Field Library](docs/field-library/README.md) and [emulator guide](docs/emulator-demo-guide.md) |

@@ -47,6 +47,8 @@ original incomplete matrix, thermal stop, and parser failures.
 
 ## Find the right guide
 
+- **Try it for the first time:** [five-minute walkthrough](getting-started.md),
+  with a model-free demonstration and a first lesson.
 - **Understand the design:** [system overview](architecture/system-overview.md),
   [research agenda](research/research-agenda.md), [data formats](data/schemas.md),
   and [portal interface](interface/portal.md).
