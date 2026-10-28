@@ -1,0 +1,18 @@
+{
+  "files_sha256": {
+    "ask.json": "41a6a4ba7d41583f19454503ce1343da49cd3c682f394aecd27a3d2e10df5dc0",
+    "capture.py": "570d64db1533002be7103e5e0b137252abef82ec91787a02b081b4d0e089be64",
+    "check.json": "a36691df6f46d4dc35a86c1e2a27928962e3933c868fb2259c09336a03eb258c",
+    "done.json": "0ec79931b273380f8b9446e79329250cf0e8da918a2a1f837d8d884bc96a4f7e",
+    "explain.json": "9c92ebef8b458c61978b6cee209547843ed998359ce63918752ff046fb7daf82",
+    "hint.json": "100ed20356813ae25f7911e005ff81f6ec05fb7700e48279cd1d8fa9b09a687e",
+    "models.json": "2ea548a3ef8797f8ca9bf6e0c52dafbde6ea73fe7e9e26c1bcfd5c1bb5bb90af",
+    "source.json": "a5a6aeb9b485eb287ee668cb144af4241b08bd877ae920c6773d1cafb0020f97",
+    "status-after.json": "bd2130ad9b188e83c7435a21f38bc93a29d6daa479a3496c03a530f0f9b37a72",
+    "status-before.json": "6965db5c62ea515d7bbddfb0e0d48bee7e133e1fd4e9cb73f26882d2f82afea1",
+    "trace.json": "8383829d7b747c40480dafbbbeb11b87310f67bfae061a0faeca3e36337aa4ca"
+  },
+  "installed_revision": "4f06e6d10bcbffca47c0f7554800972555085c78",
+  "serial_opened": false,
+  "target": "INSTALLED_REAL_PI_VIRTUAL_APPLE1"
+}

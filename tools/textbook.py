@@ -61,7 +61,7 @@ def render_capture(text: str, destination: Path) -> None:
         small = ImageFont.load_default(size=16)
     lines = []
     for line in text.splitlines():
-        lines.extend(textwrap.wrap(line, width=94, break_long_words=False, break_on_hyphens=False, replace_whitespace=False) or [""])
+        lines.extend(textwrap.wrap(line, width=94, break_long_words=True, break_on_hyphens=False, replace_whitespace=False) or [""])
     image = Image.new("RGB", (1320, 110 + len(lines) * 31), "#0c1319")
     draw = ImageDraw.Draw(image)
     draw.rectangle((0, 0, 1319, 4), fill="#62d5c3")
@@ -93,6 +93,9 @@ def capture(destination: Path, *, images: bool) -> None:
     sources = [
         BOOK / "catalog.json",
         *sorted((BOOK / "examples").glob("*.py")),
+        *sorted((BOOK / "native/evidence").rglob("*.json")),
+        *sorted((BOOK / "native/evidence").rglob("*.txt")),
+        *sorted((BOOK / "native/evidence").rglob("*.png")),
         ROOT / "tools/textbook.py",
         ROOT / "tools/textbook_support.py",
         *sorted((ROOT / "neural1").glob("*.py")),
@@ -109,17 +112,18 @@ def capture(destination: Path, *, images: bool) -> None:
         manifest["source_sha256"][path.relative_to(ROOT).as_posix()] = hashlib.sha256(path.read_bytes()).hexdigest()
     for record in catalog():
         identifier = record["id"]
-        environment = {**os.environ, "PYTHONDONTWRITEBYTECODE": "1"}
+        environment = {**os.environ, "PYTHONDONTWRITEBYTECODE": "1", "PYTHONIOENCODING": "utf-8"}
         result = subprocess.run(  # noqa: S603 - reviewed module and catalog identifiers
-            [sys.executable, "-m", "tools.textbook", "run", identifier], cwd=ROOT, env=environment, capture_output=True, timeout=30
+            [sys.executable, "-m", "tools.textbook", "run", identifier], cwd=ROOT, env=environment, capture_output=True, text=True, encoding="utf-8", timeout=30
         )
         if result.returncode:
-            raise ValueError(f"{identifier} failed; capture not complete: {result.stderr.decode(errors='replace')}")
-        (destination / f"{identifier}.txt").write_bytes(result.stdout)
-        entry = {"id": identifier, "mode": record["mode"], "stdout_sha256": hashlib.sha256(result.stdout).hexdigest(), "exit_code": 0}
+            raise ValueError(f"{identifier} failed; capture not complete: {result.stderr}")
+        raw = result.stdout.encode("utf-8")
+        (destination / f"{identifier}.txt").write_bytes(raw)
+        entry = {"id": identifier, "mode": record["mode"], "stdout_sha256": hashlib.sha256(raw).hexdigest(), "exit_code": 0}
         if images:
             picture = destination / f"{identifier}.png"
-            render_capture(result.stdout.decode(), picture)
+            render_capture(result.stdout, picture)
             entry["image_sha256"] = hashlib.sha256(picture.read_bytes()).hexdigest()
         manifest["records"].append(entry)
         print(f"{identifier}: captured")

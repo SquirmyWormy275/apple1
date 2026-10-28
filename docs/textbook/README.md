@@ -6,8 +6,13 @@ Start without assembly experience; build toward a reproducible capstone.
 
 **This edition:** 13 teaching chapters, all 42 existing Field Library packets
 with worked companions, eight new local-model labs, and 36 feature walkthroughs.
-Every one of the 86 examples has executable source, actual stdout, checks,
+Twelve extended CPU labs add pointers, flags, multi-byte arithmetic, calls,
+branch limits and original-program boundary cases. Native evidence labs
+connect actual local inference to independently checked execution.
+All 100 catalog examples have executable source, actual stdout, checks,
 a captured image, a practice variation, and a worked answer.
+
+[Course and teaching guide](course-guide.md) · [Fresh native walkthrough](native/README.md) · [6502 desk reference](reference/6502.md) · [Technical review](review.md) · [Pi verification](validation/README.md)
 
 [Begin chapter 0](chapters/00-how-to-use-this-book.md) · [Coverage and evidence modes](coverage.md) · [Original lesson index](../field-library/README.md) · [Project home](../../README.md)
 
@@ -73,22 +78,23 @@ python -m tools.textbook verify out/my-textbook-captures --rerun
 
 Use a new output directory. The tool refuses to overwrite existing captures.
 The [committed manifest](captures/manifest.json) records source identities and
-stdout/image hashes. `verify --rerun` checks all 86 actual examples against their
+stdout/image hashes. `verify --rerun` checks every catalog example against their
 captured text. `build-pages` regenerates worked guides from the reviewed catalog,
 example source, and committed outputs; it is an authoring command, not a learner
 prerequisite.
 
 ## What completion means here
 
-These labs supply host computations, actual bounded virtual execution, synthetic
-software checks, mock transport, and readings of retained native evidence.
-They do not claim a new real-model campaign, a fully emulated Apple-1 BASIC
-interpreter, physical Replica acceptance, or closure of the library's historical
-source-review gates. The workstation had no responding local Ollama service
-during this build; real-model behavior is taught from the separately identified
-Pi records and the operational procedure.
+The host book covers every original lesson and the implemented feature surface.
+Its modes include real bounded virtual execution, authored fixtures, direct CPU
+semantics and offline inspection of actual local-model output. The separate
+[native chapter](native/README.md) retains fresh observations, including failed
+proposals, rather than treating generated text as proof of success.
 
-Read the explicit [coverage boundaries](coverage.md#operator-and-environment-dependent-work)
-and [source erratum](../field-library/SOURCES.md#reset-vector-correction-october-27-2026).
-A useful textbook makes unknowns and unavailable demonstrations visible instead
-of manufacturing successful screenshots.
+A native BASIC interpreter, physical Replica acceptance, historical source
+clearance and the unfinished physical launcher are not established by these
+captures. Their status stays explicit in the [review record](review.md), the
+[coverage boundaries](coverage.md#operator-and-environment-dependent-work) and
+the [physical-session chapter](reference/physical-session.md). The course is
+usable without waiting for the physical setup; a measured hardware chapter can
+be added when that setup is available.

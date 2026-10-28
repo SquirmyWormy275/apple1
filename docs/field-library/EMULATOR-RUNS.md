@@ -168,3 +168,17 @@ An emulator result is software evidence. It does not establish that the Replica
 serial path carries a byte, or that the EEPROM installed on the board contains
 the Monitor these programs call into. Per `docs/emulator-demo-guide.md`, a
 successful emulator run does not waive a hardware evidence gate.
+
+## October 28 textbook verification on the project workstation
+
+[T10](../textbook/features/T10.md) now executes the exact thirteen-byte A06
+answer, preserving its byte identity: sixteen `$AA` writes, `$0410` unchanged,
+Monitor warm entry and 51 modeled instructions. Starting Y at `$FF` instead
+performs one store at `$04FF` and returns in six instructions, correcting the
+earlier answer's 256-store claim.
+
+[T11](../textbook/features/T11.md) records ordinary input lengths 0, 1, 127 and
+128: instruction counts 10, 20, 1280 and 1282 respectively. The final case
+exits on Y=$80 before reading the supplied CR. Its source and raw captures
+retain the derivation and exact checks. These new runs are workstation software
+evidence, distinct from the older authoring records above.

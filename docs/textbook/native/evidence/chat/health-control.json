@@ -1,0 +1,37 @@
+{
+  "expected": "4",
+  "generation": {
+    "completion_tokens": 2,
+    "latency_ms": 1379.7242590226233,
+    "prompt_tokens": 42,
+    "provider_metadata": {
+      "agent_id": "textbook-control",
+      "api": "chat",
+      "done_reason": "stop",
+      "endpoint": "http://127.0.0.1:11435/api/chat",
+      "format": null,
+      "raw_response_sha256": "c989489bbc818110bdbc311e8c2c4fecbd9bcc4ebf6ba1b20743972790df8340",
+      "raw_response_utf8": "{\"model\":\"qwen2.5-coder:1.5b\",\"created_at\":\"2026-10-28T04:55:21.772562584Z\",\"message\":{\"role\":\"assistant\",\"content\":\"4\"},\"done\":true,\"done_reason\":\"stop\",\"total_duration\":1379132589,\"load_duration\":1037047963,\"prompt_eval_count\":42,\"prompt_eval_duration\":308999000,\"eval_count\":2,\"eval_duration\":29600000}",
+      "response_payload": {
+        "created_at": "2026-10-28T04:55:21.772562584Z",
+        "done": true,
+        "done_reason": "stop",
+        "eval_count": 2,
+        "eval_duration": 29600000,
+        "load_duration": 1037047963,
+        "message": {
+          "content": "4",
+          "role": "assistant"
+        },
+        "model": "qwen2.5-coder:1.5b",
+        "prompt_eval_count": 42,
+        "prompt_eval_duration": 308999000,
+        "total_duration": 1379132589
+      },
+      "seed": 7
+    },
+    "text": "4"
+  },
+  "passed": true,
+  "prompt": "What is 2 + 2? Answer with one number."
+}

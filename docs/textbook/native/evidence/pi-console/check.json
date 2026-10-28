@@ -1,0 +1,9 @@
+{
+  "started_utc": "2026-10-28T05:14:24.323737+00:00",
+  "command": "CHECK M05 RTS always returns a program started with R to the Monitor.",
+  "exit_code": 0,
+  "stdout": "{\n  \"operation\": \"CHECK\",\n  \"text\": \"NOT ESTABLISHED BY THE AVAILABLE LIBRARY SOURCES.\",\n  \"source_paths\": [\n    \"/opt/neural1/releases/4f06e6d10bcbffca47c0f7554800972555085c78/docs/field-library/M05-why-jmp-ff1f-matters/README.md\",\n    \"/opt/neural1/releases/4f06e6d10bcbffca47c0f7554800972555085c78/docs/field-library/M05-why-jmp-ff1f-matters/ANSWERS.md\",\n    \"/opt/neural1/releases/4f06e6d10bcbffca47c0f7554800972555085c78/docs/field-library/M05-why-jmp-ff1f-matters/SOURCE-NOTES.md\"\n  ],\n  \"deterministic_evidence\": null,\n  \"source_keys\": [\n    \"E-EXIT\",\n    \"OWAD\"\n  ],\n  \"grounded\": false,\n  \"support_note\": null,\n  \"prompt_bytes\": 2106,\n  \"output_truncated\": false,\n  \"original_question\": \"RTS always returns a program started with R to the Monitor.\",\n  \"effective_question\": \"RTS always returns a program started with R to the Monitor.\"\n}\n",
+  "stderr": "",
+  "target": "INSTALLED_REAL_PI_VIRTUAL_APPLE1",
+  "serial_opened": false
+}

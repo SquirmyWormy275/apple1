@@ -1,0 +1,68 @@
+{
+  "target": "STAGED_TEXTBOOK_SOURCE_ON_REAL_PI",
+  "started_utc": "2026-10-28T05:50:30.056570+00:00",
+  "board": "Raspberry Pi 5 Model B Rev 1.1",
+  "capture_manifest_sha256": "a18777cffbb7780f3cd9f1d33723a6341af2703006164f67fafa6f370bbe7dc5",
+  "serial_opened": false,
+  "checks": [
+    {
+      "command": [
+        "-m",
+        "pytest",
+        "-q"
+      ],
+      "exit_code": 0,
+      "stdout": "........................................................................ [ 16%]\n........................................................................ [ 32%]\n........................................................................ [ 49%]\n........................................................................ [ 65%]\n........................................................................ [ 82%]\n........................................................................ [ 98%]\n.......                                                                  [100%]\n439 passed in 5.27s\n",
+      "stderr": ""
+    },
+    {
+      "command": [
+        "-m",
+        "tools.textbook",
+        "verify",
+        "docs/textbook/captures",
+        "--rerun"
+      ],
+      "exit_code": 0,
+      "stdout": "Verified 100 examples, source identities and capture hashes; all reruns match.\n",
+      "stderr": ""
+    },
+    {
+      "command": [
+        "tools/neural1_validate.py",
+        "."
+      ],
+      "exit_code": 0,
+      "stdout": "{\n  \"errors\": [],\n  \"valid\": true\n}\n",
+      "stderr": ""
+    },
+    {
+      "command": [
+        "-m",
+        "ruff",
+        "check",
+        "neural1",
+        "tools/neural1_validate.py",
+        "tests/test_neural1_textbook_verification.py",
+        "tools/textbook.py",
+        "tools/textbook_support.py",
+        "tools/textbook_native.py",
+        "docs/textbook/examples"
+      ],
+      "exit_code": 0,
+      "stdout": "All checks passed!\n",
+      "stderr": ""
+    },
+    {
+      "command": [
+        "-m",
+        "mypy",
+        "neural1"
+      ],
+      "exit_code": 0,
+      "stdout": "Success: no issues found in 40 source files\n",
+      "stderr": ""
+    }
+  ],
+  "finished_utc": "2026-10-28T05:50:39.528123+00:00"
+}

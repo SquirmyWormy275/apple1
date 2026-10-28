@@ -1,0 +1,9 @@
+{
+  "started_utc": "2026-10-28T05:13:06.878817+00:00",
+  "command": "ASK M01 What are the three basic Monitor functions?",
+  "exit_code": 0,
+  "stdout": "{\n  \"operation\": \"ASK\",\n  \"text\": \"The three basic Monitor functions are not established by the available library sources.\\n\\nSOURCES: R-MON-3, WOZ-FWD\",\n  \"source_paths\": [\n    \"/opt/neural1/releases/4f06e6d10bcbffca47c0f7554800972555085c78/docs/field-library/M01-meet-the-monitor/README.md\",\n    \"/opt/neural1/releases/4f06e6d10bcbffca47c0f7554800972555085c78/docs/field-library/M01-meet-the-monitor/SOURCE-NOTES.md\"\n  ],\n  \"deterministic_evidence\": null,\n  \"source_keys\": [\n    \"R-MON-3\",\n    \"WOZ-FWD\"\n  ],\n  \"grounded\": true,\n  \"support_note\": null,\n  \"prompt_bytes\": 935,\n  \"output_truncated\": false,\n  \"original_question\": \"What are the three basic Monitor functions?\",\n  \"effective_question\": \"What are the three basic Monitor functions?\"\n}\n",
+  "stderr": "",
+  "target": "INSTALLED_REAL_PI_VIRTUAL_APPLE1",
+  "serial_opened": false
+}

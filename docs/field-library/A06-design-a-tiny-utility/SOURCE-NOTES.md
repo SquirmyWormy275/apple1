@@ -28,14 +28,12 @@ instructions are:
 
 `$AA` is `*` (`$2A`) with bit 7 set, per A-CHART and C04.
 
-**This program has not been executed.** Unlike the C05, A03, and A04 examples, no
-run of it is recorded in `../EMULATOR-RUNS.md`. Its behavior in the answer key is
-derived by hand-tracing: `DEY` from `$0F` down to `$00` keeps bit 7 clear so
-`BPL` branches, and `DEY` on `$00` gives `$FF` with bit 7 set so the loop ends
-after writing `$0400`.
-
-Recorded as **V-19**: the A06 worked example is hand-traced, not observed. A
-reviewer or learner running it would strengthen this packet.
+**V-19 resolved by host execution:** [T10](../../textbook/features/T10.md)
+assembles the exact thirteen bytes shown in the answer, confirms sixteen `$AA`
+bytes at `$0400`–`$040F`, checks `$0410` unchanged, and observes a Monitor return
+after 51 modeled instructions. Its second run starts Y at `$FF` and performs
+one store at `$04FF`, correcting the earlier zero-length answer. Neither is a
+physical run or a new accepted RAM-library artifact.
 
 ## The retrospective card
 
@@ -60,7 +58,7 @@ open question of whether the 128-character route was intended.
 ## Claims needing verification
 
 - Page numbers inherit **V-1**.
-- **V-19 (new).** The A06 worked example is hand-traced, not executed.
+- **V-19 resolved.** T10 retains the exact listing, execution and boundary checks.
 - **V-18 carried forward** in the retrospective card.
 - **V-8 applies.** Nothing designed or discussed here has run on this board.
 

@@ -30,8 +30,10 @@ stuck.
 
 ## Part C: find the addresses
 
-Four different addresses are referenced by instructions in Dump One. Find all
-four and give the address of the instruction that references each.
+Find the five absolute address operands or indexed base addresses in Dump One,
+including JSR and JMP targets. Exclude relative-branch targets for this question.
+Give the address of each referencing instruction. Then assess this separate
+claim: "there are only four." Which operand would that count miss?
 
 | Referenced address | Referenced from |
 |---|---|

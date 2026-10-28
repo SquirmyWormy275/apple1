@@ -18,7 +18,7 @@ computer.
 
 The thirteen-byte worked example in `ANSWERS.md` is a listing inside an answer
 key. It is not supplied as a `.hex` file, is not added to `software/ram-only/`,
-and has not been executed (V-19).
+and is now executed in [T10](../../textbook/features/T10.md), resolving V-19 for this exact listing.
 
 ## Expected result
 
@@ -31,7 +31,7 @@ content and is fully worked.
 
 ## Known limitations
 
-- The worked example is hand-traced rather than observed (V-19).
+- [T10](../../textbook/features/T10.md) now executes the exact listing and its index-$FF boundary variation. The fixed 16-byte version uses 51 modeled instructions; this is not a timing measurement.
 - The card records no timing, and the library makes no timing claims.
 - Section 8 records an intention only. It is not a gate and does not interact
   with the acceptance card in `docs/apple1-software-library.md`.

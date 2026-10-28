@@ -95,7 +95,8 @@ class LessonCorpus:
                 if not score:
                     continue
                 priority = 0 if filename == 'README.md' else 1 if filename == 'SOURCE-NOTES.md' else 2 if filename == 'STATUS.md' else 3
-                if re.match(r'^\*(?:Inspect|Change|Run)\.\*', paragraph, re.IGNORECASE):
+                action_heading = re.match(r'^\*(Inspect|Change|Run)\.\*', paragraph, re.IGNORECASE)
+                if action_heading and action_heading[1].upper() in query_terms:
                     score += 12
                 candidates.append((priority, -score, path, index, paragraph))
         candidates.sort()
@@ -201,11 +202,14 @@ class FieldLibraryAssistant:
         response = self.model.generate(prompt, agent_id=agent_id, seed=seed)
         text = response.text.strip() or UNSUPPORTED
         keys = self.corpus.source_keys(context)
-        if text != UNSUPPORTED and keys:
+        abstained = UNSUPPORTED.rstrip('.').casefold() in text.casefold()
+        if not abstained and keys:
             text += '\n\nSOURCES: ' + ', '.join(keys)
         truncated = (response.provider_metadata or {}).get('done_reason') == 'length'
         note = 'Model output reached its length limit; the returned text is incomplete.' if truncated else None
-        return GroundedAnswer(operation, text, paths, evidence, keys, text != UNSUPPORTED, support_note=note, prompt_bytes=len(prompt.encode('utf-8')), output_truncated=truncated, original_question=question, effective_question=effective_question)
+        if abstained:
+            note = 'The model declined to answer; inspect the selected sources directly.' + (f' {note}' if note else '')
+        return GroundedAnswer(operation, text, paths, evidence, keys, not abstained, support_note=note, prompt_bytes=len(prompt.encode('utf-8')), output_truncated=truncated, original_question=question, effective_question=effective_question)
 
     def answer(self, operation: str, lesson_id: str, question: str, *, seed: int = 0) -> GroundedAnswer:
         operation = operation.upper()

@@ -1,0 +1,22 @@
+T10 / Review the original A06 program
+MODE: VIRTUAL_EXECUTION | HOST ONLY | NO MODEL INFERENCE
+
+Program bytes: A0 0F A9 AA 99 00 04 88 10 FA 4C 1F FF
+Stop: MONITOR_WARM_ENTRY; instructions: 51
+Final A=AA X=00 Y=FF
+0400: AA
+040F: AA
+0410: 00
+04FF: 00
+Initial Y: 0F stores: 16 final Y: FF
+Program bytes: A0 FF A9 AA 99 00 04 88 10 FA 4C 1F FF
+Stop: MONITOR_WARM_ENTRY; instructions: 6
+Final A=AA X=00 Y=FE
+0400: 00
+040F: 00
+0410: 00
+04FF: AA
+Initial Y: FF stores: 1 final Y: FE
+A zero-length interpretation encoded as LDY #$FF does one store, not zero or 256.
+
+CHECKS PASSED | No physical serial connection was requested.

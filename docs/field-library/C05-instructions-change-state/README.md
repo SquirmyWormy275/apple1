@@ -1,5 +1,10 @@
 # C05 Instructions change state
 
+**Arithmetic assumption:** this worksheet uses binary mode (D=0). A standalone
+binary routine should establish it with CLD as well as establish incoming carry.
+The existing Monitor reset listing begins with CLD; warm entry alone is not a
+CPU reset. [T03](../../textbook/features/T03.md) makes both inputs explicit.
+
 **Audience:** BUILD
 **Time:** 50 minutes
 **Status:** OFF-DEVICE

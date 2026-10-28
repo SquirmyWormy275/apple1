@@ -1,0 +1,23 @@
+ACTUAL INSTALLED PI CONSOLE / RETAINED STDOUT
+2026-10-28T05:13:53.926587+00:00
+EXPLAIN C04 Why does the harness set bit 7 on keyboard input?
+
+{
+  "operation": "EXPLAIN",
+  "text": "The harness sets bit 7 on keyboard input to conform to the high-bit convention expected by the Monitor.\n\nSOURCES: P-HIGHBIT, REPO",
+  "source_paths": [
+    "/opt/neural1/releases/4f06e6d10bcbffca47c0f7554800972555085c78/docs/field-library/C04-characters-become-numbers/README.md",
+    "/opt/neural1/releases/4f06e6d10bcbffca47c0f7554800972555085c78/docs/field-library/C04-characters-become-numbers/SOURCE-NOTES.md"
+  ],
+  "deterministic_evidence": null,
+  "source_keys": [
+    "P-HIGHBIT",
+    "REPO"
+  ],
+  "grounded": true,
+  "support_note": null,
+  "prompt_bytes": 1902,
+  "output_truncated": false,
+  "original_question": "Why does the harness set bit 7 on keyboard input?",
+  "effective_question": "Why does the harness set bit 7 on keyboard input?"
+}

@@ -29,10 +29,10 @@ taken from any board. Two labels on it come from this repository rather than
 from OWAD, and are marked as such on the diagram: the `$0300` entry point and
 the `$0400` buffer used by the RAM-only programs.
 
-The `$0200` label for the Monitor's input line is inferred from the Monitor
-listing, where the text buffer is indexed as `IN,Y` and assembled as
-`99 00 02` at `FF31`, giving a base of `$0200`. That inference is recorded as
-verification item **V-9** below rather than presented as documented fact.
+**V-9 resolved:** BRIEL Appendix C, printed/PDF p. 32, Hardware Notes,
+explicitly labels IN as `$0200`–`$027F`; p. 30 shows `STA IN,Y`.
+The selected pages were visually inspected against the preserved local scan.
+This identifies the documented Monitor buffer, not the physical unit's RAM.
 
 ## Deliberate simplifications
 
@@ -54,10 +54,7 @@ verification item **V-9** below rather than presented as documented fact.
 - **V-4 applies and is load-bearing here.** OWAD's replica map is the Replica I.
   This project's machine is a Replica 1 Plus. The lesson says "later replicas"
   and "the replica design documented by Owad", never "this machine".
-- **V-9 (new).** The `$0200` Monitor input-line label is inferred from the
-  Monitor listing's `STA IN,Y` assembling as `99 00 02`, not from a stated
-  memory-map entry. Confirm against a primary Apple-1 memory map before this
-  packet goes on the card.
+- **V-9 resolved** by W-INPUT and the preserved manual check above.
 - **V-8 applies.** Nothing here was read from this board.
 
 ## What this lesson does not establish

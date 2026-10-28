@@ -13,7 +13,10 @@ directly on GitHub or in a checkout.
 
 The [worked textbook](../docs/textbook/README.md) provides 13 teaching chapters,
 companions for all 42 lessons, eight local-model labs, and 36 feature examples.
-Its 86 runnable examples include captured output and images. The
+Its 100 runnable examples include captured output and images, deeper CPU
+tutorials, and fresh local-model/Pi records. Use the
+[course guide](../docs/textbook/course-guide.md) or
+[native walkthrough](../docs/textbook/native/README.md). The
 [coverage register](../docs/textbook/coverage.md) distinguishes actual host/virtual
 execution, fixtures, retained native records, and operator-only procedures.
 

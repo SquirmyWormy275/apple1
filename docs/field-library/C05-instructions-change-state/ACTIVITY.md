@@ -1,5 +1,10 @@
 # C05 Activity: trace the state
 
+**Arithmetic assumption:** this worksheet uses binary mode (D=0). A standalone
+binary routine should establish it with CLD as well as establish incoming carry.
+The existing Monitor reset listing begins with CLD; warm entry alone is not a
+CPU reset. [T03](../../textbook/features/T03.md) makes both inputs explicit.
+
 > **Companion scope (October 27, 2026):** This page retains the original activity.
 > Paper-only and no-execution statements below describe that original exercise.
 > The separate [worked companion](WORKED.md) explicitly identifies any new host

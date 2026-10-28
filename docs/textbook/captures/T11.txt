@@ -1,0 +1,11 @@
+T11 / Derive the keyboard boundary
+MODE: VIRTUAL_EXECUTION | HOST ONLY | NO MODEL INFERENCE
+
+Ordinary characters=0; emitted=1; CR emitted=True; instructions=10
+Ordinary characters=1; emitted=2; CR emitted=True; instructions=20
+Ordinary characters=127; emitted=128; CR emitted=True; instructions=1280
+Ordinary characters=128; emitted=128; CR emitted=False; instructions=1282
+At 128 ordinary characters, the Y=$80 exit occurs before reading the supplied Return.
+For n<=127: setup 1 + ordinary passes 10*n + CR pass 8 + final JMP 1 = 10*(n+1).
+
+CHECKS PASSED | No physical serial connection was requested.

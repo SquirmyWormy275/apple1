@@ -1,0 +1,22 @@
+ACTUAL INSTALLED PI CONSOLE / RETAINED STDOUT
+2026-10-28T05:13:35.842747+00:00
+HINT A03 How does BNE decide whether to repeat?
+
+{
+  "operation": "HINT",
+  "text": "The BNE instruction checks the result of the previous operation. If the result is not zero, it branches to the specified label, causing the loop to repeat.\n\nSOURCES: OWAD",
+  "source_paths": [
+    "/opt/neural1/releases/4f06e6d10bcbffca47c0f7554800972555085c78/docs/field-library/A03-counting-and-looping/README.md",
+    "/opt/neural1/releases/4f06e6d10bcbffca47c0f7554800972555085c78/docs/field-library/A03-counting-and-looping/SOURCE-NOTES.md"
+  ],
+  "deterministic_evidence": null,
+  "source_keys": [
+    "OWAD"
+  ],
+  "grounded": true,
+  "support_note": null,
+  "prompt_bytes": 910,
+  "output_truncated": false,
+  "original_question": "How does BNE decide whether to repeat?",
+  "effective_question": "How does BNE decide whether to repeat?"
+}

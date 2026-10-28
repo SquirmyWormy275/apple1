@@ -1,0 +1,61 @@
+{
+  "target": "STAGED_CURRENT_SOURCE_REAL_PI_VIRTUAL_APPLE1",
+  "started_utc": "2026-10-28T05:44:13.114240+00:00",
+  "finished_utc": "2026-10-28T05:44:37.642835+00:00",
+  "model": {
+    "provider": "ollama-http",
+    "family": "phi4-mini",
+    "name": "phi4-mini:latest",
+    "version": "UNAVAILABLE",
+    "hash": "78fad5d182a7c33065e153a5f8ba210754207ba9d91973f57dffa7f487363753",
+    "quantization": "UNAVAILABLE",
+    "context_limit": 4096,
+    "generation": {
+      "num_ctx": 4096,
+      "num_predict": 96,
+      "temperature": 0,
+      "num_thread": 2,
+      "num_gpu": 0,
+      "num_batch": 16,
+      "api": "chat",
+      "base_url": "http://127.0.0.1:11434",
+      "timeout_seconds": 90,
+      "keep_alive": 0,
+      "hash_kind": "ollama-manifest; not the GGUF weight blob"
+    }
+  },
+  "question": "What are the three basic Monitor functions?",
+  "answer": {
+    "operation": "ASK",
+    "text": "The three basic Monitor functions are inspect memory, change memory, and run a program.\n\nSOURCES: R-MON-3, W-FRONTPANEL",
+    "source_paths": [
+      "/mnt/neural1-ssd/logs/textbook-20261028-course/docs/field-library/M01-meet-the-monitor/README.md",
+      "/mnt/neural1-ssd/logs/textbook-20261028-course/docs/field-library/M01-meet-the-monitor/SOURCE-NOTES.md"
+    ],
+    "deterministic_evidence": null,
+    "source_keys": [
+      "R-MON-3",
+      "W-FRONTPANEL"
+    ],
+    "grounded": true,
+    "support_note": null,
+    "prompt_bytes": 1001,
+    "output_truncated": false,
+    "original_question": "What are the three basic Monitor functions?",
+    "effective_question": "What are the three basic Monitor functions?"
+  },
+  "preflight_temperature_c": 43.0,
+  "final_temperature_c": 56.2,
+  "preflight_available_memory_bytes": 8121876480,
+  "uuid_verified": true,
+  "serial_opened": false,
+  "source_sha256": {
+    "neural1/field_library.py": "87962fca333ac4a3b2332cd1326c542d0f262c6636ad022110ebc5ceb0317659",
+    "docs/field-library/M01-meet-the-monitor/ACTIVITY.md": "7d2bb86806fad4edcb1b6d9561e3a4616987b6bfed6a5f0c25fd8e843b48f2b8",
+    "docs/field-library/M01-meet-the-monitor/README.md": "ac26f9355a3541ee402ffa32042602269c8be89ed69c5032f84b42f5bbf22618",
+    "docs/field-library/M01-meet-the-monitor/WORKED.md": "4e1ba21ab58b4ee787760e7506b5e94e1beb089722ecfcb8aa8b3f0a5cfc928c",
+    "docs/field-library/M01-meet-the-monitor/ANSWERS.md": "026cc992cb98a843481935c79d2c344430098fbb8eba1c95e40d397b6c013670",
+    "docs/field-library/M01-meet-the-monitor/STATUS.md": "f897ea9d1574207a6c2115ff87c2f491bbbf0d5b7f918e196ffb08e9b20c39d9",
+    "docs/field-library/M01-meet-the-monitor/SOURCE-NOTES.md": "5686fbad1d472c84b73be2abdc674b958cf263def9ee36e125880fac786edf76"
+  }
+}

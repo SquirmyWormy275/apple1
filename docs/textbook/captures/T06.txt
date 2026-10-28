@@ -1,0 +1,14 @@
+T06 / Masks, shifts and rotates
+MODE: VIRTUAL_EXECUTION | HOST ONLY | NO MODEL INFERENCE
+
+Program bytes: A9 C1 29 7F 8D 00 04 09 80 8D 01 04 49 FF 8D 02 04 A9 81 0A 8D 03 04 2A 8D 04 04 4C 1F FF
+Stop: MONITOR_WARM_ENTRY; instructions: 13
+Final A=05 X=00 Y=00
+0400: 41
+0401: C1
+0402: 3E
+0403: 02
+0404: 05
+ASL $81 gives $02 with carry 1; ROL $02 rotates that carry into bit 0, giving $05.
+
+CHECKS PASSED | No physical serial connection was requested.

@@ -21,7 +21,7 @@ Keep this closed until the hunt has been attempted. The hints are on the sheet.
 
 ## Part C: find the addresses
 
-Four addresses are referenced, at three absolute and one indexed:
+Five absolute address operands/indexed bases are referenced:
 
 | Referenced | From |
 |---|---|
@@ -31,8 +31,9 @@ Four addresses are referenced, at three absolute and one indexed:
 | `$FFEF` | `$030D`, `20 EF FF` |
 | `$FF1F` | `$0317`, `4C 1F FF` |
 
-That is five, not four. The question says four and it is wrong on purpose; a
-learner who finds five and says so has done better than one who stops at four.
+That is five. The revised question explicitly asks you to assess a separate
+claim of four, so the expected task itself is accurate. Relative branches have
+targets too; they are outside the count defined for this question.
 
 If a learner reports exactly four, ask which they left out. It is usually
 `$0400`, because the `,Y` form looks unfamiliar, or `$FFEF`, because `20` is less
@@ -43,7 +44,7 @@ recognisable than `4C`.
 | # | Answer |
 |---|---|
 | 8 | **26 bytes.** |
-| 9 | **14 bytes** have bit 7 set: `A0`, `AD`, `D0`, `FB`, `AD`, `D0`, `99`, `EF`, `FF`, `C9`, `8D`, `F0`, `EB`, `FF`. Count the first hex digit being 8 or higher, per C03's rule. |
+| 9 | **15 bytes** have bit 7 set: `A0`, `AD`, `D0`, `FB`, `AD`, `D0`, `99`, `EF`, `FF`, `C9`, `8D`, `F0`, `C8`, `EB`, `FF`. Count the first hex digit being 8 or higher, per C03's rule. |
 | 10 | **`D0` appears twice, at `$0304` and `$0309`, and it means the same thing both times: the high byte of an address.** Once for `$D011` and once for `$D010`. |
 
 Question 10 is worth expanding. `D0` is *also* the opcode for `BNE`, and it does

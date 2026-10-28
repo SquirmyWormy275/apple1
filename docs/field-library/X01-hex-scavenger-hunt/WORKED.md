@@ -37,6 +37,10 @@ for offset in range(0, len(payload), 8):
     print(f"{0x300 + offset:04X}:", payload[offset : offset + 8].hex(" ").upper())
 assert len(payload) == 26 and payload[-3:] == bytes.fromhex("4C 1F FF")
 print("Last instruction: JMP $FF1F")
+
+high_bits = sum(byte >= 0x80 for byte in payload)
+print("Bytes with bit 7 set:", high_bits)
+assert high_bits == 15
 ```
 
 ## Recorded result
@@ -54,6 +58,7 @@ MODE: HOST_EXERCISE | HOST ONLY | NO MODEL INFERENCE
 0310: C9 8D F0 03 C8 10 EB 4C
 0318: 1F FF
 Last instruction: JMP $FF1F
+Bytes with bit 7 set: 15
 
 CHECKS PASSED | No physical serial connection was requested.
 ```

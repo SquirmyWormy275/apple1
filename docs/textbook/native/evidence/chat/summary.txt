@@ -1,0 +1,30 @@
+ACTUAL LOCAL INFERENCE / RETAINED RECORD
+WORKSTATION_LOCAL_MODEL_VIRTUAL_6502
+UTC: 2026-10-28T04:55:20.393006+00:00
+Runtime: Ollama 0.33.2; API: chat
+Model: qwen2.5-coder:1.5b / Q4_K_M
+Context 2048; output cap 192; seed 7; temperature 0; CPU threads 4
+
+HEALTH-CONTROL
+Prompt tokens: 42; output tokens: 2
+Elapsed: 1.380 s; finish: stop
+Response: '4'; expected 4: True
+
+UNASSISTED
+Prompt tokens: 118; output tokens: 192
+Elapsed: 7.815 s; finish: length
+Task passed: False
+Parsed commands: 0
+Stop: BRK
+Memory $03FF..$0405: A5 00 00 00 00 00 A5
+
+SCAFFOLDED
+Prompt tokens: 197; output tokens: 192
+Elapsed: 8.629 s; finish: length
+Task passed: False
+Parsed commands: 0
+Stop: BRK
+Memory $03FF..$0405: A5 00 00 00 00 00 A5
+
+Exact prompts, raw replies, manifest and blob hashes accompany this image.
+A small teaching demonstration; no model ranking or physical acceptance claim.

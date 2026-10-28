@@ -1,0 +1,25 @@
+T03 / Carry and signed overflow
+MODE: VIRTUAL_EXECUTION | HOST ONLY | NO MODEL INFERENCE
+
+Binary FF + 01, CLC
+Program bytes: D8 18 A9 FF 69 01 4C 1F FF
+Stop: MONITOR_WARM_ENTRY; instructions: 5
+Final A=00 X=00 Y=00
+C Z N V: 1 1 0 0
+Binary 7F + 01, CLC
+Program bytes: D8 18 A9 7F 69 01 4C 1F FF
+Stop: MONITOR_WARM_ENTRY; instructions: 5
+Final A=80 X=00 Y=00
+C Z N V: 0 0 1 1
+Binary 80 + 80, CLC
+Program bytes: D8 18 A9 80 69 80 4C 1F FF
+Stop: MONITOR_WARM_ENTRY; instructions: 5
+Final A=00 X=00 Y=00
+C Z N V: 1 1 0 1
+Binary 41 + 01, SEC
+Program bytes: D8 38 A9 41 69 01 4C 1F FF
+Stop: MONITOR_WARM_ENTRY; instructions: 5
+Final A=43 X=00 Y=00
+C Z N V: 0 0 0 0
+
+CHECKS PASSED | No physical serial connection was requested.

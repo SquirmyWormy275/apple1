@@ -1,0 +1,103 @@
+{
+  "blobs": [
+    {
+      "bytes": 411,
+      "media_type": "application/vnd.docker.container.image.v1+json",
+      "sha256": "8c2539a423c4df2d9d2609fba56e7bad554696b66ed0e280c56e0ef4a32498fa"
+    },
+    {
+      "bytes": 2491874624,
+      "media_type": "application/vnd.ollama.image.model",
+      "sha256": "3c168af1dea0a414299c7d9077e100ac763370e5a98b3c53801a958a47f0a5db"
+    },
+    {
+      "bytes": 655,
+      "media_type": "application/vnd.ollama.image.template",
+      "sha256": "813f53fdc6e58d35bb1c3853c93266380e9ca918a993e8eab193e8ede5d3a603"
+    },
+    {
+      "bytes": 1084,
+      "media_type": "application/vnd.ollama.image.license",
+      "sha256": "fa8235e5b48faca34e3ca98cf4f694ef08bd216d28b58071a1f85b1d50cb814d"
+    }
+  ],
+  "board": "Raspberry Pi 5 Model B Rev 1.1",
+  "download_requested": false,
+  "files_sha256": {
+    "health-control.json": "1d9847cd4ec4f8aa66050d863ebf94da0a5c13c0b0df38eb9376bd148dd7a77d",
+    "model-manifest.json": "78fad5d182a7c33065e153a5f8ba210754207ba9d91973f57dffa7f487363753",
+    "scaffolded.json": "14bacb9accb65361e2670990e8c4bb5e84e76a7999ddcf6cd0ec960dbdcf48c2",
+    "sources/core.py": "0367b55b61be39114096d8961b3e3906a7687175d1511018e4ded8b7b5814c15",
+    "sources/drivers.py": "40d2add56c1c0b8b01fff5381578bd5063605910e61cca8887f4965198e6d869",
+    "sources/models.py": "a862a78580f1c022e4dc4af884feb7093658f20a01689b7873c23d94179aa4f6",
+    "sources/textbook_native.py": "34bc2d33ea74a2f593fce68811e22a4cdea948ac082e7d285bebb91cd42ea0e9",
+    "sources/world.py": "2ff409b3046b489aaf7a1c030ceb489dfd4eb0f962b671def2b9e640db3c8c25",
+    "unassisted.json": "0820884b6b94370bbdfd9abf268f3aae2c05e94b8f96948b37b018a70c6c72b5"
+  },
+  "finished_utc": "2026-10-28T05:17:20.733564+00:00",
+  "machine": "aarch64",
+  "model": {
+    "context_limit": 2048,
+    "family": "phi4-mini",
+    "generation": {
+      "api": "chat",
+      "base_url": "http://127.0.0.1:11434",
+      "hash_kind": "ollama-manifest; not the GGUF weight blob",
+      "keep_alive": 0,
+      "num_ctx": 2048,
+      "num_gpu": 0,
+      "num_predict": 192,
+      "num_thread": 4,
+      "temperature": 0,
+      "timeout_seconds": 90
+    },
+    "hash": "78fad5d182a7c33065e153a5f8ba210754207ba9d91973f57dffa7f487363753",
+    "name": "phi4-mini:latest",
+    "provider": "ollama-http",
+    "quantization": "Q4_K_M",
+    "version": "UNAVAILABLE"
+  },
+  "py65": "1.2.0",
+  "python": "3.13.5",
+  "runtime": {
+    "version": "0.32.14"
+  },
+  "schema": "textbook-native/v1",
+  "serial_opened": false,
+  "server_model": {
+    "capabilities": [
+      "completion",
+      "tools"
+    ],
+    "details": {
+      "context_length": 131072,
+      "embedding_length": 3072,
+      "families": [
+        "phi3"
+      ],
+      "family": "phi3",
+      "format": "gguf",
+      "parameter_size": "3.8B",
+      "parent_model": "",
+      "quantization_level": "Q4_K_M"
+    },
+    "digest": "78fad5d182a7c33065e153a5f8ba210754207ba9d91973f57dffa7f487363753",
+    "model": "phi4-mini:latest",
+    "modified_at": "2026-08-20T08:53:56.277739659-07:00",
+    "name": "phi4-mini:latest",
+    "size": 2491876774
+  },
+  "source_sha256": {
+    "core.py": "0367b55b61be39114096d8961b3e3906a7687175d1511018e4ded8b7b5814c15",
+    "drivers.py": "40d2add56c1c0b8b01fff5381578bd5063605910e61cca8887f4965198e6d869",
+    "models.py": "a862a78580f1c022e4dc4af884feb7093658f20a01689b7873c23d94179aa4f6",
+    "textbook_native.py": "34bc2d33ea74a2f593fce68811e22a4cdea948ac082e7d285bebb91cd42ea0e9",
+    "world.py": "2ff409b3046b489aaf7a1c030ceb489dfd4eb0f962b671def2b9e640db3c8c25"
+  },
+  "started_utc": "2026-10-28T05:15:30.243980+00:00",
+  "target": "REAL_PI_LOCAL_MODEL_VIRTUAL_6502",
+  "trials": [
+    "unassisted",
+    "scaffolded"
+  ]
+}

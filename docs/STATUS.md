@@ -1,19 +1,22 @@
 # Current project status
 
-Updated **October 27, 2026 (Pacific time)** for source usability and repository
-navigation. Operational statements below describe retained acceptance records,
-not a new live health check.
+Updated **October 27, 2026 (Pacific time)** for the expanded textbook and fresh
+native Pi observations (recorded October 28 UTC). Historical commissioning
+claims remain distinct from these teaching runs.
 
 [Project home](../README.md) · [Guided wiki](../wiki/Home.md) · [Full project map](PROJECT-MAP.md)
 
 ## Worked textbook edition
 
 The source now includes a 13-chapter textbook, worked companions for all 42
-existing lesson packets, eight local-model labs, and 36 feature labs. All 86
+existing lesson packets, eight local-model labs, 36 feature labs, twelve extended
+CPU labs and two native-evidence labs. All 100
 examples have captured host output, images, checks, and reproduction commands.
 See the [book](textbook/README.md) and [coverage register](textbook/coverage.md).
 These captures do not close the historical corpus review or physical approval
-gates, and do not constitute a new real-model or physical hardware campaign.
+gates. The separate [native walkthrough](textbook/native/README.md) retains fresh
+workstation/Pi inference, installed tutor calls and bounded virtual execution;
+there is no newly completed physical Replica capture.
 The earlier reset-vector teaching error is corrected with an explicit primary-
 source erratum in the Field Library source pool.
 

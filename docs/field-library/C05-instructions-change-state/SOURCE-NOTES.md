@@ -22,7 +22,7 @@ behavior: it is "Add Memory to Accumulator **with Carry**", not "add."
 | `$41` is `A`, `$42` is `B`, `$5A` is `Z` | A-CHART |
 | `$FF1F` is the Monitor warm entry, label `GETLINE` | W-FF1F |
 | Exit via `JMP $FF1F` rather than `RTS` | E-EXIT |
-| Power-on shows a screen of garbage (Part E reasoning) | R-RESET |
+| The worksheet establishes no initial RAM value; video startup garbage does not measure CPU RAM | Explicit worksheet assumption; R-RESET is a video observation only |
 
 ## The recorded run
 
@@ -47,9 +47,10 @@ answer, and the defect is invisible in the transcript.
 2. **The overflow flag is not mentioned** in the `$FF` plus `$01` discussion.
    Unsigned wrap and the carry are enough at this level; signed overflow is a
    separate flag and a separate lesson.
-3. **Decimal mode is not mentioned.** The Monitor clears it at reset (W-FF00),
-   so a program reaching this point runs in binary mode, and raising it here
-   would cost more than it teaches.
+3. **Binary mode is an explicit worksheet assumption.** The Monitor reset
+   listing begins with CLD (W-FF00), but an arbitrary caller or warm-entry
+   transfer is not proof that D was cleared. T03 establishes CLD and carry
+   explicitly. Video startup garbage is not evidence of CPU RAM contents.
 4. **`ADC` is written as immediate only.** Addressing modes stay at immediate
    and absolute, matching C01 and the A01 brief.
 

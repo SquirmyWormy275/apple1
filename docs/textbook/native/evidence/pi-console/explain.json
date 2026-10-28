@@ -1,0 +1,9 @@
+{
+  "started_utc": "2026-10-28T05:13:53.926587+00:00",
+  "command": "EXPLAIN C04 Why does the harness set bit 7 on keyboard input?",
+  "exit_code": 0,
+  "stdout": "{\n  \"operation\": \"EXPLAIN\",\n  \"text\": \"The harness sets bit 7 on keyboard input to conform to the high-bit convention expected by the Monitor.\\n\\nSOURCES: P-HIGHBIT, REPO\",\n  \"source_paths\": [\n    \"/opt/neural1/releases/4f06e6d10bcbffca47c0f7554800972555085c78/docs/field-library/C04-characters-become-numbers/README.md\",\n    \"/opt/neural1/releases/4f06e6d10bcbffca47c0f7554800972555085c78/docs/field-library/C04-characters-become-numbers/SOURCE-NOTES.md\"\n  ],\n  \"deterministic_evidence\": null,\n  \"source_keys\": [\n    \"P-HIGHBIT\",\n    \"REPO\"\n  ],\n  \"grounded\": true,\n  \"support_note\": null,\n  \"prompt_bytes\": 1902,\n  \"output_truncated\": false,\n  \"original_question\": \"Why does the harness set bit 7 on keyboard input?\",\n  \"effective_question\": \"Why does the harness set bit 7 on keyboard input?\"\n}\n",
+  "stderr": "",
+  "target": "INSTALLED_REAL_PI_VIRTUAL_APPLE1",
+  "serial_opened": false
+}

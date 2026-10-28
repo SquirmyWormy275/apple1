@@ -1,0 +1,24 @@
+T01 / Values and addresses
+MODE: VIRTUAL_EXECUTION | HOST ONLY | NO MODEL INFERENCE
+
+Program bytes: A9 41 8D 20 04 A9 20 8D 00 04 AD 20 04 8D 01 04 85 20 A9 00 A5 20 8D 02 04 4C 1F FF
+Before instruction: PC    A  X  Y  P
+                    0300 00 00 00 30
+                    0302 41 00 00 30
+                    0305 41 00 00 30
+                    0307 20 00 00 30
+                    030A 20 00 00 30
+                    030D 41 00 00 30
+                    0310 41 00 00 30
+                    0312 41 00 00 30
+                    0314 00 00 00 32
+                    0316 41 00 00 30
+                    0319 41 00 00 30
+Stop: MONITOR_WARM_ENTRY; instructions: 11
+Final A=41 X=00 Y=00
+0400: 20
+0401: 41
+0402: 41
+Immediate $20 is a value; absolute $0420 and zero-page $20 are addresses.
+
+CHECKS PASSED | No physical serial connection was requested.

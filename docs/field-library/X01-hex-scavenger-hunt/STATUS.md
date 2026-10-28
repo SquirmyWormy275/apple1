@@ -30,13 +30,14 @@ brief requires.
 
 Determinate throughout. Key values: byte `10` at `$0305`, byte `20` at `$030D`,
 last byte at `$0319`, last instruction `4C 1F FF` at `$0317` jumping to `$FF1F`,
-`JSR $FFEF` at `$030D`, 26 bytes total, 14 with bit 7 set, and Dump Two spelling
+`JSR $FFEF` at `$030D`, 26 bytes total, 15 with bit 7 set, and Dump Two spelling
 `WELL DONE` followed by a carriage return.
 
 ## Known limitations
 
-- **Part C asks for four referenced addresses and there are five.** This is
-  deliberate and the answer key depends on it (V-32). Do not correct the count.
+- **V-32 superseded:** Part C now defines the count precisely and asks for five.
+  Learners assess a separate claim of four instead of receiving an incorrect
+  instruction. The high-bit count is corrected from 14 to 15 (C8 was omitted).
 - Dump One's Monitor-style layout could be mistaken for a memory capture. Part F
   question 15 makes that an examinable point, and both the sheet and these notes
   state it plainly.

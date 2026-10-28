@@ -858,5 +858,145 @@
     "answer": "The provider call and its provenance/resource requirements. The deterministic echo and formatting contracts remain independently testable.",
     "mode": "SYNTHETIC_SOFTWARE",
     "lesson": null
+  },
+  {
+    "id": "T01",
+    "title": "Values and addresses",
+    "concept": "Distinguish immediate, zero-page and absolute loads",
+    "explanation": "The # marker makes $20 a value. Without it, the CPU reads a location. A load can change A and N/Z without changing memory. The example stores three results so the distinction stays visible. Zero-page scratch here is for the CPU lab, not an experiment-agent privilege.",
+    "challenge": "Change LDA #$20 to LDA $20 before the first store. Is that byte initialized yet?",
+    "answer": "No. This program writes $20 later. In this zero-initialized world the first result becomes zero, but an arbitrary physical machine need not start with zero there.",
+    "mode": "VIRTUAL_EXECUTION",
+    "lesson": ""
+  },
+  {
+    "id": "T02",
+    "title": "Copy a table with sentinels",
+    "concept": "Follow an indexed copy from source bytes to a destination range",
+    "explanation": "DATA names the actual address after the final JMP. LDA DATA,Y reads source+Y; STA $0400,Y writes destination+Y. The loop executes for Y=0..4. Sentinels at $03FF and $0405 catch writes immediately outside the five-byte destination. The forward-label regression check ensures the assembler sizes the load correctly.",
+    "challenge": "Change CPY #$05 to CPY #$06. Predict the first failing check.",
+    "answer": "A sixth source byte is read and $0405 is overwritten, so the upper sentinel check fails. A clean Monitor return is insufficient.",
+    "mode": "VIRTUAL_EXECUTION",
+    "lesson": ""
+  },
+  {
+    "id": "T03",
+    "title": "Carry and signed overflow",
+    "concept": "Read C, Z, N and V as different questions",
+    "explanation": "Binary ADC computes A+operand+incoming carry. C reports an unsigned ninth bit. V reports a signed result outside -128..127. N reflects result bit 7 and Z a zero byte. $7F+1 has V=1 and C=0; $FF+1 has C=1 and V=0. CLD fixes the arithmetic mode before every test.",
+    "challenge": "Predict $40+$40 with CLC: result, C and V.",
+    "answer": "Result $80, C=0, V=1. Unsigned 64+64 fits a byte; signed +128 does not fit signed eight-bit range.",
+    "mode": "VIRTUAL_EXECUTION",
+    "lesson": ""
+  },
+  {
+    "id": "T04",
+    "title": "Carry a result across two bytes",
+    "concept": "Implement a 16-bit little-endian addition",
+    "explanation": "Add the low bytes with CLC once. Store the low result, load the high operand, and ADC the high operand while preserving carry. LDA and STA preserve C, even though LDA changes N/Z. The memory pair $00,$01 is $0100, or 256.",
+    "challenge": "Insert CLC immediately before the second ADC. What is lost?",
+    "answer": "The carry from $FF+1 disappears; the high result becomes $00, incorrectly giving $0000 instead of $0100.",
+    "mode": "VIRTUAL_EXECUTION",
+    "lesson": ""
+  },
+  {
+    "id": "T05",
+    "title": "Subtract and compare deliberately",
+    "concept": "Use carry as no borrow and separate signed comparison",
+    "explanation": "SBC computes A-operand-(1-C), so ordinary subtraction begins with SEC. CMP leaves A intact and sets flags as a comparison; carry set means unsigned A>=operand. N alone is not a general signed-less-than test when signed overflow is possible.",
+    "challenge": "Why does starting 5-3 with CLC give 1?",
+    "answer": "CLC supplies an incoming borrow: 5-3-(1-0)=1. With SEC it is 5-3-(1-1)=2.",
+    "mode": "VIRTUAL_EXECUTION",
+    "lesson": ""
+  },
+  {
+    "id": "T06",
+    "title": "Masks, shifts and rotates",
+    "concept": "Track selected bits and carry through a rotate",
+    "explanation": "AND clears selected bits, ORA sets selected bits, and EOR flips selected bits. ASL shifts bit 7 into C and shifts zero into bit 0. ROL includes carry as a ninth bit in the operation; the following STA does not destroy that carry.",
+    "challenge": "Insert CLC before ROL A. Predict the last stored byte.",
+    "answer": "The last byte becomes $04 instead of $05 because the incoming bit is zero.",
+    "mode": "VIRTUAL_EXECUTION",
+    "lesson": ""
+  },
+  {
+    "id": "T07",
+    "title": "Calls and the page-one stack",
+    "concept": "Balance JSR/RTS and PHA/PLA while preserving A",
+    "explanation": "The caller loads A with $41 and calls SUB. JSR stores two return bytes; the stack pointer goes from $FF to $FD. PHA saves A and moves SP to $FC. PLA restores A and RTS consumes the call frame. The subroutine writes Z at $0401 but preserves A for the caller to store A at $0400. These traces show Py65 state, not electrical stack cycles.",
+    "challenge": "Remove PLA. Can RTS still find its matching return frame?",
+    "answer": "No. The saved accumulator is above the return bytes, so RTS pulls the wrong pair. The final memory/exit/SP checks expose the unbalanced stack.",
+    "mode": "VIRTUAL_EXECUTION",
+    "lesson": ""
+  },
+  {
+    "id": "T08",
+    "title": "Two kinds of indexed pointers",
+    "concept": "Separate indexing a pointer from indexing its destination",
+    "explanation": "A zero-page pointer occupies a low byte followed by a high byte. ($20),Y reads that pointer then adds Y; ($20,X) adds X within zero page before reading a pointer. The first example deliberately crosses $04FF to $0500. These are NMOS CPU forms, and their allowed use still depends on the surrounding experiment policy.",
+    "challenge": "Set Y=0 in the first indirect load. Does it still read $0500?",
+    "answer": "No. The pointer is $04FF, so without the increment it reads $04FF, which this fixture leaves zero.",
+    "mode": "VIRTUAL_EXECUTION",
+    "lesson": ""
+  },
+  {
+    "id": "T09",
+    "title": "Labels and branch arithmetic",
+    "concept": "Calculate a relative branch and reject an unreachable target",
+    "explanation": "The displacement is target-(branch address+2), encoded as a signed byte. -3 becomes $FD. Branches reach -128..127 from the following PC. The lesson assembler now rejects a far target instead of silently wrapping it and resolves forward data labels after instruction sizes stabilize.",
+    "challenge": "A branch begins at $0300 and targets $0381. Is it in range?",
+    "answer": "Yes. $0381-$0302=$7F, or +127. $0382 would be out of range.",
+    "mode": "VIRTUAL_EXECUTION",
+    "lesson": ""
+  },
+  {
+    "id": "T10",
+    "title": "Review the original A06 program",
+    "concept": "Execute the exact thirteen-byte answer and its zero-length pitfall",
+    "explanation": "This is the original A06 countdown fill, not the five-byte fill in its older companion. Starting Y=$0F performs 16 stores and leaves Y=$FF. Encoding a supposed zero length as Y=$FF still enters the body once, writes $04FF, decrements to $FE and exits because N is set. A count parameter needs an explicit zero test and a clearly stated supported range.",
+    "challenge": "Does this DEY/BPL loop support every length from 1 to 256?",
+    "answer": "No. Its signed continuation test gives a restricted range and surprising behavior for high initial indices. Design a different loop with a zero precheck when a full byte count is required.",
+    "mode": "VIRTUAL_EXECUTION",
+    "lesson": ""
+  },
+  {
+    "id": "T11",
+    "title": "Derive the keyboard boundary",
+    "concept": "Test empty input and both sides of the 128-character exit",
+    "explanation": "For n<=127 ordinary characters, setup contributes 1 instruction, each ordinary pass contributes 10, the CR pass contributes 8, and the final JMP contributes 1. Thus 10*(n+1). With 128 ordinary characters, Y reaches $80 before the supplied CR is read, giving 1282 instructions and a buffer with no CR. The harness reads a maximum 128 buffer bytes.",
+    "challenge": "What happens for 127 ordinary characters followed by Return?",
+    "answer": "It stores and echoes 128 bytes including the CR, returns to Monitor, and uses 1280 instructions. This differs from 128 ordinary characters followed by Return.",
+    "mode": "VIRTUAL_EXECUTION",
+    "lesson": ""
+  },
+  {
+    "id": "T12",
+    "title": "Reset, BRK and interrupt return",
+    "concept": "Distinguish vectors and actual CPU BRK from a lab stop marker",
+    "explanation": "This example steps Py65 directly with an explicit reset vector, IRQ/BRK vector and RTI handler. BRK saves a return PC of BRK+2 plus status, and RTI restores it. The repository world deliberately stops before executing BRK, so its BRK stop report does not demonstrate an interrupt handler. This is a software semantic check, not a hardware reset or IRQ measurement.",
+    "challenge": "Can a world result with stop_reason BRK prove an interrupt handler executed?",
+    "answer": "No. That world intercepts BRK before the CPU instruction runs. Use the direct CPU exercise to study the instruction and identify the different evidence mode.",
+    "mode": "DIRECT_CPU_MODEL",
+    "lesson": ""
+  },
+  {
+    "id": "N01",
+    "title": "Inspect fresh local-model evidence",
+    "concept": "Re-evaluate actual generated proposals and compare controls",
+    "explanation": "The retained workstation runs used identified cached Qwen weights and Ollama 0.33.2 through both generate and chat APIs. Each arithmetic control returned 4, while the four bounded 6502 proposals failed the declared task. This lab verifies hashes and independently re-executes retained proposal text; it requests no new inference. An authored positive and boundary-violating negative check the same evaluator. Passing the lab confirms reproduction of the recorded finding, not a successful model-generated program. The Pi record adds actual Phi-4 inference on an identified Raspberry Pi 5; its two proposals also fail this strict task. This is not a comparison benchmark because model, runtime and host differ.",
+    "challenge": "Does four failed proposals prove that Qwen cannot write any 6502 program?",
+    "answer": "No. They describe these two prompts, seed, weights, runtime and output/context bounds. They are not a benchmark, and neither the arithmetic control nor an authored positive control establishes general model competence.",
+    "mode": "RETAINED_NATIVE_REEVALUATION",
+    "lesson": ""
+  },
+  {
+    "id": "N02",
+    "title": "Read the installed Pi tutor and trace",
+    "concept": "Separate generated tutoring from deterministic native execution",
+    "explanation": "The retained console calls ran on the commissioned Pi and its pinned September application. HINT and EXPLAIN supplied useful statements; CHECK abstained and ASK incorrectly declined an available fact. TRACE retained actual program bytes and a three-instruction Monitor return. This lab verifies those records and independently executes the recorded bytes on the host. The runtime grounded flag describes its support path; it does not certify factual accuracy. A follow-up with the revised source on the real Pi correctly enumerates all three Monitor functions. This lab verifies that record and exactly replays its retained provider response against the current source excerpt, without inference. This is a staged-source observation; the installed global release remains pinned.",
+    "challenge": "Can grounded=True prove that the ASK response is correct?",
+    "answer": "No. This recorded ASK response abstains despite the lesson containing the three functions. Compare the source, the generated text and deterministic evidence; do not substitute a metadata flag for review.",
+    "mode": "RETAINED_NATIVE_REEVALUATION",
+    "lesson": ""
   }
 ]

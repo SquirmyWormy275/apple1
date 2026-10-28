@@ -109,6 +109,25 @@ variation, and an answer. Existing historical/card review gates are retained.
 | F35 | [Exercise the single-writer contract model](features/F35.md) | SYNTHETIC_SOFTWARE |
 | F36 | [Connect a virtual echo program to a fixed-response bridge](features/F36.md) | SYNTHETIC_SOFTWARE |
 
+## Extended CPU and native-evidence labs
+
+| Lab | Worked guide | Evidence mode |
+|---|---|---|
+| T01 | [Values and addresses](features/T01.md) | VIRTUAL_EXECUTION |
+| T02 | [Copy a table with sentinels](features/T02.md) | VIRTUAL_EXECUTION |
+| T03 | [Carry and signed overflow](features/T03.md) | VIRTUAL_EXECUTION |
+| T04 | [Carry a result across two bytes](features/T04.md) | VIRTUAL_EXECUTION |
+| T05 | [Subtract and compare deliberately](features/T05.md) | VIRTUAL_EXECUTION |
+| T06 | [Masks, shifts and rotates](features/T06.md) | VIRTUAL_EXECUTION |
+| T07 | [Calls and the page-one stack](features/T07.md) | VIRTUAL_EXECUTION |
+| T08 | [Two kinds of indexed pointers](features/T08.md) | VIRTUAL_EXECUTION |
+| T09 | [Labels and branch arithmetic](features/T09.md) | VIRTUAL_EXECUTION |
+| T10 | [Review the original A06 program](features/T10.md) | VIRTUAL_EXECUTION |
+| T11 | [Derive the keyboard boundary](features/T11.md) | VIRTUAL_EXECUTION |
+| T12 | [Reset, BRK and interrupt return](features/T12.md) | DIRECT_CPU_MODEL |
+| N01 | [Inspect fresh local-model evidence](features/N01.md) | RETAINED_NATIVE_REEVALUATION |
+| N02 | [Read the installed Pi tutor and trace](features/N02.md) | RETAINED_NATIVE_REEVALUATION |
+
 ## Public command surfaces
 
 The inventory below is extracted from the actual argument-parser declarations.
@@ -137,6 +156,7 @@ items are intentionally not invoked by batch capture.
 | [tools/serial_owner.py](../../tools/serial_owner.py) | (flags; see inventory) | Chapter 10; inspect source/reference before operator use |
 | [tools/support_bundle.py](../../tools/support_bundle.py) | (flags; see inventory) | F32; explicitly selected teaching fixture only |
 | [tools/textbook.py](../../tools/textbook.py) | build-pages, capture, list, run, verify | Chapter 0; list/run/capture/verify/build-pages |
+| [tools/textbook_native.py](../../tools/textbook_native.py) | capture, verify | N01/N02 and native guide; capture makes three bounded requests to an existing local model; verify is offline |
 | [tools/trace_packet.py](../../tools/trace_packet.py) | (flags; see inventory) | F31 and chapter 11; metadata principles, actual captured packet review is separate |
 | [tools/virtual_bridge.py](../../tools/virtual_bridge.py) | (flags; see inventory) | F36; fixed client, no inference |
 
@@ -150,8 +170,8 @@ and the operator guide. A shared core fixture is not a new test of a Pi service.
 
 | Surface | How it is taught | What was not newly executed |
 |---|---|---|
-| Real local inference | Chapter 7, L01–L08, F03/F04/F21/F28, and retained native F16 | Model installation, new qualification of a real weight file, new inference or throughput campaign |
-| Pi lifecycle and models | Chapters 9–10 and recorded closeout; core recovery F05 | Actual systemd worker start/stop, model selection/persistence, logout/reboot, thermal watchdog/cooling measurement |
+| Real local inference | Chapter 7, L01–L08, N01/N02 and fresh native records | No model installation or new registry qualification; no throughput/ranking campaign |
+| Pi lifecycle and models | Chapters 9–10, closeout and fresh console/proposal captures; core recovery F05 | No new systemd campaign lifecycle, model-preference persistence, logout/reboot or full commissioning acceptance; fresh proposal resource guard is separately recorded |
 | SELFHOST stages | F09/F23, chapter 9, archive tests and operator commands | New model-discovered assembler/compiler or new live later-stage research |
 | Storage and installation | F17/F24/F25, source command inventory, commissioning guide | Real mount changes, formatting, deployment, or deletion of user data |
 | Replica serial/firmware/GPIO | H04, SP01, F30/F35, physical-boundary records | Device opens, probe qualification, firmware/EEPROM/CFFA1 writes, wiring or power procedures |

@@ -1,0 +1,11 @@
+T12 / Reset, BRK and interrupt return
+MODE: DIRECT_CPU_MODEL | HOST ONLY | NO MODEL INFERENCE
+
+Reset-vector PC: 0300
+After BRK: PC 0400 SP FC
+Stack return high/low: 03 02
+After RTI: PC 0302 SP FF
+Direct Py65 CPU semantics: BRK uses IRQ/BRK vector and resumes at BRK+2 after RTI.
+The NEURAL1 world instead treats BRK as a stop marker before executing it.
+
+CHECKS PASSED | No physical serial connection was requested.
