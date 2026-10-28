@@ -11,9 +11,9 @@ from __future__ import annotations
 import argparse
 import hashlib
 import json
-from pathlib import Path
 import shutil
 import sys
+from pathlib import Path
 
 DEFAULT_MANIFEST = Path("cf-card/manifests/current.json")
 DEFAULT_OUTPUT = Path("out/cf-card-staging")
@@ -69,27 +69,39 @@ def export_sources(
     include_candidates: bool = False,
     include_baseline_image: bool = False,
 ) -> None:
-    if output.exists():
-        shutil.rmtree(output)
-    output.mkdir(parents=True)
+    repo_root = repo_root.resolve(strict=True)
+    # Validate the entire plan before creating anything. Never replace a user's
+    # directory, follow a source symlink, or allow a manifest to escape its roots.
+    if output.exists() or output.is_symlink():
+        raise FileExistsError(f"output already exists: {output}; choose a new directory")
+    output = output.resolve()
+    if output == repo_root or output in repo_root.parents:
+        raise ValueError("output must not contain the repository")
 
-    metadata = output / "metadata"
-    metadata.mkdir()
+    def source_path(relative: str) -> Path:
+        rel = Path(relative)
+        if rel.is_absolute() or ".." in rel.parts:
+            raise ValueError(f"source must be relative to the repository: {relative}")
+        path = repo_root / rel
+        for part in [path, *path.parents]:
+            if part == repo_root:
+                break
+            if part.is_symlink():
+                raise ValueError(f"symlink source: {part}")
+        if not path.exists():
+            raise FileNotFoundError(path)
+        files = list(path.rglob("*")) if path.is_dir() else [path]
+        if any(p.is_symlink() or not (p.is_file() or p.is_dir()) for p in files):
+            raise ValueError(f"source contains a symlink or special file: {path}")
+        if output == path or path in output.parents:
+            raise ValueError("output must not be inside an exported source")
+        return path
 
     baseline = manifest["baseline"]
-    baseline_manifest = repo_root / baseline["manifest_path"]
-    if not baseline_manifest.is_file():
-        raise FileNotFoundError(baseline_manifest)
-    shutil.copy2(baseline_manifest, metadata / "ORIGINAL-CF-MANIFEST.md")
-
-    (metadata / "SOURCE-REGISTRY.json").write_text(
-        json.dumps(manifest, indent=2) + "\n", encoding="utf-8"
-    )
-
+    baseline_manifest = source_path(baseline["manifest_path"])
+    image = None
     if include_baseline_image:
-        image = repo_root / baseline["image_path"]
-        if not image.is_file():
-            raise FileNotFoundError(image)
+        image = source_path(baseline["image_path"])
         expected_size = int(baseline["size_bytes"])
         actual_size = image.stat().st_size
         if actual_size != expected_size:
@@ -100,30 +112,48 @@ def export_sources(
         actual_hash = sha256_file(image)
         if actual_hash.lower() != baseline["sha256"].lower():
             raise ValueError("baseline image SHA-256 does not match manifest")
-        baseline_dir = output / "baseline"
-        baseline_dir.mkdir()
-        shutil.copy2(image, baseline_dir / image.name)
-
+    plan: list[tuple[Path, Path]] = []
+    destinations = [Path("metadata"), Path("baseline")]
     for source in manifest["sources"]:
         selected = source.get("include_in_default_export", False)
         if not selected and not include_candidates:
             continue
 
-        source_root = repo_root / source["source_path"]
-        if not source_root.exists():
-            raise FileNotFoundError(source_root)
-
+        source_root = source_path(source["source_path"])
         if source.get("format") == "ascii-40x24":
             errors = validate_ascii_40x24(source_root)
             if errors:
                 raise ValueError("\n".join(errors))
 
-        destination = output / source["staging_path"]
+        relative = Path(source["staging_path"])
+        if not relative.parts or relative.is_absolute() or ".." in relative.parts:
+            raise ValueError(f"invalid staging path: {relative}")
+        if any(relative == p or p in relative.parents or relative in p.parents for p in destinations):
+            raise ValueError(f"overlapping staging path: {relative}")
+        destinations.append(relative)
+        plan.append((source_root, output / relative))
+
+    output.mkdir(parents=True, exist_ok=False)
+    metadata = output / "metadata"
+    metadata.mkdir()
+    shutil.copy2(baseline_manifest, metadata / "ORIGINAL-CF-MANIFEST.md")
+    (metadata / "SOURCE-REGISTRY.json").write_text(json.dumps(manifest, indent=2) + "\n", encoding="utf-8")
+    if image is not None:
+        baseline_dir = output / "baseline"
+        baseline_dir.mkdir()
+        shutil.copy2(image, baseline_dir / image.name)
+    for source_root, destination in plan:
         if source_root.is_dir():
             shutil.copytree(source_root, destination)
         else:
             destination.parent.mkdir(parents=True, exist_ok=True)
             shutil.copy2(source_root, destination)
+
+    inventory = {
+        p.relative_to(output).as_posix(): {"bytes": p.stat().st_size, "sha256": sha256_file(p)}
+        for p in sorted(output.rglob("*")) if p.is_file()
+    }
+    (metadata / "FILES.json").write_text(json.dumps(inventory, indent=2) + "\n", encoding="utf-8")
 
 
 def build_parser() -> argparse.ArgumentParser:

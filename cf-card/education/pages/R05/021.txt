@@ -1,0 +1,22 @@
+R05 SOUND, RHYTHM, AND CODE
+021/033 ANSWERS
+
+R05 ANSWER KEY
+
+PART A: CLAP AND ENCODE
+
+ /  ROW  /  PATTERN  /  BITS  /  HEX
+/
+ /  1  /  X . . . X . . .  /  1000
+1000  /  $88  /
+ /  2  /  X . X . X . X .  /  1010
+1010  /  $AA  /
+ /  3  /  X . . X . . X .  /  1001
+0010  /  $92  /
+
+PART B: DECODE
+
+ /  BYTE  /  BITS  /  SLOTS THAT SOUND
+/
+ /  $88  /  1000 1000  /  1 AND 5  /
+N NEXT P BACK A ANSWER M BOOK Q EXIT

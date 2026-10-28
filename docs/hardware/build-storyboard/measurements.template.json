@@ -1,0 +1,188 @@
+{
+  "schema_version": 1,
+  "status": "TEMPLATE; values intentionally unmeasured",
+  "session": null,
+  "timestamp_with_timezone": null,
+  "operator": null,
+  "design_revision": "R04",
+  "measurements": [
+    {
+      "name": "overall_width",
+      "value": null,
+      "units": null,
+      "instrument": null,
+      "reference_points": null,
+      "uncertainty": null,
+      "photo_ids": [],
+      "design_comparison": null,
+      "result": null
+    },
+    {
+      "name": "overall_depth",
+      "value": null,
+      "units": null,
+      "instrument": null,
+      "reference_points": null,
+      "uncertainty": null,
+      "photo_ids": [],
+      "design_comparison": null,
+      "result": null
+    },
+    {
+      "name": "deck_angle",
+      "value": null,
+      "units": null,
+      "instrument": null,
+      "reference_points": null,
+      "uncertainty": null,
+      "photo_ids": [],
+      "design_comparison": null,
+      "result": null
+    },
+    {
+      "name": "deck_shelf_transition_height",
+      "value": null,
+      "units": null,
+      "instrument": null,
+      "reference_points": null,
+      "uncertainty": null,
+      "photo_ids": [],
+      "design_comparison": null,
+      "result": null
+    },
+    {
+      "name": "motherboard_mounting_rise",
+      "value": null,
+      "units": null,
+      "instrument": null,
+      "reference_points": null,
+      "uncertainty": null,
+      "photo_ids": [],
+      "design_comparison": null,
+      "result": null
+    },
+    {
+      "name": "complete_cffa_card_stack",
+      "value": null,
+      "units": null,
+      "instrument": null,
+      "reference_points": null,
+      "uncertainty": null,
+      "photo_ids": [],
+      "design_comparison": null,
+      "result": null
+    },
+    {
+      "name": "smallest_under_shelf_gap",
+      "value": null,
+      "units": null,
+      "instrument": null,
+      "reference_points": null,
+      "uncertainty": null,
+      "photo_ids": [],
+      "design_comparison": null,
+      "result": null
+    },
+    {
+      "name": "keyboard_opening_clearance",
+      "value": null,
+      "units": null,
+      "instrument": null,
+      "reference_points": null,
+      "uncertainty": null,
+      "photo_ids": [],
+      "design_comparison": null,
+      "result": null
+    },
+    {
+      "name": "monitor_rear_ventilation_gap",
+      "value": null,
+      "units": null,
+      "instrument": null,
+      "reference_points": null,
+      "uncertainty": null,
+      "photo_ids": [],
+      "design_comparison": null,
+      "result": null
+    },
+    {
+      "name": "connector_cable_bend_clearance",
+      "value": null,
+      "units": null,
+      "instrument": null,
+      "reference_points": null,
+      "uncertainty": null,
+      "photo_ids": [],
+      "design_comparison": null,
+      "result": null
+    },
+    {
+      "name": "pi_installed_width",
+      "value": null,
+      "units": null,
+      "instrument": null,
+      "reference_points": null,
+      "uncertainty": null,
+      "photo_ids": [],
+      "design_comparison": null,
+      "result": null
+    },
+    {
+      "name": "pi_installed_depth",
+      "value": null,
+      "units": null,
+      "instrument": null,
+      "reference_points": null,
+      "uncertainty": null,
+      "photo_ids": [],
+      "design_comparison": null,
+      "result": null
+    },
+    {
+      "name": "pi_installed_height",
+      "value": null,
+      "units": null,
+      "instrument": null,
+      "reference_points": null,
+      "uncertainty": null,
+      "photo_ids": [],
+      "design_comparison": null,
+      "result": null
+    },
+    {
+      "name": "ssd_installed_envelope",
+      "value": null,
+      "units": null,
+      "instrument": null,
+      "reference_points": null,
+      "uncertainty": null,
+      "photo_ids": [],
+      "design_comparison": null,
+      "result": null
+    },
+    {
+      "name": "unpowered_cf_service_access",
+      "value": null,
+      "units": null,
+      "instrument": null,
+      "reference_points": null,
+      "uncertainty": null,
+      "photo_ids": [],
+      "design_comparison": null,
+      "result": null
+    },
+    {
+      "name": "shelf_support_assessment",
+      "value": null,
+      "units": null,
+      "instrument": null,
+      "reference_points": null,
+      "uncertainty": null,
+      "photo_ids": [],
+      "design_comparison": null,
+      "result": null
+    }
+  ],
+  "failures": [],
+  "changes_from_design": []
+}

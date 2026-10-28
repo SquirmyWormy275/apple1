@@ -1,0 +1,22 @@
+B02 VARIABLES, INPUT, AND OUTPUT
+013/031 TRY
+
+
+ /  NAME  /  LEGAL?  /  IF NOT, WHY  /
+ /  A  /   /   /
+ /  A1  /   /   /
+ /  SUM  /   /   /
+ /  N$  /   /   /
+ /  NAME$  /   /   /
+ /  Z9  /   /   /
+ /  1A  /   /   /
+ /  B$  /   /   /
+
+PART C: PREDICT THE OUTPUT
+
+GIVEN N$ HOLDS TOM AND A HOLDS 5.
+
+ /  LINE  /  OUTPUT  /
+ /  PRINT N$  /   /
+ /  PRINT "N$"  /   /
+N NEXT P BACK A ANSWER M BOOK Q EXIT

@@ -1,0 +1,21 @@
+M04 DEBUGGING AS OBSERVATION
+023/036 WORKSHEET OBSERVATION-SHEET.TX
+
+HAVE LEARNED NOTHING.
+
++--------------------------------------+
+! STOP RULE                            !
+!                                      !
+! IF THE DISPLAY CHANGES UNEXPECTEDLY, !
+! A RESET OCCURS, IDENTITIES DRIFT, OR !
+! BYTES MISMATCH:                      !
+!                                      !
+!   1. WRITE "STOP".                   !
+!   2. RECOVER TO THE KNOWN MONITOR    !
+!      STATE.                          !
+!   3. DO NOT START ANOTHER TEST.      !
+!                                      !
+! A STOP IS A RESULT.  IT IS NOT A     !
+! FAILURE TO GET A RESULT.             !
++--------------------------------------+
+N NEXT P BACK A ANSWER M BOOK Q EXIT

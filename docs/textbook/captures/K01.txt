@@ -1,0 +1,12 @@
+K01 / Compile every lesson for a 40x24 screen
+MODE: HOST_BUILD | HOST ONLY | NO MODEL INFERENCE
+
+Original lesson books: 42
+All reading books: 50
+Display pages: 1468
+Largest book bytes: 22044
+Display: prose <=39x23; atlas <=40x24, uppercase SPACE-$5F
+RAM reader: $0800; book buffer: $1000-$7FFF
+Physical acceptance: pending
+
+CHECKS PASSED | No physical serial connection was requested.

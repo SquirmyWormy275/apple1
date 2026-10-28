@@ -1,0 +1,22 @@
+C05 INSTRUCTIONS CHANGE STATE
+015/033 TRY
+
+SNIPPET 2 IS THE INTERESTING ONE. SAY
+WHAT HAPPENS TO THE NINTH BIT.
+
+PART D: WHAT CHANGED, WHAT DID NOT
+
+FOR EACH INSTRUCTION, TICK EVERY PART
+OF STATE IT CAN ALTER.
+
+ /  INSTRUCTION  /  A  /  X  /  MEMORY
+/  NEXT ADDRESS  /  CARRY  /
+ /  LDA #$41  /   /   /   /   /   /
+ /  STA $0400  /   /   /   /   /   /
+ /  DEX  /   /   /   /   /   /
+ /  BNE $0312  /   /   /   /   /   /
+ /  JMP $FF1F  /   /   /   /   /   /
+
+PART E: THE UNKNOWN COLUMN
+
+N NEXT P BACK A ANSWER M BOOK Q EXIT

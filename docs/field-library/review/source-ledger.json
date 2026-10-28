@@ -1,0 +1,1336 @@
+{
+  "source_pool_sha256": "a84de73c4a6439675bad03712848673f50e4593a4b4c803893c2db1dda885871",
+  "records": [
+    {
+      "key": "OWAD",
+      "cited_pages": {
+        "BRIEL": [
+          30,
+          31,
+          32
+        ]
+      },
+      "fragments": [],
+      "method": "normalized text comparison; tables and primary-source additions separately described in review"
+    },
+    {
+      "key": "WOZ-FWD",
+      "cited_pages": {
+        "BRIEL": [
+          30,
+          31,
+          32
+        ]
+      },
+      "fragments": [],
+      "method": "normalized text comparison; tables and primary-source additions separately described in review"
+    },
+    {
+      "key": "BRIEL",
+      "cited_pages": {
+        "BRIEL": [
+          30,
+          31,
+          32
+        ]
+      },
+      "fragments": [],
+      "method": "normalized text comparison; tables and primary-source additions separately described in review"
+    },
+    {
+      "key": "REPO",
+      "cited_pages": {
+        "BRIEL": [
+          30,
+          31,
+          32
+        ]
+      },
+      "fragments": [],
+      "method": "normalized text comparison; tables and primary-source additions separately described in review"
+    },
+    {
+      "key": "RUN",
+      "cited_pages": {
+        "BRIEL": [
+          30,
+          31,
+          32
+        ]
+      },
+      "fragments": [],
+      "method": "normalized text comparison; tables and primary-source additions separately described in review"
+    },
+    {
+      "key": "ID",
+      "cited_pages": {},
+      "fragments": [],
+      "method": "normalized text comparison; tables and primary-source additions separately described in review"
+    },
+    {
+      "key": "H-PRICE",
+      "cited_pages": {
+        "OWAD": [
+          20,
+          18
+        ]
+      },
+      "fragments": [
+        {
+          "fragment": "The retail price of $666.66 wasn't much",
+          "matches": [
+            "OWAD:20"
+          ]
+        },
+        {
+          "fragment": "I was into repeating digits so we priced it at $666.66 retail.",
+          "matches": [
+            "OWAD:18"
+          ]
+        }
+      ],
+      "method": "normalized text comparison; tables and primary-source additions separately described in review"
+    },
+    {
+      "key": "H-WHOLESALE",
+      "cited_pages": {
+        "OWAD": [
+          18
+        ]
+      },
+      "fragments": [
+        {
+          "fragment": "to sell fully-built and assembled computer boards for $500 each",
+          "matches": [
+            "OWAD:18"
+          ]
+        }
+      ],
+      "method": "normalized text comparison; tables and primary-source additions separately described in review"
+    },
+    {
+      "key": "H-MADE",
+      "cited_pages": {
+        "OWAD": [
+          20
+        ],
+        "BRIEL": [
+          6
+        ]
+      },
+      "fragments": [
+        {
+          "fragment": "Two hundred were made.",
+          "matches": [
+            "OWAD:20"
+          ]
+        },
+        {
+          "fragment": "200 boards were printed and most of them were assembled but not all of them.",
+          "matches": [
+            "BRIEL:6"
+          ]
+        }
+      ],
+      "method": "normalized text comparison; tables and primary-source additions separately described in review"
+    },
+    {
+      "key": "H-SOLD",
+      "cited_pages": {
+        "OWAD": [
+          18
+        ]
+      },
+      "fragments": [
+        {
+          "fragment": "of which we sold maybe only 150",
+          "matches": [
+            "OWAD:18"
+          ]
+        }
+      ],
+      "method": "normalized text comparison; tables and primary-source additions separately described in review"
+    },
+    {
+      "key": "H-BYTESHOP",
+      "cited_pages": {
+        "OWAD": [
+          20
+        ]
+      },
+      "fragments": [
+        {
+          "fragment": "The Byte Shop purchased 100 of these.",
+          "matches": [
+            "OWAD:20"
+          ]
+        }
+      ],
+      "method": "normalized text comparison; tables and primary-source additions separately described in review"
+    },
+    {
+      "key": "H-BARE",
+      "cited_pages": {
+        "OWAD": [
+          20
+        ]
+      },
+      "fragments": [
+        {
+          "fragment": "all that bought you was the circuit board",
+          "matches": [
+            "OWAD:20"
+          ]
+        }
+      ],
+      "method": "normalized text comparison; tables and primary-source additions separately described in review"
+    },
+    {
+      "key": "H-SUPPLY",
+      "cited_pages": {
+        "OWAD": [
+          20
+        ]
+      },
+      "fragments": [
+        {
+          "fragment": "It was up to the user to find a keyboard, power supply, and video monitor.",
+          "matches": [
+            "OWAD:20"
+          ]
+        }
+      ],
+      "method": "normalized text comparison; tables and primary-source additions separately described in review"
+    },
+    {
+      "key": "H-KBD-STD",
+      "cited_pages": {
+        "OWAD": [
+          20
+        ]
+      },
+      "fragments": [
+        {
+          "fragment": "the first computer of its kind to use a keyboard and monitor as standard input/output devices. Most competing systems, such as the Altair, used rows of lights and switches",
+          "matches": [
+            "OWAD:20"
+          ]
+        }
+      ],
+      "method": "normalized text comparison; tables and primary-source additions separately described in review"
+    },
+    {
+      "key": "H-FOUNDED",
+      "cited_pages": {
+        "BRIEL": [
+          6
+        ]
+      },
+      "fragments": [
+        {
+          "fragment": "In April 1976, Steve Jobs and Steve Wozniak decided to start Apple Computer Company.",
+          "matches": [
+            "BRIEL:6"
+          ]
+        }
+      ],
+      "method": "normalized text comparison; tables and primary-source additions separately described in review"
+    },
+    {
+      "key": "H-HOMEBREW",
+      "cited_pages": {
+        "BRIEL": [
+          6
+        ],
+        "OWAD": [
+          18
+        ]
+      },
+      "fragments": [
+        {
+          "fragment": "Woz distributed schematics and source code listings ",
+          "matches": [
+            "BRIEL:6"
+          ]
+        },
+        {
+          "fragment": " at the Homebrew Computer Club",
+          "matches": [
+            "BRIEL:6"
+          ]
+        },
+        {
+          "fragment": "I passed out schematics and code listings freely at our club",
+          "matches": [
+            "OWAD:18"
+          ]
+        }
+      ],
+      "method": "normalized text comparison; tables and primary-source additions separately described in review"
+    },
+    {
+      "key": "H-CASSETTE",
+      "cited_pages": {
+        "OWAD": [
+          20
+        ]
+      },
+      "fragments": [
+        {
+          "fragment": "either by typing the machine code in by hand or by transferring the program from an audio cassette",
+          "matches": [
+            "OWAD:20"
+          ]
+        }
+      ],
+      "method": "normalized text comparison; tables and primary-source additions separately described in review"
+    },
+    {
+      "key": "H-BASIC-TAPE",
+      "cited_pages": {
+        "OWAD": [
+          20
+        ]
+      },
+      "fragments": [
+        {
+          "fragment": "Apple BASIC was only available on cassette",
+          "matches": [
+            "OWAD:20"
+          ]
+        }
+      ],
+      "method": "normalized text comparison; tables and primary-source additions separately described in review"
+    },
+    {
+      "key": "H-NINE",
+      "cited_pages": {
+        "OWAD": [
+          21
+        ]
+      },
+      "fragments": [
+        {
+          "fragment": "Nine programs were available on cassette: BASIC, Mastermind, Lunar Lander, Blackjack, Hamurabi, Mini-Startrek, 16K-Startrek, DisAssembler, and Extended Monitor. Apple sold these at just $5 each",
+          "matches": [
+            "OWAD:21"
+          ]
+        }
+      ],
+      "method": "normalized text comparison; tables and primary-source additions separately described in review"
+    },
+    {
+      "key": "H-CLUB",
+      "cited_pages": {
+        "OWAD": [
+          25
+        ]
+      },
+      "fragments": [
+        {
+          "fragment": "In 1977, Joe Torzewski decided to found the Apple I Owners Club",
+          "matches": [
+            "OWAD:25"
+          ]
+        }
+      ],
+      "method": "normalized text comparison; tables and primary-source additions separately described in review"
+    },
+    {
+      "key": "H-TORZEWSKI-16K",
+      "cited_pages": {
+        "OWAD": [
+          217
+        ]
+      },
+      "fragments": [
+        {
+          "fragment": "Joe Torzewski, who started the Apple I Owners Club in 1977, upgraded his Apple I to 16 KB.",
+          "matches": [
+            "OWAD:217"
+          ]
+        }
+      ],
+      "method": "normalized text comparison; tables and primary-source additions separately described in review"
+    },
+    {
+      "key": "H-ALTAIR",
+      "cited_pages": {
+        "BRIEL": [
+          6
+        ]
+      },
+      "fragments": [
+        {
+          "fragment": "the only major computer out there was the Altair 8800 and that only came with LED's and switches",
+          "matches": [
+            "BRIEL:6"
+          ]
+        }
+      ],
+      "method": "normalized text comparison; tables and primary-source additions separately described in review"
+    },
+    {
+      "key": "H-RAM-COST",
+      "cited_pages": {
+        "OWAD": [
+          217
+        ]
+      },
+      "fragments": [
+        {
+          "fragment": "Back in 1976, that 8 KB of RAM was prohibitively expensive.",
+          "matches": [
+            "OWAD:217"
+          ]
+        }
+      ],
+      "method": "normalized text comparison; tables and primary-source additions separately described in review"
+    },
+    {
+      "key": "ID",
+      "cited_pages": {},
+      "fragments": [],
+      "method": "normalized text comparison; tables and primary-source additions separately described in review"
+    },
+    {
+      "key": "M-64K",
+      "cited_pages": {
+        "OWAD": [
+          206,
+          216
+        ]
+      },
+      "fragments": [
+        {
+          "fragment": "The address bus is 16 bits wide",
+          "matches": [
+            "OWAD:206"
+          ]
+        },
+        {
+          "fragment": "The Apple I has 64 KB of addressable space.",
+          "matches": [
+            "OWAD:216"
+          ]
+        }
+      ],
+      "method": "normalized text comparison; tables and primary-source additions separately described in review"
+    },
+    {
+      "key": "M-ROM",
+      "cited_pages": {
+        "OWAD": [
+          216,
+          217,
+          224
+        ]
+      },
+      "fragments": [
+        {
+          "fragment": "therefore, starts at $FF00 and ends at $FFFF.",
+          "matches": [
+            "OWAD:217"
+          ]
+        }
+      ],
+      "method": "normalized text comparison; tables and primary-source additions separately described in review"
+    },
+    {
+      "key": "M-RESET-VEC",
+      "cited_pages": {
+        "OWAD": [
+          216
+        ]
+      },
+      "fragments": [
+        {
+          "fragment": "requires that a memory address be stored at addresses $FFFE and $FFFF ",
+          "matches": [
+            "OWAD:216"
+          ]
+        },
+        {
+          "fragment": " When the 6502 is reset, it immediately loads the address ",
+          "matches": [
+            "OWAD:216"
+          ]
+        },
+        {
+          "fragment": " into its program counter",
+          "matches": [
+            "OWAD:216"
+          ]
+        }
+      ],
+      "method": "normalized text comparison; tables and primary-source additions separately described in review"
+    },
+    {
+      "key": "M-RAM-ORIG",
+      "cited_pages": {
+        "OWAD": [
+          217
+        ]
+      },
+      "fragments": [
+        {
+          "fragment": "Four kilobytes are for system and user access. These 4 KB are located at $000-$0FFF. The other 4 KB, which are intended for Apple's Integer BASIC, are located at $E000-$EFFF.",
+          "matches": [
+            "OWAD:217"
+          ]
+        }
+      ],
+      "method": "normalized text comparison; tables and primary-source additions separately described in review"
+    },
+    {
+      "key": "M-BASIC-RAM",
+      "cited_pages": {
+        "OWAD": [
+          217
+        ]
+      },
+      "fragments": [
+        {
+          "fragment": "Every time the original Apple I was powered up, the code for BASIC would have to be either loaded from cassette or typed in by hand.",
+          "matches": [
+            "OWAD:217"
+          ]
+        }
+      ],
+      "method": "normalized text comparison; tables and primary-source additions separately described in review"
+    },
+    {
+      "key": "M-STACK",
+      "cited_pages": {
+        "OWAD": [
+          216
+        ]
+      },
+      "fragments": [
+        {
+          "fragment": "The stack uses memory from $0100 to $01FF",
+          "matches": [
+            "OWAD:216"
+          ]
+        },
+        {
+          "fragment": "$01FF is the base address.",
+          "matches": [
+            "OWAD:216"
+          ]
+        },
+        {
+          "fragment": "As data is pushed onto the stack, the stack grows towards $0100.",
+          "matches": [
+            "OWAD:216"
+          ]
+        }
+      ],
+      "method": "normalized text comparison; tables and primary-source additions separately described in review"
+    },
+    {
+      "key": "M-REPLICA-MAP",
+      "cited_pages": {
+        "OWAD": [
+          218
+        ]
+      },
+      "fragments": [
+        {
+          "fragment": "The first 32 KB ($0000-$8000) are all dedicated to system and user space ",
+          "matches": [
+            "OWAD:218"
+          ]
+        },
+        {
+          "fragment": " Instead of being in RAM, Integer BASIC is now in ROM.",
+          "matches": [
+            "OWAD:218"
+          ]
+        }
+      ],
+      "method": "normalized text comparison; tables and primary-source additions separately described in review"
+    },
+    {
+      "key": "M-PIA-RANGE",
+      "cited_pages": {
+        "OWAD": [
+          217,
+          218
+        ]
+      },
+      "fragments": [
+        {
+          "fragment": "$D010 - $D012 Keyboard In, Video Out",
+          "matches": [
+            "OWAD:217",
+            "OWAD:218"
+          ]
+        }
+      ],
+      "method": "normalized text comparison; tables and primary-source additions separately described in review"
+    },
+    {
+      "key": "M-RESET-CORRECT",
+      "cited_pages": {},
+      "fragments": [],
+      "method": "normalized text comparison; tables and primary-source additions separately described in review"
+    },
+    {
+      "key": "ID",
+      "cited_pages": {},
+      "fragments": [],
+      "method": "normalized text comparison; tables and primary-source additions separately described in review"
+    },
+    {
+      "key": "P-KBD",
+      "cited_pages": {
+        "OWAD": [
+          228,
+          231
+        ]
+      },
+      "fragments": [
+        {
+          "fragment": "the keyboard register is at $D010 and the keyboard control register is at $D011. The processor checks for the flag at $D011. When it sees it, the processor goes to $D010 and loads the character.",
+          "matches": [
+            "OWAD:231"
+          ]
+        }
+      ],
+      "method": "normalized text comparison; tables and primary-source additions separately described in review"
+    },
+    {
+      "key": "P-DSP",
+      "cited_pages": {
+        "OWAD": [
+          228
+        ]
+      },
+      "fragments": [],
+      "method": "normalized text comparison; tables and primary-source additions separately described in review"
+    },
+    {
+      "key": "P-DSP-BUSY",
+      "cited_pages": {
+        "OWAD": [
+          231
+        ]
+      },
+      "fragments": [
+        {
+          "fragment": "the processor checks bit 7 at memory location $D012. If this bit is high ",
+          "matches": [
+            "OWAD:231"
+          ]
+        },
+        {
+          "fragment": " The processor waits until the bit goes low",
+          "matches": [
+            "OWAD:231"
+          ]
+        }
+      ],
+      "method": "normalized text comparison; tables and primary-source additions separately described in review"
+    },
+    {
+      "key": "P-KBD-7BIT",
+      "cited_pages": {
+        "OWAD": [
+          232
+        ]
+      },
+      "fragments": [
+        {
+          "fragment": "that character's seven-bit ASCII value is placed on the keyboard's data lines. A pulse on the strobe line indicates the data is ready.",
+          "matches": [
+            "OWAD:232"
+          ]
+        }
+      ],
+      "method": "normalized text comparison; tables and primary-source additions separately described in review"
+    },
+    {
+      "key": "P-HIGHBIT",
+      "cited_pages": {
+        "BRIEL": [
+          30
+        ]
+      },
+      "fragments": [
+        {
+          "fragment": "FF2E: AD 10 D0 LDA KBD Load character. B7 should be '1'.",
+          "matches": [
+            "BRIEL:30"
+          ]
+        }
+      ],
+      "method": "normalized text comparison; tables and primary-source additions separately described in review"
+    },
+    {
+      "key": "P-DDR",
+      "cited_pages": {
+        "OWAD": [
+          226
+        ]
+      },
+      "fragments": [
+        {
+          "fragment": "On reset, both ports default to being inputs and the keyboard port is left untouched. The video port is set to output except for the highest bit, which is used as the 'Data Available' line.",
+          "matches": [
+            "OWAD:226"
+          ]
+        }
+      ],
+      "method": "normalized text comparison; tables and primary-source additions separately described in review"
+    },
+    {
+      "key": "P-VIDEO-TEXT",
+      "cited_pages": {
+        "OWAD": [
+          234
+        ]
+      },
+      "fragments": [
+        {
+          "fragment": "The Apple I's video section is text only. Instead of storing each individual pixel for a character, it stores the character's ASCII code.",
+          "matches": [
+            "OWAD:234"
+          ]
+        }
+      ],
+      "method": "normalized text comparison; tables and primary-source additions separately described in review"
+    },
+    {
+      "key": "P-VIDEO-ROM",
+      "cited_pages": {
+        "OWAD": [
+          234
+        ]
+      },
+      "fragments": [
+        {
+          "fragment": "Only the characters stored in that ROM can be displayed on screen. Thus, no bitmapped graphics can be displayed.",
+          "matches": [
+            "OWAD:234"
+          ]
+        }
+      ],
+      "method": "normalized text comparison; tables and primary-source additions separately described in review"
+    },
+    {
+      "key": "P-VIDEO-WRITEONLY",
+      "cited_pages": {
+        "OWAD": [
+          234
+        ]
+      },
+      "fragments": [
+        {
+          "fragment": "once a character is sent to the display, it cannot be modified. It's there until you enter enough lines that it scrolls off the top of the screen, or until you manually clear the entire display. In this way, the function of the video is very similar to a typewriter or Teletype.",
+          "matches": [
+            "OWAD:234"
+          ]
+        }
+      ],
+      "method": "normalized text comparison; tables and primary-source additions separately described in review"
+    },
+    {
+      "key": "P-PROPELLER",
+      "cited_pages": {
+        "OWAD": [
+          234
+        ]
+      },
+      "fragments": [
+        {
+          "fragment": "a Parallax Propeller microcontroller now handles both. The Propeller also provides a serial interface. The video section of the Propeller sends data to both the video port and serial interface, while the keyboard section listens for data from both the keyboard and serial interface.",
+          "matches": [
+            "OWAD:234"
+          ]
+        }
+      ],
+      "method": "normalized text comparison; tables and primary-source additions separately described in review"
+    },
+    {
+      "key": "ID",
+      "cited_pages": {},
+      "fragments": [],
+      "method": "normalized text comparison; tables and primary-source additions separately described in review"
+    },
+    {
+      "key": "R-RESET",
+      "cited_pages": {
+        "BRIEL": [
+          11
+        ]
+      },
+      "fragments": [
+        {
+          "fragment": "a screen of garbage should appear ",
+          "matches": [
+            "BRIEL:11"
+          ]
+        },
+        {
+          "fragment": " Press RESET on the board and your replica will respond with a backslash '\\' and the cursor will drop to the next line.",
+          "matches": [
+            "BRIEL:11"
+          ]
+        }
+      ],
+      "method": "normalized text comparison; tables and primary-source additions separately described in review"
+    },
+    {
+      "key": "R-CURSOR",
+      "cited_pages": {
+        "BRIEL": [
+          11
+        ]
+      },
+      "fragments": [
+        {
+          "fragment": "The cursor is a blinking '@' symbol just like the original Apple 1 computer.",
+          "matches": [
+            "BRIEL:11"
+          ]
+        }
+      ],
+      "method": "normalized text comparison; tables and primary-source additions separately described in review"
+    },
+    {
+      "key": "R-UPPER",
+      "cited_pages": {
+        "BRIEL": [
+          11
+        ]
+      },
+      "fragments": [
+        {
+          "fragment": "The apple 1 only understands uppercase characters so does the replica 1.",
+          "matches": [
+            "BRIEL:11"
+          ]
+        }
+      ],
+      "method": "normalized text comparison; tables and primary-source additions separately described in review"
+    },
+    {
+      "key": "R-KBD-PORTS",
+      "cited_pages": {
+        "BRIEL": [
+          11
+        ]
+      },
+      "fragments": [
+        {
+          "fragment": "You have two choices for keyboards; PS/2 PC style keyboard or an ASCII keyboard.",
+          "matches": [
+            "BRIEL:11"
+          ]
+        }
+      ],
+      "method": "normalized text comparison; tables and primary-source additions separately described in review"
+    },
+    {
+      "key": "R-MON-3",
+      "cited_pages": {
+        "BRIEL": [
+          20,
+          21
+        ]
+      },
+      "fragments": [
+        {
+          "fragment": "There are three basic functions to the Woz monitor.",
+          "matches": [
+            "BRIEL:20"
+          ]
+        }
+      ],
+      "method": "normalized text comparison; tables and primary-source additions separately described in review"
+    },
+    {
+      "key": "R-MON-SYNTAX",
+      "cited_pages": {
+        "BRIEL": [
+          20,
+          21
+        ]
+      },
+      "fragments": [],
+      "method": "normalized text comparison; tables and primary-source additions separately described in review"
+    },
+    {
+      "key": "R-MON-8",
+      "cited_pages": {
+        "BRIEL": [
+          20
+        ]
+      },
+      "fragments": [
+        {
+          "fragment": "The replica will display the memory contents up to 8 locations per line",
+          "matches": [
+            "BRIEL:20"
+          ]
+        }
+      ],
+      "method": "normalized text comparison; tables and primary-source additions separately described in review"
+    },
+    {
+      "key": "R-ROM-SPLIT",
+      "cited_pages": {
+        "BRIEL": [
+          22
+        ]
+      },
+      "fragments": [
+        {
+          "fragment": "The replica 1 has 8K of EEPROM (ROM) space onboard. 4K is used for BASIC; 256 bytes are used for the Woz monitor. This leaves just under 4K",
+          "matches": [
+            "BRIEL:22"
+          ]
+        }
+      ],
+      "method": "normalized text comparison; tables and primary-source additions separately described in review"
+    },
+    {
+      "key": "R-BASIC-ENTRY",
+      "cited_pages": {
+        "BRIEL": [
+          22
+        ]
+      },
+      "fragments": [
+        {
+          "fragment": "The prompt for BASIC is '>'.",
+          "matches": [
+            "BRIEL:22"
+          ]
+        }
+      ],
+      "method": "normalized text comparison; tables and primary-source additions separately described in review"
+    },
+    {
+      "key": "R-KRUSADER",
+      "cited_pages": {
+        "BRIEL": [
+          22,
+          26
+        ]
+      },
+      "fragments": [
+        {
+          "fragment": "To start Krusader, type in 'F000R'",
+          "matches": [
+            "BRIEL:22"
+          ]
+        }
+      ],
+      "method": "normalized text comparison; tables and primary-source additions separately described in review"
+    },
+    {
+      "key": "R-ROMSEL",
+      "cited_pages": {
+        "BRIEL": [
+          22
+        ]
+      },
+      "fragments": [
+        {
+          "fragment": "Place the jumper on the ROM select with the power switch in the off position ",
+          "matches": [
+            "BRIEL:22"
+          ]
+        },
+        {
+          "fragment": " the prompt is now a ']'.",
+          "matches": [
+            "BRIEL:22"
+          ]
+        }
+      ],
+      "method": "normalized text comparison; tables and primary-source additions separately described in review"
+    },
+    {
+      "key": "R-SERIAL",
+      "cited_pages": {
+        "BRIEL": [
+          24
+        ]
+      },
+      "fragments": [],
+      "method": "normalized text comparison; tables and primary-source additions separately described in review"
+    },
+    {
+      "key": "ID",
+      "cited_pages": {
+        "BRIEL": [
+          30,
+          31,
+          32
+        ]
+      },
+      "fragments": [],
+      "method": "normalized text comparison; tables and primary-source additions separately described in review"
+    },
+    {
+      "key": "W-FF00",
+      "cited_pages": {
+        "BRIEL": [
+          30,
+          31,
+          32
+        ]
+      },
+      "fragments": [
+        {
+          "fragment": "FF00: D8 RESET CLD Clear decimal arithmetic mode.",
+          "matches": [
+            "BRIEL:30"
+          ]
+        }
+      ],
+      "method": "normalized text comparison; tables and primary-source additions separately described in review"
+    },
+    {
+      "key": "W-FF1F",
+      "cited_pages": {
+        "BRIEL": [
+          30,
+          31,
+          32
+        ]
+      },
+      "fragments": [
+        {
+          "fragment": "FF1F: A9 8D GETLINE LDA #$8D CR.",
+          "matches": [
+            "BRIEL:30"
+          ]
+        }
+      ],
+      "method": "normalized text comparison; tables and primary-source additions separately described in review"
+    },
+    {
+      "key": "W-FFEF",
+      "cited_pages": {
+        "BRIEL": [
+          30,
+          31,
+          32
+        ]
+      },
+      "fragments": [
+        {
+          "fragment": "FF1C: 20 EF FF JSR ECHO Output it.",
+          "matches": [
+            "BRIEL:30"
+          ]
+        }
+      ],
+      "method": "normalized text comparison; tables and primary-source additions separately described in review"
+    },
+    {
+      "key": "W-CR",
+      "cited_pages": {
+        "BRIEL": [
+          30,
+          31,
+          32
+        ]
+      },
+      "fragments": [],
+      "method": "normalized text comparison; tables and primary-source additions separately described in review"
+    },
+    {
+      "key": "W-RUNCMD",
+      "cited_pages": {
+        "BRIEL": [
+          30,
+          31,
+          32
+        ]
+      },
+      "fragments": [
+        {
+          "fragment": "FF55: C9 D2 CMP #$D2 'R'? FF57: F0 3B BEQ RUN Yes. Run user program.",
+          "matches": [
+            "BRIEL:30"
+          ]
+        }
+      ],
+      "method": "normalized text comparison; tables and primary-source additions separately described in review"
+    },
+    {
+      "key": "W-INPUT",
+      "cited_pages": {
+        "BRIEL": [
+          30,
+          31,
+          32
+        ]
+      },
+      "fragments": [],
+      "method": "normalized text comparison; tables and primary-source additions separately described in review"
+    },
+    {
+      "key": "W-FRONTPANEL",
+      "cited_pages": {
+        "BRIEL": [
+          30,
+          31,
+          32
+        ]
+      },
+      "fragments": [],
+      "method": "normalized text comparison; tables and primary-source additions separately described in review"
+    },
+    {
+      "key": "W-MODES",
+      "cited_pages": {
+        "BRIEL": [
+          30,
+          31,
+          32
+        ]
+      },
+      "fragments": [
+        {
+          "fragment": "FF41: 85 2B SETMODE STA MODE $00=XAM $7B=STOR $AE=BLOK XAM",
+          "matches": [
+            "BRIEL:30"
+          ]
+        }
+      ],
+      "method": "normalized text comparison; tables and primary-source additions separately described in review"
+    },
+    {
+      "key": "ID",
+      "cited_pages": {},
+      "fragments": [],
+      "method": "normalized text comparison; tables and primary-source additions separately described in review"
+    },
+    {
+      "key": "A-ASCII",
+      "cited_pages": {
+        "OWAD": [
+          266
+        ]
+      },
+      "fragments": [
+        {
+          "fragment": "uses 1 byte to correspond to each of 128 different letters ",
+          "matches": [
+            "OWAD:266"
+          ]
+        },
+        {
+          "fragment": " Only the decimal values 0 through 127 are assigned, which is half of the space available in a byte.",
+          "matches": [
+            "OWAD:266"
+          ]
+        }
+      ],
+      "method": "normalized text comparison; tables and primary-source additions separately described in review"
+    },
+    {
+      "key": "A-ASCII-1968",
+      "cited_pages": {
+        "OWAD": [
+          266
+        ]
+      },
+      "fragments": [
+        {
+          "fragment": "holdovers from the original specification created in 1968",
+          "matches": [
+            "OWAD:266"
+          ]
+        }
+      ],
+      "method": "normalized text comparison; tables and primary-source additions separately described in review"
+    },
+    {
+      "key": "A-HEX",
+      "cited_pages": {
+        "OWAD": [
+          266
+        ]
+      },
+      "fragments": [
+        {
+          "fragment": "Two hex characters can represent 8 bits (a byte). ",
+          "matches": [
+            "OWAD:266"
+          ]
+        },
+        {
+          "fragment": " Hex characters are sometimes prefixed with 0x or $",
+          "matches": [
+            "OWAD:266"
+          ]
+        }
+      ],
+      "method": "normalized text comparison; tables and primary-source additions separately described in review"
+    },
+    {
+      "key": "A-TABLE",
+      "cited_pages": {
+        "OWAD": [
+          267
+        ]
+      },
+      "fragments": [],
+      "method": "normalized text comparison; tables and primary-source additions separately described in review"
+    },
+    {
+      "key": "A-CHART",
+      "cited_pages": {
+        "OWAD": [
+          237
+        ]
+      },
+      "fragments": [],
+      "method": "normalized text comparison; tables and primary-source additions separately described in review"
+    },
+    {
+      "key": "ID",
+      "cited_pages": {},
+      "fragments": [],
+      "method": "normalized text comparison; tables and primary-source additions separately described in review"
+    },
+    {
+      "key": "B-INTEGER",
+      "cited_pages": {
+        "OWAD": [
+          132
+        ]
+      },
+      "fragments": [
+        {
+          "fragment": "Apple I BASIC only supports integers",
+          "matches": [
+            "OWAD:132"
+          ]
+        }
+      ],
+      "method": "normalized text comparison; tables and primary-source additions separately described in review"
+    },
+    {
+      "key": "B-MOD",
+      "cited_pages": {
+        "OWAD": [
+          132
+        ]
+      },
+      "fragments": [],
+      "method": "normalized text comparison; tables and primary-source additions separately described in review"
+    },
+    {
+      "key": "B-VARNAMES",
+      "cited_pages": {
+        "OWAD": [
+          130
+        ]
+      },
+      "fragments": [
+        {
+          "fragment": "An integer may be named with a letter or a letter and a digit (for example, A, N, A1, B8). A character string must be named with a letter and a dollar sign",
+          "matches": [
+            "OWAD:130"
+          ]
+        }
+      ],
+      "method": "normalized text comparison; tables and primary-source additions separately described in review"
+    },
+    {
+      "key": "B-DIM",
+      "cited_pages": {
+        "OWAD": [
+          130
+        ]
+      },
+      "fragments": [
+        {
+          "fragment": "BASIC needs to be told how many bytes to allocate to a string ",
+          "matches": [
+            "OWAD:130"
+          ]
+        },
+        {
+          "fragment": " The maximum string length is 255 characters (or bytes).",
+          "matches": [
+            "OWAD:130"
+          ]
+        }
+      ],
+      "method": "normalized text comparison; tables and primary-source additions separately described in review"
+    },
+    {
+      "key": "B-INPUT-Q",
+      "cited_pages": {
+        "OWAD": [
+          131
+        ]
+      },
+      "fragments": [
+        {
+          "fragment": "A question mark is automatically inserted after each INPUT statement. Unfortunately, there is no way to turn it off.",
+          "matches": [
+            "OWAD:131"
+          ]
+        }
+      ],
+      "method": "normalized text comparison; tables and primary-source additions separately described in review"
+    },
+    {
+      "key": "B-COLON",
+      "cited_pages": {
+        "OWAD": [
+          130
+        ]
+      },
+      "fragments": [
+        {
+          "fragment": "A colon ( : ) is used to place two instructions on the same line",
+          "matches": [
+            "OWAD:130"
+          ]
+        }
+      ],
+      "method": "normalized text comparison; tables and primary-source additions separately described in review"
+    },
+    {
+      "key": "B-IMMEDIATE",
+      "cited_pages": {
+        "OWAD": [
+          131
+        ]
+      },
+      "fragments": [],
+      "method": "normalized text comparison; tables and primary-source additions separately described in review"
+    },
+    {
+      "key": "ID",
+      "cited_pages": {
+        "BRIEL": [
+          30,
+          31,
+          32
+        ]
+      },
+      "fragments": [],
+      "method": "normalized text comparison; tables and primary-source additions separately described in review"
+    }
+  ],
+  "scan_identities": {
+    "Apple-120Basic20Manual.pdf": "0da35c19dbbf74c1234aca0d2cd876c4c9c426184bcfa8f11483387fdae6eb26",
+    "Apple-120Interface.pdf": "113b55b618bd1310fd00c60c3655362f3ab93a89ae4694216e03ef5248e5c5ad",
+    "Apple1 Manual.pdf": "8f5e595ea6c0c91fdd4206a4b2c2333be8990178db2600392af185ec63f9a1c2",
+    "AppleIReplicaCreationTomOwad.pdf": "23623af924d963e14d0e947f03d3c3af7f7aa174bd4be242f1085c8ce31b469a",
+    "Replica_One_Plus_Manual_-_June_2014.pdf": "fdd7c0e471d9ed2a8417dfbcefdb3987f29202d2cdf7405f5d653cad7d3cd79e"
+  },
+  "scope": "Quoted-text location check against identified local scan text; selected critical pages visually reviewed; not independent historical corroboration."
+}

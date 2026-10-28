@@ -1,0 +1,22 @@
+R02 MOTION IS MANY PICTURES
+017/031 WORKSHEET FRAME-SHEET.TXT
+
+APPLE-1 FIELD LIBRARY / R02
+THE FRAME SHEET
+
+A BOUNCING BALL, 20 COLUMNS WIDE.
+THE BALL IS THE CHARACTER  O
+
+FRAME 1
++--------------------+
+!O                   !
++--------------------+
+
+FRAME 2
++--------------------+
+!    O               !
++--------------------+
+
+FRAME 3
++--------------------+
+N NEXT P BACK A ANSWER M BOOK Q EXIT

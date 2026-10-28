@@ -1,0 +1,22 @@
+C04 CHARACTERS BECOME NUMBERS
+021/030 ANSWERS
+
+C04 ANSWER KEY
+
+PART A: THE TABLE
+
+ /  CHAR  /  DEC  /  HEX  /  HIGH-BIT
+HEX  /
+ /  A  /  65  /  $41  /  $C1  /
+ /  B  /  66  /  $42  /  $C2  /
+ /  Z  /  90  /  $5A  /  $DA  /
+ /  0  /  48  /  $30  /  $B0  /
+ /  SPACE  /  32  /  $20  /  $A0  /
+ /  CR  /  13  /  $0D  /  $8D  /
+
+PART B: DECODE THE MESSAGE
+
+ /  BYTE  /  MINUS $80  /  CHAR  /
+ /  C8  /  $48  /  H  /
+ /  C9  /  $49  /  I  /
+N NEXT P BACK A ANSWER M BOOK Q EXIT

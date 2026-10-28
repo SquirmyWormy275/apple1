@@ -128,6 +128,21 @@ variation, and an answer. Existing historical/card review gates are retained.
 | N01 | [Inspect fresh local-model evidence](features/N01.md) | RETAINED_NATIVE_REEVALUATION |
 | N02 | [Read the installed Pi tutor and trace](features/N02.md) | RETAINED_NATIVE_REEVALUATION |
 
+## Interpreter and card labs
+
+| Lab | Worked guide | Evidence mode |
+|---|---|---|
+| U01 | [A real Integer BASIC greeting](features/U01.md) | BASIC_INTERPRETER |
+| U02 | [Integer conversion with a checked domain](features/U02.md) | BASIC_INTERPRETER |
+| U03 | [A running sum in BASIC](features/U03.md) | BASIC_INTERPRETER |
+| U04 | [Bubble sort in real Apple-1 BASIC](features/U04.md) | BASIC_INTERPRETER |
+| U05 | [A BASIC quiz with both outcomes](features/U05.md) | BASIC_INTERPRETER |
+| U06 | [Generate a triangular pattern in BASIC](features/U06.md) | BASIC_INTERPRETER |
+| K01 | [Compile every lesson for a 40x24 screen](features/K01.md) | HOST_BUILD |
+| K02 | [Let real CFFA1 firmware build a virtual file](features/K02.md) | CFFA1_FIRMWARE |
+| K03 | [Navigate the RAM card reader](features/K03.md) | CFFA1_FIRMWARE |
+| K04 | [Save and restore BASIC in CFFA1 format](features/K04.md) | CFFA1_FIRMWARE |
+
 ## Public command surfaces
 
 The inventory below is extracted from the actual argument-parser declarations.
@@ -138,6 +153,10 @@ items are intentionally not invoked by batch capture.
 
 | Entry point | Subcommands | Teaching route / runtime limit |
 |---|---|---|
+| `tools.apple1_basic` | session file; --max-instructions | U01-U06; actual interpreter on host |
+| `tools.card_book` | --out | K01; compile a new host reading edition |
+| `tools.card_image` | build, inspect, rehearse | K02-K04; regular host images only |
+| `tools.card_preview` | --build, --out | Render retained RAM-reader observations; not live hardware |
 | [neural1/application.py](../../neural1/application.py) | (flags; see inventory) | F01, F05, F07, F13, F20, F25; native service/model actions require the commissioned environment |
 | [neural1/benchmark.py](../../neural1/benchmark.py) | (flags; see inventory) | Chapter 7/L06; new workloads and provider benchmarks not run |
 | [neural1/cli.py](../../neural1/cli.py) | cancel-campaign, console, evaluate-campaign, export-bundle, history-status, pilot-report, qualify-models, run-campaign, validate-campaign, verify-bundle | F04, F05, F06, F26; developer campaign/report commands use explicit artifacts |
@@ -175,8 +194,8 @@ and the operator guide. A shared core fixture is not a new test of a Pi service.
 | SELFHOST stages | F09/F23, chapter 9, archive tests and operator commands | New model-discovered assembler/compiler or new live later-stage research |
 | Storage and installation | F17/F24/F25, source command inventory, commissioning guide | Real mount changes, formatting, deployment, or deletion of user data |
 | Replica serial/firmware/GPIO | H04, SP01, F30/F35, physical-boundary records | Device opens, probe qualification, firmware/EEPROM/CFFA1 writes, wiring or power procedures |
-| BASIC, animation, sound | B/R packets and marked host analogues | A new native BASIC interpreter, video timing driver, or physical sound device |
-| Collection and sources | H/SP lessons, erratum, existing source register | Authentication, rights clearance, closure of V-1/V-36 or physical CF approval |
+| BASIC, animation, sound | B/R packets, U01–U06 real interpreter sessions and marked host analogues | Physical interpreter acceptance, video timing driver, or physical sound device |
+| Collection and sources | H/SP lessons, erratum, existing source register | Authentication, rights clearance, independent corroboration of every historical claim or physical CF acceptance |
 
 The automatic runner imports only the reviewed examples and never chooses an
 operator procedure in response to a model. Future labs must keep these evidence

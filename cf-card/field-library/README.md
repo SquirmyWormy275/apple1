@@ -1,22 +1,20 @@
-# CF-card Field Library sources
+# Field Library on the card
 
-Authoritative lesson source: `docs/field-library/`.
+The [core reading edition](../README.md) compiles all **42 lesson packets** into
+numbered books with their readings, activities, text worksheets and answers.
+The separate BOARDATLAS book preserves all 39 SP01 plates with display-safe
+borders and full-width wrap handling.
 
-## Approved display-native overlay
+The authoritative text remains in [docs/field-library](../../docs/field-library/README.md).
+[The edition manifest](../education/manifest.json) records exact inputs, page
+counts, answer-page offsets and output identities.
 
-| ID | Source | Format | Default export |
-|---|---|---|---|
-| SP01 | `docs/field-library/SP01-two-boards-one-computer/card/` | printable ASCII, <=40 columns, <=24 lines | yes |
+The default source export now includes the reviewed **host reading candidate**.
+That status approves staging and host image construction. Installed firmware,
+media and the finished Replica's display/keyboard still need physical acceptance.
+The [review record](../../docs/field-library/review/README.md) distinguishes
+structural checks, source-location checks and remaining historical questions.
 
-SP01 is stored as display-native screens so the repository source can be
-validated before any later card build.
-
-## Candidate library
-
-The existing forty curriculum packets under `docs/field-library/` remain
-OFF-DEVICE and are indexed as **candidate, not default-exported** material. Their
-presence in the repository does not mean the project has resolved how Markdown,
-assets, exercises, menus, and navigation should be represented on the eventual
-card.
-
-That decision remains separate from source organization.
+SP01's original `card/` tree remains preserved and separately staged. The newer
+binary book format is generated from source; neither directory is a claim that
+CFFA1 reads Markdown itself.

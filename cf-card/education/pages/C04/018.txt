@@ -1,0 +1,19 @@
+C04 CHARACTERS BECOME NUMBERS
+018/030 WORKSHEET CHAR-JOURNEY.TXT
+
+  $41  IN AN ASCII TABLE
+  $C1  IN A MONITOR KEYBOARD BYTE
+
+THE LETTER DID NOT CHANGE.
+THE CONVENTION AROUND IT DID.
+
++--------------------------------------+
+! THREE VALUES WORTH KNOWING COLD      !
+!                                      !
+!   CHARACTER   PLAIN   HIGH BIT SET   !
+!   ---------   -----   ------------   !
+!   RETURN      $0D     $8D            !
+!   SPACE       $20     $A0            !
+!   A           $41     $C1            !
++--------------------------------------+
+N NEXT P BACK A ANSWER M BOOK Q EXIT

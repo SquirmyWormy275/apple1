@@ -27,8 +27,9 @@ the way in one pass because once you pick it up you keep carrying it.
 | `5 4 3 2 1` | 5 | 20 | 10 |
 
 **Already sorted is the cheapest case:** one pass, no swaps, and the procedure
-stops. **Exactly backwards is the most expensive:** every comparison swaps, and
-every card has to travel the full distance.
+stops. **Exactly backwards is the most expensive:** the early passes
+perform many swaps, and the smallest card moves left only one position per
+pass. There are 10 swaps across 20 comparisons; the final pass has no swaps.
 
 ## Part C: predict without counting
 

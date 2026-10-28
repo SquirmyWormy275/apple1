@@ -102,12 +102,13 @@ Made, bought by one dealer, and sold overall are three different quantities.
 
 ## README: Check your understanding
 
-1. **It was the first computer of its kind to use a keyboard and a display as
-   standard input and output devices**, rather than lights and switches or a
-   teletype.
+1. **It integrated keyboard input and text-video output on the board.**
+   Owad's "first of its kind" description does not define its comparison
+   class, so it should be attributed rather than taught as a proved priority.
 2. **Because it is broader than anything the sources support and depends entirely
-   on what "personal computer" means.** The narrower claim is checkable and true;
-   the broad one is an argument, not a fact.
+   on what "personal computer" means.** The integrated interfaces are
+   documented; a historical priority claim requires a defined comparison and
+   additional evidence.
 3. **Because thirty people kept the knowledge alive.** They exchanged programs,
    built a software library, and worked out memory expansion, and Apple directed
    its own customers to them. The club outlasted the product by decades.

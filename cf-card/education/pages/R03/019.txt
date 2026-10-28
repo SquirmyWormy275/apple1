@@ -1,0 +1,22 @@
+R03 GENERATIVE PATTERNS
+019/036 WORKSHEET PATTERN-RULES.TXT
+
+            ##  ##
+           # # # #
+          ########
+         #       #
+        ##      ##
+       # #     # #
+      ####    ####
+     #   #   #   #
+    ##  ##  ##  ##
+   # # # # # # # #
+  ################
+
+NO PART OF THAT SHAPE WAS DRAWN.
+IT CAME OUT OF ONE SENTENCE.
+
+NOW YOUR TURN.  WRITE A RULE:
+
+  ____________________________
+N NEXT P BACK A ANSWER M BOOK Q EXIT

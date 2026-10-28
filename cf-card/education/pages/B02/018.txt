@@ -1,0 +1,22 @@
+B02 VARIABLES, INPUT, AND OUTPUT
+018/031 WORKSHEET FLOW-DIAGRAM.TXT
+
+  +---------------------+
+            !
+            V
+  +---------------------+
+  ! WORK                !
+  ! COMPUTE THE ANSWER  !
+  ! FROM THE VARIABLE   !
+  +---------------------+
+            !
+            V
+  +---------------------+
+  ! TELL                !
+  ! PRINT THE ANSWER    !
+  +---------------------+
+            !
+            V
+  +---------------------+
+  !        END          !
+N NEXT P BACK A ANSWER M BOOK Q EXIT

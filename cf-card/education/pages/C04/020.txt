@@ -1,0 +1,16 @@
+C04 CHARACTERS BECOME NUMBERS
+020/030 WORKSHEET ENCODING-WORKSHEET.T
+
+
+  PLAIN HEX: __ __ __ __ __ __ __ __ __
+
+  TEXT:      _________________________
+
+
+PART 3.  ONE SENTENCE.
+
+WHY DOES STRIPPING THE TOP BIT COME
+BEFORE LOOKING UP THE LETTER?
+
+  ______________________________
+N NEXT P BACK A ANSWER M BOOK Q EXIT

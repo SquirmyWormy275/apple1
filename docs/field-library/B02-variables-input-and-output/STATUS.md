@@ -1,9 +1,17 @@
 # B02 Status
 
+> **Current host evidence (October 28, 2026):** The original paper activity
+> remains available. [The BASIC chapter](../../textbook/reference/basic.md)
+> now runs the preserved interpreter on a modeled NMOS 6502. U01–U06 retain
+> actual sessions; U02 checks conversion bounds and U04 checks one-based arrays.
+> V-20 and V-21 are resolved for these identified host sessions. Older "not run"
+> notes below describe the earlier edition; they do not describe current host
+> capability. Physical installation and execution remain unverified.
+
 **Mode: OFF-DEVICE**
 
-No runnable artifact. There is no runnable BASIC environment in this repository
-and no program in this packet has been executed.
+The worksheet remains OFF-DEVICE. U01/U02 provide runnable host counterparts
+using the preserved BASIC interpreter; see the current evidence notice above.
 
 ## Artifacts
 
@@ -16,7 +24,8 @@ and no program in this packet has been executed.
 | `assets/flow-diagram.txt` | Plain-text flow diagram, 40 columns | No |
 
 The BASIC listings in `ANSWERS.md` were constructed for this lesson from
-documented syntax. They are not quoted from a source and have not been run.
+documented syntax. They are project-authored examples. U01 executes the greeting and U02 executes
+the revised, guarded conversion.
 
 ## Expected result
 
@@ -26,16 +35,16 @@ acceptance criteria.
 
 ## Known limitations
 
-- No BASIC has been executed (V-20).
-- The double-question-mark behavior in Part E is reasoned from the documented
-  automatic `?`, not observed (V-21).
-- Operator precedence is not documented in any project source and no answer
-  depends on it.
+- Selected BASIC programs now execute in the host interpreter labs (U01–U06).
+- U01 now observes the double-question-mark behavior; installed hardware remains untested.
+- The host tests observe arithmetic precedence and the intermediate overflow
+  boundary for this exact interpreter; that is not evidence of installed ROM identity.
 - The four-box diagram cannot represent a decision, which the answer key states.
 
 ## Stop condition
 
-Not applicable. No device interaction and nothing runnable.
+The paper activity has no execution. Host sessions stop at the input poll or
+a declared instruction limit; no physical device is involved.
 
 ## What this status does not authorize
 

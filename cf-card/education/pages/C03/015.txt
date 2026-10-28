@@ -1,0 +1,22 @@
+C03 BINARY, BITS, AND BYTES
+015/026 WORKSHEET BIT-DRILL.TXT
+
+APPLE-1 FIELD LIBRARY / C03
+WORKSHEET: BUILD THE BYTE
+
+WRITE 1 OR 0 IN EACH BOX.
+
+           128 64 32 16  8  4  2  1
+            !  !  !  !  !  !  !  !
+   65   =  [ ][ ][ ][ ][ ][ ][ ][ ]
+
+  200   =  [ ][ ][ ][ ][ ][ ][ ][ ]
+
+  128   =  [ ][ ][ ][ ][ ][ ][ ][ ]
+
+  255   =  [ ][ ][ ][ ][ ][ ][ ][ ]
+
+   13   =  [ ][ ][ ][ ][ ][ ][ ][ ]
+
+  141   =  [ ][ ][ ][ ][ ][ ][ ][ ]
+N NEXT P BACK A ANSWER M BOOK Q EXIT

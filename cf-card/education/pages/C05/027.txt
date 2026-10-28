@@ -1,0 +1,22 @@
+C05 INSTRUCTIONS CHANGE STATE
+027/033 ANSWERS
+
+THE SITUATION THAT MAKES PART A'S
+WARNING REAL.
+
+PART D: WHAT CHANGED, WHAT DID NOT
+
+ /  INSTRUCTION  /  A  /  X  /  MEMORY
+/  NEXT ADDRESS  /  CARRY  /
+ /  LDA #$41  /  YES  /   /   /  YES
+(ADVANCES)  /   /
+ /  STA $0400  /   /   /  YES  /  YES
+(ADVANCES)  /   /
+ /  DEX  /   /  YES  /   /  YES
+(ADVANCES)  /   /
+ /  BNE $0312  /   /   /   /  YES
+(CONDITIONALLY)  /   /
+ /  JMP $FF1F  /   /   /   /  YES
+(ALWAYS)  /   /
+
+N NEXT P BACK A ANSWER M BOOK Q EXIT

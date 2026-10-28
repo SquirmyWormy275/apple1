@@ -1,0 +1,22 @@
+X03 BUILD A MUSEUM DEMO
+019/036 WORKSHEET DEMO-SCRIPT.TXT
+
+APPLE-1 FIELD LIBRARY / X03
+THE THREE-MINUTE SCRIPT
+
+  0:00  THE HOOK
+        ONE SENTENCE.  WHY SHOULD
+        A STRANGER STAY?
+        __________________________
+        __________________________
+
+  0:20  THE OBJECT
+        WHAT ARE THEY LOOKING AT,
+        NAMED CORRECTLY?
+        __________________________
+        __________________________
+
+  0:45  THE ONE IDEA
+        PICK ONE.  NOT TWO.
+        __________________________
+N NEXT P BACK A ANSWER M BOOK Q EXIT

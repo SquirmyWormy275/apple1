@@ -1,0 +1,9 @@
+K02 / Let real CFFA1 firmware build a virtual file
+MODE: CFFA1_FIRMWARE | HOST ONLY | NO MODEL INFERENCE
+
+Actual CFFA1 ROM: format -> write -> read
+Independent ProDOS inventory: [{'path': '/HELLO', 'file_type': '04', 'aux_type': '1000', 'bytes': 26, 'sha256': 'd141fbea356a70e50becb8d20f5b04e59a6f0af56fa0edcd59b50a2e070dbd4c'}]
+ATA blocks written: 74
+Physical devices opened: 0
+
+CHECKS PASSED | No physical serial connection was requested.

@@ -1,0 +1,22 @@
+C02 MEMORY IS A MAP
+020/031 WORKSHEET MEMORY-MAP.TXT
+
+      ! UNUSED                     !
+      !                            !
+$D013 +----------------------------+
+      ! PIA: KEYBOARD IN, VIDEO OUT!
+$D010 +----------------------------+
+      !                            !
+      ! UNUSED                     !
+      !                            !
+$1000 +----------------------------+
+      ! SYSTEM AND USER RAM 4 KB   !
+      !                            !
+      !  $0400 BUFFER USED BY THE  !
+      !        REPO PROGRAMS       !
+      !  $0300 WHERE THE REPO      !
+      !        PROGRAMS ARE ENTERED!
+      !  $0200 MONITOR INPUT LINE  !
+      !  $0100 THE 6502 STACK      !
+      !  $0000 ZERO PAGE           !
+N NEXT P BACK A ANSWER M BOOK Q EXIT

@@ -1,0 +1,22 @@
+S02 A COMPUTER IS NOT MAGIC
+018/026 WORKSHEET TRACE-BLANK.TXT
+
+APPLE-1 FIELD LIBRARY / S02
+WORKSHEET: TRACE ONE KEYPRESS
+
+  YOU PRESS THE KEY  A
+          !
+          V
+[1] ______________
+          !
+          V
+[2] ______________
+          !
+          V
+[3] ______________
+          !
+          V
+[4] ______________
+          !
+          V
+N NEXT P BACK A ANSWER M BOOK Q EXIT

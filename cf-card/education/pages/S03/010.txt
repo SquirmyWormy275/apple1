@@ -1,0 +1,22 @@
+S03 YOUR FIRST HEX NUMBER
+010/025 TRY
+
+FILL IN ASSETS/HEX-TABLE-BLANK.TXT FOR
+0 THROUGH 15, THEN CHECK AGAINST
+ASSETS/HEX-TABLE-FILLED.TXT.
+
+PART B: DECIMAL TO HEX
+
+ /  DECIMAL  /  HEX  /
+ /  8  /   /
+ /  15  /   /
+ /  16  /   /
+ /  17  /   /
+ /  32  /   /
+ /  64  /   /
+ /  100  /   /
+ /  128  /   /
+ /  200  /   /
+ /  255  /   /
+
+N NEXT P BACK A ANSWER M BOOK Q EXIT

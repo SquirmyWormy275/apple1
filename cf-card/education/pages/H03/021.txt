@@ -1,0 +1,22 @@
+H03 WHY PROVENANCE MATTERS
+021/035 WORKSHEET EVIDENCE-CARD.TXT
+
+ 5. WHO SAYS SO
+    ______________________________
+
+ 6. ORIGINAL, DERIVATIVE, OR
+    WORKING COPY
+    ______________________________
+
+ 7. PERMISSION OR LICENCE NOTE
+    ______________________________
+
+ 8. SHA-256 (FIRST 16 CHARACTERS)
+    ______________________________
+
+ 9. WHAT THIS CARD ESTABLISHES
+    ______________________________
+
+10. WHAT IT DOES NOT ESTABLISH
+    ______________________________
+N NEXT P BACK A ANSWER M BOOK Q EXIT

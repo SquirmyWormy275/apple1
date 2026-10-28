@@ -1,0 +1,22 @@
+R01 PICTURES MADE OF LETTERS
+021/033 WORKSHEET GRID-40.TXT
+
+!                                      !
+!                                      !
+!                                      !
++--------------------------------------+
+
+RULES OF THIS CANVAS:
+
+  UPPER CASE ONLY.
+  PRINTABLE ASCII ONLY.
+  40 COLUMNS.  NO WRAPPING.
+  NO GOING BACK.  ONCE A LINE IS
+  DRAWN IT IS DRAWN.
+
+USEFUL CHARACTERS:
+
+  SOLID    # * @ M W
+  MEDIUM   + = O X
+  LIGHT    . , ' "
+N NEXT P BACK A ANSWER M BOOK Q EXIT

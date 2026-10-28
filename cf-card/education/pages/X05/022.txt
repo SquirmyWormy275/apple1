@@ -1,0 +1,22 @@
+X05 INVENT THE NEXT LESSON
+022/037 WORKSHEET AUTHOR-CARD.TXT
+
+
+ 5. FIRST VISIBLE RESULT
+    ______________________________
+    REACHED IN HOW MANY ACTIONS?
+    ______  (MUST BE 3 OR FEWER)
+
+ 6. THE THREE ACTIONS
+    1 ___________________________
+    2 ___________________________
+    3 ___________________________
+
+ 7. SOURCES
+    EVERY APPLE-1 OR HISTORICAL
+    CLAIM, AND WHERE IT COMES FROM.
+    ______________________________
+    ______________________________
+    ______________________________
+    CLAIMS WITH NO SOURCE YET:
+N NEXT P BACK A ANSWER M BOOK Q EXIT

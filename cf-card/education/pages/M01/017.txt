@@ -1,0 +1,22 @@
+M01 MEET THE MONITOR
+017/027 WORKSHEET THREE-JOBS.TXT
+
+APPLE-1 FIELD LIBRARY / M01
+THE MONITOR DOES THREE THINGS
+
++--------------------------------------+
+! 1.  INSPECT                          !
+!     SHOW ME WHAT IS AT AN ADDRESS.   !
+!                                      !
+!     YOU TYPE:   300                  !
+!     IT SHOWS:   0300: E1             !
++--------------------------------------+
+
++--------------------------------------+
+! 2.  CHANGE                           !
+!     PUT THIS VALUE AT THAT ADDRESS.  !
+!                                      !
+!     YOU TYPE:   300: FF              !
+!     IT SHOWS:   0300: E1             !
+!     (THE OLD VALUE, BEFORE THE       !
+N NEXT P BACK A ANSWER M BOOK Q EXIT

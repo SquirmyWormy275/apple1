@@ -1,0 +1,22 @@
+H01 THE 1976 PERSONAL-COMPUTING MOMENT
+019/032 WORKSHEET TIMELINE-CARDS.TXT
+
+! JOBS AND WOZNIAK START APPLE         !
+! COMPUTER COMPANY, BUILT AROUND A     !
+! SINGLE-BOARD DESIGN THAT USES A      !
+! KEYBOARD AND A TV.                   !
++--------------------------------------+
+
++--------------------------------------+
+! CARD C                               !
+! ABOUT TWO HUNDRED BOARDS ARE MADE.   !
+! THE RETAIL PRICE IS $666.66, WHICH   !
+! BUYS THE BARE BOARD.  THE BUYER      !
+! STILL NEEDS A KEYBOARD, A POWER      !
+! SUPPLY, AND A DISPLAY.               !
++--------------------------------------+
+
++--------------------------------------+
+! CARD D                               !
+! JOE TORZEWSKI FOUNDS THE APPLE I     !
+N NEXT P BACK A ANSWER M BOOK Q EXIT

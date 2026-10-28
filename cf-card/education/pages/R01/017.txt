@@ -1,0 +1,22 @@
+R01 PICTURES MADE OF LETTERS
+017/033 WORKSHEET BANNER-EXAMPLES.TXT
+
+APPLE-1 FIELD LIBRARY / R01
+THREE WORKED BANNERS
+
+ONE: LETTERS BUILT FROM ONE CHARACTER
+
+  #   #  ####  #     #     #####
+  #   #  #     #     #     #   #
+  #####  ###   #     #     #   #
+  #   #  #     #     #     #   #
+  #   #  ####  ####  ####  #####
+
+TWO: A BORDER AND A CENTRED TITLE
+
+  ++++++++++++++++++++++++++++++++
+  +                              +
+  +      APPLE-1 FIELD LIBRARY   +
+  +                              +
+  ++++++++++++++++++++++++++++++++
+N NEXT P BACK A ANSWER M BOOK Q EXIT

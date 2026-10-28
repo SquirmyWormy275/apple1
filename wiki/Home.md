@@ -1,5 +1,7 @@
 # Apple-1 project wiki
 
+[Worked textbook: 15 chapters, 110 labs, BASIC and the card edition](Textbook.md)
+
 Welcome. This project combines a Replica 1 Plus collection, Apple-1 programming
 lessons, and NEURAL1: a software lab that asks small language models to work
 within early-computer constraints.
@@ -11,10 +13,10 @@ directly on GitHub or in a checkout.
 
 ## Work through the textbook
 
-The [worked textbook](../docs/textbook/README.md) provides 13 teaching chapters,
+The [worked textbook](../docs/textbook/README.md) provides 15 teaching chapters,
 companions for all 42 lessons, eight local-model labs, and 36 feature examples.
-Its 100 runnable examples include captured output and images, deeper CPU
-tutorials, and fresh local-model/Pi records. Use the
+Its 110 runnable examples include captured output and images, deeper CPU
+tutorials, six real BASIC programs, four card labs, and fresh local-model/Pi records. Use the
 [course guide](../docs/textbook/course-guide.md) or
 [native walkthrough](../docs/textbook/native/README.md). The
 [coverage register](../docs/textbook/coverage.md) distinguishes actual host/virtual

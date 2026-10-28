@@ -266,8 +266,8 @@ because it does bookkeeping for you. Apple-1 BASIC handles whole numbers only:
 ask it for 38 divided by 9 and it answers 4, with `MOD` giving the remainder
 separately.
 
-*Source: B-INTEGER, B-MOD. Note V-20: no BASIC in this library has ever been
-executed; every statement about it is cited from documentation.*
+*Source: B-INTEGER, B-MOD. U01–U06 now execute the preserved interpreter on
+a modeled NMOS 6502; see the [BASIC chapter](../textbook/reference/basic.md).*
 
 ### Assembler
 

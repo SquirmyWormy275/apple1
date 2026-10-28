@@ -1,9 +1,16 @@
 # B01 Status
 
+> **Current host evidence (October 28, 2026):** The original paper activity
+> remains available. [The BASIC chapter](../../textbook/reference/basic.md)
+> now runs the preserved interpreter on a modeled NMOS 6502. U01–U06 retain
+> actual sessions; U02 checks conversion bounds and U04 checks one-based arrays.
+> V-20 and V-21 are resolved for these identified host sessions. Older "not run"
+> notes below describe the earlier edition; they do not describe current host
+> capability. Physical installation and execution remain unverified.
+
 **Mode: OFF-DEVICE**
 
-No runnable artifact. **There is no runnable BASIC environment in this
-repository**, and no BASIC line in this packet has been executed.
+No runnable artifact. The original packet is a paper exercise; the new host interpreter labs are linked below.
 
 ## Artifacts
 
@@ -27,7 +34,7 @@ reasoning for the open-ended items.
 
 ## Known limitations
 
-- All BASIC behavior is cited, never observed (V-20).
+- The original paper examples were cited. Current U01–U06 execute the identified interpreter; see the notice above.
 - How Apple-1 BASIC internally represents or executes a program is not described,
   because no project source documents it.
 - Krusader is located in the landscape but not taught.

@@ -1,0 +1,13 @@
+K04 / Save and restore BASIC in CFFA1 format
+MODE: CFFA1_FIRMWARE | HOST ONLY | NO MODEL INFERENCE
+
+Saved type: F1 bytes: 2560
+Program RAM and BASIC state cleared before LoadBASICFile
+
+>RUN
+WHAT IS YOUR NAME?TOM
+
+HELLO TOM
+
+>
+CHECKS PASSED | No physical serial connection was requested.
