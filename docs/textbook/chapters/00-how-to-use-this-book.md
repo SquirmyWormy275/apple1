@@ -44,11 +44,17 @@ worked companions add executable demonstrations and captured results.
 | HOST_AND_VIRTUAL | A host analogue compared with a virtual machine result | A native BASIC interpreter run |
 | SYNTHETIC_SOFTWARE | Actual project logic with authored fixtures | Real-model performance or scientific discovery |
 | MOCK_TRANSPORT | The real adapter with an injected response | A connection to a local model server |
+| DIRECT_CPU_MODEL | Direct stepping of Py65 with explicit memory/vectors | Physical reset, IRQ or cycle behavior |
+| RETAINED_NATIVE_REEVALUATION | Verification/execution of retained actual model output | New inference during the automatic lab |
 | RETAINED_RECORD | Reading an existing public evidence file | Fresh inference or a current hardware health check |
 
 All captured images are readable renders of actual stdout. They are not
 screenshots of the deployed Pi console. Each image is paired with raw text,
 its example source, and a hash-verifiable capture manifest.
+
+The [course guide](../course-guide.md) supplies a twelve-session route and
+assessment prompts. The [native guide](../native/README.md) explains actual
+inference recordings separately from the automatic deterministic runner.
 
 ## Keep a useful notebook
 

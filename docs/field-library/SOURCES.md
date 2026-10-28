@@ -16,9 +16,10 @@ Nothing in this file is a measurement of this project's Replica 1 Plus.
 | REPO | This repository, cited by path. |
 | RUN | A run performed during authoring, recorded in `EMULATOR-RUNS.md`. |
 
-Page numbers are the printed page numbers in the indexed text of those PDFs.
-They have not been checked page by page against the local collection copies.
-See "Open verification items" at the end.
+Page numbers refer to the preserved local scans. Selected critical pages have
+now been visually checked; the [review record](../textbook/review.md#manual-checks)
+names them and the exact file identities. This is not a claim that every quoted
+page or every historical assertion has passed a full source review.
 
 ---
 
@@ -53,8 +54,8 @@ See "Open verification items" at the end.
 | M-RESET-VEC | Quoted secondary-source discrepancy: these addresses are IRQ/BRK, not RESET | OWAD ch. 7 p. 216; correction: M-RESET-CORRECT below | "requires that a memory address be stored at addresses $FFFE and $FFFF ... When the 6502 is reset, it immediately loads the address ... into its program counter". See verification item V-3. |
 | M-RAM-ORIG | Original: 4 KB at `$0000`-`$0FFF`, 4 KB at `$E000`-`$EFFF` | OWAD ch. 7 p. 217 | "Four kilobytes are for system and user access. These 4 KB are located at $000-$0FFF. The other 4 KB, which are intended for Apple's Integer BASIC, are located at $E000-$EFFF." |
 | M-BASIC-RAM | On the original, `$E000`-`$EFFF` was RAM, so BASIC had to be reloaded every power-up | OWAD ch. 7 p. 217 | "Every time the original Apple I was powered up, the code for BASIC would have to be either loaded from cassette or typed in by hand." |
-| M-STACK | The 6502 stack is `$0100`-`$01FF`, base `$01FF`, growing down | OWAD ch. 7 p. 216 | "The stack uses memory from $0100 to $01FF. $01FF is the base address. As data is pushed onto the stack, the stack grows towards $0100." |
-| M-REPLICA-MAP | Replica I: 32 KB user space `$0000`-`$8000`; Integer BASIC in ROM at `$E000`-`$EFFF` | OWAD ch. 7 p. 218 | "The first 32 KB ($0000-$8000) are all dedicated to system and user space ... Instead of being in RAM, Integer BASIC is now in ROM." Describes the Replica I, not the Replica 1 Plus. See V-4. |
+| M-STACK | Corrected teaching claim: 256 stack addresses; push decrements SP and pull increments SP. The 6502 stack is `$0100`-`$01FF`, base `$01FF`, growing down | OWAD ch. 7 p. 216 | "The stack uses memory from $0100 to $01FF. $01FF is the base address. As data is pushed onto the stack, the stack grows towards $0100." |
+| M-REPLICA-MAP | Replica I: 32 KiB means `$0000`-`$7FFF` inclusive; the quoted `$8000` endpoint below is an off-by-one error; Integer BASIC in ROM at `$E000`-`$EFFF` | OWAD ch. 7 p. 218 | "The first 32 KB ($0000-$8000) are all dedicated to system and user space ... Instead of being in RAM, Integer BASIC is now in ROM." Describes the Replica I, not the Replica 1 Plus. See V-4. |
 | M-PIA-RANGE | The PIA occupies `$D010`-`$D012` on the memory map | OWAD ch. 7 pp. 217, 218 (Figures 7.14, 7.15) | "$D010 - $D012 Keyboard In, Video Out" |
 | M-RESET-CORRECT | NMOS 6502 RESET uses `$FFFC/$FFFD`; IRQ/BRK uses `$FFFE/$FFFF` | MOS Technology programming manual, January 1976, section 9.12, printed p. 146; linked below | Primary-source correction; low vector byte precedes high byte. |
 
@@ -84,6 +85,25 @@ This corrects the teaching claim without identifying this board's installed ROM.
 | P-VIDEO-WRITEONLY | Once a character is on the display it cannot be modified; it scrolls off or the display is cleared | OWAD ch. 7 p. 234 | "once a character is sent to the display, it cannot be modified. It's there until you enter enough lines that it scrolls off the top of the screen, or until you manually clear the entire display. In this way, the function of the video is very similar to a typewriter or Teletype." |
 | P-PROPELLER | On the Replica I TE a Parallax Propeller handles video and keyboard and provides the serial interface | OWAD ch. 7 p. 234 sidebar | "a Parallax Propeller microcontroller now handles both. The Propeller also provides a serial interface. The video section of the Propeller sends data to both the video port and serial interface, while the keyboard section listens for data from both the keyboard and serial interface." Describes the Replica I TE. See V-4. |
 
+### Primary display specification
+
+**P-GEOMETRY:** The preserved *Apple-1 Operation Manual*, PDF page 2
+(Specifications) and page 3, specifies 40 characters per line and 24 lines with
+automatic scrolling. Its file identity is SHA-256
+`8f5e595ea6c0c91fdd4206a4b2c2333be8990178db2600392af185ec63f9a1c2`.
+[Preserved scan](../../preservation/manuals/2026-08-28/files/Apple1%20Manual.pdf).
+This establishes the original specification; it does not measure the Plus,
+identify its installed display firmware, or make every printable ASCII code a
+supported glyph. V-7 is resolved for the original design only.
+
+### Additional secondary-source corrections
+
+Visual inspection of OWAD p. 216 confirms the reset-vector discrepancy and two
+stack-description errors: a push decrements SP, and `$0100`–`$01FF` contains
+256 addresses, not 255. T07 demonstrates the model's push/pull direction.
+The 32 KiB range quoted on p. 218 ends at `$7FFF` inclusive; `$8000` is the
+next address. Retain the book unchanged, but teach the corrected ranges.
+
 ## R. The replica as documented by its manual
 
 | ID | Claim | Source | Wording |
@@ -99,7 +119,7 @@ This corrects the teaching claim without identifying this board's installed ROM.
 | R-BASIC-ENTRY | `E000R` enters BASIC; prompt is `>` | BRIEL ch. 5 p. 21 | "type in: E000R [RETURN] ... The prompt for BASIC is '>'." |
 | R-KRUSADER | `F000R` enters the Krusader assembler by Ken Wessen | BRIEL ch. 5 pp. 22, 26 | "To start Krusader, type in 'F000R'" |
 | R-ROMSEL | A ROM select jumper switches to an Applesoft lite with prompt `]` | BRIEL ch. 5 p. 22 | "Place the jumper on the ROM select with the power switch in the off position ... the prompt is now a ']'." |
-| R-SERIAL | 9600 baud, 8 data bits, one stop bit, no parity, no flow control | REPO `docs/reference/README.md` (summarizing BRIEL) | Recorded in the repository reference note. |
+| R-SERIAL | 9600 baud, 8 data bits, one stop bit, no parity, no flow control | BRIEL chapter 6, printed/PDF p. 24; serial configuration screenshot | Source configuration, not qualification of this physical serial path. |
 
 ## W. The Woz Monitor listing
 
@@ -112,7 +132,9 @@ the Monitor listing with labels.
 | W-FF1F | `$FF1F` is the label `GETLINE` | "FF1F: A9 8D GETLINE LDA #$8D CR." |
 | W-FFEF | `$FFEF` is the label `ECHO`, called with `JSR` | "FF1C: 20 EF FF JSR ECHO Output it." |
 | W-CR | Carriage return is `$8D` in Monitor terms, that is `$0D` with bit 7 set | "LDA #$8D CR." with P-HIGHBIT |
-| W-RUNCMD | `R` runs a user program | "FF55: C9 D2 CMP #$D2 'R'? FF57: F0 3B BEQ RUN Yes. Run user program." |
+| W-RUNCMD | `R` dispatches through `JMP (XAML)` at `$FF94`; it does not create a JSR return frame | "FF55: C9 D2 CMP #$D2 'R'? FF57: F0 3B BEQ RUN Yes. Run user program." |
+| W-INPUT | Monitor input buffer is `$0200`–`$027F` | BRIEL Appendix C, printed/PDF p. 32, Hardware Notes: IN 200–27F; p. 30 shows STA IN,Y. |
+| W-FRONTPANEL | Monitor uses keyboard/display for front-panel memory and execution functions | Original Apple-1 Operation Manual, PDF p. 5, Section II. No claim that Wozniak invented the general term "monitor". |
 | W-MODES | The Monitor tracks three modes: `$00` examine, `$7B` store, `$AE` block examine | "FF41: 85 2B SETMODE STA MODE $00=XAM $7B=STOR $AE=BLOK XAM" |
 
 ## A. ASCII, hex, and binary
@@ -178,3 +200,13 @@ the Monitor listing with labels.
   claimed by any lesson.
 - **V-8. This machine.** Nothing in this pool describes the state of this
   project's board, its installed EEPROM, or its serial path.
+
+## Review update, October 28, 2026
+
+V-7 (original display specification), V-9 (Monitor buffer), V-14 (R dispatch),
+V-12 (bounded instruction-count derivation) and V-19 (exact A06 execution) now
+have direct checks in the textbook review. V-32's inaccurate question was
+replaced by an explicit critical-reading prompt. X01's high-bit count is 15,
+not 14. These are teaching corrections; the source scans and RAM byte lists are
+preserved unchanged. The [current register](README.md#open-verification-items)
+takes precedence over older notes describing these items as unexamined.

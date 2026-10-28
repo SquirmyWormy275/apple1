@@ -63,10 +63,19 @@ evidence**, not an LLM research finding. The
 
 The [textbook](docs/textbook/README.md) connects the system end to end: 13
 chapters, worked companions for all 42 Field Library lessons, eight local-model
-labs, and 36 feature demonstrations. Each of its 86 examples has executable
+labs, 36 feature demonstrations, twelve deeper CPU labs, and fresh native
+model recordings. Each of the 100 catalog examples has executable
 source, actual captured output, an image, checks, and a practice variation.
+[Choose a course route](docs/textbook/course-guide.md),
+[inspect the fresh native runs](docs/textbook/native/README.md), or
+[review the corrections](docs/textbook/review.md).
 [Coverage and environment-dependent limits](docs/textbook/coverage.md) distinguish
 host/virtual fixtures from real-model and physical procedures.
+
+A fresh Pi capture executes a small program and retains the exact bytes and
+trace. The native guide also shows failed model proposals and independent checks.
+
+![Actual Pi TRACE, summarized from retained output](docs/textbook/native/evidence/pi-console/overview.png)
 
 ## Follow a learning path
 
@@ -109,8 +118,9 @@ third-party sources and artwork retain their attribution and rights boundaries.
 | Scientific conclusions | Completed execution can include rejected candidates and negative results. No autonomous discovery is claimed. |
 | Wooden enclosure | [R04 is the design reference](docs/hardware/enclosure/README.md); component fit and assembly details retain open checks. |
 
-These operational statements describe retained acceptance records, not a new
-hardware health check. **The Apple-1 execution target is virtual.** Publishing
+The September operational claims describe retained commissioning records. The
+new textbook separately records current Pi inference and virtual CPU execution;
+it is not a new full commissioning or physical Replica acceptance. **The Apple-1 execution target is virtual.** Publishing
 source does not update the installed Pi release. On the already commissioned
 Pi, launch `neural1`; use the [operator guide](docs/neural1/operations/terminal-application.md)
 and [current status](docs/STATUS.md) to distinguish source features from the
@@ -136,7 +146,7 @@ mirror the [off-device CI workflow](.github/workflows/ci.yml):
 
 ```bash
 python -m pip install -e '.[dev]'
-ruff check neural1 tools/neural1_validate.py tests/test_neural1*.py tests/test_storage.py tools/textbook.py tools/textbook_support.py docs/textbook/examples
+ruff check neural1 tools/neural1_validate.py tests/test_neural1*.py tests/test_storage.py tools/textbook.py tools/textbook_support.py tools/textbook_native.py docs/textbook/examples
 mypy neural1
 python -m pytest -q
 python tools/neural1_validate.py .

@@ -8,7 +8,7 @@ Keys refer to the shared pool in `../SOURCES.md`.
 | `300[RETURN]` inspects; `300.32F` inspects a block; `300:FF` writes; `300R` runs | R-MON-SYNTAX |
 | A block examine shows up to eight locations per line | R-MON-8 |
 | Writing responds with the location's previous contents | R-MON-SYNTAX; the manual's worked exchange `300:FF` then `0300:E1` |
-| Wozniak coined "monitor" for a program that watched the keyboard in place of front-panel switches | WOZ-FWD p. 17 |
+| The Monitor uses keyboard/display to perform front-panel memory and execution functions | W-FRONTPANEL; original Apple-1 Operation Manual, PDF p. 5 |
 | The Monitor is 256 bytes | WOZ-FWD p. 17; M-ROM |
 | The Monitor occupies `$FF00`-`$FFFF` | M-ROM |
 | `E000R` enters BASIC on a replica with BASIC in ROM | R-BASIC-ENTRY; M-REPLICA-MAP |

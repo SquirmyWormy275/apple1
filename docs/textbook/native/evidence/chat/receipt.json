@@ -1,0 +1,105 @@
+{
+  "blobs": [
+    {
+      "bytes": 487,
+      "media_type": "application/vnd.docker.container.image.v1+json",
+      "sha256": "152cb442202b836b5415fe4397169982b74dc3bdbb06b9777a126e0161c740da"
+    },
+    {
+      "bytes": 986048576,
+      "media_type": "application/vnd.ollama.image.model",
+      "sha256": "29d8c98fa6b098e200069bfb88b9508dc3e85586d20cba59f8dda9a808165104"
+    },
+    {
+      "bytes": 68,
+      "media_type": "application/vnd.ollama.image.system",
+      "sha256": "66b9ea09bd5b7099cbb4fc820f31b575c0366fa439b08245566692c6784e281e"
+    },
+    {
+      "bytes": 1615,
+      "media_type": "application/vnd.ollama.image.template",
+      "sha256": "1e65450c30670713aa47fe23e8b9662bdf4065e81cc8e3cbfaa98924fcc0d320"
+    },
+    {
+      "bytes": 11343,
+      "media_type": "application/vnd.ollama.image.license",
+      "sha256": "832dd9e00a68dd83b3c3fb9f5588dad7dcf337a0db50f7d9483f310cd292e92e"
+    }
+  ],
+  "download_requested": false,
+  "files_sha256": {
+    "health-control.json": "01c34ec724c7788f92e6e3d5b57e12b4a13b237d13d3260a377849e16dbec288",
+    "model-manifest.json": "d7372fd828518a4d38b1eb196c673c31a85f2ed302b3d1e406c4c2d1b64a0668",
+    "scaffolded.json": "a4600671713a9df45dd584cd10e6f889a884cd6d29871f18e3b482fad4ba1909",
+    "sources/drivers.py": "40d2add56c1c0b8b01fff5381578bd5063605910e61cca8887f4965198e6d869",
+    "sources/models.py": "a862a78580f1c022e4dc4af884feb7093658f20a01689b7873c23d94179aa4f6",
+    "sources/textbook_native.py": "b1a15bb6bd9cb971a5037496a4ad4268bf5f045a775d532766dcee7d7f1920b1",
+    "sources/world.py": "2ff409b3046b489aaf7a1c030ceb489dfd4eb0f962b671def2b9e640db3c8c25",
+    "unassisted.json": "3d025ea713596d6c2ce1449b6d9207361d78e53091aa6bd7ba623cf8f6106ce7"
+  },
+  "finished_utc": "2026-10-28T04:55:38.219578+00:00",
+  "machine": "x86_64",
+  "model": {
+    "context_limit": 2048,
+    "family": "qwen2.5-coder",
+    "generation": {
+      "api": "chat",
+      "base_url": "http://127.0.0.1:11435",
+      "hash_kind": "ollama-manifest; not the GGUF weight blob",
+      "keep_alive": 0,
+      "num_ctx": 2048,
+      "num_gpu": 0,
+      "num_predict": 192,
+      "num_thread": 4,
+      "temperature": 0,
+      "timeout_seconds": 90
+    },
+    "hash": "d7372fd828518a4d38b1eb196c673c31a85f2ed302b3d1e406c4c2d1b64a0668",
+    "name": "qwen2.5-coder:1.5b",
+    "provider": "ollama-http",
+    "quantization": "Q4_K_M",
+    "version": "UNAVAILABLE"
+  },
+  "python": "3.12.14",
+  "runtime": {
+    "version": "0.33.2"
+  },
+  "schema": "textbook-native/v1",
+  "serial_opened": false,
+  "server_model": {
+    "capabilities": [
+      "completion",
+      "tools",
+      "insert"
+    ],
+    "details": {
+      "context_length": 32768,
+      "embedding_length": 1536,
+      "families": [
+        "qwen2"
+      ],
+      "family": "qwen2",
+      "format": "gguf",
+      "parameter_size": "1.5B",
+      "parent_model": "",
+      "quantization_level": "Q4_K_M"
+    },
+    "digest": "d7372fd828518a4d38b1eb196c673c31a85f2ed302b3d1e406c4c2d1b64a0668",
+    "model": "qwen2.5-coder:1.5b",
+    "modified_at": "2026-08-30T20:40:12.041631177-07:00",
+    "name": "qwen2.5-coder:1.5b",
+    "size": 986062089
+  },
+  "source_sha256": {
+    "drivers.py": "40d2add56c1c0b8b01fff5381578bd5063605910e61cca8887f4965198e6d869",
+    "models.py": "a862a78580f1c022e4dc4af884feb7093658f20a01689b7873c23d94179aa4f6",
+    "textbook_native.py": "b1a15bb6bd9cb971a5037496a4ad4268bf5f045a775d532766dcee7d7f1920b1",
+    "world.py": "2ff409b3046b489aaf7a1c030ceb489dfd4eb0f962b671def2b9e640db3c8c25"
+  },
+  "started_utc": "2026-10-28T04:55:20.393006+00:00",
+  "target": "WORKSTATION_LOCAL_MODEL_VIRTUAL_6502",
+  "trials": [
+    "unassisted",
+    "scaffolded"
+  ]
+}

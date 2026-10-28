@@ -1,0 +1,22 @@
+T07 / Calls and the page-one stack
+MODE: VIRTUAL_EXECUTION | HOST ONLY | NO MODEL INFERENCE
+
+Program bytes: A9 41 20 0B 03 8D 00 04 4C 1F FF 48 A9 5A 8D 01 04 68 60
+Stop: MONITOR_WARM_ENTRY; instructions: 9
+Final A=41 X=00 Y=00
+0400: 41
+0401: 5A
+Before PC   SP   instruction byte
+       0300 FF   A9
+       0302 FF   20
+       030B FD   48
+       030C FC   A9
+       030E FC   8D
+       0311 FC   68
+       0312 FD   60
+       0305 FF   8D
+       0308 FF   4C
+Final SP: FF
+JSR pushes two bytes; PHA pushes one; PLA and RTS balance them.
+
+CHECKS PASSED | No physical serial connection was requested.

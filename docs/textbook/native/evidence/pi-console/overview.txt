@@ -1,0 +1,14 @@
+REAL PI / INSTALLED NEURAL1 / VIRTUAL 6502
+Summary derived from retained native console stdout
+2026-10-28T05:14:59.597486+00:00
+
+TRACE A01 "LDA #$2A\nSTA $0400\nJMP $FF1F"
+
+Program bytes: A9 2A 8D 00 04 4C 1F FF
+Stop: MONITOR_WARM_ENTRY; instructions: 3
+Screen: ''
+
+The Pi executed these bytes in its software CPU model.
+The local model then described the retained execution evidence.
+Raw stdout and identities accompany this summary.
+No physical Replica serial connection was opened.

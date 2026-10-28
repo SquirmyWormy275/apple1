@@ -1,0 +1,9 @@
+{
+  "started_utc": "2026-10-28T05:14:59.597486+00:00",
+  "command": "TRACE A01 \"LDA #$2A\\nSTA $0400\\nJMP $FF1F\"",
+  "exit_code": 0,
+  "stdout": "{\n  \"operation\": \"TRACE\",\n  \"text\": \"The recorded screen_text is empty, the instructions are 3, and the stop_reason is MONITOR_WARM_ENTRY. The recorded program bytes are A9 2A 8D 00 04 4C 1F FF.\",\n  \"source_paths\": [],\n  \"deterministic_evidence\": {\n    \"origin\": 512,\n    \"bytes\": \"A9 2A 8D 00 04 4C 1F FF\",\n    \"symbols\": {},\n    \"diagnostics\": [],\n    \"stop_reason\": \"MONITOR_WARM_ENTRY\",\n    \"screen_text\": \"\",\n    \"instructions\": 3,\n    \"trace\": [\n      {\n        \"step\": 0,\n        \"pc\": 512,\n        \"opcode\": 169,\n        \"a\": 0,\n        \"x\": 0,\n        \"y\": 0,\n        \"sp\": 255,\n        \"p\": 48\n      },\n      {\n        \"step\": 1,\n        \"pc\": 514,\n        \"opcode\": 141,\n        \"a\": 42,\n        \"x\": 0,\n        \"y\": 0,\n        \"sp\": 255,\n        \"p\": 48\n      },\n      {\n        \"step\": 2,\n        \"pc\": 517,\n        \"opcode\": 76,\n        \"a\": 42,\n        \"x\": 0,\n        \"y\": 0,\n        \"sp\": 255,\n        \"p\": 48\n      }\n    ]\n  },\n  \"source_keys\": [],\n  \"grounded\": true,\n  \"support_note\": null,\n  \"prompt_bytes\": 1147,\n  \"output_truncated\": false,\n  \"original_question\": \"State the recorded screen_text, instructions and stop_reason. Identify the recorded program bytes. Do not describe unrecorded behavior.\",\n  \"effective_question\": \"State the recorded screen_text, instructions and stop_reason. Identify the recorded program bytes. Do not describe unrecorded behavior.\"\n}\n",
+  "stderr": "",
+  "target": "INSTALLED_REAL_PI_VIRTUAL_APPLE1",
+  "serial_opened": false
+}

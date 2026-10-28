@@ -57,13 +57,30 @@ The project adapter validates local endpoints and bounds requests.
 F21 exercises the actual request constructor with a mock opener. It performs no
 inference. A real local run requires an installed provider, an available model,
 qualified registry identity, resource bounds, and retained recordings. This
-book build did not find a local Ollama service on the workstation, so its native
-example is the retained, identified Pi run in F16/L06, not a new inference claim.
+first edition used only retained Pi evidence in F16/L06. The expanded edition
+adds [fresh workstation and Pi recordings](../native/README.md) and offline
+re-evaluation labs. The workstation used a temporary loopback-only server with
+existing cached weights; it did not acquire a new model.
 
 On the already commissioned Pi, use `MODELS`, inspect the registry choice, and
 select a qualified ID with `MODEL model-id`; then use a bounded preset. Follow
 the recorded operator guide for its installed revision. Do not download models,
 change storage, or repeat commissioning merely to read this book.
+
+## Work through a real response
+
+Read the [native walkthrough](../native/README.md), then run N01. Its arithmetic
+control and program task are separate questions. A correct arithmetic answer
+shows a responding runtime, while an unaccepted or truncated program response
+fails the declared machine task. Compare the exact prompt, raw text, accepted
+commands, write addresses, memory bytes and stop reason before reading the
+narrative conclusion.
+
+For a fresh run, record model/blob identities, provider API, runtime version,
+seed, sampling options, context/output bounds, source identities and resources.
+Use an authored positive control and an intentionally wrong candidate to test
+the evaluator itself. Retain failed attempts. Changing the prompt after a
+failure is a new condition, not a correction to the original record.
 
 ## Evaluate the proposal
 

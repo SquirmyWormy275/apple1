@@ -1,0 +1,87 @@
+{
+  "evaluation": {
+    "checks": {
+      "five_correct_bytes_and_sentinels": false,
+      "monitor_return": false,
+      "no_disallowed_commands": true,
+      "one_run_request": false,
+      "program_deposited": true,
+      "writes_exactly_once_to_each_destination": false
+    },
+    "commands": [
+      "0300: 82 00 00 00 2A 00 00 00 00 00 00 00 00 00 00 00 00 00 00 00 00 00 00 00 00 00 00 00 00 00 00 00 00 00 00 00 00 00 00 00 00 00 00 00 00 00 00 00 00 00 00 00 00 00 00 00 00 00 00 00 00 00 00 00 00 00 00 00 00 00 00 00 00 00 00 00 00 00 00 00 00 00 00 00 00 00 00 00 00 00 00 00 00 00"
+    ],
+    "execution": {
+      "final_a": 0,
+      "final_p": 48,
+      "final_pc": 770,
+      "final_sp": 255,
+      "final_x": 0,
+      "final_y": 0,
+      "instructions": 1,
+      "screen_text": "",
+      "start_address": 768,
+      "stop_reason": "BRK",
+      "trace": [
+        {
+          "a": 0,
+          "opcode": 130,
+          "p": 48,
+          "pc": 768,
+          "sp": 255,
+          "step": 0,
+          "x": 0,
+          "y": 0
+        },
+        {
+          "a": 0,
+          "opcode": 0,
+          "p": 48,
+          "pc": 770,
+          "sp": 255,
+          "step": 1,
+          "x": 0,
+          "y": 0
+        }
+      ]
+    },
+    "memory_03ff_0405": "A5 00 00 00 00 00 A5",
+    "passed": false,
+    "rejected_commands": [],
+    "writes": []
+  },
+  "generation": {
+    "completion_tokens": 192,
+    "latency_ms": 53213.24332100005,
+    "prompt_tokens": 158,
+    "provider_metadata": {
+      "agent_id": "textbook",
+      "api": "chat",
+      "done_reason": "length",
+      "endpoint": "http://127.0.0.1:11434/api/chat",
+      "format": null,
+      "raw_response_sha256": "0f0af4ab385c122d32330a6d39c2e8e6836bcb27798b029fa328f15fc933a82f",
+      "raw_response_utf8": "{\"model\":\"phi4-mini:latest\",\"created_at\":\"2026-10-28T05:17:20.731512093Z\",\"message\":{\"role\":\"assistant\",\"content\":\"0300: 82 00 00 00 2A 00 00 00 00 00 00 00 00 00 00 00 00 00 00 00 00 00 00 00 00 00 00 00 00 00 00 00 00 00 00 00 00 00 00 00 00 00 00 00 00 00 00 00 00 00 00 00 00 00 00 00 00 00 00 00 00 00 00 00 00 00 00 00 00 00 00 00 00 00 00 00 00 00 00 00 00 00 00 00 00 00 00 00 00 00 00 00 00 00\"},\"done\":true,\"done_reason\":\"length\",\"total_duration\":53212417972,\"load_duration\":6711254445,\"prompt_eval_count\":158,\"prompt_eval_duration\":5728563000,\"eval_count\":192,\"eval_duration\":40768374000}",
+      "response_payload": {
+        "created_at": "2026-10-28T05:17:20.731512093Z",
+        "done": true,
+        "done_reason": "length",
+        "eval_count": 192,
+        "eval_duration": 40768374000,
+        "load_duration": 6711254445,
+        "message": {
+          "content": "0300: 82 00 00 00 2A 00 00 00 00 00 00 00 00 00 00 00 00 00 00 00 00 00 00 00 00 00 00 00 00 00 00 00 00 00 00 00 00 00 00 00 00 00 00 00 00 00 00 00 00 00 00 00 00 00 00 00 00 00 00 00 00 00 00 00 00 00 00 00 00 00 00 00 00 00 00 00 00 00 00 00 00 00 00 00 00 00 00 00 00 00 00 00 00 00",
+          "role": "assistant"
+        },
+        "model": "phi4-mini:latest",
+        "prompt_eval_count": 158,
+        "prompt_eval_duration": 5728563000,
+        "total_duration": 53212417972
+      },
+      "seed": 7
+    },
+    "text": "0300: 82 00 00 00 2A 00 00 00 00 00 00 00 00 00 00 00 00 00 00 00 00 00 00 00 00 00 00 00 00 00 00 00 00 00 00 00 00 00 00 00 00 00 00 00 00 00 00 00 00 00 00 00 00 00 00 00 00 00 00 00 00 00 00 00 00 00 00 00 00 00 00 00 00 00 00 00 00 00 00 00 00 00 00 00 00 00 00 00 00 00 00 00 00 00"
+  },
+  "label": "scaffolded",
+  "prompt": "Write NMOS 6502 machine code at $0300. Use this algorithm: LDY #$00; LDA #$2A; LOOP: STA $0400,Y; INY; CPY #$05; BNE LOOP; JMP $FF1F. Opcode reference: LDY immediate A0 nn, LDA immediate A9 nn, STA absolute,Y 99 lo hi, INY C8, CPY immediate C0 nn, BNE D0 signed-offset-from-next-PC, JMP absolute 4C lo hi. Compute all bytes and the branch offset. Return only Woz Monitor deposit lines (0300: XX XX ...) and 0300R. No prose. At most 256 program bytes. No hardware is connected."
+}

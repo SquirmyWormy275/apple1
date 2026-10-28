@@ -1,0 +1,57 @@
+ACTUAL INSTALLED PI CONSOLE / RETAINED STDOUT
+2026-10-28T05:14:59.597486+00:00
+TRACE A01 "LDA #$2A\nSTA $0400\nJMP $FF1F"
+
+{
+  "operation": "TRACE",
+  "text": "The recorded screen_text is empty, the instructions are 3, and the stop_reason is MONITOR_WARM_ENTRY. The recorded program bytes are A9 2A 8D 00 04 4C 1F FF.",
+  "source_paths": [],
+  "deterministic_evidence": {
+    "origin": 512,
+    "bytes": "A9 2A 8D 00 04 4C 1F FF",
+    "symbols": {},
+    "diagnostics": [],
+    "stop_reason": "MONITOR_WARM_ENTRY",
+    "screen_text": "",
+    "instructions": 3,
+    "trace": [
+      {
+        "step": 0,
+        "pc": 512,
+        "opcode": 169,
+        "a": 0,
+        "x": 0,
+        "y": 0,
+        "sp": 255,
+        "p": 48
+      },
+      {
+        "step": 1,
+        "pc": 514,
+        "opcode": 141,
+        "a": 42,
+        "x": 0,
+        "y": 0,
+        "sp": 255,
+        "p": 48
+      },
+      {
+        "step": 2,
+        "pc": 517,
+        "opcode": 76,
+        "a": 42,
+        "x": 0,
+        "y": 0,
+        "sp": 255,
+        "p": 48
+      }
+    ]
+  },
+  "source_keys": [],
+  "grounded": true,
+  "support_note": null,
+  "prompt_bytes": 1147,
+  "output_truncated": false,
+  "original_question": "State the recorded screen_text, instructions and stop_reason. Identify the recorded program bytes. Do not describe unrecorded behavior.",
+  "effective_question": "State the recorded screen_text, instructions and stop_reason. Identify the recorded program bytes. Do not describe unrecorded behavior."
+}

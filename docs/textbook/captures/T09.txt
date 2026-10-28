@@ -1,0 +1,20 @@
+T09 / Labels and branch arithmetic
+MODE: VIRTUAL_EXECUTION | HOST ONLY | NO MODEL INFERENCE
+
+Program bytes: A2 03 CA D0 FD 4C 1F FF
+Before instruction: PC    A  X  Y  P
+                    0300 00 00 00 30
+                    0302 00 03 00 30
+                    0303 00 02 00 30
+                    0302 00 02 00 30
+                    0303 00 01 00 30
+                    0302 00 01 00 30
+                    0303 00 00 00 32
+                    0305 00 00 00 32
+Stop: MONITOR_WARM_ENTRY; instructions: 8
+Final A=00 X=00 Y=00
+Branch at $0303; next PC $0305; $0302 - $0305 = -3 -> $FD.
+Branch from $0300 to $0400 rejected: target is beyond +127 from $0302.
+Forward DATA label is $0306; LDA absolute must occupy three bytes.
+
+CHECKS PASSED | No physical serial connection was requested.

@@ -81,3 +81,12 @@ The [current-status page](../docs/STATUS.md) distinguishes these workstreams.
 does not establish a scientific finding.
 
 [Wiki home](Home.md) · [Next: architecture and source tour](Architecture.md) · [Try the demonstration](../docs/neural1/getting-started.md)
+
+## Teaching backed by execution
+
+The expanded [textbook](../docs/textbook/README.md) includes 100 runnable labs,
+raw captures, exercises and worked answers. Its [technical review](../docs/textbook/review.md)
+records assembler, retrieval and teaching corrections discovered during use.
+[Native Pi verification](../docs/textbook/validation/README.md) reproduced every
+lab and passed the full 439-test suite. Fresh model records retain successful
+tutoring, rejected proposals and the source changes behind a corrected answer.

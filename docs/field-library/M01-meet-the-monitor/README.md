@@ -35,8 +35,8 @@ Paper. `assets/three-jobs.txt`. Nothing powered on.
 ## Explain what happened
 
 **What a monitor program is.** A *monitor* here is a small program that gives you
-direct access to memory. Steve Wozniak coined the usage for this machine: he
-wrote a short program that watched the keyboard and did the job the front-panel
+direct access to memory. Steve Wozniak wrote the Apple-1 Monitor, a short
+program that watched the keyboard and did the job the front-panel
 switches on earlier computers had done. It occupies 256 bytes.
 
 Before machines like this, using a computer meant setting rows of physical
@@ -44,6 +44,10 @@ switches to enter each byte and reading lights to see the result. The Altair
 worked that way. The monitor replaced the switches with typing.
 
 **The three jobs.**
+
+The Monitor's three basic functions are **inspect memory, change memory, and
+run a program**. The Briel manual calls these examine, program, and run
+(R-MON-3). Here, "program" means depositing bytes into memory.
 
 *Inspect.* Type an address and press Return. It prints what is there. Type
 `300` and it answers `0300: E1`. Type a range with a dot between, like
@@ -60,7 +64,7 @@ whatever you jumped to is.
 
 **Why it is not an operating system.** An operating system manages resources for
 programs: memory, files, devices, time. The Monitor does none of that. It cannot
-list anything, because there is nothing to list. It has no concept of a file. It
+list files, because it has no filesystem. It
 does not track what is running, cannot stop a program, and offers no way to
 undo a change. It is closer to a pair of tweezers than to Windows.
 

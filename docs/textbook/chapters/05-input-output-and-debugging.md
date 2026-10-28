@@ -30,6 +30,28 @@ of an input event. A05 runs both cases. To investigate long input, derive the
 index and branch limits from the listing and compare actual harness results;
 do not assume unrestricted buffer growth.
 
+## Derive the work and test the boundary
+
+Run [T11](../features/T11.md). For an ordinary character the harness counts
+status load, readiness branch, data load, store, JSR, ECHO-stub RTS, compare,
+exit branch, INY and loop branch: ten instructions. The CR path omits the last
+two. Include the one-instruction setup and final JMP:
+
+```text
+1 + 10*n + 8 + 1 = 10*(n+1), for 0 <= n <= 127
+```
+
+This count assumes supplied input is immediately ready; it does not measure
+physical polling delays or cycles. At 127 ordinary characters plus CR, all 128
+bytes fit and the count is 1280. At 128 ordinary characters plus CR, Y becomes
+$80 after the 128th store; BPL falls through before reading Return. The count
+becomes 1282 and the returned buffer has no CR terminator. A consumer must not
+search beyond the declared buffer merely because it expects Return to exist.
+
+The harness extracts at most 128 buffer bytes. That extraction bound is
+different from proving an arbitrary program stayed within that memory range.
+A new routine needs its own sentinel/write checks, as T02 demonstrates.
+
 ## Display output and an output log
 
 The CPU produces a character through the modeled ECHO entry point. The harness

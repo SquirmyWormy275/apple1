@@ -60,7 +60,7 @@ Check yourself against a real line: `line-input-0300.hex` contains
 Two differences stated in the lesson:
 
 1. **More RAM.** The original had 4 KB of user space at `$0000`-`$0FFF`; the
-   replica design documented by Owad has 32 KB, `$0000`-`$8000`. Easier: more
+   replica design documented by Owad has 32 KiB, `$0000`-`$7FFF` inclusive (the book's `$8000` inclusive endpoint is an off-by-one error). Easier: more
    room for programs and data, and no need to be frugal.
 2. **BASIC in ROM instead of RAM.** On the original, `$E000`-`$EFFF` was RAM and
    BASIC had to be reloaded from cassette or typed in at every power-up. On the

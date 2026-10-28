@@ -39,17 +39,13 @@ eight-byte line.
 puzzle and is not a reading from any machine. This follows the M02 brief's
 requirement for clearly fictional examples and is repeated in `STATUS.md`.
 
-## The deliberate error in Part C
+## Count correction and explicit critical-reading exercise
 
-Part C asks for four referenced addresses and there are five. This is intentional
-and the answer key says so, along with which two are most often missed.
-
-A worksheet that quietly contained a wrong count would be a defect. One that
-contains a wrong count *and* rewards the learner for catching it is an exercise in
-not trusting the question, which is the S04 habit applied to an instruction sheet.
-
-Recorded as **V-32** so no future editor "corrects" it: the Part C count of four
-is deliberately wrong and the answer key depends on it.
+V-32 is superseded. Part C now asks accurately for five absolute operands or
+indexed bases and separately invites the learner to challenge a claim of four.
+Relative-branch targets are explicitly outside this count. Part D's high-bit
+answer is corrected to fifteen; the earlier list omitted `C8` (INY). The X01
+worked source counts the preserved file bytes directly.
 
 ## The Part D question 10 point
 
@@ -61,7 +57,7 @@ from OWAD Appendix D p. 258.
 ## Claims needing verification
 
 - Page numbers inherit **V-1**.
-- **V-32 (new).** Part C's count of four is a deliberate error.
+- **V-32 superseded.** The revised question and counted bytes are described above.
 - **V-8 applies.** Neither dump was read from this board, and Dump One's bytes,
   though real, come from a file rather than from memory.
 

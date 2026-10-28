@@ -159,19 +159,19 @@ evidence and should be worked through before anything goes on the card.**
 | **V-4** | `SOURCES.md` | Which replica. OWAD describes the Replica I and the Replica I TE. BRIEL documents the Replica 1 Plus. These are different products. A claim sourced to OWAD must not be stated as a fact about the Plus. |
 | **V-5** | `SOURCES.md` | BASIC in ROM on the original. H-BASIC-TAPE and M-BASIC-RAM together support "a 1976 Apple-1 did not have BASIC in ROM," but the inference is the author's. A citation from the Apple-1 Operation Manual would settle it. |
 | **V-6** | `SOURCES.md` | Manual identity. The knowledge base indexes `Replica_One_Plus_Manual__June_2014.pdf`; the collection folder holds `Replica_One_Plus_Manual_-_June_2014.pdf`. Presumed the same June 2014 edition. No SHA-256 comparison has been run, which... |
-| **V-7** | `SOURCES.md` | Display geometry. The 40-column width used throughout this library comes from the repository's own rule and tooling, not from a cited Apple-1 display specification. A line count per screen is nowhere cited and is not claimed by any lesson. |
+| **V-7** | `SOURCES.md` | **RESOLVED for original Apple-1.** Operation Manual PDF pp. 2–3 specifies 40 columns and 24 lines with automatic scrolling (P-GEOMETRY). The physical Plus remains unmeasured. |
 | **V-8** | `SOURCES.md` | This machine. Nothing in this pool describes the state of this project's board, its installed EEPROM, or its serial path. |
-| **V-9** | `C02-memory-is-a-map` | The `$0200` Monitor input-line label is inferred from the Monitor listing's `STA IN,Y` assembling as `99 00 02`, not from a stated memory-map entry. Confirm against a primary Apple-1 memory map before this packet goes on the card. |
+| **V-9** | `C02-memory-is-a-map` | **RESOLVED.** BRIEL Appendix C p. 32 explicitly lists IN as 200–27F; p. 30 shows its indexed use. See textbook manual review. |
 | **V-10** | `C04-characters-become-numbers` | **RESOLVED.** Confirmed by direct reading of `tools/apple1_emulator.py`: the harness sets bit 7 on input itself (`byte | 0x80`) and masks it off when recording screen text. |
 | **V-11** | `C05-instructions-change-state` | The claim that the harness begins with the carry clear was inferred from the observed result (`$42` rather than `$43`) plus a direct py65 reproduction, not from a stated guarantee in the tool. If a future harness change altered initial processor state,... |
-| **V-12** | `M03-a-safe-rehearsal-loop` | The instruction-count rule is empirical over four inputs, not derived. Do not promote it to a stated property of the program without deriving it. |
+| **V-12** | `M03-a-safe-rehearsal-loop` | **RESOLVED within stated bounds.** T11 derives and executes `1+10*n+8+1` for 0–127 ordinary characters; the 128-character index exit takes 1282 instructions. |
 | **V-13** | `M04-debugging-as-observation` | The FT232R account is summarized from the preservation dossier's "Current boundaries" section. The primary record of that event, with its date, operator, and exact observation, lives in the project's chain-of-custody and evidence ledger rather than in this... |
-| **V-14** | `M05-why-jmp-ff1f-matters` | The lesson states that the Monitor's `R` command performs a jump rather than a `JSR`. This is taken from the repository's own statement in `software/ram-only/README.md` and is consistent with `RTS` being unsafe after `R`. It has **not** been confirmed... |
+| **V-14** | `M05-why-jmp-ff1f-matters` | **RESOLVED.** Visually checked BRIEL p. 31: RUN at FF94 is `6C 24 00`, JMP (XAML), creating no JSR call frame. |
 | **V-15** | `M05-why-jmp-ff1f-matters` | Whether `line-input-echo-0300.hex`'s restart loop is intended is an open question for the repository owner. This lesson presents it as observed behavior and explicitly declines to call it a defect. Do not edit the lesson to assert either answer before it... |
 | **V-16** | `A03-counting-and-looping` | The recorded results for Programs A and B come from a direct `py65` reproduction performed during authoring, not from a run of `tools/apple1_emulator.py`, and are not listed in `../EMULATOR-RUNS.md` as harness runs. A reviewer wanting harness-level... |
 | **V-17** | `A04-decisions-and-branches` | The A04 program's runs are recorded here and in `../EMULATOR-RUNS.md`, but the program is a teaching artifact written for this lesson and is not part of `software/ram-only/`. It carries no hardware authority of any kind and should not be promoted into the... |
 | **V-18** | `A05-keyboard-to-screen` | The 128-character second exit and whether it is deliberate. |
-| **V-19** | `A06-design-a-tiny-utility` | The A06 worked example is hand-traced, not executed. |
+| **V-19** | `A06-design-a-tiny-utility` | **RESOLVED.** T10 executes the exact thirteen-byte A06 answer: 16 writes, correct boundary and 51 modeled instructions. Its index-FF variant corrects the zero-length claim. |
 | **V-20** | `B01-from-instructions-to-basic` | No BASIC in this library has been executed. All behavior is cited from OWAD chapter 5. |
 | **V-21** | `B02-variables-input-and-output` | The double-question-mark consequence in Part E is reasoned from B-INPUT-Q, not observed in a transcript. |
 | **V-22** | `B04-sorting-by-hand` | The "visible wait" claim is qualitative reasoning. No timing figure is given anywhere and none should be added without a source. |
@@ -184,7 +184,7 @@ evidence and should be worked through before anything goes on the card.**
 | **V-29** | `H02-original-replica-and-reproduction` | The four definitions are a working scheme, uncited, and usage varies among collectors. |
 | **V-30** | `H03-why-provenance-matters` | Evidence-card fields 9 and 10 are this library's addition, not documented project practice. |
 | **V-31** | `H05-the-future-history-you-are-making` | The uncertainty field is this library's addition. |
-| **V-32** | `X01-hex-scavenger-hunt` | Part C's count of four is a deliberate error. |
+| **V-32** | `X01-hex-scavenger-hunt` | **SUPERSEDED.** X01 now asks accurately for five absolute operands/indexed bases, then separately asks the learner to assess a claim of four. The high-bit count is corrected to 15. |
 | **V-33** | `X02-fix-the-loop` | Both programs in this packet are teaching artifacts written for this lesson. Neither is in `software/ram-only/`, neither has been through that library's acceptance process, and neither carries any hardware authority. |
 | **V-34** | `X04-curate-a-mini-software-exhibit` | Rights and permission status is unrecorded for several artifacts. |
 | **V-35** | `X05-invent-the-next-lesson` | Two card sections extend the curriculum's stated requirements. |

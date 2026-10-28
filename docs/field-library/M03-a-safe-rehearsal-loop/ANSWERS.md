@@ -19,11 +19,14 @@ match exactly. If it does not, the discrepancy is the finding, and per
 
 Check: 1 character gives 20, 2 gives 30, 5 gives 60, 7 gives 80. All four fit.
 
-The "+1" is the carriage return, which goes round the same loop as a typed
-character before the comparison ends it. The 10 is the number of instructions in
-one pass of the loop.
+For 0–127 ordinary characters, count setup (1), each ordinary pass (10),
+the CR pass (8), and the final JMP (1): `1 + 10*n + 8 + 1 = 10*(n+1)`.
+The CR path skips INY and the final BPL, so it is not a ten-instruction loop
+pass by itself. [T11](../../textbook/features/T11.md) executes empty input and
+both boundary cases. At 128 ordinary characters the index exit occurs before CR
+and the formula changes: `1 + 10*128 + 1 = 1282`.
 
-A learner who predicts 110 for a nine-character input and gets 110 has done the
+A learner who predicts 100 for a nine-character input and gets 100 has done the
 strongest thing available in this lesson: predicted an unseen number from a
 model and been right.
 
@@ -74,10 +77,13 @@ No single answer. Common informative results:
 - Changing `8D` (the CR comparison) to another value: the loop no longer stops on
   Enter, and the run consumes all input or hits the instruction ceiling.
 - Changing `04` in `99 00 04` to `40`: the program still runs and still returns,
-  but the buffer field comes back empty, because characters went to `$4000`
+  but the buffer field contains 128 NUL characters in this zero-initialized
+  harness, because characters went to `$4000`
   instead. This reproduces M02's dangerous-error case and is the best single
   experiment in this lesson.
-- Changing `1F` in `4C 1F FF`: `returned_to_monitor` becomes false.
+- Changing `1F` in `4C 1F FF`: the warm-entry exit is lost. Depending on the
+  new path, this harness can raise `ProgramExecutionError` at its instruction
+  bound. It does not generally return a result with `returned_to_monitor=false`.
 
 Confirm the learner worked in a scratch copy. `software/ram-only/` must be
 unchanged afterwards.

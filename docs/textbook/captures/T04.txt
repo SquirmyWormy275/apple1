@@ -1,0 +1,22 @@
+T04 / Carry a result across two bytes
+MODE: VIRTUAL_EXECUTION | HOST ONLY | NO MODEL INFERENCE
+
+Program bytes: D8 18 A9 FF 69 01 8D 00 04 A9 00 69 00 8D 01 04 4C 1F FF
+Before instruction: PC    A  X  Y  P
+                    0300 00 00 00 30
+                    0301 00 00 00 30
+                    0302 00 00 00 30
+                    0304 FF 00 00 B0
+                    0306 00 00 00 33
+                    0309 00 00 00 33
+                    030B 00 00 00 33
+                    030D 01 00 00 30
+                    0310 01 00 00 30
+Stop: MONITOR_WARM_ENTRY; instructions: 9
+Final A=01 X=00 Y=00
+0400: 00
+0401: 01
+Little-endian 16-bit result: 256 ($0100)
+STA and LDA between the additions preserve carry; CLC there would lose the ninth bit.
+
+CHECKS PASSED | No physical serial connection was requested.

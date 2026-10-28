@@ -36,7 +36,7 @@ Exact and recorded in `../EMULATOR-RUNS.md`.
 - `line-input-echo-0300.hex` does not return to the Monitor. Its final
   instruction is `JMP $0300`. This is stated in the lesson, recorded in
   `../EMULATOR-RUNS.md`, and flagged for the repository owner.
-- The instruction-count rule is empirical over four inputs (V-12).
+- V-12 is resolved for 0–127 ordinary characters by the derivation and boundary executions in T11. At 128 the alternate exit changes the count.
 
 ## Stop condition
 

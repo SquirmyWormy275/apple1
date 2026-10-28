@@ -1,0 +1,14 @@
+T02 / Copy a table with sentinels
+MODE: VIRTUAL_EXECUTION | HOST ONLY | NO MODEL INFERENCE
+
+Program bytes: A9 A5 8D FF 03 8D 05 04 A0 00 B9 18 03 99 00 04 C8 C0 05 D0 F5 4C 1F FF 48 45 4C 4C 4F
+Stop: MONITOR_WARM_ENTRY; instructions: 30
+Final A=4F X=00 Y=05
+03FF: A5
+0400: 48
+0404: 4F
+0405: A5
+Data label: 0318
+Copied: b'HELLO'
+
+CHECKS PASSED | No physical serial connection was requested.

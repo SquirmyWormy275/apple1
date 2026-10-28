@@ -1,0 +1,31 @@
+N01 / Inspect fresh local-model evidence
+MODE: RETAINED_NATIVE_REEVALUATION | HOST ONLY | NO MODEL INFERENCE
+
+RETAINED REAL INFERENCE; this lab re-evaluates records without contacting a model.
+Record: generate runtime: 0.33.2 model: qwen2.5-coder:1.5b
+Target: WORKSTATION_LOCAL_MODEL_VIRTUAL_6502
+Recorded arithmetic control: '4' passed: True
+unassisted task passed: False accepted commands: 0
+Finish reason: length
+scaffolded task passed: False accepted commands: 0
+Finish reason: length
+RETAINED REAL INFERENCE; this lab re-evaluates records without contacting a model.
+Record: chat runtime: 0.33.2 model: qwen2.5-coder:1.5b
+Target: WORKSTATION_LOCAL_MODEL_VIRTUAL_6502
+Recorded arithmetic control: '4' passed: True
+unassisted task passed: False accepted commands: 0
+Finish reason: length
+scaffolded task passed: False accepted commands: 0
+Finish reason: length
+RETAINED REAL INFERENCE; this lab re-evaluates records without contacting a model.
+Record: pi-phi4 runtime: 0.32.14 model: phi4-mini:latest
+Target: REAL_PI_LOCAL_MODEL_VIRTUAL_6502
+Recorded arithmetic control: '4' passed: True
+unassisted task passed: False accepted commands: 0
+Finish reason: length
+scaffolded task passed: False accepted commands: 1
+Finish reason: length
+Authored positive passes; authored six-byte boundary violation fails the same task.
+Passing this lab verifies the recorded negative finding, not model success.
+
+CHECKS PASSED | No physical serial connection was requested.

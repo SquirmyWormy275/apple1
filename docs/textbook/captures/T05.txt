@@ -1,0 +1,24 @@
+T05 / Subtract and compare deliberately
+MODE: VIRTUAL_EXECUTION | HOST ONLY | NO MODEL INFERENCE
+
+Binary 5 - 3, SEC
+Program bytes: D8 38 A9 05 E9 03 4C 1F FF
+Stop: MONITOR_WARM_ENTRY; instructions: 5
+Final A=02 X=00 Y=00
+Carry means no unsigned borrow: True
+Binary 3 - 5, SEC
+Program bytes: D8 38 A9 03 E9 05 4C 1F FF
+Stop: MONITOR_WARM_ENTRY; instructions: 5
+Final A=FE X=00 Y=00
+Carry means no unsigned borrow: False
+Binary 5 - 3, CLC
+Program bytes: D8 18 A9 05 E9 03 4C 1F FF
+Stop: MONITOR_WARM_ENTRY; instructions: 5
+Final A=01 X=00 Y=00
+Carry means no unsigned borrow: True
+Program bytes: A9 80 C9 01 4C 1F FF
+Stop: MONITOR_WARM_ENTRY; instructions: 3
+Final A=80 X=00 Y=00
+CMP $80 against $01: unsigned 128 >= 1. Signed -128 < 1 needs signed reasoning.
+
+CHECKS PASSED | No physical serial connection was requested.

@@ -1,0 +1,10 @@
+{
+  "exit_code": 0,
+  "maximum_temperature_c": 67.75,
+  "minimum_available_memory_bytes": 4314333184,
+  "stop": null,
+  "elapsed_seconds": 114.34147067100002,
+  "threshold_c": 68,
+  "minimum_memory_bytes": 1073741824,
+  "uuid_verified": true
+}

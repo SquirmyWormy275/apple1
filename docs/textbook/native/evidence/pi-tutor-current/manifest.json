@@ -1,0 +1,15 @@
+{
+  "files_sha256": {
+    "capture.py": "4d68884ed2ea7f97bd0af3ee193f46e7d01a8092a8de4e43f539e5e7821803cb",
+    "provider.jsonl": "c930d0f0b01d7565182af2fbd504dec319f230fd08cf4a84e9a366261a1fd8c1",
+    "result.json": "9a67df47ab224ffb5a0c11d6208a7160de56035b2b2ded80a21128c085507c79",
+    "source/docs/field-library/M01-meet-the-monitor/ACTIVITY.md.source": "7d2bb86806fad4edcb1b6d9561e3a4616987b6bfed6a5f0c25fd8e843b48f2b8",
+    "source/docs/field-library/M01-meet-the-monitor/ANSWERS.md.source": "026cc992cb98a843481935c79d2c344430098fbb8eba1c95e40d397b6c013670",
+    "source/docs/field-library/M01-meet-the-monitor/README.md.source": "ac26f9355a3541ee402ffa32042602269c8be89ed69c5032f84b42f5bbf22618",
+    "source/docs/field-library/M01-meet-the-monitor/SOURCE-NOTES.md.source": "5686fbad1d472c84b73be2abdc674b958cf263def9ee36e125880fac786edf76",
+    "source/docs/field-library/M01-meet-the-monitor/STATUS.md.source": "f897ea9d1574207a6c2115ff87c2f491bbbf0d5b7f918e196ffb08e9b20c39d9",
+    "source/docs/field-library/M01-meet-the-monitor/WORKED.md.source": "4e1ba21ab58b4ee787760e7506b5e94e1beb089722ecfcb8aa8b3f0a5cfc928c",
+    "source/neural1/field_library.py.source": "87962fca333ac4a3b2332cd1326c542d0f262c6636ad022110ebc5ceb0317659"
+  },
+  "target": "STAGED_CURRENT_SOURCE_REAL_PI_VIRTUAL_APPLE1"
+}

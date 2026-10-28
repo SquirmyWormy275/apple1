@@ -39,18 +39,16 @@ class LessonAssembler:
         statements = self._parse(source)
         symbols: dict[str, int] = {}
         diagnostics: list[AssemblyDiagnostic] = []
-        pc = origin
-        for line, label, statement in statements:
-            if label:
-                if label in symbols:
-                    diagnostics.append(AssemblyDiagnostic(line, "ERROR", f"duplicate label: {label}"))
-                else:
-                    symbols[label] = pc
-            if statement:
-                try:
-                    pc += len(self._encode(statement, pc, {}, unresolved=True))
-                except (SyntaxError, ValueError, OverflowError):
-                    diagnostics.append(AssemblyDiagnostic(line, "ERROR", f"cannot size instruction: {statement}"))
+        # Size with a high placeholder first: Py65 otherwise chooses zero page
+        # for an unknown label, shifting every later label when it becomes absolute.
+        previous: dict[str, int] = {}
+        for _ in range(len(statements) + 2):
+            symbols, diagnostics = self._layout(statements, origin, previous)
+            if diagnostics or symbols == previous:
+                break
+            previous = symbols
+        else:
+            diagnostics.append(AssemblyDiagnostic(0, "ERROR", "instruction layout did not converge"))
         payload = bytearray()
         pc = origin
         if not diagnostics:
@@ -66,6 +64,23 @@ class LessonAssembler:
         if origin < 0 or origin + len(payload) > 0x10000:
             diagnostics.append(AssemblyDiagnostic(0, "ERROR", "assembled program exceeds address space"))
         return AssemblyResult(origin, bytes(payload) if not diagnostics else b"", symbols, tuple(diagnostics))
+
+    def _layout(self, statements, origin: int, previous: dict[str, int]):
+        symbols: dict[str, int] = {}
+        diagnostics: list[AssemblyDiagnostic] = []
+        pc = origin
+        for line, label, statement in statements:
+            if label:
+                if label in symbols:
+                    diagnostics.append(AssemblyDiagnostic(line, "ERROR", f"duplicate label: {label}"))
+                else:
+                    symbols[label] = pc
+            if statement:
+                try:
+                    pc += len(self._encode(statement, pc, {**previous, **symbols}, unresolved=True))
+                except (SyntaxError, ValueError, OverflowError):
+                    diagnostics.append(AssemblyDiagnostic(line, "ERROR", f"cannot size instruction: {statement}"))
+        return symbols, diagnostics
 
     def assemble_and_run(self, source: str, *, origin: int = 0x0200, ram_budget: int = 4096, max_instructions: int = 10_000) -> tuple[AssemblyResult, ExecutionResult | None]:
         assembled = self.assemble(source, origin=origin)
@@ -86,11 +101,21 @@ class LessonAssembler:
             for token in set(_TOKEN.findall(operand)):
                 if token in {"A", "X", "Y"}:
                     continue
-                value = symbols.get(token, 0 if unresolved else None)
+                # Indexed-indirect forms require an eight-bit pointer operand.
+                placeholder = 0 if operand.startswith("(") and mnemonic != "JMP" else 0xFFFF
+                value = symbols.get(token, placeholder if unresolved else None)
                 if value is None:
                     raise KeyError(token)
                 operand = re.sub(rf"\b{re.escape(token)}\b", f"${value:04X}", operand)
             upper = f"{mnemonic} {operand}"
+            if not unresolved and mnemonic in {"BCC", "BCS", "BEQ", "BMI", "BNE", "BPL", "BVC", "BVS"}:
+                # Use the encoder's numeric syntax (bare numbers are hex), so
+                # the range check and emitted branch agree on the same target.
+                _, normalized = self._assembler.normalize_and_split(upper)
+                target = int(normalized.removeprefix("$"), 16)
+                displacement = (target - ((pc + 2) & 0xFFFF)) & 0xFFFF
+                if not 0 <= target <= 0xFFFF or 0x80 <= displacement < 0xFF80:
+                    raise ValueError("relative branch exceeds -128..127")
         return bytes(self._assembler.assemble(upper, pc=pc))
 
     @staticmethod

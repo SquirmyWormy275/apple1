@@ -23,16 +23,14 @@ what came out.
 They are facts **about a byte sequence executed by a software model**. The
 distinction is the entire subject of the lesson.
 
-## The instruction-count pattern
+## The instruction-count derivation
 
-`10 x (characters + 1)` is a generalization from four observed data points, not a
-derivation from the code. It fits all four recorded runs. It is presented in the
-lesson as a pattern to test by prediction, which is the honest framing: a learner
-who predicts an unseen value and matches it has strengthened it, and a learner
-who finds an input where it fails has found something worth recording.
-
-It should not be treated as a property of the program until someone derives it
-from the loop body. Recorded as **V-12**.
+**V-12 resolved within a stated domain:** for 0–127 ordinary input characters
+followed by CR, the harness counts setup (1), each ordinary pass (10), the CR
+pass (8) and the final JMP (1). Thus `1+10*n+8+1 = 10*(n+1)`.
+T11 executes empty, one-character, 127-character and 128-character cases.
+At 128 ordinary characters, the index exit precedes CR, giving
+`1+10*128+1 = 1282`. This remains a harness instruction count, not physical time.
 
 ## The echo-program finding
 
@@ -51,9 +49,7 @@ on its own.
 - Page numbers inherit **V-1**.
 - **V-11 applies** where processor start state could matter, though no part of
   this lesson depends on the initial carry.
-- **V-12 (new).** The instruction-count rule is empirical over four inputs, not
-  derived. Do not promote it to a stated property of the program without deriving
-  it.
+- **V-12 resolved** by the derivation and T11 boundary execution above.
 - **V-8 applies absolutely.** No field of the harness output is a measurement of
   this project's board.
 

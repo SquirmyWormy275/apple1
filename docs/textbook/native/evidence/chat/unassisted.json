@@ -1,0 +1,75 @@
+{
+  "evaluation": {
+    "checks": {
+      "five_correct_bytes_and_sentinels": false,
+      "monitor_return": false,
+      "no_disallowed_commands": true,
+      "one_run_request": false,
+      "program_deposited": false,
+      "writes_exactly_once_to_each_destination": false
+    },
+    "commands": [],
+    "execution": {
+      "final_a": 0,
+      "final_p": 48,
+      "final_pc": 768,
+      "final_sp": 255,
+      "final_x": 0,
+      "final_y": 0,
+      "instructions": 0,
+      "screen_text": "",
+      "start_address": 768,
+      "stop_reason": "BRK",
+      "trace": [
+        {
+          "a": 0,
+          "opcode": 0,
+          "p": 48,
+          "pc": 768,
+          "sp": 255,
+          "step": 0,
+          "x": 0,
+          "y": 0
+        }
+      ]
+    },
+    "memory_03ff_0405": "A5 00 00 00 00 00 A5",
+    "passed": false,
+    "rejected_commands": [],
+    "writes": []
+  },
+  "generation": {
+    "completion_tokens": 192,
+    "latency_ms": 7814.81700896984,
+    "prompt_tokens": 118,
+    "provider_metadata": {
+      "agent_id": "textbook",
+      "api": "chat",
+      "done_reason": "length",
+      "endpoint": "http://127.0.0.1:11435/api/chat",
+      "format": null,
+      "raw_response_sha256": "f8f80e6e22f365044d26a4807da2cd354067575785990762389ccdc3359c0a0c",
+      "raw_response_utf8": "{\"model\":\"qwen2.5-coder:1.5b\",\"created_at\":\"2026-10-28T04:55:29.587729391Z\",\"message\":{\"role\":\"assistant\",\"content\":\"```\\n0300: 00 00 00 00 00 00 00 00 00 00 00 00 00 00 00 00 00 00 00 00 00 00 00 00 00 00 00 00 00 00 00 00 00 00 00 00 00 00 00 00 00 00 00 00 00 00 00 00 00 00 00 00 00 00 00 00 00 00 00 00 00 0\"},\"done\":true,\"done_reason\":\"length\",\"total_duration\":7813892988,\"load_duration\":1094097475,\"prompt_eval_count\":118,\"prompt_eval_duration\":831565000,\"eval_count\":192,\"eval_duration\":5883607000}",
+      "response_payload": {
+        "created_at": "2026-10-28T04:55:29.587729391Z",
+        "done": true,
+        "done_reason": "length",
+        "eval_count": 192,
+        "eval_duration": 5883607000,
+        "load_duration": 1094097475,
+        "message": {
+          "content": "```\n0300: 00 00 00 00 00 00 00 00 00 00 00 00 00 00 00 00 00 00 00 00 00 00 00 00 00 00 00 00 00 00 00 00 00 00 00 00 00 00 00 00 00 00 00 00 00 00 00 00 00 00 00 00 00 00 00 00 00 00 00 00 00 0",
+          "role": "assistant"
+        },
+        "model": "qwen2.5-coder:1.5b",
+        "prompt_eval_count": 118,
+        "prompt_eval_duration": 831565000,
+        "total_duration": 7813892988
+      },
+      "seed": 7
+    },
+    "text": "```\n0300: 00 00 00 00 00 00 00 00 00 00 00 00 00 00 00 00 00 00 00 00 00 00 00 00 00 00 00 00 00 00 00 00 00 00 00 00 00 00 00 00 00 00 00 00 00 00 00 00 00 00 00 00 00 00 00 00 00 00 00 00 00 0"
+  },
+  "label": "unassisted",
+  "prompt": "Write NMOS 6502 machine code at $0300 that fills exactly $0400 through $0404 with $2A, leaves all other memory unchanged, then JMP $FF1F. Return only Woz Monitor deposit lines (0300: XX XX ...) and 0300R. No prose. At most 256 program bytes. No hardware is connected."
+}

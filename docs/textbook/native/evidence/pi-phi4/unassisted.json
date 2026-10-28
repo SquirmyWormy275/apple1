@@ -1,0 +1,75 @@
+{
+  "evaluation": {
+    "checks": {
+      "five_correct_bytes_and_sentinels": false,
+      "monitor_return": false,
+      "no_disallowed_commands": true,
+      "one_run_request": false,
+      "program_deposited": false,
+      "writes_exactly_once_to_each_destination": false
+    },
+    "commands": [],
+    "execution": {
+      "final_a": 0,
+      "final_p": 48,
+      "final_pc": 768,
+      "final_sp": 255,
+      "final_x": 0,
+      "final_y": 0,
+      "instructions": 0,
+      "screen_text": "",
+      "start_address": 768,
+      "stop_reason": "BRK",
+      "trace": [
+        {
+          "a": 0,
+          "opcode": 0,
+          "p": 48,
+          "pc": 768,
+          "sp": 255,
+          "step": 0,
+          "x": 0,
+          "y": 0
+        }
+      ]
+    },
+    "memory_03ff_0405": "A5 00 00 00 00 00 A5",
+    "passed": false,
+    "rejected_commands": [],
+    "writes": []
+  },
+  "generation": {
+    "completion_tokens": 192,
+    "latency_ms": 49668.64122599998,
+    "prompt_tokens": 78,
+    "provider_metadata": {
+      "agent_id": "textbook",
+      "api": "chat",
+      "done_reason": "length",
+      "endpoint": "http://127.0.0.1:11434/api/chat",
+      "format": null,
+      "raw_response_sha256": "234b7ecfd019c83b6d2df096b500780a143276635b65130a4848b94e06ce4d4d",
+      "raw_response_utf8": "{\"model\":\"phi4-mini:latest\",\"created_at\":\"2026-10-28T05:16:27.516685129Z\",\"message\":{\"role\":\"assistant\",\"content\":\"```\\n0300:  0F 2A  0F  2A  0F  2A  0F  2A  0F  2A  0F  2A  0F  2A  0F  2A  0F  2A  0F  2A  0F  2A  0F  2A  0F  2A  0F  2A  0F  2A  0F  2A  0F  2A  0F  2A  0F  2A  0F  2A  0F  2A  0F  2A  0F  2A  0F\"},\"done\":true,\"done_reason\":\"length\",\"total_duration\":49667917488,\"load_duration\":6712649354,\"prompt_eval_count\":78,\"prompt_eval_duration\":2913937000,\"eval_count\":192,\"eval_duration\":40038079000}",
+      "response_payload": {
+        "created_at": "2026-10-28T05:16:27.516685129Z",
+        "done": true,
+        "done_reason": "length",
+        "eval_count": 192,
+        "eval_duration": 40038079000,
+        "load_duration": 6712649354,
+        "message": {
+          "content": "```\n0300:  0F 2A  0F  2A  0F  2A  0F  2A  0F  2A  0F  2A  0F  2A  0F  2A  0F  2A  0F  2A  0F  2A  0F  2A  0F  2A  0F  2A  0F  2A  0F  2A  0F  2A  0F  2A  0F  2A  0F  2A  0F  2A  0F  2A  0F  2A  0F",
+          "role": "assistant"
+        },
+        "model": "phi4-mini:latest",
+        "prompt_eval_count": 78,
+        "prompt_eval_duration": 2913937000,
+        "total_duration": 49667917488
+      },
+      "seed": 7
+    },
+    "text": "```\n0300:  0F 2A  0F  2A  0F  2A  0F  2A  0F  2A  0F  2A  0F  2A  0F  2A  0F  2A  0F  2A  0F  2A  0F  2A  0F  2A  0F  2A  0F  2A  0F  2A  0F  2A  0F  2A  0F  2A  0F  2A  0F  2A  0F  2A  0F  2A  0F"
+  },
+  "label": "unassisted",
+  "prompt": "Write NMOS 6502 machine code at $0300 that fills exactly $0400 through $0404 with $2A, leaves all other memory unchanged, then JMP $FF1F. Return only Woz Monitor deposit lines (0300: XX XX ...) and 0300R. No prose. At most 256 program bytes. No hardware is connected."
+}

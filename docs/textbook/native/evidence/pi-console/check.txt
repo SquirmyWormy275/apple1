@@ -1,0 +1,24 @@
+ACTUAL INSTALLED PI CONSOLE / RETAINED STDOUT
+2026-10-28T05:14:24.323737+00:00
+CHECK M05 RTS always returns a program started with R to the Monitor.
+
+{
+  "operation": "CHECK",
+  "text": "NOT ESTABLISHED BY THE AVAILABLE LIBRARY SOURCES.",
+  "source_paths": [
+    "/opt/neural1/releases/4f06e6d10bcbffca47c0f7554800972555085c78/docs/field-library/M05-why-jmp-ff1f-matters/README.md",
+    "/opt/neural1/releases/4f06e6d10bcbffca47c0f7554800972555085c78/docs/field-library/M05-why-jmp-ff1f-matters/ANSWERS.md",
+    "/opt/neural1/releases/4f06e6d10bcbffca47c0f7554800972555085c78/docs/field-library/M05-why-jmp-ff1f-matters/SOURCE-NOTES.md"
+  ],
+  "deterministic_evidence": null,
+  "source_keys": [
+    "E-EXIT",
+    "OWAD"
+  ],
+  "grounded": false,
+  "support_note": null,
+  "prompt_bytes": 2106,
+  "output_truncated": false,
+  "original_question": "RTS always returns a program started with R to the Monitor.",
+  "effective_question": "RTS always returns a program started with R to the Monitor."
+}

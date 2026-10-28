@@ -213,6 +213,21 @@
     "teaching_route": "Chapter 0; list/run/capture/verify/build-pages"
   },
   {
+    "path": "tools/textbook_native.py",
+    "subcommands": [
+      "capture",
+      "verify"
+    ],
+    "flags": [
+      "--api",
+      "--base-url",
+      "--model",
+      "--models-dir",
+      "--out"
+    ],
+    "teaching_route": "N01, N02 and native/README.md; verify is offline, capture performs three bounded requests to an existing local model"
+  },
+  {
     "path": "tools/trace_packet.py",
     "subcommands": [],
     "flags": [],

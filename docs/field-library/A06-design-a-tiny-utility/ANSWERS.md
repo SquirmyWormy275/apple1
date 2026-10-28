@@ -30,7 +30,7 @@ about.
 | Case | Input | Expected |
 |---|---|---|
 | Typical | run it | `$0400` to `$040F` all hold `$AA`; `$0410` unchanged |
-| Empty | length of 0 | Would fill 256 bytes, not none. Not reachable here since the length is fixed, but worth writing down |
+| Empty | length of 0 | Not a runtime input to this fixed routine. If a proposed length-minus-one variant initializes Y=$FF for zero, this DEY/BPL loop performs one store at $04FF, then exits. It does not perform 256 stores; see T10 |
 | Biggest | length of 16, the fixed value | Last byte written is `$040F`, not `$0410` |
 | Wrong | none possible, no user input | |
 

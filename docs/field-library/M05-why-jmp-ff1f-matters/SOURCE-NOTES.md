@@ -17,15 +17,12 @@ Keys refer to the shared pool in `../SOURCES.md`.
 | `returned_to_monitor: false` for the echo program | `../EMULATOR-RUNS.md` |
 | Both listings, byte for byte | REPO `software/ram-only/*.hex` |
 
-## The central claim is the repository's own
+## The central claim is now checked against the listing
 
-The reason `RTS` is wrong here is stated directly in
-`software/ram-only/README.md` and is quoted rather than reconstructed. The
-lesson then explains the mechanism, which follows from the documented behavior of
-`JSR` and `RTS`.
-
-The curriculum brief for M05 requires that the explanation be based on the
-existing RAM-only README and that `RTS` not be substituted. Both are observed.
+BRIEL Appendix C, printed/PDF p. 31, shows RUN at `$FF94` as bytes
+`6C 24 00`: `JMP (XAML)`. The selected local scan was visually inspected.
+This resolves V-14 and supports the no-call-frame explanation independently
+of the repository README. It does not identify this unit's installed ROM.
 
 ## Disassembly
 
@@ -40,13 +37,7 @@ values.
 ## Claims needing verification
 
 - Page numbers inherit **V-1**.
-- **V-14 (new).** The lesson states that the Monitor's `R` command performs a
-  jump rather than a `JSR`. This is taken from the repository's own statement in
-  `software/ram-only/README.md` and is consistent with `RTS` being unsafe after
-  `R`. It has **not** been confirmed against the `RUN` routine's actual bytes in
-  the Monitor listing (BRIEL Appendix C). A reviewer should read the listing from
-  the `RUN` label and confirm the instruction used, so that the mechanism in this
-  lesson rests on the listing rather than only on the README's summary.
+- **V-14 resolved** by the exact RUN bytes above (W-RUNCMD).
 - **V-15 (new).** Whether `line-input-echo-0300.hex`'s restart loop is intended
   is an open question for the repository owner. This lesson presents it as
   observed behavior and explicitly declines to call it a defect. Do not edit the

@@ -1,0 +1,23 @@
+ACTUAL INSTALLED PI CONSOLE / RETAINED STDOUT
+2026-10-28T05:13:06.878817+00:00
+ASK M01 What are the three basic Monitor functions?
+
+{
+  "operation": "ASK",
+  "text": "The three basic Monitor functions are not established by the available library sources.\n\nSOURCES: R-MON-3, WOZ-FWD",
+  "source_paths": [
+    "/opt/neural1/releases/4f06e6d10bcbffca47c0f7554800972555085c78/docs/field-library/M01-meet-the-monitor/README.md",
+    "/opt/neural1/releases/4f06e6d10bcbffca47c0f7554800972555085c78/docs/field-library/M01-meet-the-monitor/SOURCE-NOTES.md"
+  ],
+  "deterministic_evidence": null,
+  "source_keys": [
+    "R-MON-3",
+    "WOZ-FWD"
+  ],
+  "grounded": true,
+  "support_note": null,
+  "prompt_bytes": 935,
+  "output_truncated": false,
+  "original_question": "What are the three basic Monitor functions?",
+  "effective_question": "What are the three basic Monitor functions?"
+}

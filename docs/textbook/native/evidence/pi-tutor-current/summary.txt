@@ -1,0 +1,14 @@
+ACTUAL PI / STAGED REVISED TUTOR SOURCE
+Retained result; installed global release was unchanged
+2026-10-28T05:44:13.114240+00:00
+
+ASK M01 What are the three basic Monitor functions?
+
+The three basic Monitor functions are inspect memory, change memory, and run a program.
+
+SOURCES: R-MON-3, W-FRONTPANEL
+
+Grounded flag: True
+Prompt bytes: 1001
+Temperature before/after: 43.0 / 56.2 C
+Exact request, reply and source snapshots accompany this capture.

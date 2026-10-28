@@ -1,5 +1,10 @@
 # C05 Answer key
 
+**Arithmetic assumption:** this worksheet uses binary mode (D=0). A standalone
+binary routine should establish it with CLD as well as establish incoming carry.
+The existing Monitor reset listing begins with CLD; warm entry alone is not a
+CPU reset. [T03](../../textbook/features/T03.md) makes both inputs explicit.
+
 ## Part A: the four-instruction trace
 
 | Step | Instruction | A | `$0400` | Next |
@@ -48,7 +53,8 @@ It confirms the arithmetic; it does not make the omission safe.
 | 4 | `$09` | The second load discards the first entirely. |
 
 **Snippet 2, the ninth bit:** there isn't one. A holds eight bits, so the result
-wraps to `$00` and the overflow is recorded in the carry bit, which is set. That
+wraps to `$00` and the unsigned ninth bit is recorded in C, which is set.
+  The distinct signed-overflow flag V is clear for `$FF + $01`. That
 is what the carry is *for*, and it is why the carry left over from one operation
 matters to the next one. Snippet 2 is the situation that makes Part A's warning
 real.
@@ -77,9 +83,9 @@ to the table if a learner asks.
 - **Ana** invented two facts. Nothing in the program or the exercise establishes
   either value.
 - **Cleo** is doing the more dangerous version, because the reasoning sounds
-  informed. RAM does not reliably come up zeroed; the Replica 1 Plus manual
-  describes a screen of garbage at power-on, which is what uninitialized memory
-  looks like. Cleo has stated a model as a fact, which is the S04 error exactly.
+  informed. The exercise establishes no RAM initialization contract. A manual
+  description of video garbage does not measure the contents of CPU RAM. Cleo
+  has stated an assumption as a fact, which is the S04 error exactly.
 
 The correct habit: a value is unknown until something in front of you
 establishes it.
