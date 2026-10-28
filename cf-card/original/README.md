@@ -5,7 +5,7 @@ They were extracted from the verified original Lexar card image. Their bytes,
 ProDOS types, load addresses, dates and directory entries are recorded in the
 [extraction manifest](EXTRACTED-FILES.json).
 
-| Original card path | Type | Load address | Bytes | Preserved download |
+| Original card path | Type | Aux/load field | Bytes | Preserved download |
 |---|---|---|---:|---|
 | `UTILITIES/BASIC` | BIN `$06` | `$E000` | 4,096 | [BASIC](files/UTILITIES/BASIC%2306e000) |
 | `UTILITIES/CFFAROMV1.1.BIN` | BIN `$06` | `$2000` | 8,160 | [CFFA ROM image](files/UTILITIES/CFFAROMV1.1.BIN%23062000) |
@@ -19,6 +19,10 @@ and auxiliary/load address. It is not part of the original on-card name. Keep
 it when importing these extracted files with CiderPress. The JSON manifest also
 retains the original directory bytes and timestamps, which Git file dates do
 not preserve.
+
+For the BA1 Star Trek file, `$0300` is the recorded auxiliary field, not a
+binary execution address. CFFA1 restores BA1 files as BASIC state rather than
+using the ordinary binary load-address prompt.
 
 These are original card artifacts, not newly authored project software. Their
 presence establishes the captured bytes; it does not establish authorship,
