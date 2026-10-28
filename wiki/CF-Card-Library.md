@@ -79,6 +79,9 @@ original full card image remains separately preserved in Git LFS.
 These storage and firmware-model results do not establish display, keyboard,
 timing, electrical or serial operation on the physical Replica. That acceptance
 remains open, alongside the [physical integration record](../docs/STATUS.md#physical-replica-and-propeller).
+The [next-agent handoff](../cf-card/HARDWARE-HANDOFF.md) gives the exact remaining
+reader/BASIC trials, photo/video checklist and publication steps for the finished
+setup. The card installation is complete; the serial fault remains separate.
 
 [Wiki home](Home.md) · [Builder guide](For-Builders.md) ·
 [Installation audit](../cf-card/AUDIT-2026-10-28.md)

@@ -47,7 +47,7 @@ remains the reference for that installed application.
 | Physical Replica / FT232R | September 2 no-transmit open reproduced display corruption; root cause remains inconclusive. | Resolve reset and analog power/ground evidence through an approved instrumented procedure. |
 | Propeller diagnostic preparation | PR #6 holds the bounded capture/worker preparation. | It remains separate from Pi operation and is not physical qualification. |
 | Field Library | 42 existing lesson packets, including SP01, are present. The prior 41-entry index omitted the special lesson. | The host reading candidate is compiled and reviewed with source qualifications; add physical acceptance when the finished setup arrives. |
-| CF-card media | The combined 386-file edition was installed and fully checksum-verified on October 28. | Verify display/keyboard operation on the finished Replica; storage verification does not qualify the serial path. |
+| CF-card media | The combined 386-file edition was installed and fully checksum-verified on October 28. | Follow the [physical acceptance handoff](../cf-card/HARDWARE-HANDOFF.md) for reader/BASIC trials, photos/video and documentation; the serial fault remains separate. |
 | Historical research | The broad March-1976 index remains research staging. The console has two separately reviewed year-end-1976 CPU/RAM records. | Do not extrapolate those bounded records into complete-board, price, electrical, or March-1976 claims. |
 
 ## NEURAL1 on the Pi
