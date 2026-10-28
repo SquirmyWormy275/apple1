@@ -323,8 +323,15 @@ def build(output: Path, *, supplements: bool = False) -> dict:
         entries = [r for r in b.records if r["path"].startswith(folder + "/")]
         lines = [folder, "", "FILES ARE LOADED ONE AT A TIME.", "READERS LOAD AND RUN AT $1000.",
                  "SPACE NEXT / B BACK / Q MONITOR.", "", "CONTENTS:"]
+        if folder == "HOSTSRC":
+            lines = ["HOST ARCHIVE / MODERN COMPUTER", "", "ONLY THIS INDEX IS A DISPLAY READER.",
+                     "SOURCE.ZIP AND BUILD.JSON ARE DATA.", "EXTRACT THEM OFFBOARD WITH CIDERPRESS.",
+                     "DO NOT LOAD THEM THROUGH CFFA1.", "", "CONTENTS:"]
         for record in entries:
-            lines += [record["path"].split("/")[1], *("  " + p for p in record.get("sources", []))]
+            use = "READER LOAD/RUN $1000" if record.get("kind") == "6502-display-reader" else (
+                f"RAM PROGRAM ${record['aux_type']:04X}" if record.get("kind") == "original-ram-only-candidate"
+                else "OFFBOARD DATA; DO NOT LOAD")
+            lines += [record["path"].split("/")[1], "  " + use, *("  " + p for p in record.get("sources", []))]
         b.book(folder + "/INDEX", pages_for("\n".join(lines), folder + " INDEX"), [])
 
     guide = """APPLE-1 FIELD LIBRARY
