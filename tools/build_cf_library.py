@@ -259,7 +259,8 @@ def build(output: Path) -> dict:
     archive_paths = []
     for folder in ("docs", "software/ram-only", "art", "tools", "tests", "neural1", "schemas", "configs", "data", "cf-card", "firmware"):
         archive_paths.extend(p for p in (ROOT / folder).rglob("*")
-                             if p.is_file() and "__pycache__" not in p.parts and p.suffix != ".pyc")
+                             if p.is_file() and "__pycache__" not in p.parts and p.suffix != ".pyc"
+                             and not p.is_relative_to(ROOT / "cf-card/releases"))
     archive_paths += [ROOT / "pyproject.toml", ROOT / "requirements-dev.txt", ROOT / "README.md"]
     archive_paths += [ROOT / "preservation/cf-card/2026-08-28/MANIFEST.md"]
     archive_paths += [ROOT / "docs" / name for name in ("apple1-learning-library-curriculum.md", "apple1-software-library.md", "emulator-demo-guide.md")]
