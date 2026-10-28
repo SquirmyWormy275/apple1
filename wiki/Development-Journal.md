@@ -11,7 +11,6 @@ provide the detailed history.
 | September 10, 2026 | Native Pi commissioning closed with retained lifecycle, storage, startup, and local inference evidence | [Pi closeout](../docs/neural1/operations/pi-closeout-2026-09-10.md) |
 | September 16, 2026 | Pi implementation and documentation were integrated; lesson navigation was reconciled | [Repository integration records](../docs/repository/README.md) |
 | October 5, 2026 | R04 was locked as the wooden enclosure design reference | [R04 enclosure record](../docs/hardware/enclosure/README.md) |
-
 | October 28, 2026 | The reviewed core and full reading supplements were combined, loaded onto the original CF card, and verified by complete readback | [CF installation audit](../cf-card/AUDIT-2026-10-28.md) and [reading guide](CF-Card-Library.md) |
 
 The [Pi post-boot run](../docs/neural1/operations/pi-closeout-2026-09-10.md#post-boot-run-and-hashes)
