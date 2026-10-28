@@ -1,25 +1,34 @@
 # Replica 1 Plus serial troubleshooting record
 
-## Current position — reviewed September 16, 2026
+## Current position — reviewed October 28, 2026
 
-The latest executed test recorded here is the September 2 instrumented
-no-transmit open. It reproduced display corruption but did not establish the
-root cause. A working NEURAL1 Pi does not resolve or qualify this physical link.
+Serial-open display corruption remains unresolved. The latest executed test is
+September 2; a working Pi and verified CF installation do not repair this link.
+[Issue #17](https://github.com/SquirmyWormy275/apple1/issues/17) now tracks the
+[bounded repair plan](hardware/replica-repair-plan.md) and its
+[history/source register with eight recovered photographs](hardware/repair-context-2026-10-28/README.md).
 
-[PR #6](https://github.com/SquirmyWormy275/apple1/pull/6) preserves preparation for
-a bounded capture and worker with reset coverage. It remains a separate review
-and hardware-qualification task, not permission to launch an unattended test.
-Its reported software checks do not measure analog rails or establish display
-stability on the actual board.
+The later September 12–13 conversation revised the earlier measurement-first
+strategy: basic power/selector checks, compatible firmware recovery using a
+spare EEPROM while preserving the original, at most one justified further
+substitution, then vendor repair/replacement. No oscilloscope purchase or
+complete root-cause diagnosis is required before that controlled repair route.
+Prepare the actual compatible image/uploader/rollback package first; it has not
+been verified as built. Finite acceptance is three cold boots, five normal serial
+connections, keyboard/both serial directions and a short CFFA1 operation.
 
-No new multimeter readings, reset trace, firmware repair, or successful physical
-qualification are asserted by this documentation update. Continue from the
-[September 2 packet](captures/2026-09-02-ft232r-open-analyzer/README.md) and the
-[serial protocol](serial-test-protocol.md); do not repeat an uninstrumented open
-or substitute a firmware flash for the unresolved measurement step.
+[PR #6](https://github.com/SquirmyWormy275/apple1/pull/6) preserves real runner and
+host/Pi preparation. It does not establish probe qualification, a completed new
+capture or unattended authority. The optional measurement route remains in the
+new plan. No new reading, reset trace, firmware load or live serial action was
+performed by this documentation update.
 
-The dated observations below are retained unchanged. See
-[current project status](STATUS.md) for the separate Pi and integration work.
+The dated observations below remain unchanged. Their session-specific STOP and
+spent-open records are historical evidence, not a requirement to finish an
+unlimited diagnostic campaign before considering the later preserved-original
+repair strategy. Any next physical session uses its own reviewed procedure;
+this consolidation does not execute it. See [current status](STATUS.md) for the
+separate Pi and CF work.
 
 ## 2026-08-27 — FT232R open with no transmit
 

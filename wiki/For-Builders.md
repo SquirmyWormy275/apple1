@@ -25,9 +25,13 @@ programs. [The CF-card library](CF-Card-Library.md) now has a verified media ins
 
 ## Understand the physical integration boundary
 
-The Replica serial fault remains unresolved. The
-[troubleshooting record](../docs/troubleshooting.md) separates observed display
-corruption from unproven causes. Software tests and preparation documents do
+The Replica serial fault remains unresolved. Start with the
+[bounded repair plan](../docs/hardware/replica-repair-plan.md), its
+[history and recovered photographs](../docs/hardware/repair-context-2026-10-28/README.md),
+and [repair issue #17](https://github.com/SquirmyWormy275/apple1/issues/17).
+The [troubleshooting record](../docs/troubleshooting.md) preserves the measured
+observations. Basic power checks and a preserved-original/spare-EEPROM recovery
+route precede a firm stopping point for vendor repair or replacement. Software tests and preparation documents do
 not qualify the physical adapter. Read the
 [physical boundary](../docs/neural1/architecture/physical-boundary.md) before
 planning any adapter or hardware procedure.

@@ -143,7 +143,7 @@ third-party sources and artwork retain their attribution and rights boundaries.
 | Virtual software | Runtime, five experiment paths, campaign tooling, META/1, lessons, and deterministic demonstrations are implemented. |
 | Raspberry Pi deployment | The September 10 closeout records native local inference, SSD persistence, cancellation/resume, and post-boot operation. |
 | CF-card media | Combined edition installed and checksum-verified; the six original files are unchanged. [Inventory and receipt](cf-card/AUDIT-2026-10-28.md). |
-| Physical Replica integration | The serial fault remains unresolved. The RAM reader and card builder work in host rehearsal; physical acceptance remains pending. |
+| Physical Replica integration | Serial corruption remains unresolved. The [bounded repair plan](docs/hardware/replica-repair-plan.md) consolidates chat history, eight recovered photos and the spare-EEPROM route; [issue #17](https://github.com/SquirmyWormy275/apple1/issues/17) tracks execution. Physical CF acceptance remains separate. |
 | Scientific conclusions | Completed execution can include rejected candidates and negative results. No autonomous discovery is claimed. |
 | Wooden enclosure | [R04 is the design reference](docs/hardware/enclosure/README.md); component fit and assembly details retain open checks. |
 

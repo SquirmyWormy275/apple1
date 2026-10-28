@@ -81,14 +81,18 @@ work and supersedes R01–R03.
 
 ## Continue the Replica investigation
 
-Begin with the [troubleshooting record](troubleshooting.md), not an old repair
-plan. It separates the observed display corruption from unproven causes and
-links the current diagnostic-preparation work.
+Begin with the current [bounded repair plan](hardware/replica-repair-plan.md)
+and [source register/recovered photographs](hardware/repair-context-2026-10-28/README.md).
+They reconcile the later repair decision with the preserved
+[troubleshooting observations](troubleshooting.md).
+[Issue #17](https://github.com/SquirmyWormy275/apple1/issues/17) tracks execution.
 
 | Need | Record or guide |
 |---|---|
 | Read the recorded tests | [Capture index](captures/README.md) and [September 2 packet](captures/2026-09-02-ft232r-open-analyzer/README.md) |
-| Understand the next evidence gate | [Serial protocol](serial-test-protocol.md) and [logic-analyzer test card](captures/logic-analyzer-open-event-test-card.md) |
+| Restore usable operation | [Bounded repair, preserved original EEPROM and finite acceptance](hardware/replica-repair-plan.md) |
+| Pursue optional further diagnosis | [PR #6](https://github.com/SquirmyWormy275/apple1/pull/6) and the repair plan's optional measurement branch; the September 2 event is complete/spent |
+| Characterize repaired serial operation | [Serial protocol](serial-test-protocol.md) |
 | Inspect candidate-source provenance | [Firmware baseline](firmware-baseline.md) and [recovery ledger](recovery-evidence-ledger.md) |
 | Rehearse behavior without hardware | [Firmware behavior model](firmware-behavior-model.md) and [static audit](firmware-static-audit.md) |
 | Collect or check saved evidence | [Read-only host bundle](host-support-bundle.md) and [logic-trace validation](logic-trace-validation.md) |

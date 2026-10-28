@@ -40,8 +40,9 @@ and [downloadable combined package](releases/README.md) remain preserved.
    before the reader trial. An unknown prerequisite stays pending.
 3. Use the physical keyboard/display. This acceptance does not require opening
    USB serial. The recorded serial-open display fault remains unresolved;
-   its next investigation follows the separate
-   [instrumented open-event test card](../docs/captures/logic-analyzer-open-event-test-card.md).
+   its separate [bounded repair plan](../docs/hardware/replica-repair-plan.md)
+   and [issue #17](https://github.com/SquirmyWormy275/apple1/issues/17) track
+   restoration. This CF trial does not require serial repair.
 4. Preserve any new user BASIC work before loading a reader: they share RAM.
    Handle/remove/insert the card only with the assembly unpowered under its
    documented service procedure. Do not format, rebuild or rewrite the working

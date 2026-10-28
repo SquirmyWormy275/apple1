@@ -81,7 +81,9 @@ timing, electrical or serial operation on the physical Replica. That acceptance
 remains open, alongside the [physical integration record](../docs/STATUS.md#physical-replica-and-propeller).
 The [next-agent handoff](../cf-card/HARDWARE-HANDOFF.md) gives the exact remaining
 reader/BASIC trials, photo/video checklist and publication steps for the finished
-setup. The card installation is complete; the serial fault remains separate.
+setup. The card installation is complete; the serial fault remains separate in
+[repair issue #17](https://github.com/SquirmyWormy275/apple1/issues/17) and the
+[bounded repair plan](../docs/hardware/replica-repair-plan.md).
 
 [Wiki home](Home.md) · [Builder guide](For-Builders.md) ·
 [Installation audit](../cf-card/AUDIT-2026-10-28.md)
