@@ -21,3 +21,18 @@ has empty physical asset/measurement slots ready for the finished setup.
 Workstation/Pi test results and the final clean-checkout checks are recorded in
 the release PR and its CI. The earlier 439-test/100-lab native receipt remains
 a dated result rather than being silently rewritten.
+
+## Completed release checks
+
+| Host / route | Result |
+|---|---|
+| Workstation, Python 3.12 | 483 tests; 110 exact example reruns; Ruff, mypy (40 modules), repository/link validation and approved-source export pass |
+| Pi, Python 3.13.5 | 483 tests; 110 exact reruns; repository validation; every card page and all six BA1 restores pass |
+| Independent Pi image build | Image **and complete build receipt** match the workstation byte for byte |
+| Fresh checkout with CRLF policy and a new venv | 483 tests, 110 exact reruns, validation, mypy and the off-device demo pass; Git status stays clean |
+
+The [machine-readable check record](prehardware-checks.json) identifies the
+source/capture manifests and candidate image. Clean-checkout review caught
+missing LF policy for the assembly source; it is now explicit. The documented
+venv is ignored by Git. The Pi finished at 49.4 C with throttled flags 0x0.
+No installed-release update follows from staging this source on the SSD.
