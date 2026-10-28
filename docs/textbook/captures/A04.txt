@@ -1,0 +1,15 @@
+A04 / Decisions and branches
+MODE: VIRTUAL_EXECUTION | HOST ONLY | NO MODEL INFERENCE
+
+Input: Y
+Program bytes: A9 59 C9 59 F0 05 A9 00 4C 0D 03 A9 01 8D 00 04 4C 1F FF
+Stop: MONITOR_WARM_ENTRY; instructions: 6
+Final A=01 X=00 Y=00
+0400: 01
+Input: N
+Program bytes: A9 4E C9 59 F0 05 A9 00 4C 0D 03 A9 01 8D 00 04 4C 1F FF
+Stop: MONITOR_WARM_ENTRY; instructions: 7
+Final A=00 X=00 Y=00
+0400: 00
+
+CHECKS PASSED | No physical serial connection was requested.

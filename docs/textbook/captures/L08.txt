@@ -1,0 +1,7 @@
+L08 / Use negative controls before widening a claim
+MODE: VIRTUAL_EXECUTION | HOST ONLY | NO MODEL INFERENCE
+
+positive passed: True
+negative passed: False
+
+CHECKS PASSED | No physical serial connection was requested.

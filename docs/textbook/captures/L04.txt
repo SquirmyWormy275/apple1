@@ -1,0 +1,8 @@
+L04 / Treat a model response as a proposal, not an instruction to the host
+MODE: SYNTHETIC_SOFTWARE | HOST ONLY | NO MODEL INFERENCE
+
+Accepted modeled command: 0300: A9 2A 00
+Accepted modeled command: 0300R
+Host shell commands executed: 0
+
+CHECKS PASSED | No physical serial connection was requested.

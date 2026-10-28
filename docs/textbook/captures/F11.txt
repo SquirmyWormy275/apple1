@@ -1,0 +1,10 @@
+F11 / Evaluate ram-republic with explicit controls
+MODE: VIRTUAL_EXECUTION | HOST ONLY | NO MODEL INFERENCE
+
+Family: ram-republic
+Candidate bytes: 8
+Passed authored fixture: True
+Independent output: 'A'
+Evaluation preserved world: True
+
+CHECKS PASSED | No physical serial connection was requested.

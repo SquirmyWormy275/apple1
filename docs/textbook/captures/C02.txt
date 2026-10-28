@@ -1,0 +1,8 @@
+C02 / Memory is a map
+MODE: VIRTUAL_EXECUTION | HOST ONLY | NO MODEL INFERENCE
+
+0300: 41 42 43 -> 0300: 41 42 43
+0300.0302 -> 0300: 41 42 43
+CPU address space: 65536 bytes; lab RAM: 4096 bytes
+
+CHECKS PASSED | No physical serial connection was requested.

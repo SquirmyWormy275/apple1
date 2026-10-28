@@ -122,3 +122,9 @@ What this lesson does **not** establish:
   measurement of hardware.
 - It authorizes no firmware load, EEPROM write, CFFA1 write, serial-port open, or
   physical modification. The emulator must not be connected to a serial device.
+
+## Worked companion
+
+[Run the worked example and inspect its captured output](WORKED.md).
+This host-only companion supplements the original activity; it does not change
+the packet's physical deployment or historical review status.

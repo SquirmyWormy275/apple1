@@ -1,0 +1,8 @@
+S04 / Facts, models, and evidence
+MODE: HOST_EXERCISE | HOST ONLY | NO MODEL INFERENCE
+
+emulator returned to Monitor -> recorded virtual observation
+board will do the same -> untested physical claim
+manual describes a register -> documented design
+
+CHECKS PASSED | No physical serial connection was requested.

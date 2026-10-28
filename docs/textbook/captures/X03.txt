@@ -1,0 +1,10 @@
+X03 / Build a museum demo
+MODE: HOST_EXERCISE | HOST ONLY | NO MODEL INFERENCE
+
+ 30s: introduce the replica
+ 60s: show virtual bytes storing 42
+ 60s: explain the memory read
+ 30s: ask what changes for 43
+Fallback: printed transcript and memory card.
+
+CHECKS PASSED | No physical serial connection was requested.

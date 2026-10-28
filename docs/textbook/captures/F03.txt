@@ -1,0 +1,7 @@
+F03 / Record a provider response and replay its exact identity
+MODE: SYNTHETIC_SOFTWARE | HOST ONLY | NO MODEL INFERENCE
+
+Exact replay: 0300: 2A
+Changed prompt: refused
+
+CHECKS PASSED | No physical serial connection was requested.

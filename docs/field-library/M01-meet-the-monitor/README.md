@@ -104,3 +104,9 @@ What this lesson does **not** establish:
 - Nothing in this lesson is an instruction to type anything on hardware. It
   authorizes no firmware load, EEPROM write, CFFA1 write, serial-port open, or
   physical modification.
+
+## Worked companion
+
+[Run the worked example and inspect its captured output](WORKED.md).
+This host-only companion supplements the original activity; it does not change
+the packet's physical deployment or historical review status.

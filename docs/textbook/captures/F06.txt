@@ -1,0 +1,7 @@
+F06 / Verify an export and detect changed evidence
+MODE: SYNTHETIC_SOFTWARE | HOST ONLY | NO MODEL INFERENCE
+
+Original bundle valid: True
+Changed bundle valid: False
+
+CHECKS PASSED | No physical serial connection was requested.

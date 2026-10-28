@@ -11,6 +11,7 @@ The lab, **NEURAL1**, runs on modern hardware and executes programs in a virtual
 Apple-1 world. Models propose commands; deterministic execution checks them;
 **META/1** connects recorded claims to their evidence.
 
+[Read the worked textbook](docs/textbook/README.md) ·
 [Start the walkthrough](docs/neural1/getting-started.md) ·
 [Explore the wiki](wiki/Home.md) ·
 [Review the engineering](wiki/Project-Highlights.md) ·
@@ -57,6 +58,15 @@ That is a small, inspectable result: deposited bytes produced a recorded memory
 value. The demo uses fixed responses and is labeled **prototype software-test
 evidence**, not an LLM research finding. The
 [walkthrough explains the other fields](docs/neural1/getting-started.md#3-read-one-result).
+
+## Worked textbook
+
+The [textbook](docs/textbook/README.md) connects the system end to end: 13
+chapters, worked companions for all 42 Field Library lessons, eight local-model
+labs, and 36 feature demonstrations. Each of its 86 examples has executable
+source, actual captured output, an image, checks, and a practice variation.
+[Coverage and environment-dependent limits](docs/textbook/coverage.md) distinguish
+host/virtual fixtures from real-model and physical procedures.
 
 ## Follow a learning path
 
@@ -126,7 +136,7 @@ mirror the [off-device CI workflow](.github/workflows/ci.yml):
 
 ```bash
 python -m pip install -e '.[dev]'
-ruff check neural1 tools/neural1_validate.py tests/test_neural1*.py tests/test_storage.py
+ruff check neural1 tools/neural1_validate.py tests/test_neural1*.py tests/test_storage.py tools/textbook.py tools/textbook_support.py docs/textbook/examples
 mypy neural1
 python -m pytest -q
 python tools/neural1_validate.py .

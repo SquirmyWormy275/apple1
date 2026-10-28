@@ -16,6 +16,13 @@ APPLE1
 +-- COLLECTION    physical-object history and accession records
 ```
 
+## Study the complete worked course
+
+The [textbook](textbook/README.md) connects machine fundamentals, assembly,
+local-model concepts, evidence, recovery, and deployment boundaries. The
+[coverage register](textbook/coverage.md) maps every lesson and public command
+surface to a worked example or an explicit operator/environment-dependent route.
+
 ## Use NEURAL1
 
 [NEURAL1 overview](neural1/README.md) explains the shared runtime and its five

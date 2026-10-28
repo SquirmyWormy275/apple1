@@ -1,5 +1,10 @@
 # M03 Activity: rehearse and record
 
+> **Companion scope (October 27, 2026):** This page retains the original activity.
+> Paper-only and no-execution statements below describe that original exercise.
+> The separate [worked companion](WORKED.md) explicitly identifies any new host
+> calculation or virtual execution; neither provides physical Replica approval.
+
 **Status:** OFF-DEVICE. This activity runs software on an ordinary computer.
 **It does not involve the Replica 1 Plus, and the emulator must not be connected
 to any serial device.**

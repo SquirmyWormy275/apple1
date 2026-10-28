@@ -1,0 +1,10 @@
+M04 / Debugging as observation
+MODE: VIRTUAL_EXECUTION | HOST ONLY | NO MODEL INFERENCE
+
+Program bytes: A9 2B 8D 00 04 4C 1F FF
+Stop: MONITOR_WARM_ENTRY; instructions: 3
+Final A=2B X=00 Y=00
+0400: 2B
+Expected=42; actual=43; mismatch=True
+
+CHECKS PASSED | No physical serial connection was requested.

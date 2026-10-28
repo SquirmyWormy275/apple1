@@ -1,0 +1,11 @@
+H05 / The future history you are making
+MODE: HOST_EXERCISE | HOST ONLY | NO MODEL INFERENCE
+
+{
+  "action": "run a virtual example",
+  "interpretation": "the modeled program stored 42",
+  "limit": "not a physical board measurement",
+  "observation": "0300: 2A"
+}
+
+CHECKS PASSED | No physical serial connection was requested.

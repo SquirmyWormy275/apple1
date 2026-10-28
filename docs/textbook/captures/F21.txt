@@ -1,0 +1,8 @@
+F21 / Inspect a local-provider request using a mock transport
+MODE: MOCK_TRANSPORT | HOST ONLY | NO MODEL INFERENCE
+
+Endpoint: http://127.0.0.1:11434/api/generate
+Model: teaching-fixture seed: 7
+Synthetic response: 0300: 2A tokens: 2
+
+CHECKS PASSED | No physical serial connection was requested.

@@ -1,0 +1,9 @@
+F07 / Persist claims, history, and review thresholds
+MODE: SYNTHETIC_SOFTWARE | HOST ONLY | NO MODEL INFERENCE
+
+History entries: 1
+Threshold 2: SUPPORTED
+Threshold 3: INSUFFICIENT_EVIDENCE
+Queue entries: 1
+
+CHECKS PASSED | No physical serial connection was requested.

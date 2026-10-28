@@ -119,3 +119,9 @@ What this lesson does **not** establish:
   candidate evidence about a design, not proof of an installed EEPROM image.
 - It does not authorize any hardware action: no firmware load, no EEPROM write,
   no CFFA1 write, no serial-port open, and no physical modification.
+
+## Worked companion
+
+[Run the worked example and inspect its captured output](WORKED.md).
+This host-only companion supplements the original activity; it does not change
+the packet's physical deployment or historical review status.

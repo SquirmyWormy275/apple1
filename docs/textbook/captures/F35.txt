@@ -1,0 +1,9 @@
+F35 / Exercise the single-writer contract model
+MODE: SYNTHETIC_SOFTWARE | HOST ONLY | NO MODEL INFERENCE
+
+Overflow: STOP
+First: ('ps2', b'A')
+Second: ('serial', b'B')
+Installed firmware changed: False
+
+CHECKS PASSED | No physical serial connection was requested.

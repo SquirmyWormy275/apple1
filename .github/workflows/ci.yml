@@ -13,10 +13,12 @@ jobs:
         with:
           python-version: "3.12"
       - run: python -m pip install -e '.[dev]'
-      - run: ruff check neural1 tools/neural1_validate.py tests/test_neural1*.py tests/test_storage.py
+      - run: ruff check neural1 tools/neural1_validate.py tests/test_neural1*.py tests/test_storage.py tools/textbook.py tools/textbook_support.py docs/textbook/examples
       - run: mypy neural1
       - run: python -m pytest -q
       - run: python tools/neural1_validate.py .
+      - name: Verify all textbook captures and reproduce their output
+        run: python -m tools.textbook verify docs/textbook/captures --rerun
       - run: python -m neural1.demos --out out/neural1-demo
       - name: Assert deterministic demo remained off-device
         run: python -c "import json; from pathlib import Path; data=json.loads(Path('out/neural1-demo/summary.json').read_text(encoding='ascii')); assert data['serial_opened'] is False"

@@ -1,0 +1,9 @@
+H04 / Safe experimentation
+MODE: HOST_EXERCISE | HOST ONLY | NO MODEL INFERENCE
+
+convert hex on paper -> off-device
+run virtual program -> host-only
+open Replica serial port -> separate blocked hardware procedure
+flash EEPROM -> outside this lab
+
+CHECKS PASSED | No physical serial connection was requested.

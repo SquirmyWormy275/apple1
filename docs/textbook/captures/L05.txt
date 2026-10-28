@@ -1,0 +1,12 @@
+L05 / Distinguish model names from content identity
+MODE: HOST_EXERCISE | HOST ONLY | NO MODEL INFERENCE
+
+{
+  "evidence": "SYNTHETIC",
+  "manifest_digest": "aaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaa",
+  "quantization": "teaching example",
+  "tag": "example:latest",
+  "weight_digest": "bbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbb"
+}
+
+CHECKS PASSED | No physical serial connection was requested.

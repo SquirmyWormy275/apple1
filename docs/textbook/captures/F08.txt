@@ -1,0 +1,10 @@
+F08 / Evaluate 4k-mind with explicit controls
+MODE: VIRTUAL_EXECUTION | HOST ONLY | NO MODEL INFERENCE
+
+Family: 4k-mind
+Candidate bytes: 8
+Passed authored fixture: True
+Independent output: 'A'
+Evaluation preserved world: True
+
+CHECKS PASSED | No physical serial connection was requested.

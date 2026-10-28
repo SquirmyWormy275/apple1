@@ -1,0 +1,12 @@
+S03 / Your first hex number
+MODE: HOST_EXERCISE | HOST ONLY | NO MODEL INFERENCE
+
+  0 = $00 = 00000000
+ 15 = $0F = 00001111
+ 16 = $10 = 00010000
+ 42 = $2A = 00101010
+ 65 = $41 = 01000001
+128 = $80 = 10000000
+255 = $FF = 11111111
+
+CHECKS PASSED | No physical serial connection was requested.

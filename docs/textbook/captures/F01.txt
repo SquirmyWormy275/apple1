@@ -1,0 +1,11 @@
+F01 / Validate console commands before work starts
+MODE: SYNTHETIC_SOFTWARE | HOST ONLY | NO MODEL INFERENCE
+
+START -> ['START']
+START extra -> REJECTED: Usage: START: Launch one bounded run of the selected experiment and model. Takes no arguments. Use STATUS to follow it.
+META CLAIM -> REJECTED: Usage: META [LIST|QUEUE] or META CLAIM|HISTORY claim-id: Browse recorded claims, evidence and review work.
+STATR -> REJECTED: Unknown command 'STATR'. Did you mean START? Type HELP to list commands.
+HELP START -> ['HELP', 'START']
+START: Launch one bounded run of the selected experiment and model. Takes no arguments. Use STATUS to follow it.
+
+CHECKS PASSED | No physical serial connection was requested.

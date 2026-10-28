@@ -1,0 +1,8 @@
+L07 / Bound a research matrix before launching it
+MODE: HOST_EXERCISE | HOST ONLY | NO MODEL INFERENCE
+
+Cells: 12
+Maximum planned turns: 48
+Output token ceiling per turn: 32
+
+CHECKS PASSED | No physical serial connection was requested.

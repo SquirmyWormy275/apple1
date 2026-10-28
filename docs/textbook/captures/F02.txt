@@ -1,0 +1,20 @@
+F02 / Assemble source and retain its execution trace
+MODE: VIRTUAL_EXECUTION | HOST ONLY | NO MODEL INFERENCE
+
+Program bytes: A2 03 CA D0 FD 8E 00 04 4C 1F FF
+Before instruction: PC    A  X  Y  P
+                    0300 00 00 00 30
+                    0302 00 03 00 30
+                    0303 00 02 00 30
+                    0302 00 02 00 30
+                    0303 00 01 00 30
+                    0302 00 01 00 30
+                    0303 00 00 00 32
+                    0305 00 00 00 32
+                    0308 00 00 00 32
+Stop: MONITOR_WARM_ENTRY; instructions: 9
+Final A=00 X=00 Y=00
+0400: 00
+Symbols: {'AGAIN': 770}
+
+CHECKS PASSED | No physical serial connection was requested.

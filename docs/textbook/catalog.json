@@ -1,0 +1,862 @@
+[
+  {
+    "id": "S01",
+    "title": "What is an Apple-1?",
+    "concept": "Separate the computer, program, and replica",
+    "explanation": "A CPU executes instructions, a program supplies them, and a replica is a physical implementation of a historical design. A name on a screen is not evidence of the identity of a board. This exercise labels teaching objects rather than authenticating a collection item.",
+    "challenge": "Where does NEURAL1 belong, and where does the Pi belong?",
+    "answer": "NEURAL1 is modern host software; the Pi is its physical host. The Apple-1 execution target in these labs is virtual.",
+    "mode": "HOST_EXERCISE",
+    "lesson": "docs/field-library/S01-what-is-an-apple-1"
+  },
+  {
+    "id": "S02",
+    "title": "A computer is not magic",
+    "concept": "Trace one character through the harness",
+    "explanation": "The RAM harness supplies keyboard input, lets a 6502 program store it, and records the Monitor ECHO call. The visible letter and the stored byte are two observations of the same test, not a measurement of the physical keyboard path.",
+    "challenge": "What changes for an empty line, containing only Return?",
+    "answer": "The buffer and screen contain a carriage return. Try echo(\"\\r\") and compare the instruction count.",
+    "mode": "VIRTUAL_EXECUTION",
+    "lesson": "docs/field-library/S02-a-computer-is-not-magic"
+  },
+  {
+    "id": "S03",
+    "title": "Your first hex number",
+    "concept": "Convert bytes between decimal and hexadecimal",
+    "explanation": "One hexadecimal digit represents four bits. Two digits represent a byte. Divide by 16: the quotient is the high digit and the remainder is the low digit. 42 = 2 times 16 + 10, so 42 is $2A.",
+    "challenge": "Convert 200 before running Python to check it.",
+    "answer": "200 = 12*16+8, so $C8. A byte cannot contain 256; that needs a larger representation.",
+    "mode": "HOST_EXERCISE",
+    "lesson": "docs/field-library/S03-your-first-hex-number"
+  },
+  {
+    "id": "S04",
+    "title": "Facts, models, and evidence",
+    "concept": "Distinguish an observation from a claim",
+    "explanation": "A checksum, an emulator result, and a physical observation answer different questions. This fixture exercises labels; the labels themselves are a worked reasoning example. Explain why an observed virtual result cannot establish a live board result.",
+    "challenge": "Does a passing checksum authenticate an original Apple-1?",
+    "answer": "No. It identifies matching bytes; provenance and physical authentication require different evidence.",
+    "mode": "HOST_EXERCISE",
+    "lesson": "docs/field-library/S04-facts-models-and-evidence"
+  },
+  {
+    "id": "C01",
+    "title": "The 6502 at work",
+    "concept": "Follow fetch, decode, execute",
+    "explanation": "LDA immediate loads a value into A; STA copies A into memory; JMP chooses the next instruction address. The trace records state before each instruction. Read the next row, or the final registers, to see the effect.",
+    "challenge": "Replace $2A with $10. Predict memory and the program byte that changes.",
+    "answer": "The immediate operand changes from 2A to 10, and $0400 contains $10 (16).",
+    "mode": "VIRTUAL_EXECUTION",
+    "lesson": "docs/field-library/C01-the-6502-at-work"
+  },
+  {
+    "id": "C02",
+    "title": "Memory is a map",
+    "concept": "Addresses name locations; bytes hold values",
+    "explanation": "A 16-bit address identifies one of 65,536 locations. The same byte can be data or an opcode depending on how it is used. These virtual locations are inside the declared lab RAM window; this is not the physical Replica memory map.",
+    "challenge": "What address follows $03FF?",
+    "answer": "$0400. Carry crosses the low byte; it is not $040A.",
+    "mode": "VIRTUAL_EXECUTION",
+    "lesson": "docs/field-library/C02-memory-is-a-map"
+  },
+  {
+    "id": "C03",
+    "title": "Binary, bits, and bytes",
+    "concept": "Use masks to inspect bits",
+    "explanation": "A mask selects bits. AND with $7F clears bit 7 while preserving the other seven bits; OR with $80 sets it. This is arithmetic on a byte, independent of whether the byte represents a character.",
+    "challenge": "What does XOR $80 do if applied twice?",
+    "answer": "It toggles bit 7 each time, so applying it twice restores the original byte.",
+    "mode": "HOST_EXERCISE",
+    "lesson": "docs/field-library/C03-binary-bits-and-bytes"
+  },
+  {
+    "id": "C04",
+    "title": "Characters become numbers",
+    "concept": "Decode high-bit keyboard characters",
+    "explanation": "The repository harness explicitly sets bit 7 on input and masks it for screen text. That convention must not be confused with ordinary seven-bit ASCII. Carriage return is $0D in ASCII and $8D with the high bit set.",
+    "challenge": "Decode C1 A0 C2 8D.",
+    "answer": "A, space, B, carriage return: \"A B\\r\".",
+    "mode": "HOST_EXERCISE",
+    "lesson": "docs/field-library/C04-characters-become-numbers"
+  },
+  {
+    "id": "C05",
+    "title": "Instructions change state",
+    "concept": "Initialize arithmetic state explicitly",
+    "explanation": "ADC includes carry. CLD selects binary arithmetic and CLC clears carry before an addition. Relying on a simulator default makes a program harder to explain or move. The two runs below differ only in the explicit carry setup.",
+    "challenge": "Why does CLC alone not establish binary arithmetic on an unknown machine state?",
+    "answer": "The decimal flag is separate; use CLD when the program requires binary ADC behavior.",
+    "mode": "VIRTUAL_EXECUTION",
+    "lesson": "docs/field-library/C05-instructions-change-state"
+  },
+  {
+    "id": "M01",
+    "title": "Meet the Monitor",
+    "concept": "Use the three Monitor operations",
+    "explanation": "The modeled Monitor can inspect, deposit, and run. It is a tiny machine interface, not a host shell or an assembler. Here the exact byte string is deposited in virtual memory before the run command is accepted.",
+    "challenge": "Will LOAD PROGRAM work in this modeled Monitor?",
+    "answer": "No. Assembly and host shell commands are not Monitor commands.",
+    "mode": "VIRTUAL_EXECUTION",
+    "lesson": "docs/field-library/M01-meet-the-monitor"
+  },
+  {
+    "id": "M02",
+    "title": "Addresses and byte entry",
+    "concept": "Explain origin and little-endian operands",
+    "explanation": "An absolute address occupies two operand bytes, low byte first. STA $0400 becomes 8D 00 04. The origin determines where instruction bytes live; it does not change the destination of that absolute store.",
+    "challenge": "What bytes encode the address $1234?",
+    "answer": "34 12, low byte then high byte.",
+    "mode": "VIRTUAL_EXECUTION",
+    "lesson": "docs/field-library/M02-addresses-and-byte-entry"
+  },
+  {
+    "id": "M03",
+    "title": "A safe rehearsal loop",
+    "concept": "Predict an echo before running it",
+    "explanation": "The line-input harness feeds HI followed by carriage return. It records the screen, the stored buffer, instruction count, and the return path. A matching test supports this program in this harness; it does not establish serial or electrical behavior.",
+    "challenge": "Try A + Return and compare against HI + Return.",
+    "answer": "One fewer ordinary character reduces the work. Record the actual count rather than assuming a timing measurement.",
+    "mode": "VIRTUAL_EXECUTION",
+    "lesson": "docs/field-library/M03-a-safe-rehearsal-loop"
+  },
+  {
+    "id": "M04",
+    "title": "Debugging as observation",
+    "concept": "Compare expectation with observation",
+    "explanation": "An expected value is useful only if it was written before observing the result. A mismatch is a reason to investigate both the code and the expectation. This deliberate mistake is detected by a numeric comparison rather than hidden.",
+    "challenge": "What single change could test whether the immediate operand caused the mismatch?",
+    "answer": "Change only #$2B to #$2A, preserve the first result, and compare the rerun.",
+    "mode": "VIRTUAL_EXECUTION",
+    "lesson": "docs/field-library/M04-debugging-as-observation"
+  },
+  {
+    "id": "M05",
+    "title": "Why `JMP $FF1F` matters",
+    "concept": "Separate a warm-entry jump from a subroutine return",
+    "explanation": "A JMP transfers control directly. RTS expects a return address placed on the stack by a compatible call. These examples entered at the lab origin, so no caller return address is promised. A deliberate JMP $FF1F gives this virtual harness a defined exit.",
+    "challenge": "Why is RTS appropriate after JSR ECHO but not an automatic substitute for the final JMP?",
+    "answer": "JSR creates a return address for that call; the program entry path need not have done so.",
+    "mode": "VIRTUAL_EXECUTION",
+    "lesson": "docs/field-library/M05-why-jmp-ff1f-matters"
+  },
+  {
+    "id": "A01",
+    "title": "Read an instruction",
+    "concept": "Read mnemonic, addressing mode, and operand",
+    "explanation": "The # character means an immediate value. Without it, LDA $0400 loads the byte stored at that address. The assembler turns the instruction into bytes; neither mnemonic text nor a label is sent directly to the CPU.",
+    "challenge": "Why is STA #$41 invalid?",
+    "answer": "STA needs a destination address; an immediate literal is a value, not a writable destination.",
+    "mode": "VIRTUAL_EXECUTION",
+    "lesson": "docs/field-library/A01-read-an-instruction"
+  },
+  {
+    "id": "A02",
+    "title": "Variables in memory",
+    "concept": "Store and retrieve a variable",
+    "explanation": "A variable label is a source-code name for storage. The CPU uses numeric addresses. After storing $5A at $0402, loading from that address into X must produce the same value unless intervening code changes it.",
+    "challenge": "If the program occupies $0300-$0319, why is $0310 a poor buffer?",
+    "answer": "It overlaps instruction bytes. An input store could change a future instruction.",
+    "mode": "VIRTUAL_EXECUTION",
+    "lesson": "docs/field-library/A02-variables-in-memory"
+  },
+  {
+    "id": "A03",
+    "title": "Counting and looping",
+    "concept": "Compare zero and sign loop conditions",
+    "explanation": "DEX changes X and the zero and negative flags. BNE repeats until zero. BPL repeats while bit 7 is clear, which includes zero. Starting at five, the BPL version therefore decrements once more and finishes at $FF.",
+    "challenge": "What happens if the BNE countdown starts at zero?",
+    "answer": "The first DEX wraps to $FF; it takes 256 decrements to reach zero again.",
+    "mode": "VIRTUAL_EXECUTION",
+    "lesson": "docs/field-library/A03-counting-and-looping"
+  },
+  {
+    "id": "A04",
+    "title": "Decisions and branches",
+    "concept": "Test both sides of a branch",
+    "explanation": "CMP sets flags without replacing A. BEQ takes the equal case; the other path must not fall through into it accidentally. These two runs exercise the same decision with matching and nonmatching inputs.",
+    "challenge": "Would testing only Y reveal a broken non-Y path?",
+    "answer": "No. Include a matching key, a nonmatching key, and boundary or malformed inputs when relevant.",
+    "mode": "VIRTUAL_EXECUTION",
+    "lesson": "docs/field-library/A04-decisions-and-branches"
+  },
+  {
+    "id": "A05",
+    "title": "Keyboard to screen",
+    "concept": "Follow input, buffer storage, echo, and return",
+    "explanation": "The existing RAM program waits for a ready key, reads it, stores it at the indexed buffer position, echoes it, compares against carriage return, and either continues or exits. Empty input is a separate test: Return itself is still a character.",
+    "challenge": "Why does the saved buffer include carriage return?",
+    "answer": "The store happens before the carriage-return comparison and exit.",
+    "mode": "VIRTUAL_EXECUTION",
+    "lesson": "docs/field-library/A05-keyboard-to-screen"
+  },
+  {
+    "id": "A06",
+    "title": "Design a tiny utility",
+    "concept": "Build a fill utility from a testable design",
+    "explanation": "Define the count and the allowed destination range before writing instructions. This routine fills exactly five bytes with A and exits. Checking the byte just after the range catches an extra iteration.",
+    "challenge": "Make a copy utility instead. What additional cases should its design card include?",
+    "answer": "Zero length, maximum length, overlapping source/destination, and preserving the source when required.",
+    "mode": "VIRTUAL_EXECUTION",
+    "lesson": "docs/field-library/A06-design-a-tiny-utility"
+  },
+  {
+    "id": "B01",
+    "title": "From instructions to BASIC",
+    "concept": "Compare language levels without inventing a BASIC runtime",
+    "explanation": "A BASIC expression delegates arithmetic and output to an interpreter. Assembly exposes the storage and instructions. This host calculation checks the arithmetic idea only: the repository does not bundle a runnable Apple-1 BASIC interpreter for this exercise.",
+    "challenge": "Does storing the answer 42 implement multiplication?",
+    "answer": "No. It demonstrates representing one result; a general multiply routine or interpreter performs the operation.",
+    "mode": "HOST_AND_VIRTUAL",
+    "lesson": "docs/field-library/B01-from-instructions-to-basic"
+  },
+  {
+    "id": "B02",
+    "title": "Variables, input, and output",
+    "concept": "Separate input, state, computation, and output",
+    "explanation": "A small program has a data path. Here the input is an integer and the output is twice it. This Python host analogue illustrates the flow; it does not validate Apple-1 BASIC syntax or string allocation rules.",
+    "challenge": "What would you specify before accepting negative or fractional input?",
+    "answer": "The numeric domain, conversion rules, errors, and representation. Apple-1 Integer BASIC is not interchangeable with Python numeric behavior.",
+    "mode": "HOST_EXERCISE",
+    "lesson": "docs/field-library/B02-variables-input-and-output"
+  },
+  {
+    "id": "B03",
+    "title": "Algorithms: recipes for information",
+    "concept": "Turn an ambiguous algorithm into explicit operations",
+    "explanation": "An algorithm states how the next step is chosen and when work stops. The host trace below replaces \"add the numbers\" with initialize, read one item, update, and stop at the end of the finite list.",
+    "challenge": "What result should the algorithm produce for an empty list?",
+    "answer": "Zero if the sum specification defines an empty sum as zero; write that rule explicitly.",
+    "mode": "HOST_EXERCISE",
+    "lesson": "docs/field-library/B03-algorithms-recipes-for-information"
+  },
+  {
+    "id": "B04",
+    "title": "Sorting by hand",
+    "concept": "Trace sorting instead of trusting the final list",
+    "explanation": "Adjacent comparisons and swaps can sort a list. A pass with no swaps supplies a stopping condition. Save intermediate lists so a correct final result does not conceal a different algorithm or an incorrect comparison count.",
+    "challenge": "Why retain the final no-swap pass?",
+    "answer": "It is the evidence used by this version of the algorithm to stop; it still performs comparisons.",
+    "mode": "HOST_EXERCISE",
+    "lesson": "docs/field-library/B04-sorting-by-hand"
+  },
+  {
+    "id": "B05",
+    "title": "Data, files, and the CF card",
+    "concept": "Separate a source artifact, a record, and a backup",
+    "explanation": "A filename extension does not establish a role or execution authority. A content hash can show that a copied byte sequence matches. It does not establish that a file is suitable for a card layout or a physical launcher.",
+    "challenge": "Does committing a .hex file make it CF-card approved?",
+    "answer": "No. Manifest approval, layout validation, and physical deployment are separate steps.",
+    "mode": "HOST_EXERCISE",
+    "lesson": "docs/field-library/B05-data-files-and-the-cf-card"
+  },
+  {
+    "id": "R01",
+    "title": "Pictures made of letters",
+    "concept": "Design within a 40-column text grid",
+    "explanation": "ASCII art is a layout problem with a fixed character budget. Count characters rather than judging the width by eye. These lines use only uppercase seven-bit printable characters and spaces.",
+    "challenge": "Add your own title without changing the border width.",
+    "answer": "The interior is 38 characters; reject or shorten longer text before centering.",
+    "mode": "HOST_EXERCISE",
+    "lesson": "docs/field-library/R01-pictures-made-of-letters"
+  },
+  {
+    "id": "R02",
+    "title": "Motion is many pictures",
+    "concept": "Model animation as frames and state",
+    "explanation": "An animation can be described by position and direction. These host-generated frames show state updates, not display timing or cursor addressing on the Apple-1. A time delay and a display update mechanism would be additional implementation work.",
+    "challenge": "What state is needed for a bouncing symbol beyond its position?",
+    "answer": "Its direction, and the boundaries of its allowed movement.",
+    "mode": "HOST_EXERCISE",
+    "lesson": "docs/field-library/R02-motion-is-many-pictures"
+  },
+  {
+    "id": "R03",
+    "title": "Generative patterns",
+    "concept": "Generate a pattern from a compact rule",
+    "explanation": "A rule can describe many rows more compactly than storing every character. This triangular pattern has a simple row counter. Compact description is not evidence of learning, emergence, or randomness.",
+    "challenge": "How many stars occur in the first six rows?",
+    "answer": "1+2+3+4+5+6 = 21. Compare a stored image with the size and runtime cost of a generator.",
+    "mode": "HOST_EXERCISE",
+    "lesson": "docs/field-library/R03-generative-patterns"
+  },
+  {
+    "id": "R04",
+    "title": "Interactive fiction",
+    "concept": "Represent a story as explicit state transitions",
+    "explanation": "A room is state; an action selects a transition. An unavailable exit must have defined behavior. This host example makes invalid movement stay in the current room instead of accidentally selecting another one.",
+    "challenge": "Where would you store whether a key has been collected?",
+    "answer": "In separate persistent game state; the current room alone cannot represent inventory.",
+    "mode": "HOST_EXERCISE",
+    "lesson": "docs/field-library/R04-interactive-fiction"
+  },
+  {
+    "id": "R05",
+    "title": "Sound, rhythm, and code",
+    "concept": "Encode a rhythm without claiming audio hardware",
+    "explanation": "Bits can encode events over equal conceptual time slots. A one means a clap and zero a rest. The same bits do not specify tempo, duration, volume, pitch, or a sound device.",
+    "challenge": "What extra parameter turns the slots into a tempo?",
+    "answer": "A defined time per slot. Generating sound also needs a compatible output mechanism.",
+    "mode": "HOST_EXERCISE",
+    "lesson": "docs/field-library/R05-sound-rhythm-and-code"
+  },
+  {
+    "id": "H01",
+    "title": "The 1976 personal-computing moment",
+    "concept": "Order source-backed events without merging different counts",
+    "explanation": "This exercise sorts an intentionally shuffled teaching timeline. The dates are drawn from the existing lesson source notes. Sorting them checks ordering logic; it is not independent verification of the underlying historical sources.",
+    "challenge": "Why should \"boards made\" and \"boards sold\" be separate timeline facts?",
+    "answer": "They count different events. One number cannot replace the other without evidence.",
+    "mode": "HOST_EXERCISE",
+    "lesson": "docs/field-library/H01-the-1976-personal-computing-moment"
+  },
+  {
+    "id": "H02",
+    "title": "Original, replica, and reproduction",
+    "concept": "Use object labels as bounded claims",
+    "explanation": "The teaching labels below distinguish an original artifact, a modern replica, and a digital model. A label does not authenticate an actual object; it states the category whose evidence would need checking.",
+    "challenge": "Can a software model reproduce behavior without being a physical replica?",
+    "answer": "Yes. Behavioral correspondence and physical object identity are different questions.",
+    "mode": "HOST_EXERCISE",
+    "lesson": "docs/field-library/H02-original-replica-and-reproduction"
+  },
+  {
+    "id": "H03",
+    "title": "Why provenance matters",
+    "concept": "Check identity with a cryptographic digest",
+    "explanation": "SHA-256 detects a change to the bytes being hashed. It supplies a content identity, not the creator, date, license, or historical authenticity of that content. Compare the original and a changed copy.",
+    "challenge": "What fields would you add to turn a digest into a useful provenance record?",
+    "answer": "Source, acquisition date, original filename, version, responsible person, rights information, and the claim the file supports.",
+    "mode": "HOST_EXERCISE",
+    "lesson": "docs/field-library/H03-why-provenance-matters"
+  },
+  {
+    "id": "H04",
+    "title": "Safe experimentation",
+    "concept": "Classify the action before touching the machine",
+    "explanation": "An off-device computation and a serial open have different effects. This is a worked classification exercise, not an authorization engine. A classroom label cannot approve a hardware procedure.",
+    "challenge": "Why is a no-transmit serial open not automatically harmless here?",
+    "answer": "The project recorded display corruption after such an open. Its physical evidence gate remains relevant.",
+    "mode": "HOST_EXERCISE",
+    "lesson": "docs/field-library/H04-safe-experimentation"
+  },
+  {
+    "id": "H05",
+    "title": "The future history you are making",
+    "concept": "Keep observations separate from interpretations",
+    "explanation": "A useful log records the action, observed result, and interpretation as different fields. This authored sample is a record-format exercise; it does not assert that a new physical observation occurred.",
+    "challenge": "Where should you record a surprising result that contradicts your expectation?",
+    "answer": "In observation, with the actual output retained. Put the hypothesis explaining it in interpretation.",
+    "mode": "HOST_EXERCISE",
+    "lesson": "docs/field-library/H05-the-future-history-you-are-making"
+  },
+  {
+    "id": "H06",
+    "title": "The monitor that wasn't",
+    "concept": "Preserve unknowns in a collection claim",
+    "explanation": "A later display can be associated with a historical computer without being its original bundled display. This exercise intentionally leaves a claim unknown instead of filling the gap from an attractive photograph.",
+    "challenge": "Would a modern museum pairing establish a 1976 factory bundle?",
+    "answer": "No. It establishes a display choice in that later context. Check the lesson sources and image provenance.",
+    "mode": "HOST_EXERCISE",
+    "lesson": "docs/field-library/H06-the-monitor-that-wasnt"
+  },
+  {
+    "id": "X01",
+    "title": "Hex scavenger hunt",
+    "concept": "Decode a known byte artifact without calling it a live dump",
+    "explanation": "The address column is computed from the stated origin. The bytes are read from the repository file, not memory on the Replica. Decode instructions using opcode boundaries rather than treating every occurrence of a byte as an opcode.",
+    "challenge": "Why can the byte D0 mean something other than BNE in this listing?",
+    "answer": "It can be an operand byte, such as the high byte of address $D010. Instruction boundaries determine interpretation.",
+    "mode": "HOST_EXERCISE",
+    "lesson": "docs/field-library/X01-hex-scavenger-hunt"
+  },
+  {
+    "id": "X02",
+    "title": "Fix the loop",
+    "concept": "Expose a one-byte off-by-one error",
+    "explanation": "The intended destination is five bytes long. The broken comparison uses six, so both programs return normally but one writes beyond the intended region. A successful return alone cannot detect this defect.",
+    "challenge": "Which operand byte changes, and why is that a better fix than changing the stated intention?",
+    "answer": "The immediate comparison operand changes from 06 to 05. It makes the implementation meet the original five-byte specification.",
+    "mode": "VIRTUAL_EXECUTION",
+    "lesson": "docs/field-library/X02-fix-the-loop"
+  },
+  {
+    "id": "X03",
+    "title": "Build a museum demo",
+    "concept": "Design a demonstration that works without the board",
+    "explanation": "Choose one visible result, explain it, and ask the viewer a question. The timing below is a rehearsal plan. Code verifies the budget, not whether an audience learned the concept.",
+    "challenge": "What should you ask the audience after presenting?",
+    "answer": "Ask them to explain the one result in their own words. A timed script is not evidence of comprehension.",
+    "mode": "HOST_EXERCISE",
+    "lesson": "docs/field-library/X03-build-a-museum-demo"
+  },
+  {
+    "id": "X04",
+    "title": "Curate a mini software exhibit",
+    "concept": "Curate a set with explicit evidence limits",
+    "explanation": "A useful exhibit connects an artifact, what it shows, and what it cannot prove. This exercise checks that every sample card states a limit; historical authenticity and rights still require source review.",
+    "challenge": "What strengthens the exhibit more: a confident caption or a precise source record?",
+    "answer": "A precise source record lets a reviewer evaluate the caption. Confidence supplies no additional evidence.",
+    "mode": "HOST_EXERCISE",
+    "lesson": "docs/field-library/X04-curate-a-mini-software-exhibit"
+  },
+  {
+    "id": "X05",
+    "title": "Invent the next lesson",
+    "concept": "Write an observable learning objective",
+    "explanation": "\"Understand assembly\" does not specify how learning is checked. An objective should name a task, visible output, and criterion. A completed author card is a proposal requiring review, not a new approved curriculum item.",
+    "challenge": "How would you assess an open-ended program design?",
+    "answer": "Use a rubric covering requirements, memory ranges, reachable exit, tests including boundaries, source notes, and an honest limit statement.",
+    "mode": "HOST_EXERCISE",
+    "lesson": "docs/field-library/X05-invent-the-next-lesson"
+  },
+  {
+    "id": "SP01",
+    "title": "Two Boards, One Computer",
+    "concept": "Compare implementations without confusing the software contract",
+    "explanation": "The existing atlas compares documented functions, not verified probe points. The mapping below is a reading exercise derived from that atlas. A similar address interface does not imply identical circuitry or timing.",
+    "challenge": "Which substitutions would a program using the documented I/O addresses need to know about?",
+    "answer": "The program depends on the software-visible contract; circuitry, electrical behavior, and timing still matter for physical compatibility.",
+    "mode": "HOST_EXERCISE",
+    "lesson": "docs/field-library/SP01-two-boards-one-computer"
+  },
+  {
+    "id": "F01",
+    "title": "Validate console commands before work starts",
+    "concept": "Validate console commands before work starts",
+    "explanation": "The parser validates syntax before the application checks storage or launches a worker. A suggested correction is advice, not an automatically executed command. This lab exercises the real parser without a deployment configuration.",
+    "challenge": "Why must START extra be rejected rather than ignored?",
+    "answer": "The extra argument may express an assumption about what will run. Ignoring it can start unintended work.",
+    "mode": "SYNTHETIC_SOFTWARE",
+    "lesson": null
+  },
+  {
+    "id": "F02",
+    "title": "Assemble source and retain its execution trace",
+    "concept": "Assemble source and retain its execution trace",
+    "explanation": "The lesson assembler performs two passes so a branch can refer to a later label. This is host-side teaching tooling. The constrained experimental agent does not receive this assembler API as an extra tool.",
+    "challenge": "Can you infer physical clock timing from the trace instruction count?",
+    "answer": "No. The bounded software trace is not an electrical or cycle-accurate Replica measurement.",
+    "mode": "VIRTUAL_EXECUTION",
+    "lesson": null
+  },
+  {
+    "id": "F03",
+    "title": "Record a provider response and replay its exact identity",
+    "concept": "Record a provider response and replay its exact identity",
+    "explanation": "A recording binds a response to its prompt, agent, and seed. Exact replay must refuse a missing tuple rather than supply a plausible replacement. The provider below is deliberately fake, so this tests recording behavior without inference.",
+    "challenge": "Would fixing only the random seed reproduce a different model build?",
+    "answer": "No. Preserve weights/manifest identity, configuration, prompt, runtime, and recordings. A seed is only one input.",
+    "mode": "SYNTHETIC_SOFTWARE",
+    "lesson": null
+  },
+  {
+    "id": "F04",
+    "title": "Qualify a test model registry without downloading weights",
+    "concept": "Qualify a test model registry without downloading weights",
+    "explanation": "A registry identifies the backend, exact model, context bound, settings, and provenance. Qualification checks a bounded provider configuration. This fake record is marked TEST-ONLY; its qualification is not native Ollama model acceptance.",
+    "challenge": "What must replace placeholder metadata before a real campaign?",
+    "answer": "Locally observed model identities, digests, quantization, context/settings, license, and provenance information.",
+    "mode": "SYNTHETIC_SOFTWARE",
+    "lesson": null
+  },
+  {
+    "id": "F05",
+    "title": "Cancel and resume without duplicating committed turns",
+    "concept": "Cancel and resume without duplicating committed turns",
+    "explanation": "A checkpoint is useful when an interrupted run resumes with its earlier transcript intact. The synthetic provider requests cancellation after its first call. Resume uses the actual campaign engine and the same specification, without a systemd worker or a live model.",
+    "challenge": "What would invalidate a same-ID resume?",
+    "answer": "Changing the canonical specification or losing the original effective model registry undermines the meaning of continuing the same run.",
+    "mode": "SYNTHETIC_SOFTWARE",
+    "lesson": null
+  },
+  {
+    "id": "F06",
+    "title": "Verify an export and detect changed evidence",
+    "concept": "Verify an export and detect changed evidence",
+    "explanation": "Export creates a separate evidence package with a file manifest. Verification detects content changes. A correct hash does not prove that a scientific interpretation is correct, but a changed hash can invalidate a claim of unchanged evidence.",
+    "challenge": "Why keep the original export when experimenting with tampering?",
+    "answer": "It preserves a reference. This lab changes only its own temporary fixture, never retained research evidence.",
+    "mode": "SYNTHETIC_SOFTWARE",
+    "lesson": null
+  },
+  {
+    "id": "F07",
+    "title": "Persist claims, history, and review thresholds",
+    "concept": "Persist claims, history, and review thresholds",
+    "explanation": "META stores statements and evidence relationships. A tribunal verdict depends on declared rules and evidence level, not the confidence of a model explanation. This synthetic claim is a database exercise, not a new scientific result.",
+    "challenge": "Would an authored causal_level=2 make this fixture a causal discovery?",
+    "answer": "No. It exercises the rules; the evidence itself is explicitly synthetic.",
+    "mode": "SYNTHETIC_SOFTWARE",
+    "lesson": null
+  },
+  {
+    "id": "F08",
+    "title": "Evaluate 4k-mind with explicit controls",
+    "concept": "Evaluate 4k-mind with explicit controls",
+    "explanation": "Persistent RAM can survive a context boundary, but that does not by itself show learned culture. This fixture executes a known output routine and asks the real family evaluator to inspect it independently.",
+    "challenge": "What negative control would prevent an always-pass evaluator from appearing correct?",
+    "answer": "Use an empty/incorrect program or a structurally invalid candidate and require rejection. A positive fixture alone is insufficient.",
+    "mode": "VIRTUAL_EXECUTION",
+    "lesson": null
+  },
+  {
+    "id": "F09",
+    "title": "Evaluate selfhost1 with explicit controls",
+    "concept": "Evaluate selfhost1 with explicit controls",
+    "explanation": "A successful raw-code task is stage-one evidence. It is not the discovery of an assembler or compiler. This fixture supplies a known routine and checks the implemented family criterion.",
+    "challenge": "What negative control would prevent an always-pass evaluator from appearing correct?",
+    "answer": "Use an empty/incorrect program or a structurally invalid candidate and require rejection. A positive fixture alone is insufficient.",
+    "mode": "VIRTUAL_EXECUTION",
+    "lesson": null
+  },
+  {
+    "id": "F10",
+    "title": "Evaluate 256-byte-universe with explicit controls",
+    "concept": "Evaluate 256-byte-universe with explicit controls",
+    "explanation": "An exact-size candidate must be explicitly deposited and perform its task. Padding an eight-byte routine to a declared 256-byte artifact is a positive test fixture, not a complete replacement Monitor.",
+    "challenge": "What negative control would prevent an always-pass evaluator from appearing correct?",
+    "answer": "Use an empty/incorrect program or a structurally invalid candidate and require rejection. A positive fixture alone is insufficient.",
+    "mode": "VIRTUAL_EXECUTION",
+    "lesson": null
+  },
+  {
+    "id": "F11",
+    "title": "Evaluate ram-republic with explicit controls",
+    "concept": "Evaluate ram-republic with explicit controls",
+    "explanation": "Two scheduled participants can interact through shared RAM. This fixture repeats an authored routine for both participants; it checks the evaluator, not the emergence of a protocol.",
+    "challenge": "What negative control would prevent an always-pass evaluator from appearing correct?",
+    "answer": "Use an empty/incorrect program or a structurally invalid candidate and require rejection. A positive fixture alone is insufficient.",
+    "mode": "VIRTUAL_EXECUTION",
+    "lesson": null
+  },
+  {
+    "id": "F12",
+    "title": "Reject unsupported historical proposals",
+    "concept": "Reject unsupported historical proposals",
+    "explanation": "Historical validation cannot manufacture missing components or prices. This negative example asks the actual family evaluator to inspect an empty proposal set. It should evaluate the input while declining to call it a valid design.",
+    "challenge": "Does the reviewed year-end corpus promote the broad March-1976 staging index?",
+    "answer": "No. The two datasets have different source and cutoff scopes.",
+    "mode": "SYNTHETIC_SOFTWARE",
+    "lesson": null
+  },
+  {
+    "id": "F13",
+    "title": "Ground Field Library operations in a real lesson corpus",
+    "concept": "Ground Field Library operations in a real lesson corpus",
+    "explanation": "SOURCE reads the selected lesson documents without inference. ASK/HINT/EXPLAIN/CHECK assemble bounded, source-grounded prompts; TRACE first executes a deterministic program. A fixed provider here exposes that plumbing without claiming model understanding.",
+    "challenge": "Does a source-grounded prompt guarantee that a real model answer is true?",
+    "answer": "No. Inspect citations and deterministic evidence, test abstention, and keep model explanation separate from execution.",
+    "mode": "SYNTHETIC_SOFTWARE",
+    "lesson": null
+  },
+  {
+    "id": "F14",
+    "title": "Restore a snapshot and identify a one-factor fork",
+    "concept": "Restore a snapshot and identify a one-factor fork",
+    "explanation": "A snapshot captures state; a manifest identifies scientific inputs. A fork names its parent and changed factor. Restoration is a host verifier operation, not a hidden memory tool given to the agent.",
+    "challenge": "Why preserve the same seed when changing one factor?",
+    "answer": "It helps define a matched comparison, but does not eliminate every confound or guarantee identical model execution.",
+    "mode": "SYNTHETIC_SOFTWARE",
+    "lesson": null
+  },
+  {
+    "id": "F15",
+    "title": "Reset private context while retaining shared RAM",
+    "concept": "Reset private context while retaining shared RAM",
+    "explanation": "The scheduler owns agent contexts, while the world owns memory. Resetting an agent conversation must not silently erase persistent RAM. Conversely, sharing model weights must not share private conversation lists.",
+    "challenge": "Would persistence of an authored byte demonstrate a learned communication protocol?",
+    "answer": "No. It demonstrates state behavior. A protocol claim needs operational criteria, controls, and replication.",
+    "mode": "SYNTHETIC_SOFTWARE",
+    "lesson": null
+  },
+  {
+    "id": "F16",
+    "title": "Inspect recorded native evidence without rerunning the Pi",
+    "concept": "Inspect recorded native evidence without rerunning the Pi",
+    "explanation": "This reads the published sanitized September closeout extract. It is a retained native observation, not fresh inference or a new hardware health check. The source record separates the model response, parser acceptance, and independent execution.",
+    "challenge": "Can reading this file establish that the Pi is healthy now?",
+    "answer": "No. It establishes what the retained record reports about that identified run.",
+    "mode": "RETAINED_RECORD",
+    "lesson": null
+  },
+  {
+    "id": "F17",
+    "title": "Inspect a synthetic disk image without touching a disk",
+    "concept": "Inspect a synthetic disk image without touching a disk",
+    "explanation": "The storage inspector accepts an ordinary image file. Here a tiny teaching image contains an MBR signature and one partition entry. It is not a bootable Pi image or a storage device.",
+    "challenge": "Would a valid MBR signature prove all files in the image are intact?",
+    "answer": "No. It validates one structure, not the complete filesystem or historical provenance.",
+    "mode": "SYNTHETIC_SOFTWARE",
+    "lesson": null
+  },
+  {
+    "id": "F18",
+    "title": "Separate portal navigation from a physical launcher",
+    "concept": "Separate portal navigation from a physical launcher",
+    "explanation": "The portal is a virtual state machine. Selecting COMPUTER changes its state and calls a virtual adapter. It neither opens a device nor resolves the physical launcher integration.",
+    "challenge": "Does selecting COMPUTER in this example run a real Woz Monitor ROM?",
+    "answer": "No. The adapter reports a modeled interface; the physical launcher remains separate.",
+    "mode": "SYNTHETIC_SOFTWARE",
+    "lesson": null
+  },
+  {
+    "id": "F19",
+    "title": "Validate a 40-column frame and preserve artwork rights",
+    "concept": "Validate a 40-column frame and preserve artwork rights",
+    "explanation": "Visual formatting has executable constraints, while permission to redistribute an image is a separate provenance question. Validate the original text portal without treating an external reference as a licensed project asset.",
+    "challenge": "Why is fitting a 40-column frame unrelated to redistribution permission?",
+    "answer": "One checks formatting; the other depends on authorship, rights, and permission records.",
+    "mode": "HOST_EXERCISE",
+    "lesson": null
+  },
+  {
+    "id": "F20",
+    "title": "Read display modes without executing deployment controls",
+    "concept": "Read display modes without executing deployment controls",
+    "explanation": "The same recorded data can have human-readable or JSON presentation. Long IDs must remain copyable. This exercises the actual presentation function and the resource-bounded preset definitions; it does not launch a worker.",
+    "challenge": "Why should the display preserve a negative passed field?",
+    "answer": "Readable presentation must not turn completed execution into a claim of success.",
+    "mode": "SYNTHETIC_SOFTWARE",
+    "lesson": null
+  },
+  {
+    "id": "F21",
+    "title": "Inspect a local-provider request using a mock transport",
+    "concept": "Inspect a local-provider request using a mock transport",
+    "explanation": "The real Ollama adapter constructs a request to a loopback endpoint. The injected opener below checks that request and supplies a synthetic reply. This is a transport contract demonstration; it does not contact Ollama or infer tokens.",
+    "challenge": "How would a real request differ?",
+    "answer": "It would use an existing qualified local model and the actual service, with resource checks, bounded generation, and retained recordings.",
+    "mode": "MOCK_TRANSPORT",
+    "lesson": null
+  },
+  {
+    "id": "F22",
+    "title": "Check a preserved program source without writing a card",
+    "concept": "Check a preserved program source without writing a card",
+    "explanation": "The host-side CF flow begins with a source manifest and explicit approval. A source file hash can be inspected independently of export or deployment. This example reads only the existing RAM artifact and card manifest.",
+    "challenge": "What is the next safe step after reviewing a manifest?",
+    "answer": "Host-side staging of approved sources, following the exporter guide. Staging is not physical-card deployment.",
+    "mode": "HOST_EXERCISE",
+    "lesson": null
+  },
+  {
+    "id": "F23",
+    "title": "Rebuild a synthetic SELFHOST archive artifact",
+    "concept": "Rebuild a synthetic SELFHOST archive artifact",
+    "explanation": "The persistent archive retains reconstruction evidence and ancestry. This deliberately synthetic stage-one run deposits a known routine. The archive ingests it, rebuilds it, and verifies a dependency-closed export; it does not invent a compiler.",
+    "challenge": "What is additionally required before later-stage qualification?",
+    "answer": "Qualified parent ancestry, a retained builder, exact repeat reconstruction, independently declared behavioral tests, and controls. Stage one alone supplies none of those later claims.",
+    "mode": "SYNTHETIC_SOFTWARE",
+    "lesson": null
+  },
+  {
+    "id": "F24",
+    "title": "Copy and verify a migration using disposable fixture directories",
+    "concept": "Copy and verify a migration using disposable fixture directories",
+    "explanation": "The storage workflow separates planning, copying, and verification. This example creates its own marked temporary directories and tiny fixture file. It does not identify a real SSD, change mounts, format a device, or finalize deletion of user data.",
+    "challenge": "Why not finalize deletion as the first teaching step?",
+    "answer": "Verification and an independent retained copy come first. Finalization is a separately guarded operator action, not a requirement for learning copy integrity.",
+    "mode": "SYNTHETIC_SOFTWARE",
+    "lesson": null
+  },
+  {
+    "id": "F25",
+    "title": "Observe a deployment guard refusing an ordinary directory",
+    "concept": "Observe a deployment guard refusing an ordinary directory",
+    "explanation": "A directory with a familiar name is not necessarily the commissioned volume. This example invokes the actual storage verification guard with a freshly created ordinary directory. Rejection is the expected success of the guard.",
+    "challenge": "Why check a filesystem identity rather than only free space?",
+    "answer": "A missing mount can leave an ordinary directory on another disk. Plenty of free space on the wrong disk does not make the destination correct.",
+    "mode": "SYNTHETIC_SOFTWARE",
+    "lesson": null
+  },
+  {
+    "id": "F26",
+    "title": "Inspect research staging without promoting it",
+    "concept": "Inspect research staging without promoting it",
+    "explanation": "The historical research index carries an explicit status and authoritative-record count. Reading or validating that file does not promote its claims. This capture reflects the committed staging index, separate from the reviewed console corpus.",
+    "challenge": "What would justify promotion of a historical component?",
+    "answer": "The documented source, hash, claim, date-cutoff, and review gates; model-generated estimates are not a substitute.",
+    "mode": "RETAINED_RECORD",
+    "lesson": null
+  },
+  {
+    "id": "L01",
+    "title": "Read token accounting without confusing words and tokens",
+    "concept": "Read token accounting without confusing words and tokens",
+    "explanation": "Tokens belong to a model tokenizer, not the Apple-1 byte encoding. The mock API reports token counters; the adapter retains them rather than counting words. The numbers below are explicitly supplied fixture metadata, not measured inference.",
+    "challenge": "Can you infer token count from the number of ASCII bytes?",
+    "answer": "No. The tokenizer determines segmentation. Preserve the provider-reported counters and model identity.",
+    "mode": "MOCK_TRANSPORT",
+    "lesson": null
+  },
+  {
+    "id": "L02",
+    "title": "Estimate weight storage without promising total RAM use",
+    "concept": "Estimate weight storage without promising total RAM use",
+    "explanation": "Parameter count multiplied by nominal bits per weight gives a lower-level storage estimate. It excludes metadata, quantization scales, runtime allocations, and context/KV cache. It is not a memory-fit benchmark or a model recommendation.",
+    "challenge": "Why can a nominal 750 MB weight estimate exceed 750 MB in actual memory?",
+    "answer": "Scales and metadata, activation/runtime buffers, allocator overhead, and the context cache all add storage.",
+    "mode": "HOST_EXERCISE",
+    "lesson": null
+  },
+  {
+    "id": "L03",
+    "title": "Separate model context from persistent machine memory",
+    "concept": "Separate model context from persistent machine memory",
+    "explanation": "A conversation context and a byte in virtual RAM are different stores. This lab clears an authored Python context list while preserving a world snapshot. A later real-model experiment would need to show what the model can recover from RAM through its permitted interface.",
+    "challenge": "Does the retained byte guarantee the next model will interpret it correctly?",
+    "answer": "No. The model still needs a usable convention and must discover or follow it through the allowed observations.",
+    "mode": "SYNTHETIC_SOFTWARE",
+    "lesson": null
+  },
+  {
+    "id": "L04",
+    "title": "Treat a model response as a proposal, not an instruction to the host",
+    "concept": "Treat a model response as a proposal, not an instruction to the host",
+    "explanation": "The response parser selects permitted modeled Monitor command lines. Assembly, shell instructions, and explanations do not become host actions merely because a model prints them. Acceptance also does not guarantee the resulting program is correct.",
+    "challenge": "What if valid-looking commands store the wrong value?",
+    "answer": "The parser has checked syntax only. Independent execution and the task evaluator must check behavior.",
+    "mode": "SYNTHETIC_SOFTWARE",
+    "lesson": null
+  },
+  {
+    "id": "L05",
+    "title": "Distinguish model names from content identity",
+    "concept": "Distinguish model names from content identity",
+    "explanation": "A friendly tag can name different content over time. A manifest digest and a GGUF weight digest identify different artifacts. This authored metadata example teaches which identity each field describes; it does not qualify a real model.",
+    "challenge": "Which digest should you substitute for a missing license?",
+    "answer": "Neither. Content identity and permission/provenance are different registry fields.",
+    "mode": "HOST_EXERCISE",
+    "lesson": null
+  },
+  {
+    "id": "L06",
+    "title": "Interpret latency from a retained native run",
+    "concept": "Interpret latency from a retained native run",
+    "explanation": "Elapsed campaign time and model request latency are not interchangeable with tokens per second. This reads a retained native run and reports only its recorded elapsed time and accepted-command count. It performs no new benchmark.",
+    "challenge": "Why not divide eight commands by elapsed time and call it model tokens per second?",
+    "answer": "Commands and tokens are different units, and elapsed time includes additional work. Use the relevant provider counters and durations.",
+    "mode": "RETAINED_RECORD",
+    "lesson": null
+  },
+  {
+    "id": "L07",
+    "title": "Bound a research matrix before launching it",
+    "concept": "Bound a research matrix before launching it",
+    "explanation": "Cartesian products multiply quickly: models times experiments times seeds, with additional generations and agents inside each cell. A bounded plan makes the cost and stopping criteria explicit before inference.",
+    "challenge": "Why is a per-cell deadline different from an overall resource guarantee?",
+    "answer": "Concurrency, runtime overhead, cache state, thermal behavior, and external failures still need explicit supervision.",
+    "mode": "HOST_EXERCISE",
+    "lesson": null
+  },
+  {
+    "id": "L08",
+    "title": "Use negative controls before widening a claim",
+    "concept": "Use negative controls before widening a claim",
+    "explanation": "A useful evaluator must distinguish a candidate that meets the task from one that does not. This lesson uses the exact-256 evaluator with a positive and a negative authored fixture, so \"the evaluator ran\" cannot substitute for \"the task passed.\"",
+    "challenge": "Does passing a positive control establish a general replacement Monitor?",
+    "answer": "No. It establishes that specific output/return task under its explicit constraints.",
+    "mode": "VIRTUAL_EXECUTION",
+    "lesson": null
+  },
+  {
+    "id": "F27",
+    "title": "Use deterministic mutation and selection policies",
+    "concept": "Use deterministic mutation and selection policies",
+    "explanation": "Mutation, selection, conflict accounting, and convergence are explicit policies. The seed makes an authored mutation repeatable; a shared artifact does not establish a causal explanation for convergence.",
+    "challenge": "Would changing the score weights change what counts as the best candidate?",
+    "answer": "Yes. Declare the weights before inspecting candidates and retain them as part of the experiment.",
+    "mode": "SYNTHETIC_SOFTWARE",
+    "lesson": null
+  },
+  {
+    "id": "F28",
+    "title": "Inspect a llama.cpp command without executing a binary",
+    "concept": "Inspect a llama.cpp command without executing a binary",
+    "explanation": "The real adapter uses an argument array and bounded runner. An injected runner records the invocation and supplies a fixture response; there is no model binary or GGUF file opened in this lab.",
+    "challenge": "Why use an argument array rather than concatenate a shell command?",
+    "answer": "It preserves argument boundaries and avoids interpreting model or path text as shell syntax.",
+    "mode": "MOCK_TRANSPORT",
+    "lesson": null
+  },
+  {
+    "id": "F29",
+    "title": "Stage only approved CF sources in a disposable directory",
+    "concept": "Stage only approved CF sources in a disposable directory",
+    "explanation": "The actual exporter reads explicit approval fields. This fixture has one approved source and one candidate. It checks that staging copies the approved page and leaves the candidate out, without writing a card.",
+    "challenge": "Does this promote any real lesson to card-approved status?",
+    "answer": "No. The approval fields and sources in this lab are disposable fixtures.",
+    "mode": "SYNTHETIC_SOFTWARE",
+    "lesson": null
+  },
+  {
+    "id": "F30",
+    "title": "Audit candidate firmware source without loading firmware",
+    "concept": "Audit candidate firmware source without loading firmware",
+    "explanation": "The static auditor inspects archived source declarations. Its result is explicitly candidate-only. Source pin constants and writer routines do not identify installed EEPROM contents, safe probe points, or the actual cause of a hardware fault.",
+    "challenge": "What evidence would connect this source to the installed firmware?",
+    "answer": "A separately verified identity and readback/provenance procedure; static source inspection alone cannot do so.",
+    "mode": "HOST_EXERCISE",
+    "lesson": null
+  },
+  {
+    "id": "F31",
+    "title": "Reject incomplete capture metadata",
+    "concept": "Reject incomplete capture metadata",
+    "explanation": "A capture needs enough context to support interpretation. The validator should reject an incomplete object even when its result says PASS. This lab creates no physical capture and verifies no probe placement.",
+    "challenge": "Is a complete metadata object sufficient to establish that a measurement happened?",
+    "answer": "No. Raw artifacts, identities, hashes, procedure, and interpretation still matter.",
+    "mode": "SYNTHETIC_SOFTWARE",
+    "lesson": null
+  },
+  {
+    "id": "F32",
+    "title": "Package only explicitly selected support evidence",
+    "concept": "Package only explicitly selected support evidence",
+    "explanation": "The support-bundle tool copies explicit files into an archive with hashes. The teaching file is created in a disposable directory. No workstation logs, account data, serial devices, or private machine configuration are collected.",
+    "challenge": "Why should a support bundle require explicit paths?",
+    "answer": "It limits collection scope and makes it possible to review exactly what is included before sharing.",
+    "mode": "SYNTHETIC_SOFTWARE",
+    "lesson": null
+  },
+  {
+    "id": "F33",
+    "title": "Interpret invariant mining as a candidate generator",
+    "concept": "Interpret invariant mining as a candidate generator",
+    "explanation": "A feature common to observed successes is a candidate pattern, not an automatically established cause. An independent successful counterexample can break it. Keep outcome classification and the population used in analysis explicit.",
+    "challenge": "What would justify changing an observed pattern into a causal claim?",
+    "answer": "A predeclared intervention/control design, appropriate uncertainty analysis, and replication, not a detector label alone.",
+    "mode": "SYNTHETIC_SOFTWARE",
+    "lesson": null
+  },
+  {
+    "id": "F34",
+    "title": "Link a proof capsule to explicit falsification work",
+    "concept": "Link a proof capsule to explicit falsification work",
+    "explanation": "A proof capsule packages the basis for a claim and its reproduction metadata. A falsification plan proposes an intervention. Neither creates a scientific finding simply because its data structure is valid.",
+    "challenge": "Why leave a compute estimate unbenchmarked?",
+    "answer": "An unmeasured cost should remain unknown rather than be presented as a measured performance result.",
+    "mode": "SYNTHETIC_SOFTWARE",
+    "lesson": null
+  },
+  {
+    "id": "F35",
+    "title": "Exercise the single-writer contract model",
+    "concept": "Exercise the single-writer contract model",
+    "explanation": "This FIFO is a host model of a proposed firmware contract, not installed firmware. Two producers enqueue bytes and one service path preserves their order. Overflow must stop rather than silently drop data.",
+    "challenge": "What additional work would be needed before claiming this fixes a physical fault?",
+    "answer": "Qualified source identity, review, bounded instrumented procedures, actual measurements, and recovery evidence. This model supplies none of those physical observations.",
+    "mode": "SYNTHETIC_SOFTWARE",
+    "lesson": null
+  },
+  {
+    "id": "F36",
+    "title": "Connect a virtual echo program to a fixed-response bridge",
+    "concept": "Connect a virtual echo program to a fixed-response bridge",
+    "explanation": "The off-device bridge first executes the RAM input program, then formats a supplied response for a 40-column display. A fixed client separates bridge plumbing from real-model inference.",
+    "challenge": "Which part changes when substituting a real local model?",
+    "answer": "The provider call and its provenance/resource requirements. The deterministic echo and formatting contracts remain independently testable.",
+    "mode": "SYNTHETIC_SOFTWARE",
+    "lesson": null
+  }
+]

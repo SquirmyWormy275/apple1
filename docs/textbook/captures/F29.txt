@@ -1,0 +1,7 @@
+F29 / Stage only approved CF sources in a disposable directory
+MODE: SYNTHETIC_SOFTWARE | HOST ONLY | NO MODEL INFERENCE
+
+Approved page staged: True
+Candidate staged: False
+
+CHECKS PASSED | No physical serial connection was requested.

@@ -1,0 +1,8 @@
+F23 / Rebuild a synthetic SELFHOST archive artifact
+MODE: SYNTHETIC_SOFTWARE | HOST ONLY | NO MODEL INFERENCE
+
+Evidence class: SYNTHETIC_OR_REPLAY
+Stage: 1 rebuild: True
+Export valid: True
+
+CHECKS PASSED | No physical serial connection was requested.

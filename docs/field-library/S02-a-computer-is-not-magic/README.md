@@ -103,3 +103,9 @@ What this lesson does **not** establish:
 - It does not authorize a firmware load, an EEPROM write, a CFFA1 write, a
   serial-port open, or any physical change. Reading a trace on paper is the
   whole of this lesson.
+
+## Worked companion
+
+[Run the worked example and inspect its captured output](WORKED.md).
+This host-only companion supplements the original activity; it does not change
+the packet's physical deployment or historical review status.

@@ -1,0 +1,7 @@
+L03 / Separate model context from persistent machine memory
+MODE: SYNTHETIC_SOFTWARE | HOST ONLY | NO MODEL INFERENCE
+
+Conversation messages: 0
+Persistent byte: 42
+
+CHECKS PASSED | No physical serial connection was requested.

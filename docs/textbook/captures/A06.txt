@@ -1,0 +1,12 @@
+A06 / Design a tiny utility
+MODE: VIRTUAL_EXECUTION | HOST ONLY | NO MODEL INFERENCE
+
+Program bytes: A0 00 A9 41 99 00 04 C8 C0 05 D0 F8 4C 1F FF
+Stop: MONITOR_WARM_ENTRY; instructions: 23
+Final A=41 X=00 Y=05
+0400: 41
+0404: 41
+0405: 00
+Buffer: b'AAAAA\x00'
+
+CHECKS PASSED | No physical serial connection was requested.

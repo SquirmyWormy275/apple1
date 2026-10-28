@@ -1,0 +1,13 @@
+F20 / Read display modes without executing deployment controls
+MODE: SYNTHETIC_SOFTWARE | HOST ONLY | NO MODEL INFERENCE
+
+4k-mind generations= 3 tokens= 192
+1976-multiverse generations= 3 tokens= 512
+selfhost1 generations= 3 tokens= 192
+256-byte-universe generations= 18 tokens= 96
+ram-republic generations= 3 tokens= 192
+Campaign id:
+N1-P-AAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAA
+Passed: No
+
+CHECKS PASSED | No physical serial connection was requested.

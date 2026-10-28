@@ -1,0 +1,8 @@
+F24 / Copy and verify a migration using disposable fixture directories
+MODE: SYNTHETIC_SOFTWARE | HOST ONLY | NO MODEL INFERENCE
+
+Copy verified: True
+Source retained: True
+Real SSD or mount modified: False
+
+CHECKS PASSED | No physical serial connection was requested.

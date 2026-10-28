@@ -1,0 +1,9 @@
+F28 / Inspect a llama.cpp command without executing a binary
+MODE: MOCK_TRANSPORT | HOST ONLY | NO MODEL INFERENCE
+
+Executable: llama-cli
+Arguments include a model path: True
+Timeout is bounded: True
+Synthetic response: 0300: 2A
+
+CHECKS PASSED | No physical serial connection was requested.

@@ -6,7 +6,7 @@ Keys refer to the shared pool in `../SOURCES.md`.
 |---|---|
 | 64 KB addressable space; the address bus is 16 bits wide | M-64K |
 | Monitor ROM is 256 bytes at `$FF00`-`$FFFF` | M-ROM |
-| The 6502 finds its start address at the top of memory on reset | M-RESET-VEC |
+| The 6502 finds its start address at the top of memory on reset | M-RESET-CORRECT; the superseded M-RESET-VEC quotation is qualified in the shared source pool |
 | Original: 4 KB at `$0000`-`$0FFF`; 4 KB at `$E000`-`$EFFF` | M-RAM-ORIG |
 | `$E000`-`$EFFF` was RAM on the original, so BASIC was reloaded every power-up | M-BASIC-RAM |
 | The stack is `$0100`-`$01FF`, base `$01FF`, growing down | M-STACK |

@@ -1,0 +1,8 @@
+F33 / Interpret invariant mining as a candidate generator
+MODE: SYNTHETIC_SOFTWARE | HOST ONLY | NO MODEL INFERENCE
+
+Observed support fraction: 1.0
+Successful counterexamples: 1
+Detected change candidates: 1
+
+CHECKS PASSED | No physical serial connection was requested.

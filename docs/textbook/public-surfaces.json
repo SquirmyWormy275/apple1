@@ -1,0 +1,233 @@
+[
+  {
+    "path": "neural1/application.py",
+    "subcommands": [],
+    "flags": [
+      "--command",
+      "--config",
+      "--debug",
+      "--json",
+      "--launch-id",
+      "--resume",
+      "--retro",
+      "--worker"
+    ],
+    "teaching_route": "F01, F05, F07, F13, F20, F25; native service/model actions require the commissioned environment"
+  },
+  {
+    "path": "neural1/benchmark.py",
+    "subcommands": [],
+    "flags": [
+      "--expected-uuid",
+      "--hardware-report",
+      "--iterations",
+      "--model",
+      "--output",
+      "--registry",
+      "--ssd-root",
+      "--temperature-limit"
+    ],
+    "teaching_route": "Chapter 7/L06; new workloads and provider benchmarks not run"
+  },
+  {
+    "path": "neural1/cli.py",
+    "subcommands": [
+      "cancel-campaign",
+      "console",
+      "evaluate-campaign",
+      "export-bundle",
+      "history-status",
+      "pilot-report",
+      "qualify-models",
+      "run-campaign",
+      "validate-campaign",
+      "verify-bundle"
+    ],
+    "flags": [
+      "--debug",
+      "--meta-database",
+      "--output",
+      "--reproduce",
+      "--runtime-metadata",
+      "--thermal-log"
+    ],
+    "teaching_route": "F04, F05, F06, F26; developer campaign/report commands use explicit artifacts"
+  },
+  {
+    "path": "neural1/demos.py",
+    "subcommands": [],
+    "flags": [
+      "--out"
+    ],
+    "teaching_route": "First demonstration and F08\u2013F12; fixed-response prototype"
+  },
+  {
+    "path": "neural1/meta_console.py",
+    "subcommands": [
+      "claim",
+      "history",
+      "queue",
+      "tribunal"
+    ],
+    "flags": [
+      "--db",
+      "--minimum-causal-level",
+      "--through-sequence"
+    ],
+    "teaching_route": "F07, F34; temporary synthetic database"
+  },
+  {
+    "path": "neural1/storage_commissioning.py",
+    "subcommands": [
+      "baseline-rootfs",
+      "copy-migration",
+      "finalize-migration",
+      "init-ssd-root",
+      "init-temporary-root",
+      "inspect-image",
+      "plan-migration",
+      "verify-migration"
+    ],
+    "flags": [
+      "--confirm-delete",
+      "--confirm-role",
+      "--manifest",
+      "--output",
+      "--sha256",
+      "--volume-id"
+    ],
+    "teaching_route": "F17, F24; real storage initialization/finalization remains operator-only"
+  },
+  {
+    "path": "tools/apple1_emulator.py",
+    "subcommands": [],
+    "flags": [
+      "--input"
+    ],
+    "teaching_route": "M03, A05; real host-only RAM harness"
+  },
+  {
+    "path": "tools/archive_manifest.py",
+    "subcommands": [],
+    "flags": [
+      "--category"
+    ],
+    "teaching_route": "H03; identity/provenance procedure, source API reference"
+  },
+  {
+    "path": "tools/capture_manifest.py",
+    "subcommands": [],
+    "flags": [],
+    "teaching_route": "F31; incomplete metadata rejected"
+  },
+  {
+    "path": "tools/export_cf_card_sources.py",
+    "subcommands": [],
+    "flags": [
+      "--include-baseline-image",
+      "--include-candidates",
+      "--manifest",
+      "--output",
+      "--repo-root"
+    ],
+    "teaching_route": "F22, F29; host staging fixture only"
+  },
+  {
+    "path": "tools/firmware_static_audit.py",
+    "subcommands": [],
+    "flags": [],
+    "teaching_route": "F30; candidate-source audit only"
+  },
+  {
+    "path": "tools/neural1_install_pi.py",
+    "subcommands": [],
+    "flags": [
+      "--default-model",
+      "--ollama-store",
+      "--py65-wheel",
+      "--registry",
+      "--source",
+      "--ssd",
+      "--user",
+      "--uuid"
+    ],
+    "teaching_route": "Chapter 10; pinned operator deployment, not invoked"
+  },
+  {
+    "path": "tools/neural1_telemetry.py",
+    "subcommands": [],
+    "flags": [
+      "--duration",
+      "--interval"
+    ],
+    "teaching_route": "Chapter 7/10; native sensor collection not newly run"
+  },
+  {
+    "path": "tools/neural1_validate.py",
+    "subcommands": [],
+    "flags": [],
+    "teaching_route": "Development workflow; repository validation run during build"
+  },
+  {
+    "path": "tools/propeller_preflight.py",
+    "subcommands": [],
+    "flags": [
+      "--tool"
+    ],
+    "teaching_route": "Chapter 10; compile-only preparation, not a firmware load"
+  },
+  {
+    "path": "tools/serial_owner.py",
+    "subcommands": [],
+    "flags": [
+      "--by-id",
+      "--by-path",
+      "--capture",
+      "--lock",
+      "--transmit"
+    ],
+    "teaching_route": "Chapter 10; inspect source/reference before operator use"
+  },
+  {
+    "path": "tools/support_bundle.py",
+    "subcommands": [],
+    "flags": [
+      "--tool-version"
+    ],
+    "teaching_route": "F32; explicitly selected teaching fixture only"
+  },
+  {
+    "path": "tools/textbook.py",
+    "subcommands": [
+      "build-pages",
+      "capture",
+      "list",
+      "run",
+      "verify"
+    ],
+    "flags": [
+      "--images",
+      "--out",
+      "--rerun"
+    ],
+    "teaching_route": "Chapter 0; list/run/capture/verify/build-pages"
+  },
+  {
+    "path": "tools/trace_packet.py",
+    "subcommands": [],
+    "flags": [],
+    "teaching_route": "F31 and chapter 11; metadata principles, actual captured packet review is separate"
+  },
+  {
+    "path": "tools/virtual_bridge.py",
+    "subcommands": [],
+    "flags": [
+      "--input",
+      "--ollama",
+      "--program",
+      "--reply",
+      "--transcript"
+    ],
+    "teaching_route": "F36; fixed client, no inference"
+  }
+]

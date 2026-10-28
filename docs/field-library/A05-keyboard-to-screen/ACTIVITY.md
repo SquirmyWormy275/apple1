@@ -1,5 +1,10 @@
 # A05 Activity: read the whole program
 
+> **Companion scope (October 27, 2026):** This page retains the original activity.
+> Paper-only and no-execution statements below describe that original exercise.
+> The separate [worked companion](WORKED.md) explicitly identifies any new host
+> calculation or virtual execution; neither provides physical Replica approval.
+
 **Status:** OFF-DEVICE. Paper, optionally the M03 emulator on an ordinary
 computer. **Nothing here is entered on the Replica 1 Plus.** The artifact is
 classified RAM-ONLY with no live-run authority, and this activity does not change

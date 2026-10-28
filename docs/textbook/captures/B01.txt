@@ -1,0 +1,11 @@
+B01 / From instructions to BASIC
+MODE: HOST_AND_VIRTUAL | HOST ONLY | NO MODEL INFERENCE
+
+Host analogue of PRINT 6*7: 42
+Program bytes: A9 2A 8D 00 04 4C 1F FF
+Stop: MONITOR_WARM_ENTRY; instructions: 3
+Final A=2A X=00 Y=00
+0400: 2A
+No BASIC interpreter was executed.
+
+CHECKS PASSED | No physical serial connection was requested.

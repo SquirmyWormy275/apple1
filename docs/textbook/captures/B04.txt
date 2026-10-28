@@ -1,0 +1,9 @@
+B04 / Sorting by hand
+MODE: HOST_EXERCISE | HOST ONLY | NO MODEL INFERENCE
+
+pass=1; list=[3, 1, 4, 2, 5]; swaps=4
+pass=2; list=[1, 3, 2, 4, 5]; swaps=2
+pass=3; list=[1, 2, 3, 4, 5]; swaps=1
+pass=4; list=[1, 2, 3, 4, 5]; swaps=0
+
+CHECKS PASSED | No physical serial connection was requested.

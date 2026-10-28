@@ -1,5 +1,10 @@
 # A06 Activity: fill the card
 
+> **Companion scope (October 27, 2026):** This page retains the original activity.
+> Paper-only and no-execution statements below describe that original exercise.
+> The separate [worked companion](WORKED.md) explicitly identifies any new host
+> calculation or virtual execution; neither provides physical Replica approval.
+
 **Status:** OFF-DEVICE. Paper, optionally the M03 emulator on an ordinary
 computer. **Nothing designed here is entered on the Replica 1 Plus, and a
 completed card grants no authority to do so.**

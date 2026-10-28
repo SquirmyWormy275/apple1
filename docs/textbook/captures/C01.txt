@@ -1,0 +1,13 @@
+C01 / The 6502 at work
+MODE: VIRTUAL_EXECUTION | HOST ONLY | NO MODEL INFERENCE
+
+Program bytes: A9 2A 8D 00 04 4C 1F FF
+Before instruction: PC    A  X  Y  P
+                    0300 00 00 00 30
+                    0302 2A 00 00 30
+                    0305 2A 00 00 30
+Stop: MONITOR_WARM_ENTRY; instructions: 3
+Final A=2A X=00 Y=00
+0400: 2A
+
+CHECKS PASSED | No physical serial connection was requested.
