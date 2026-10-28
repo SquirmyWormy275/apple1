@@ -123,6 +123,15 @@
     "teaching_route": "H03; identity/provenance procedure, source API reference"
   },
   {
+    "path": "tools/build_cf_library.py",
+    "subcommands": [],
+    "flags": [
+      "--output",
+      "--supplements"
+    ],
+    "teaching_route": "CF-card deployment guide; offline 6502 display build with exact-source archive"
+  },
+  {
     "path": "tools/capture_manifest.py",
     "subcommands": [],
     "flags": [],
@@ -157,6 +166,15 @@
       "--out"
     ],
     "teaching_route": "chapter14; cf-card/README.md; renders retained host observations"
+  },
+  {
+    "path": "tools/cf_card_audit.py",
+    "subcommands": [],
+    "flags": [
+      "--before",
+      "--build"
+    ],
+    "teaching_route": "CF-card deployment guide; read-only image inventory and preservation verification"
   },
   {
     "path": "tools/export_cf_card_sources.py",

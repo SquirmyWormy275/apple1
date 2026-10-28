@@ -22,6 +22,7 @@ Apple-1 world. Models propose commands; deterministic execution checks them;
 | Explore | What you will find | Begin with |
 |---|---|---|
 | Learn early computing | 42 lesson packets with activities, sources, answers, and prerequisites | [What is an Apple-1?](docs/field-library/S01-what-is-an-apple-1/README.md) |
+| Read the card edition | Main books, saved BASIC programs, full readings and preserved originals | [CF-card library](wiki/CF-Card-Library.md) |
 | Try the software | A repeatable demonstration using fixed test responses and virtual execution | [Five-minute walkthrough](docs/neural1/getting-started.md) |
 | Study model behavior | Five experiment families covering memory, historical design, rebuilding tools, small programs, and shared-memory interaction | [Experiment guide](wiki/Experiments-and-Discoveries.md) |
 | Examine the engineering | Recoverable workers, storage checks, snapshots, evidence records, and verified exports | [Project highlights](wiki/Project-Highlights.md) |
@@ -80,14 +81,25 @@ trace. The native guide also shows failed model proposals and independent checks
 
 ## The flash-card edition
 
-The [core card guide](cf-card/README.md) provides 50 books, every original
-lesson's activity and answers, all 39 board-atlas plates, a paged RAM reader,
-and six actual BA1 programs. Real CFFA1 firmware builds the virtual filesystem;
-the reader displays every page in host rehearsal. The original image and files
-remain preserved. Physical Replica acceptance is still pending.
+The [combined CF-card library](wiki/CF-Card-Library.md) was installed and fully
+read back on October 28, 2026. Its **386 files** include all six original
+programs, the **50-book main library**, **six saved Integer BASIC programs**,
+319 supplemental readers, and an exact-source archive. The supplements include
+all 15 textbook chapters, 42 worked companions, teacher/visitor material,
+source notes and all 110 captured example outputs.
 
+On a working Replica/CFFA1, select prefix `EDUCATION`, load `READER` at `$0800`,
+quit to Monitor, then enter `0800R`. The root `START.HERE` overview and the
+supplemental readers use `$1000`; the [loading guide](cf-card/DEPLOYMENT.md)
+explains both interfaces.
+
+The [installation audit](cf-card/AUDIT-2026-10-28.md) verifies the complete
+media copy and unchanged originals. Physical Replica display/keyboard and
+serial acceptance remain pending. Python and model inference run on the host.
+
+[Download the built content](cf-card/releases/README.md) ·
+[Browse the six originals](cf-card/original/README.md) ·
 [Run real Integer BASIC](docs/textbook/reference/basic.md) ·
-[Inspect the card build](cf-card/README.md#build-a-new-candidate-image) ·
 [Prepare the build story](docs/hardware/build-storyboard/README.md)
 
 ![Actual RAM-reader output, rendered from host rehearsal](docs/textbook/card-preview/reader-tour.gif)
@@ -129,6 +141,7 @@ third-party sources and artwork retain their attribution and rights boundaries.
 |---|---|
 | Virtual software | Runtime, five experiment paths, campaign tooling, META/1, lessons, and deterministic demonstrations are implemented. |
 | Raspberry Pi deployment | The September 10 closeout records native local inference, SSD persistence, cancellation/resume, and post-boot operation. |
+| CF-card media | Combined edition installed and checksum-verified; the six original files are unchanged. [Inventory and receipt](cf-card/AUDIT-2026-10-28.md). |
 | Physical Replica integration | The serial fault remains unresolved. The RAM reader and card builder work in host rehearsal; physical acceptance remains pending. |
 | Scientific conclusions | Completed execution can include rejected candidates and negative results. No autonomous discovery is claimed. |
 | Wooden enclosure | [R04 is the design reference](docs/hardware/enclosure/README.md); component fit and assembly details retain open checks. |
@@ -151,7 +164,7 @@ installed version.
 | [tests/](tests/) | Software checks using synthetic, replayed, and deterministic inputs |
 | [tools/](tools/) | Emulator, validation, preservation, and operator tooling |
 | [configs/](configs/neural1/pilot-001/) and [schemas/](schemas/neural1/) | Campaign definitions and data contracts |
-| [preservation/](preservation/) and [cf-card/](cf-card/README.md) | Preserved originals and controlled host-side export sources |
+| [preservation/](preservation/) and [cf-card/](cf-card/README.md) | Preserved originals, source-controlled builders, ready-built packages and card receipts |
 | [art/](art/README.md) | Project artwork and provenance |
 
 ## Development and validation
@@ -161,7 +174,7 @@ mirror the [off-device CI workflow](.github/workflows/ci.yml):
 
 ```bash
 python -m pip install -e '.[dev]'
-ruff check neural1 tools/neural1_validate.py tests/test_neural1*.py tests/test_storage.py tools/textbook.py tools/textbook_support.py tools/textbook_native.py tools/apple1_basic.py tools/cffa1_model.py tools/prodos.py tools/card_book.py tools/card_image.py tools/card_preview.py tools/field_library_review.py tools/export_cf_card_sources.py tests/test_cf_card_sources.py tests/test_pre_hardware.py docs/textbook/examples
+ruff check neural1 tools/neural1_validate.py tests/test_neural1*.py tests/test_storage.py tools/textbook.py tools/textbook_support.py tools/textbook_native.py tools/apple1_basic.py tools/cffa1_model.py tools/prodos.py tools/card_book.py tools/card_image.py tools/card_preview.py tools/field_library_review.py tools/export_cf_card_sources.py tests/test_cf_card_sources.py tests/test_pre_hardware.py tools/build_cf_library.py tools/cf_card_audit.py tests/test_cf_library_reader.py tests/test_cf_card_audit.py docs/textbook/examples
 mypy neural1
 python -m pytest -q
 python tools/neural1_validate.py .

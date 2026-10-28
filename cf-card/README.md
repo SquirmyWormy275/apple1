@@ -16,6 +16,24 @@ does not write a physical card or establish installed firmware identity.
 [BASIC programs](../software/basic/README.md) ·
 [Textbook](../docs/textbook/README.md)
 
+## Verified combined media edition
+
+The combined edition was loaded onto the original Lexar CF card on October 28.
+Its complete readback matches the checked image, with all six original files
+and metadata unchanged. In addition to this 50-book core and six BASIC programs,
+it includes 319 supplemental readers and an exact-source archive: **386 files**
+and **3,374 displayed pages** in total.
+
+[Read the combined library](../wiki/CF-Card-Library.md) ·
+[Loading and rebuilding](DEPLOYMENT.md) ·
+[Installation audit](AUDIT-2026-10-28.md) ·
+[Download built files](releases/README.md) ·
+[Original six programs](original/README.md)
+
+The rest of this page documents the independently reproducible core component.
+The media copy is verified; physical Replica display, keyboard and serial
+acceptance remain distinct from storage and firmware-model checks.
+
 ## What belongs where
 
 | Location in the candidate image | Contents | Purpose |

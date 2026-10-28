@@ -12,8 +12,7 @@ physical integration work.
 
 The [RAM-only software library](../docs/apple1-software-library.md) and
 [emulator guide](../docs/emulator-demo-guide.md) explain the small example
-programs. [CF source control](../cf-card/README.md) explains preserved baselines,
-reviewed sources, and host-side staging; the exporter does not write a card.
+programs. [The CF-card library](CF-Card-Library.md) now has a verified media installation: 50 main books, six saved BASIC programs, full supplemental readings and the original six files. The [loading guide](../cf-card/DEPLOYMENT.md) explains the `$0800` main reader and `$1000` supplements. The [dated receipt](../cf-card/AUDIT-2026-10-28.md) records the storage checks; physical Replica display/keyboard acceptance remains pending.
 
 ## Explore the enclosure and collection
 

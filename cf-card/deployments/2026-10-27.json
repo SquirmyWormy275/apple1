@@ -1,0 +1,108 @@
+{
+  "date": "2026-10-27",
+  "source_revision": "fcefe714a94b130aba090fb188740f6fbf9638ed",
+  "device_size_bytes": 128974848,
+  "before_sha256": "5c98a3bb8c77e4155167a1c8df353ae07697f57c939de9196b838ecf097ad836",
+  "readback_sha256": "65e9f82612ac77db71f4203cba387560e371946a3eb48b3ca004b92cf8732ec1",
+  "full_card_matches_built_image": true,
+  "original_files": 6,
+  "added_files": 518,
+  "total_files": 524,
+  "reader_binaries": 514,
+  "display_pages": 3161,
+  "lesson_packets": 42,
+  "atlas_source_pages": 39,
+  "textbook_chapters": 13,
+  "reproduced_examples": 100,
+  "repository_tests_passed": 451,
+  "original_entries_unchanged": true,
+  "boot_blocks_unchanged": true,
+  "trailing_bytes_unchanged": true,
+  "physical_board_display_test": "not performed; card was in the USB reader",
+  "open_source_review_items": "retained in lesson status/source notes",
+  "image_tool": {
+    "name": "CiderPress II",
+    "version": "1.2.0",
+    "source": "https://github.com/fadden/CiderPress2/releases/tag/v1.2.0"
+  },
+  "original_inventory": {
+    "UTILITIES": {
+      "file_type": 15,
+      "aux_type": 0,
+      "bytes": 512,
+      "storage_kind": 13,
+      "key_block": 22,
+      "blocks_used": 1,
+      "entry_hex": "d95554494c49544945530000000000000f16000100000200000000000000e30000000000000200"
+    },
+    "UTILITIES/BASIC": {
+      "file_type": 6,
+      "aux_type": 57344,
+      "bytes": 4096,
+      "storage_kind": 2,
+      "key_block": 38,
+      "blocks_used": 9,
+      "entry_hex": "2542415349430000000000000000000006260009000010004d0d100d0000e300e0460d2d0f1600",
+      "sha256": "5d8a3fe3c20c42903b226d67430c840ea5119557f88774c069e2e4dd80ad2c67"
+    },
+    "UTILITIES/CFFAROMV1.1.BIN": {
+      "file_type": 6,
+      "aux_type": 8192,
+      "bytes": 8160,
+      "storage_kind": 2,
+      "key_block": 65,
+      "blocks_used": 15,
+      "entry_hex": "2f43464641524f4d56312e312e42494e0641000f00e01f00961a040c0000e30020951a07171600",
+      "sha256": "ada5c4c1a918b924a708eb1ac4ac726d3a712f395ff177a6945e1585b7b2dae8"
+    },
+    "UTILITIES/FLASHERV1.1.BIN": {
+      "file_type": 6,
+      "aux_type": 4096,
+      "bytes": 704,
+      "storage_kind": 2,
+      "key_block": 124,
+      "blocks_used": 3,
+      "entry_hex": "2f464c415348455256312e312e42494e067c000300c00200951a0c170000e30010951a06171600",
+      "sha256": "2b0ca127db58836ff55fee7e680a599dbd9456904e1315735909695230cf046e"
+    },
+    "UTILITIES/UPDATERV1.1.BIN": {
+      "file_type": 6,
+      "aux_type": 3584,
+      "bytes": 12768,
+      "storage_kind": 2,
+      "key_block": 133,
+      "blocks_used": 18,
+      "entry_hex": "2f5550444154455256312e312e42494e0685001200e03100951a0c170000e3000e951a06171600",
+      "sha256": "c43fe2e38fdd58cd11f205456938949073ea1272974de62308f9390e50a62586"
+    },
+    "GAMES": {
+      "file_type": 15,
+      "aux_type": 0,
+      "bytes": 512,
+      "storage_kind": 13,
+      "key_block": 23,
+      "blocks_used": 1,
+      "entry_hex": "d547414d4553000000000000000000000f17000100000200000000000000e30000000000000200"
+    },
+    "GAMES/LUNAR": {
+      "file_type": 6,
+      "aux_type": 768,
+      "bytes": 5817,
+      "storage_kind": 2,
+      "key_block": 24,
+      "blocks_used": 5,
+      "entry_hex": "254c554e4152000000000000000000000618000500b916004d0d100d0000e30003420d07111700",
+      "sha256": "9b32811c872d4b085c9cba996e41d9232a697c98f5225f18a4fb74872acb4c6d"
+    },
+    "GAMES/STARTREK": {
+      "file_type": 241,
+      "aux_type": 768,
+      "bytes": 3840,
+      "storage_kind": 2,
+      "key_block": 29,
+      "blocks_used": 9,
+      "entry_hex": "28535441525452454b00000000000000f11d000900000f004d0d100d0000e300034d0d100d1700",
+      "sha256": "9d51e81e77826de6012ec9f5447e51853ab983e6cc28218005cb47b3d7d76f6e"
+    }
+  }
+}

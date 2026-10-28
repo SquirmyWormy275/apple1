@@ -1,4 +1,9 @@
 *.img filter=lfs diff=lfs merge=lfs -text
+# Extracted card bytes and retained ready-built ZIPs must remain byte-exact.
+cf-card/original/files/** -text
+cf-card/releases/*.zip -text
+cf-card/releases/SHA256SUMS text eol=lf
+cf-card/reader.s text eol=lf
 # Reproducible teaching sources and retained transcripts use LF across checkouts.
 *.py text eol=lf
 *.md text eol=lf
