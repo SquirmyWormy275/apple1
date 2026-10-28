@@ -1,0 +1,22 @@
+R03 GENERATIVE PATTERNS
+013/036 TRY
+
+OUT THE RULE.
+
+ /  #  /  OUTPUT  /  RULE  /
+ /  1  /  #.#.#.#.#.#.  /   /
+ /  2  /  #..#..#..#..  /   /
+ /  3  /  #.#..#...#..  /   /
+ /  4  /  ............  /   /
+
+LINE 3 IS HARDER. LINE 4 HAS MORE THAN
+ONE POSSIBLE ANSWER; GIVE TWO.
+
+PART D: CHARACTERS CHANGE EVERYTHING
+
+TAKE YOUR ROW-3 PATTERN AND WRITE IT
+OUT THREE WAYS.
+
+ /  CHARACTERS  /  HOW IT READS  /
+ /  # AND .  /   /
+N NEXT P BACK A ANSWER M BOOK Q EXIT

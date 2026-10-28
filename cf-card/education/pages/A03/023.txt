@@ -1,0 +1,22 @@
+A03 COUNTING AND LOOPING
+023/034 ANSWERS
+
+A03 ANSWER KEY
+
+PART A: PROGRAM A
+
+ /  PASS  /  X BEFORE  /  X AFTER  /
+BRANCH?  /
+ /  1  /  $05  /  $04  /  YES  /
+ /  2  /  $04  /  $03  /  YES  /
+ /  3  /  $03  /  $02  /  YES  /
+ /  4  /  $02  /  $01  /  YES  /
+ /  5  /  $01  /  $00  /  NO  /
+ /  6  /  (DOES NOT HAPPEN)  /   /   /
+
+- DEX RAN 5 TIMES.
+- BRANCH TAKEN 4 TIMES.
+- FINAL X = $00.
+- $0400 = $00.
+
+N NEXT P BACK A ANSWER M BOOK Q EXIT

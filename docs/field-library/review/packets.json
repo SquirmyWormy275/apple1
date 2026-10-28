@@ -1,0 +1,1780 @@
+{
+  "schema_version": 1,
+  "scope": "structural review plus separately recorded targeted editorial/source-location checks",
+  "source_pool_sha256": "a84de73c4a6439675bad03712848673f50e4593a4b4c803893c2db1dda885871",
+  "records": [
+    {
+      "id": "S01",
+      "disposition": "host-reading-candidate; physical acceptance pending",
+      "first_result_actions": 3,
+      "activity_parts": [
+        "A",
+        "B",
+        "C",
+        "D"
+      ],
+      "answer_parts": [
+        "A",
+        "B",
+        "C",
+        "D"
+      ],
+      "answer_mapping_notes": {},
+      "shared_source_keys": [],
+      "evidence_lab": "S01",
+      "card_book": "S01",
+      "mode": "OFF-DEVICE",
+      "source_qualification": "citations resolve; local-scan ledger and editorial findings are separate; no authentication/rights clearance",
+      "input_sha256": {
+        "docs/field-library/S01-what-is-an-apple-1/README.md": "ec1b20bb7ef9735260976de1564cb4192f24437c7d149b05abac393a267ca1f4",
+        "docs/field-library/S01-what-is-an-apple-1/ACTIVITY.md": "248c98abe20aaef70c2f9772eb9cfc5c2370b5b77f711849d4219d9d7c4d2e8d",
+        "docs/field-library/S01-what-is-an-apple-1/ANSWERS.md": "8b8ed38000d59fdf6576943f76e43f8b7b1fa88395f355b8b86bd90e10e718c9",
+        "docs/field-library/S01-what-is-an-apple-1/SOURCE-NOTES.md": "66489b1de3e3d71e283e5c64f3d0d3f62e56c13e1fb2fe6ae4d091ec4ad01453",
+        "docs/field-library/S01-what-is-an-apple-1/STATUS.md": "4e8ccd7eb65cb8486803508d51368d9ccc4ab2909e8eae7dd7d39f94ef481052",
+        "docs/field-library/S01-what-is-an-apple-1/assets/three-parts-blank.txt": "6efc314feb08091379b2463cf31adf284c01fab6fa9f6e46659ed252c4d34cb6",
+        "docs/field-library/S01-what-is-an-apple-1/assets/three-parts-labeled.txt": "e12e1d772543350234241b31a1962d33d69a0919e518bb4a2cf8c669d447d8b7"
+      }
+    },
+    {
+      "id": "S02",
+      "disposition": "host-reading-candidate; physical acceptance pending",
+      "first_result_actions": 3,
+      "activity_parts": [
+        "A",
+        "B",
+        "C",
+        "D"
+      ],
+      "answer_parts": [
+        "A",
+        "B",
+        "C",
+        "D"
+      ],
+      "answer_mapping_notes": {},
+      "shared_source_keys": [
+        "A-HEX",
+        "P-DSP",
+        "P-DSP-BUSY",
+        "P-KBD",
+        "P-KBD-7BIT",
+        "P-PROPELLER",
+        "P-VIDEO-TEXT",
+        "P-VIDEO-WRITEONLY"
+      ],
+      "evidence_lab": "S02",
+      "card_book": "S02",
+      "mode": "OFF-DEVICE",
+      "source_qualification": "citations resolve; local-scan ledger and editorial findings are separate; no authentication/rights clearance",
+      "input_sha256": {
+        "docs/field-library/S02-a-computer-is-not-magic/README.md": "a3cd46f0e9446f0b7a371c6a125458988efcf55296de9c8d0aa198dd5ea93ba0",
+        "docs/field-library/S02-a-computer-is-not-magic/ACTIVITY.md": "69c9fa6a04e158f6cf7abe14b3161fb636b8ea0800e5df256fbc2f1a64a4d294",
+        "docs/field-library/S02-a-computer-is-not-magic/ANSWERS.md": "e3e2f7f05a76d5fce7d6d47adf85cb918557207d1dbb955a5fa49970ce478c53",
+        "docs/field-library/S02-a-computer-is-not-magic/SOURCE-NOTES.md": "212b5d0b7ea1e0f29a85e39d281464eccdf2cc848b9d897a2f6f8b5df07463d9",
+        "docs/field-library/S02-a-computer-is-not-magic/STATUS.md": "75f0e54f1b3b5c77785411db8a9169093b84acd14ff6c2153fa1e53129d7bd5a",
+        "docs/field-library/S02-a-computer-is-not-magic/assets/key-to-screen.txt": "733daa8c7024047acbfd94d4f65cd43b405acdcc3312b73c76eba8d7bf20d868",
+        "docs/field-library/S02-a-computer-is-not-magic/assets/trace-blank.txt": "8cd229eaf02d7a72966312f66607c476335f96189d85dfe6ecdfc157b0b23ad9"
+      }
+    },
+    {
+      "id": "S03",
+      "disposition": "host-reading-candidate; physical acceptance pending",
+      "first_result_actions": 3,
+      "activity_parts": [
+        "A",
+        "B",
+        "C",
+        "D",
+        "E",
+        "F"
+      ],
+      "answer_parts": [
+        "A",
+        "B",
+        "C",
+        "E",
+        "F"
+      ],
+      "answer_mapping_notes": {
+        "D": "The activity itself supplies the landmark table; check recall both ways."
+      },
+      "shared_source_keys": [
+        "A-ASCII",
+        "A-CHART",
+        "A-HEX",
+        "A-TABLE",
+        "P-DSP",
+        "P-HIGHBIT",
+        "P-KBD",
+        "W-CR"
+      ],
+      "evidence_lab": "S03",
+      "card_book": "S03",
+      "mode": "OFF-DEVICE",
+      "source_qualification": "citations resolve; local-scan ledger and editorial findings are separate; no authentication/rights clearance",
+      "input_sha256": {
+        "docs/field-library/S03-your-first-hex-number/README.md": "237e71b9d79a43bcd8ca16ee2d91da2051203063f31af747fe76f7c7b409d75f",
+        "docs/field-library/S03-your-first-hex-number/ACTIVITY.md": "1b9664a056e8be79dfdd40a4e35d53dab0e9cfd351d6d777ff9efe76ea04fe3a",
+        "docs/field-library/S03-your-first-hex-number/ANSWERS.md": "fd609568f4d68e43030705a86c1e811a212cd4c78dc23e4fff0dd1fede365c11",
+        "docs/field-library/S03-your-first-hex-number/SOURCE-NOTES.md": "e350d266bd063a97e15c2ca6538e23d99bf79ea58805e2152aa9b42e862bfc9d",
+        "docs/field-library/S03-your-first-hex-number/STATUS.md": "74955fcbbabc8982a3d3a65219a209cddbc92ab98e18aaff08ed2bc778dc2657",
+        "docs/field-library/S03-your-first-hex-number/assets/hex-table-blank.txt": "801c9628ea4bc98571e8f3718b22af7d072aeb406b3c3b9189f6eb2b3bb16ad4",
+        "docs/field-library/S03-your-first-hex-number/assets/hex-table-filled.txt": "36ee9dcd68e55f692ccbb362ff9b23c800b7b7a010167182b8ee582482a3a1ed"
+      }
+    },
+    {
+      "id": "S04",
+      "disposition": "host-reading-candidate; physical acceptance pending",
+      "first_result_actions": 3,
+      "activity_parts": [
+        "A",
+        "B",
+        "C",
+        "D",
+        "E"
+      ],
+      "answer_parts": [
+        "A",
+        "B",
+        "C",
+        "D",
+        "E"
+      ],
+      "answer_mapping_notes": {},
+      "shared_source_keys": [
+        "H-BYTESHOP",
+        "H-MADE",
+        "H-PRICE",
+        "H-SOLD",
+        "M-ROM",
+        "P-KBD",
+        "R-RESET",
+        "R-SERIAL"
+      ],
+      "evidence_lab": "S04",
+      "card_book": "S04",
+      "mode": "OFF-DEVICE",
+      "source_qualification": "citations resolve; local-scan ledger and editorial findings are separate; no authentication/rights clearance",
+      "input_sha256": {
+        "docs/field-library/S04-facts-models-and-evidence/README.md": "c3664828d02d72b3eecd109833dba3ff22cb1fc026e25925290f522853b6960e",
+        "docs/field-library/S04-facts-models-and-evidence/ACTIVITY.md": "4c097b6cd3ea0aa7cde6a54fef29cd828b406b3563e41357ddb36595300002e9",
+        "docs/field-library/S04-facts-models-and-evidence/ANSWERS.md": "97ff5540a6628ebf67e3027abca8e0419159e99ba94447b8d290e39361b795a6",
+        "docs/field-library/S04-facts-models-and-evidence/SOURCE-NOTES.md": "b60ad4f6a084e6b79c9ed36e161204dc5ef215948d77427e612281fd3b2e12d4",
+        "docs/field-library/S04-facts-models-and-evidence/STATUS.md": "864fd0f081addcef0c28b00c6b2a7c816d03c6c9518f8435d48433bde232b456",
+        "docs/field-library/S04-facts-models-and-evidence/assets/sorting-card.txt": "6bc1417135d1ddf966a77cd60e0d1e8223d6bc3e0ebda834257ac13530b7165f"
+      }
+    },
+    {
+      "id": "C01",
+      "disposition": "host-reading-candidate; physical acceptance pending",
+      "first_result_actions": 3,
+      "activity_parts": [
+        "A",
+        "B",
+        "C",
+        "D",
+        "E",
+        "F"
+      ],
+      "answer_parts": [
+        "A",
+        "B",
+        "C",
+        "D",
+        "E",
+        "F"
+      ],
+      "answer_mapping_notes": {},
+      "shared_source_keys": [
+        "M-STACK",
+        "P-KBD",
+        "W-FF1F"
+      ],
+      "evidence_lab": "C01",
+      "card_book": "C01",
+      "mode": "OFF-DEVICE",
+      "source_qualification": "citations resolve; local-scan ledger and editorial findings are separate; no authentication/rights clearance",
+      "input_sha256": {
+        "docs/field-library/C01-the-6502-at-work/README.md": "5100d785cbc4868c392296e64ebfb03e1d9bfdfdba061f5d31aa1c71934fb78b",
+        "docs/field-library/C01-the-6502-at-work/ACTIVITY.md": "d62bfb562c8cc3aabf7080c2080b80db62ecbd0fe5c72f666bf25aa3ed52af42",
+        "docs/field-library/C01-the-6502-at-work/ANSWERS.md": "2e360f1a176f21f61c02e127fe7540f43595a63e08fee9c1f55a0d2f9ad1f56b",
+        "docs/field-library/C01-the-6502-at-work/SOURCE-NOTES.md": "3934f0c9bf341a9a11aae8dbb672913aa877a1b588d3d67e8ba6f93874d9ccac",
+        "docs/field-library/C01-the-6502-at-work/STATUS.md": "df6cd692df3a3037abbb9842887f3f74ead1ec1600b0770cc0d0f49edf3ad64a",
+        "docs/field-library/C01-the-6502-at-work/assets/fetch-decide-act.txt": "a248e2809da3a2df233cf9d37ce07dcbd08f8079d714dc3271080050abc4bbd4"
+      }
+    },
+    {
+      "id": "C02",
+      "disposition": "host-reading-candidate; physical acceptance pending",
+      "first_result_actions": 3,
+      "activity_parts": [
+        "A",
+        "B",
+        "C",
+        "D",
+        "E",
+        "F"
+      ],
+      "answer_parts": [
+        "A",
+        "B",
+        "C",
+        "D",
+        "E",
+        "F"
+      ],
+      "answer_mapping_notes": {},
+      "shared_source_keys": [
+        "M-BASIC-RAM",
+        "M-PIA-RANGE",
+        "M-RAM-ORIG",
+        "M-REPLICA-MAP",
+        "M-RESET-CORRECT",
+        "M-RESET-VEC",
+        "M-ROM",
+        "M-STACK",
+        "P-DSP",
+        "P-DSP-BUSY",
+        "P-KBD",
+        "W-FF1F",
+        "W-INPUT"
+      ],
+      "evidence_lab": "C02",
+      "card_book": "C02",
+      "mode": "OFF-DEVICE",
+      "source_qualification": "citations resolve; local-scan ledger and editorial findings are separate; no authentication/rights clearance",
+      "input_sha256": {
+        "docs/field-library/C02-memory-is-a-map/README.md": "03c4e5d2025829730f03b29f1de54f56687424595a546781c6c6f80d4f761149",
+        "docs/field-library/C02-memory-is-a-map/ACTIVITY.md": "e7650541fd1fea7d86273cbb434a42918ba578a0b2bc3990a2232160e861e851",
+        "docs/field-library/C02-memory-is-a-map/ANSWERS.md": "24015e1222fee9b9509f0d4a1f7ce563c8e111edac4c989be4554cce70816a06",
+        "docs/field-library/C02-memory-is-a-map/SOURCE-NOTES.md": "12de7a8853fb9600b413a37b957d9790605a45e2b83892d41da6f47101591253",
+        "docs/field-library/C02-memory-is-a-map/STATUS.md": "07801a3b46b7ad046f4c82229c320dfd53a02a8d73b0122dbac6dd4410683b6d",
+        "docs/field-library/C02-memory-is-a-map/assets/address-worksheet.txt": "83e28f56007c759b357010f3d3d632ec1b34630bed132270e52c5e209f481126",
+        "docs/field-library/C02-memory-is-a-map/assets/memory-map.txt": "e4dc67a7e564a9b39e219754972f3d7a93ec55edfcd479c49af4672bda75bd1f"
+      }
+    },
+    {
+      "id": "C03",
+      "disposition": "host-reading-candidate; physical acceptance pending",
+      "first_result_actions": 3,
+      "activity_parts": [
+        "A",
+        "B",
+        "C",
+        "D",
+        "E",
+        "F",
+        "G"
+      ],
+      "answer_parts": [
+        "A",
+        "B",
+        "C",
+        "D",
+        "E",
+        "F"
+      ],
+      "answer_mapping_notes": {
+        "G": "Optional coin drill: compare the chosen byte with its place-value sum."
+      },
+      "shared_source_keys": [
+        "A-ASCII",
+        "A-CHART",
+        "A-HEX",
+        "A-TABLE",
+        "P-DDR",
+        "P-DSP",
+        "P-DSP-BUSY",
+        "P-HIGHBIT",
+        "P-KBD",
+        "P-KBD-7BIT",
+        "R-UPPER",
+        "W-CR"
+      ],
+      "evidence_lab": "C03",
+      "card_book": "C03",
+      "mode": "OFF-DEVICE",
+      "source_qualification": "citations resolve; local-scan ledger and editorial findings are separate; no authentication/rights clearance",
+      "input_sha256": {
+        "docs/field-library/C03-binary-bits-and-bytes/README.md": "4c06551561ad9eca32993c9f77807f1b0bf8c6834cfa8727ab6ceeaa7084647d",
+        "docs/field-library/C03-binary-bits-and-bytes/ACTIVITY.md": "ab66ac2436db9aa860252c9fb38fc23af97cf7c914255ac8bfe212ccfc6330ea",
+        "docs/field-library/C03-binary-bits-and-bytes/ANSWERS.md": "9c0807b23e07cd1f8f0adbe92c22a8cad4c32c40a58644a4dc6aedfa08d3a57d",
+        "docs/field-library/C03-binary-bits-and-bytes/SOURCE-NOTES.md": "eb7efe70121af42301066a4c0491072700c5b69d04c1cf57bb506944ad7445b2",
+        "docs/field-library/C03-binary-bits-and-bytes/STATUS.md": "78e93c76f32a9ae9dd7472944ec36f5a782b55e4155bc9612ff3db29b267049f",
+        "docs/field-library/C03-binary-bits-and-bytes/assets/bit-drill.txt": "c4ed4ac5a97180aefcbb78ce455fe5ab3bcc142f4543d4d56c589eb361a251c0",
+        "docs/field-library/C03-binary-bits-and-bytes/assets/bit-strip.txt": "3ab067cb3382cb8ca3a4bc28e495546e92530c7ff4749dfa46e839770fbae41c"
+      }
+    },
+    {
+      "id": "C04",
+      "disposition": "host-reading-candidate; physical acceptance pending",
+      "first_result_actions": 3,
+      "activity_parts": [
+        "A",
+        "B",
+        "C",
+        "D",
+        "E",
+        "F"
+      ],
+      "answer_parts": [
+        "A",
+        "B",
+        "C",
+        "D",
+        "E",
+        "F"
+      ],
+      "answer_mapping_notes": {},
+      "shared_source_keys": [
+        "A-ASCII",
+        "A-CHART",
+        "A-TABLE",
+        "P-HIGHBIT",
+        "P-KBD",
+        "P-KBD-7BIT",
+        "R-UPPER",
+        "W-CR"
+      ],
+      "evidence_lab": "C04",
+      "card_book": "C04",
+      "mode": "OFF-DEVICE",
+      "source_qualification": "citations resolve; local-scan ledger and editorial findings are separate; no authentication/rights clearance",
+      "input_sha256": {
+        "docs/field-library/C04-characters-become-numbers/README.md": "d7f3a64d535153c947500e2e265f64f965c0c9b9f53e09e85342791c4ca9d857",
+        "docs/field-library/C04-characters-become-numbers/ACTIVITY.md": "0866177f0978bf17083cfd0d80d3ad58644d5efa30386f57f3537bb4ce7f607a",
+        "docs/field-library/C04-characters-become-numbers/ANSWERS.md": "a59dbd210fe6892fbc6a0e5fa3e8b55d41c8736d3074e2f37dfdaaf2b6ce4a12",
+        "docs/field-library/C04-characters-become-numbers/SOURCE-NOTES.md": "549172355b3c48d4d1eb7245d7cc9c48f4ebcae913cc21d727f11f0eaf3e52c7",
+        "docs/field-library/C04-characters-become-numbers/STATUS.md": "5cc1742bd538f0aad4b9a39bf748433dfca34b44e9267cc7b65020f2b0c8e9f3",
+        "docs/field-library/C04-characters-become-numbers/assets/char-journey.txt": "5833f0baa62bbf56660509ec96c83c7fc861aade05761d0baf14860c5311bd84",
+        "docs/field-library/C04-characters-become-numbers/assets/encoding-worksheet.txt": "920c768f5ff72a1d34086db14bda4f356546689f35c2df970e12bd62ed74d9dc"
+      }
+    },
+    {
+      "id": "C05",
+      "disposition": "host-reading-candidate; physical acceptance pending",
+      "first_result_actions": 3,
+      "activity_parts": [
+        "A",
+        "B",
+        "C",
+        "D",
+        "E",
+        "F"
+      ],
+      "answer_parts": [
+        "A",
+        "B",
+        "C",
+        "D",
+        "E",
+        "F"
+      ],
+      "answer_mapping_notes": {},
+      "shared_source_keys": [
+        "A-CHART",
+        "R-RESET",
+        "W-FF00",
+        "W-FF1F"
+      ],
+      "evidence_lab": "C05",
+      "card_book": "C05",
+      "mode": "OFF-DEVICE",
+      "source_qualification": "citations resolve; local-scan ledger and editorial findings are separate; no authentication/rights clearance",
+      "input_sha256": {
+        "docs/field-library/C05-instructions-change-state/README.md": "cad4d01e6fb3a88a05a0406cb10ee4b67344372ac0a1bda3eb9336ab263fedad",
+        "docs/field-library/C05-instructions-change-state/ACTIVITY.md": "6ba216755e86cf9ffb590d3c00c03ffb3851c7868bfa82bdf3cbe00e1c0ad8d6",
+        "docs/field-library/C05-instructions-change-state/ANSWERS.md": "65c43c313127c2549e1ef41b55353c547f3d12ed85b4adc0bfe0f0d0e314b6c8",
+        "docs/field-library/C05-instructions-change-state/SOURCE-NOTES.md": "058253a21e45ecb339b0be732f5cfbfdc3857565777ef4ba5d24554e24477916",
+        "docs/field-library/C05-instructions-change-state/STATUS.md": "cc0b4e291d37f42c6fe795aa1323080e22a76bc9573a70b6bac6ae0a91916df1",
+        "docs/field-library/C05-instructions-change-state/assets/branch-trace.txt": "116c6d37003369e3c45027c0dcd2c1d09e50c107b630cc684927113e81f54742",
+        "docs/field-library/C05-instructions-change-state/assets/state-trace.txt": "6306ee1f2789d6f9d298101cfd7306f4742b60af09357246fde034c740a3e965"
+      }
+    },
+    {
+      "id": "M01",
+      "disposition": "host-reading-candidate; physical acceptance pending",
+      "first_result_actions": 3,
+      "activity_parts": [
+        "A",
+        "B",
+        "C",
+        "D",
+        "E",
+        "F"
+      ],
+      "answer_parts": [
+        "A",
+        "B",
+        "C",
+        "D",
+        "E",
+        "F"
+      ],
+      "answer_mapping_notes": {},
+      "shared_source_keys": [
+        "H-ALTAIR",
+        "H-KBD-STD",
+        "M-REPLICA-MAP",
+        "M-ROM",
+        "R-BASIC-ENTRY",
+        "R-MON-3",
+        "R-MON-8",
+        "R-MON-SYNTAX",
+        "W-FRONTPANEL",
+        "W-MODES"
+      ],
+      "evidence_lab": "M01",
+      "card_book": "M01",
+      "mode": "OFF-DEVICE",
+      "source_qualification": "citations resolve; local-scan ledger and editorial findings are separate; no authentication/rights clearance",
+      "input_sha256": {
+        "docs/field-library/M01-meet-the-monitor/README.md": "ac26f9355a3541ee402ffa32042602269c8be89ed69c5032f84b42f5bbf22618",
+        "docs/field-library/M01-meet-the-monitor/ACTIVITY.md": "7d2bb86806fad4edcb1b6d9561e3a4616987b6bfed6a5f0c25fd8e843b48f2b8",
+        "docs/field-library/M01-meet-the-monitor/ANSWERS.md": "026cc992cb98a843481935c79d2c344430098fbb8eba1c95e40d397b6c013670",
+        "docs/field-library/M01-meet-the-monitor/SOURCE-NOTES.md": "5686fbad1d472c84b73be2abdc674b958cf263def9ee36e125880fac786edf76",
+        "docs/field-library/M01-meet-the-monitor/STATUS.md": "f897ea9d1574207a6c2115ff87c2f491bbbf0d5b7f918e196ffb08e9b20c39d9",
+        "docs/field-library/M01-meet-the-monitor/assets/three-jobs.txt": "0b04804e1c280a13939a0934ebc1019c79c82aad292009f21b514936d0336fed"
+      }
+    },
+    {
+      "id": "M02",
+      "disposition": "host-reading-candidate; physical acceptance pending",
+      "first_result_actions": 3,
+      "activity_parts": [
+        "A",
+        "B",
+        "C",
+        "D",
+        "E",
+        "F"
+      ],
+      "answer_parts": [
+        "A",
+        "B",
+        "C",
+        "D",
+        "E",
+        "F"
+      ],
+      "answer_mapping_notes": {},
+      "shared_source_keys": [
+        "R-MON-8",
+        "W-FF1F"
+      ],
+      "evidence_lab": "M02",
+      "card_book": "M02",
+      "mode": "OFF-DEVICE",
+      "source_qualification": "citations resolve; local-scan ledger and editorial findings are separate; no authentication/rights clearance",
+      "input_sha256": {
+        "docs/field-library/M02-addresses-and-byte-entry/README.md": "66b8a2e343047e61473d59024c9ce81940152ee95976bda0aea31cd47d0b556e",
+        "docs/field-library/M02-addresses-and-byte-entry/ACTIVITY.md": "f078644f2ad75365a69f35ee6f69c9fb359b808a0359e4c7d67123b068c21795",
+        "docs/field-library/M02-addresses-and-byte-entry/ANSWERS.md": "361a2621c24ca95a702ff90e4f8aa9563e03b8f4c5b2039fb1dd78daabab2fef",
+        "docs/field-library/M02-addresses-and-byte-entry/SOURCE-NOTES.md": "d7a2ca70b2506b09efa67d5fef7f2a4b92c35c251b855840502c1a78c105efa2",
+        "docs/field-library/M02-addresses-and-byte-entry/STATUS.md": "e5ef08213a5e6cb09e0b9993f47949324c9f370abcb7e8287cf2cb3703c8f6e6",
+        "docs/field-library/M02-addresses-and-byte-entry/assets/listing-anatomy.txt": "c22bc536b853f9840efcea288f2d38e752927cdd2c2bf0054b517a645560c67d",
+        "docs/field-library/M02-addresses-and-byte-entry/assets/marking-worksheet.txt": "b71524a2018420c1ba8758a4e9e12666245dc4f7b919a8050f472ed01dc4a7d2"
+      }
+    },
+    {
+      "id": "M03",
+      "disposition": "host-reading-candidate; physical acceptance pending",
+      "first_result_actions": 3,
+      "activity_parts": [
+        "A",
+        "B",
+        "C",
+        "D",
+        "E",
+        "F"
+      ],
+      "answer_parts": [
+        "A",
+        "B",
+        "C",
+        "D",
+        "E",
+        "F"
+      ],
+      "answer_mapping_notes": {},
+      "shared_source_keys": [],
+      "evidence_lab": "M03",
+      "card_book": "M03",
+      "mode": "OFF-DEVICE",
+      "source_qualification": "citations resolve; local-scan ledger and editorial findings are separate; no authentication/rights clearance",
+      "input_sha256": {
+        "docs/field-library/M03-a-safe-rehearsal-loop/README.md": "0afcc5c8c2748fc0e6c8792026213c0630da09f1ad4e6f09200691177d4fd27a",
+        "docs/field-library/M03-a-safe-rehearsal-loop/ACTIVITY.md": "f9d386133b3895f9f8c3ca00663c11001c7b486d0c0710fd3cea479e8fc3c93d",
+        "docs/field-library/M03-a-safe-rehearsal-loop/ANSWERS.md": "811d21d0e8e06c4b6705fedb37920ac7ec956f4b0c964865f21aa42247573a0f",
+        "docs/field-library/M03-a-safe-rehearsal-loop/SOURCE-NOTES.md": "54bcb27ab977264a1d6afed137fc02b2d6643a90a95ca5dbf3528ae6a027c9b8",
+        "docs/field-library/M03-a-safe-rehearsal-loop/STATUS.md": "9967d234a93b7074e6637c8c83f52bd25645ceb1a2a8245d6177e570765dfbb9",
+        "docs/field-library/M03-a-safe-rehearsal-loop/assets/rehearsal-card.txt": "3bedc0339e322a6485cbb4ab358c2ba7ed1c5621e47bd1b86648fbb5762192e2"
+      }
+    },
+    {
+      "id": "M04",
+      "disposition": "host-reading-candidate; physical acceptance pending",
+      "first_result_actions": 3,
+      "activity_parts": [
+        "A",
+        "B",
+        "C",
+        "D",
+        "E",
+        "F"
+      ],
+      "answer_parts": [
+        "A",
+        "B",
+        "C",
+        "D",
+        "E",
+        "F"
+      ],
+      "answer_mapping_notes": {},
+      "shared_source_keys": [],
+      "evidence_lab": "M04",
+      "card_book": "M04",
+      "mode": "OFF-DEVICE",
+      "source_qualification": "citations resolve; local-scan ledger and editorial findings are separate; no authentication/rights clearance",
+      "input_sha256": {
+        "docs/field-library/M04-debugging-as-observation/README.md": "317a9f709b637f5f5984e12a342714a58a167609b821a8b030d346397598ec79",
+        "docs/field-library/M04-debugging-as-observation/ACTIVITY.md": "a7eaad1817d9356ec81f7e033e550421340b541b7c8de8d3ec9081b92a618fef",
+        "docs/field-library/M04-debugging-as-observation/ANSWERS.md": "ae2923890e1848d79fc143741c6b4e91aefc7617377990d110d7dd459aeb7136",
+        "docs/field-library/M04-debugging-as-observation/SOURCE-NOTES.md": "adb1a78a5c6166a65b040c360dccc177644c98f26b41bce57454bb8d94201aaa",
+        "docs/field-library/M04-debugging-as-observation/STATUS.md": "f0d328b8a436fb7e055907f632a05c6c36b6d55d8780bd86c010233027b04740",
+        "docs/field-library/M04-debugging-as-observation/assets/observation-sheet.txt": "f7c16c1263389c53511500aa12f5b48af39b44c27d510237f118ca8d18915b10"
+      }
+    },
+    {
+      "id": "M05",
+      "disposition": "host-reading-candidate; physical acceptance pending",
+      "first_result_actions": 3,
+      "activity_parts": [
+        "A",
+        "B",
+        "C",
+        "D",
+        "E",
+        "F"
+      ],
+      "answer_parts": [
+        "A",
+        "B",
+        "C",
+        "D",
+        "E",
+        "F"
+      ],
+      "answer_mapping_notes": {},
+      "shared_source_keys": [
+        "M-STACK",
+        "R-MON-SYNTAX",
+        "W-FF00",
+        "W-FF1F",
+        "W-FFEF",
+        "W-RUNCMD"
+      ],
+      "evidence_lab": "M05",
+      "card_book": "M05",
+      "mode": "OFF-DEVICE",
+      "source_qualification": "citations resolve; local-scan ledger and editorial findings are separate; no authentication/rights clearance",
+      "input_sha256": {
+        "docs/field-library/M05-why-jmp-ff1f-matters/README.md": "ce4023046596a5861e4c4509ba710aaeb671b3974f4bcaa41507658a9731443d",
+        "docs/field-library/M05-why-jmp-ff1f-matters/ACTIVITY.md": "e717bbfaa893c7bbc4cbab23cb6cccfdff71268263061f5fb5edd9f737a61d8b",
+        "docs/field-library/M05-why-jmp-ff1f-matters/ANSWERS.md": "7ac4242c8378b26b504ca47463d1a23e874502f9b91aa9d381768918e01f06da",
+        "docs/field-library/M05-why-jmp-ff1f-matters/SOURCE-NOTES.md": "3feddcea3414edc7b97d163a1780bbe5f047251b97241e2c48d159d1721af695",
+        "docs/field-library/M05-why-jmp-ff1f-matters/STATUS.md": "e01efeb87c905620e08a853eef5f1f58680006b4e1baa616a7b787d471cc1b3a",
+        "docs/field-library/M05-why-jmp-ff1f-matters/assets/exit-annotation.txt": "418656ec2e8d41323a57d84d4ead78cd9ca6da4ef09a75beb300721780fff397"
+      }
+    },
+    {
+      "id": "A01",
+      "disposition": "host-reading-candidate; physical acceptance pending",
+      "first_result_actions": 3,
+      "activity_parts": [
+        "A",
+        "B",
+        "C",
+        "D",
+        "E",
+        "F"
+      ],
+      "answer_parts": [
+        "A",
+        "B",
+        "C",
+        "D",
+        "E",
+        "F"
+      ],
+      "answer_mapping_notes": {},
+      "shared_source_keys": [
+        "A-CHART",
+        "A-HEX",
+        "P-KBD",
+        "W-CR",
+        "W-FF1F"
+      ],
+      "evidence_lab": "A01",
+      "card_book": "A01",
+      "mode": "OFF-DEVICE",
+      "source_qualification": "citations resolve; local-scan ledger and editorial findings are separate; no authentication/rights clearance",
+      "input_sha256": {
+        "docs/field-library/A01-read-an-instruction/README.md": "d4b9be2d41a77f98aaebbfc3b2a97431e40bf58c81e5073aae2e6c3f726997af",
+        "docs/field-library/A01-read-an-instruction/ACTIVITY.md": "12fe1f33b72ba9c3d23c8f45a5888842641f373361fdadb5ac7997aec4e985d2",
+        "docs/field-library/A01-read-an-instruction/ANSWERS.md": "962648d20abc4f03128d8bdb47c68314b778e7c53c0eaf64580cc1c4e6f82adb",
+        "docs/field-library/A01-read-an-instruction/SOURCE-NOTES.md": "6dcb40c03fadb272bd60fa9aacac4945fc660bb0123c664b6dd7d88eb0c28002",
+        "docs/field-library/A01-read-an-instruction/STATUS.md": "4175d7b3fd9a21adfd9f9fe207d7b68568eabb749362ebc4943ca23f6884818e",
+        "docs/field-library/A01-read-an-instruction/assets/instruction-shape.txt": "47ed4134f8624ea52d7ca79a1e92ffa8c52a53a2053d473569eed393b14a58de"
+      }
+    },
+    {
+      "id": "A02",
+      "disposition": "host-reading-candidate; physical acceptance pending",
+      "first_result_actions": 3,
+      "activity_parts": [
+        "A",
+        "B",
+        "C",
+        "D",
+        "E",
+        "F",
+        "G"
+      ],
+      "answer_parts": [
+        "A",
+        "B",
+        "C",
+        "D",
+        "E",
+        "F",
+        "G"
+      ],
+      "answer_mapping_notes": {},
+      "shared_source_keys": [
+        "A-CHART",
+        "W-FF1F",
+        "W-FFEF"
+      ],
+      "evidence_lab": "A02",
+      "card_book": "A02",
+      "mode": "OFF-DEVICE",
+      "source_qualification": "citations resolve; local-scan ledger and editorial findings are separate; no authentication/rights clearance",
+      "input_sha256": {
+        "docs/field-library/A02-variables-in-memory/README.md": "6993c246c4c5a96247a6a24df862c5dc83640d20ebd4d1f21817de3a2826c3af",
+        "docs/field-library/A02-variables-in-memory/ACTIVITY.md": "9a3b64a16d162b8e7e363bd101105f8b48aea6acd53c1ff3d1c91e20eab43ab5",
+        "docs/field-library/A02-variables-in-memory/ANSWERS.md": "41ddffe5795c65eca204d851b9e3254cfe809e82af51bf6951dd977e1ed530ed",
+        "docs/field-library/A02-variables-in-memory/SOURCE-NOTES.md": "d583f4696c1474c0c72343ef5898b61981d460efa4d09f2ad4b0b0e3013c36b4",
+        "docs/field-library/A02-variables-in-memory/STATUS.md": "31096c8556e01c5d43485e220c5d15fe3aa12d99f052380af150287944f639ef",
+        "docs/field-library/A02-variables-in-memory/assets/memory-before-after.txt": "c9a3161f5b6bc51c9050543e95f26e65ad8ed6d8c1a40d40c2c047b5dfb6b9c5"
+      }
+    },
+    {
+      "id": "A03",
+      "disposition": "host-reading-candidate; physical acceptance pending",
+      "first_result_actions": 3,
+      "activity_parts": [
+        "A",
+        "B",
+        "C",
+        "D",
+        "E",
+        "F",
+        "G"
+      ],
+      "answer_parts": [
+        "A",
+        "B",
+        "C",
+        "D",
+        "E",
+        "F",
+        "G"
+      ],
+      "answer_mapping_notes": {},
+      "shared_source_keys": [
+        "A-TABLE"
+      ],
+      "evidence_lab": "A03",
+      "card_book": "A03",
+      "mode": "OFF-DEVICE",
+      "source_qualification": "citations resolve; local-scan ledger and editorial findings are separate; no authentication/rights clearance",
+      "input_sha256": {
+        "docs/field-library/A03-counting-and-looping/README.md": "cfc161a5bac08cb1002e08966c2456ae95173182e3069679ecae39d10cf7f217",
+        "docs/field-library/A03-counting-and-looping/ACTIVITY.md": "75cc4cd42bc7044ca235eed92da7716f5ecabb977cae6ec3d045d51cd14a9fc2",
+        "docs/field-library/A03-counting-and-looping/ANSWERS.md": "f6b032bcae9201cfdd76139e5772976e63b3319494f1606ba471a0344a63f3a0",
+        "docs/field-library/A03-counting-and-looping/SOURCE-NOTES.md": "3c5596ac0866a54fe35dd6eeca9db768bb271cfbeab09ef0cd7830ded6bee190",
+        "docs/field-library/A03-counting-and-looping/STATUS.md": "43c2bce08ce476a22733f2790e71e6e1c0d9abe51fad2802b3a9069cfb9d19b9",
+        "docs/field-library/A03-counting-and-looping/assets/countdown-trace.txt": "b95f9d551b9529de983e35e3c66f354e8e2d3a3bde5c74533af82b36807584f6",
+        "docs/field-library/A03-counting-and-looping/assets/offset-card.txt": "0c0201f3a49fc577ef1f914d23779376b9d0689f0ffc121b53ae89c5401fd85c"
+      }
+    },
+    {
+      "id": "A04",
+      "disposition": "host-reading-candidate; physical acceptance pending",
+      "first_result_actions": 3,
+      "activity_parts": [
+        "A",
+        "B",
+        "C",
+        "D",
+        "E",
+        "F",
+        "G"
+      ],
+      "answer_parts": [
+        "A",
+        "B",
+        "C",
+        "D",
+        "E",
+        "F",
+        "G"
+      ],
+      "answer_mapping_notes": {},
+      "shared_source_keys": [
+        "A-CHART",
+        "P-HIGHBIT",
+        "P-KBD",
+        "W-FF1F",
+        "W-FFEF"
+      ],
+      "evidence_lab": "A04",
+      "card_book": "A04",
+      "mode": "OFF-DEVICE",
+      "source_qualification": "citations resolve; local-scan ledger and editorial findings are separate; no authentication/rights clearance",
+      "input_sha256": {
+        "docs/field-library/A04-decisions-and-branches/README.md": "822390e77496d3a609bd817ea16887b2ea9ba6fdd223e1a5116dcfa526193d19",
+        "docs/field-library/A04-decisions-and-branches/ACTIVITY.md": "d8cabbcd02267ee8f36a506d0d7c799a0c1483b8683ff16079af2161e7fba04e",
+        "docs/field-library/A04-decisions-and-branches/ANSWERS.md": "6cb723b64028942a5710b966d37b2c9243c80a971ff76df66e406956dd6133f7",
+        "docs/field-library/A04-decisions-and-branches/SOURCE-NOTES.md": "6772ceab0bc94a19037359963fba2528fcc40d2a1d7681a919c251082630c17d",
+        "docs/field-library/A04-decisions-and-branches/STATUS.md": "1b53d951c5ae03e68b2cd9c5183920ae3443163da0d624273ce68a864506e761",
+        "docs/field-library/A04-decisions-and-branches/assets/choose-the-message.txt": "a69e3a82cfe6743bfceb5024c137dc1f939c5dddc6eed272dd25578006f9ce59",
+        "docs/field-library/A04-decisions-and-branches/assets/flag-card.txt": "1018b452440e66d10b22c7b2cf752ed5781cb0c554c6b761f90fc7550af5d24c"
+      }
+    },
+    {
+      "id": "A05",
+      "disposition": "host-reading-candidate; physical acceptance pending",
+      "first_result_actions": 3,
+      "activity_parts": [
+        "A",
+        "B",
+        "C",
+        "D",
+        "E",
+        "F",
+        "G"
+      ],
+      "answer_parts": [
+        "A",
+        "B",
+        "C",
+        "D",
+        "E",
+        "F",
+        "G"
+      ],
+      "answer_mapping_notes": {},
+      "shared_source_keys": [
+        "A-CHART",
+        "P-HIGHBIT",
+        "P-KBD",
+        "W-CR",
+        "W-FF1F",
+        "W-FFEF"
+      ],
+      "evidence_lab": "A05",
+      "card_book": "A05",
+      "mode": "OFF-DEVICE",
+      "source_qualification": "citations resolve; local-scan ledger and editorial findings are separate; no authentication/rights clearance",
+      "input_sha256": {
+        "docs/field-library/A05-keyboard-to-screen/README.md": "244732a83924454ad57d11a2b02cfa5c87873f6567a0b0095abb7f1da56d36a3",
+        "docs/field-library/A05-keyboard-to-screen/ACTIVITY.md": "df6df712fc99d929a5f1f49bff8166d9de8a6c1c8efd4cbf40548b95c18356da",
+        "docs/field-library/A05-keyboard-to-screen/ANSWERS.md": "a7d992ec3c73a1713eb877c3f6b2733223ee3ce0f8708e6943eb05d3b3d6cb09",
+        "docs/field-library/A05-keyboard-to-screen/SOURCE-NOTES.md": "58441de243599cf70e56c2692bb8d105a33072063bb10f877730e7c3a47d9696",
+        "docs/field-library/A05-keyboard-to-screen/STATUS.md": "2f78e3ffca5e00ecad2dfca073e0c866a006f4012e64b9da74e651ef35ce0688",
+        "docs/field-library/A05-keyboard-to-screen/assets/four-stages.txt": "506380060b94546d3436cd39bf0bc20b7f49db2cdf7a85687e62e7db2291162e"
+      }
+    },
+    {
+      "id": "A06",
+      "disposition": "host-reading-candidate; physical acceptance pending",
+      "first_result_actions": 3,
+      "activity_parts": [
+        "A",
+        "B",
+        "C",
+        "D",
+        "E",
+        "F",
+        "G",
+        "H"
+      ],
+      "answer_parts": [
+        "G",
+        "H"
+      ],
+      "answer_mapping_notes": {
+        "A": "Worked design card and numbered acceptance criteria cover this part.",
+        "B": "Worked design card and numbered acceptance criteria cover this part.",
+        "C": "Worked design card and numbered acceptance criteria cover this part.",
+        "D": "Worked design card and numbered acceptance criteria cover this part.",
+        "E": "Worked design card and numbered acceptance criteria cover this part.",
+        "F": "Worked design card and numbered acceptance criteria cover this part."
+      },
+      "shared_source_keys": [
+        "A-CHART"
+      ],
+      "evidence_lab": "A06",
+      "card_book": "A06",
+      "mode": "OFF-DEVICE",
+      "source_qualification": "citations resolve; local-scan ledger and editorial findings are separate; no authentication/rights clearance",
+      "input_sha256": {
+        "docs/field-library/A06-design-a-tiny-utility/README.md": "4e114153cce135a2ea4fc94f0f408ae38432c42f047c4a9e467f5254f53547c9",
+        "docs/field-library/A06-design-a-tiny-utility/ACTIVITY.md": "ad99e0688257f9ddb2860f6196664d1943f8971b82d65868ebd2ece432043483",
+        "docs/field-library/A06-design-a-tiny-utility/ANSWERS.md": "734240b2f00435dd6df22279a03772c70d30117de9704eae55c679eadddcc61b",
+        "docs/field-library/A06-design-a-tiny-utility/SOURCE-NOTES.md": "74b57d46c02275b6658a9dca9544bd9b8812d32ba1fce98ae3a043e8dc41ba27",
+        "docs/field-library/A06-design-a-tiny-utility/STATUS.md": "c760b7ccabd0e72e2fb4c2449f40c8bf056708f908fd830cb6ae4a15a5487a2d",
+        "docs/field-library/A06-design-a-tiny-utility/assets/design-card.txt": "f5e73a0f77359eeffa1685dde3f3bd8ebc6dc5efc1781b95db8ad5734c2da260"
+      }
+    },
+    {
+      "id": "B01",
+      "disposition": "host-reading-candidate; physical acceptance pending",
+      "first_result_actions": 3,
+      "activity_parts": [
+        "A",
+        "B",
+        "C",
+        "D",
+        "E",
+        "F"
+      ],
+      "answer_parts": [
+        "A",
+        "B",
+        "C",
+        "D",
+        "E",
+        "F"
+      ],
+      "answer_mapping_notes": {},
+      "shared_source_keys": [
+        "B-DIM",
+        "B-IMMEDIATE",
+        "B-INPUT-Q",
+        "B-INTEGER",
+        "B-MOD",
+        "B-VARNAMES",
+        "M-BASIC-RAM",
+        "M-REPLICA-MAP",
+        "R-BASIC-ENTRY",
+        "R-KRUSADER",
+        "R-ROM-SPLIT"
+      ],
+      "evidence_lab": "B01",
+      "card_book": "B01",
+      "mode": "OFF-DEVICE",
+      "source_qualification": "citations resolve; local-scan ledger and editorial findings are separate; no authentication/rights clearance",
+      "input_sha256": {
+        "docs/field-library/B01-from-instructions-to-basic/README.md": "b270dd9c82b08cb3db7c7689e3ec47e93f831ee847106ea0d6dfa40b736e98cc",
+        "docs/field-library/B01-from-instructions-to-basic/ACTIVITY.md": "43f81490430670ca3fc834211552b4797a42593ac74e01a0ce49b200d94537dd",
+        "docs/field-library/B01-from-instructions-to-basic/ANSWERS.md": "37bd606142284685d97f2e22100bcb49957b45dc3f84f80605a47e3d2c2ec17f",
+        "docs/field-library/B01-from-instructions-to-basic/SOURCE-NOTES.md": "bc692c2ff8b4cbf62ae6059097cfc24b505517b58e4320caf8721e7ccc81390e",
+        "docs/field-library/B01-from-instructions-to-basic/STATUS.md": "dacaebd6439846999f95037ada61b68b37732943da5688dfcb154d37e7e4a6d5",
+        "docs/field-library/B01-from-instructions-to-basic/assets/same-job-two-ways.txt": "e4c95d23c1fedc4320ef3f0d9da55b23023be44e936aee21b12081b4232d249d"
+      }
+    },
+    {
+      "id": "B02",
+      "disposition": "host-reading-candidate; physical acceptance pending",
+      "first_result_actions": 3,
+      "activity_parts": [
+        "A",
+        "B",
+        "C",
+        "D",
+        "E",
+        "F",
+        "G"
+      ],
+      "answer_parts": [
+        "A",
+        "B",
+        "C",
+        "D",
+        "E",
+        "F",
+        "G"
+      ],
+      "answer_mapping_notes": {},
+      "shared_source_keys": [
+        "B-COLON",
+        "B-DIM",
+        "B-IMMEDIATE",
+        "B-INPUT-Q",
+        "B-INTEGER",
+        "B-VARNAMES"
+      ],
+      "evidence_lab": "B02",
+      "card_book": "B02",
+      "mode": "OFF-DEVICE",
+      "source_qualification": "citations resolve; local-scan ledger and editorial findings are separate; no authentication/rights clearance",
+      "input_sha256": {
+        "docs/field-library/B02-variables-input-and-output/README.md": "e55548d5a65da419f0ea46465c50e912742d73947ad9b4a4d6577b0d65da3a77",
+        "docs/field-library/B02-variables-input-and-output/ACTIVITY.md": "a995afb0c88bf1ba2bbc9e6e41e78d594e37c7acfbeca0338dc11478bc8c07e4",
+        "docs/field-library/B02-variables-input-and-output/ANSWERS.md": "0b3213030b86f8b9003d90935417225d03dbc26d07ba4f4eb9989731d2964abf",
+        "docs/field-library/B02-variables-input-and-output/SOURCE-NOTES.md": "23f94e5c63c72218defab7578be4f504252aabb16c584d431bfddd6f01f54678",
+        "docs/field-library/B02-variables-input-and-output/STATUS.md": "b294346aaf99e1f56ee9aa70d163ba6d74101a8ddf475fe627c2a9ca8a7af4bb",
+        "docs/field-library/B02-variables-input-and-output/assets/flow-diagram.txt": "197ab0a81db280c474753aaaa497963d6984bc60d8df9f5f84102f4a04f34387"
+      }
+    },
+    {
+      "id": "B03",
+      "disposition": "host-reading-candidate; physical acceptance pending",
+      "first_result_actions": 3,
+      "activity_parts": [
+        "A",
+        "B",
+        "C",
+        "D",
+        "E",
+        "F"
+      ],
+      "answer_parts": [
+        "A",
+        "B",
+        "C",
+        "D",
+        "E",
+        "F"
+      ],
+      "answer_mapping_notes": {},
+      "shared_source_keys": [],
+      "evidence_lab": "B03",
+      "card_book": "B03",
+      "mode": "OFF-DEVICE",
+      "source_qualification": "citations resolve; local-scan ledger and editorial findings are separate; no authentication/rights clearance",
+      "input_sha256": {
+        "docs/field-library/B03-algorithms-recipes-for-information/README.md": "84ac12c7b75809627607ab9f86f210a25725eec12e0b8bc57fcb930fad312d5b",
+        "docs/field-library/B03-algorithms-recipes-for-information/ACTIVITY.md": "29b9a88196f3f0e0e2c8f83e67f61a7da0ee6e76ad10638acd07b5a2f61910e1",
+        "docs/field-library/B03-algorithms-recipes-for-information/ANSWERS.md": "bd8dc50b77c85e4202591ed4af48cd088ccfedbbb01b2651c085b2d3861c37b8",
+        "docs/field-library/B03-algorithms-recipes-for-information/SOURCE-NOTES.md": "d67ae1ae20119af5ed0370251da94ad571161962f8a0d49554403c8642f9eaed",
+        "docs/field-library/B03-algorithms-recipes-for-information/STATUS.md": "8320e530eddbd0a5a5762f98b3984321cc683b8ea44d7349ea500df5cf3f57a3",
+        "docs/field-library/B03-algorithms-recipes-for-information/assets/ambiguity-hunt.txt": "c801872efb2a42f290226307c274985e1f6027d7ea20f0bcd9743810e532a956"
+      }
+    },
+    {
+      "id": "B04",
+      "disposition": "host-reading-candidate; physical acceptance pending",
+      "first_result_actions": 3,
+      "activity_parts": [
+        "A",
+        "B",
+        "C",
+        "D",
+        "E",
+        "F",
+        "G"
+      ],
+      "answer_parts": [
+        "A",
+        "B",
+        "C",
+        "D",
+        "E",
+        "F",
+        "G"
+      ],
+      "answer_mapping_notes": {},
+      "shared_source_keys": [],
+      "evidence_lab": "B04",
+      "card_book": "B04",
+      "mode": "OFF-DEVICE",
+      "source_qualification": "citations resolve; local-scan ledger and editorial findings are separate; no authentication/rights clearance",
+      "input_sha256": {
+        "docs/field-library/B04-sorting-by-hand/README.md": "e292aeebc027163d5eecbe64b36d729d038e653e62d3cc37718620c691e144bf",
+        "docs/field-library/B04-sorting-by-hand/ACTIVITY.md": "e0c62f5f745be6f6e225a50d034659397c57451775293d5681c739137c6f919a",
+        "docs/field-library/B04-sorting-by-hand/ANSWERS.md": "7773505174b52b028dc271d015b9482d9b8547809c147eb5bcec3bac9dd2438c",
+        "docs/field-library/B04-sorting-by-hand/SOURCE-NOTES.md": "2be88a8030cc724007c9b2a7f8c123351887a09ca9c4fa6783779184cccd5764",
+        "docs/field-library/B04-sorting-by-hand/STATUS.md": "6ae1d31155e5cedf402b2499e16f65db99de373d271e89fbfeb591c6a04faac3",
+        "docs/field-library/B04-sorting-by-hand/assets/sort-trace.txt": "4d600dee8bbbf69482a96f417817532a9f516c1f65839dd02dc89d51444446a4"
+      }
+    },
+    {
+      "id": "B05",
+      "disposition": "host-reading-candidate; physical acceptance pending",
+      "first_result_actions": 3,
+      "activity_parts": [
+        "A",
+        "B",
+        "C",
+        "D",
+        "E",
+        "F",
+        "G"
+      ],
+      "answer_parts": [
+        "A",
+        "B",
+        "C",
+        "D",
+        "E",
+        "F",
+        "G"
+      ],
+      "answer_mapping_notes": {},
+      "shared_source_keys": [],
+      "evidence_lab": "B05",
+      "card_book": "B05",
+      "mode": "OFF-DEVICE",
+      "source_qualification": "citations resolve; local-scan ledger and editorial findings are separate; no authentication/rights clearance",
+      "input_sha256": {
+        "docs/field-library/B05-data-files-and-the-cf-card/README.md": "209bfac16efee1d71d8a902df58c1f40eda6f96cab0a73c4eae82f1c250b2b6d",
+        "docs/field-library/B05-data-files-and-the-cf-card/ACTIVITY.md": "44b52c3a83c6f8ae4f2ec5e7883eb4dd0d0528268200de77b1ceb3461e39b528",
+        "docs/field-library/B05-data-files-and-the-cf-card/ANSWERS.md": "cf4690fb5c1839438893067d26ac4bff9c435ea10301bf7b9f5988e9d33fa2c8",
+        "docs/field-library/B05-data-files-and-the-cf-card/SOURCE-NOTES.md": "96afdcc832d2fc8f46c133ead2be599bc2b7d5061abb1d805d6fb34e0011c70b",
+        "docs/field-library/B05-data-files-and-the-cf-card/STATUS.md": "3ed42cf7dabf7d36a462363d81a9bea1f0732090a40f21c1f3e08b9806c6370c",
+        "docs/field-library/B05-data-files-and-the-cf-card/assets/three-kinds.txt": "76f6f6f78474aa32f604c10f6e6895a0118e73e02029ac1180d1acfe33053ac5"
+      }
+    },
+    {
+      "id": "R01",
+      "disposition": "host-reading-candidate; physical acceptance pending",
+      "first_result_actions": 3,
+      "activity_parts": [
+        "A",
+        "B",
+        "C",
+        "D",
+        "E",
+        "F",
+        "G"
+      ],
+      "answer_parts": [
+        "A",
+        "B",
+        "C",
+        "D",
+        "E",
+        "F",
+        "G"
+      ],
+      "answer_mapping_notes": {},
+      "shared_source_keys": [
+        "P-VIDEO-ROM",
+        "P-VIDEO-TEXT",
+        "P-VIDEO-WRITEONLY",
+        "R-UPPER"
+      ],
+      "evidence_lab": "R01",
+      "card_book": "R01",
+      "mode": "OFF-DEVICE",
+      "source_qualification": "citations resolve; local-scan ledger and editorial findings are separate; no authentication/rights clearance",
+      "input_sha256": {
+        "docs/field-library/R01-pictures-made-of-letters/README.md": "c81034032799397d9a61e60f0fe46432c43fa5b328b80553dbb1fb30f657cbeb",
+        "docs/field-library/R01-pictures-made-of-letters/ACTIVITY.md": "dd6984cf7c79d7b531aa8f8b68356913603bbcc1c36fc3e5a618a483cd2f458b",
+        "docs/field-library/R01-pictures-made-of-letters/ANSWERS.md": "c069d5c9a3e3f00f16dac39981396bdf26322a825168bfa2207e6690837bac8f",
+        "docs/field-library/R01-pictures-made-of-letters/SOURCE-NOTES.md": "4791b1d4e6a0dd02dc1c5cec386c362a958be1c03faef718ed4ae2c35c5b7932",
+        "docs/field-library/R01-pictures-made-of-letters/STATUS.md": "c41acfee56ed3bf09053ea656c2ba19385ca479de0a1dee3994669a2b3d44d82",
+        "docs/field-library/R01-pictures-made-of-letters/assets/banner-examples.txt": "e72905f5021bca06a413460ba2ea474ac0d83f9ac3920d38f958d71d4382c810",
+        "docs/field-library/R01-pictures-made-of-letters/assets/grid-40.txt": "44b840881f5c592f9932c9ef354ca35202ab3ae48c5cbeca4883a491402215c8"
+      }
+    },
+    {
+      "id": "R02",
+      "disposition": "host-reading-candidate; physical acceptance pending",
+      "first_result_actions": 3,
+      "activity_parts": [
+        "A",
+        "B",
+        "C",
+        "D",
+        "E",
+        "F",
+        "G"
+      ],
+      "answer_parts": [
+        "A",
+        "B",
+        "C",
+        "D",
+        "E",
+        "F",
+        "G"
+      ],
+      "answer_mapping_notes": {},
+      "shared_source_keys": [
+        "P-PROPELLER",
+        "P-VIDEO-TEXT",
+        "P-VIDEO-WRITEONLY"
+      ],
+      "evidence_lab": "R02",
+      "card_book": "R02",
+      "mode": "OFF-DEVICE",
+      "source_qualification": "citations resolve; local-scan ledger and editorial findings are separate; no authentication/rights clearance",
+      "input_sha256": {
+        "docs/field-library/R02-motion-is-many-pictures/README.md": "6560858a4e15d78fa1d19420790b3f5ddf68c641f760cb6056787889c64d9a6e",
+        "docs/field-library/R02-motion-is-many-pictures/ACTIVITY.md": "35187d265d9dfffba1a48e59ad1152d22540ef62b9dfbe39402f2cad77cc8ce4",
+        "docs/field-library/R02-motion-is-many-pictures/ANSWERS.md": "1b4b796a29521e18db4872dfd4114280e6eec0bd18a1667737c549a44e14625b",
+        "docs/field-library/R02-motion-is-many-pictures/SOURCE-NOTES.md": "98174415ac92fd99f61cf1eb7e23bf236143fdcdcc6e17a9dcf0039e2e58aef0",
+        "docs/field-library/R02-motion-is-many-pictures/STATUS.md": "5700a5553358a51418e13333be657098bbcfd9ca54a134797633560060bde851",
+        "docs/field-library/R02-motion-is-many-pictures/assets/frame-sheet.txt": "ee7b7f2e5acbf276ce1ac994aa72f2d1f1f5ebc42377691741f8ac65b187386f"
+      }
+    },
+    {
+      "id": "R03",
+      "disposition": "host-reading-candidate; physical acceptance pending",
+      "first_result_actions": 3,
+      "activity_parts": [
+        "A",
+        "B",
+        "C",
+        "D",
+        "E",
+        "F",
+        "G"
+      ],
+      "answer_parts": [
+        "A",
+        "B",
+        "C",
+        "D",
+        "E",
+        "F",
+        "G"
+      ],
+      "answer_mapping_notes": {},
+      "shared_source_keys": [],
+      "evidence_lab": "R03",
+      "card_book": "R03",
+      "mode": "OFF-DEVICE",
+      "source_qualification": "citations resolve; local-scan ledger and editorial findings are separate; no authentication/rights clearance",
+      "input_sha256": {
+        "docs/field-library/R03-generative-patterns/README.md": "d5e4a4748caf9859f5b8ad406f35d93053e120106951be5e971fb00a4f914e3c",
+        "docs/field-library/R03-generative-patterns/ACTIVITY.md": "7cbfa8da4daafa206377f0cd9325e7ecf25978d5da1c76ecbd9f2c3cdf1ae0b1",
+        "docs/field-library/R03-generative-patterns/ANSWERS.md": "6d657cb5d8b38864a36fdeaed0e0d2cc864b5435b6c5759579bbc42adca0af50",
+        "docs/field-library/R03-generative-patterns/SOURCE-NOTES.md": "c1812125bbc18ac5f17029db7c614e034f31ee0d302648b9f618c518608b7ebf",
+        "docs/field-library/R03-generative-patterns/STATUS.md": "7213f2365f389f2199334c45930c9d811f88d17299d4ca13667887bf1f280966",
+        "docs/field-library/R03-generative-patterns/assets/pattern-rules.txt": "030d7f6cc94e00010513b9be57b3ce7512f8370ecfea3041c22f5c8cc0ffe036",
+        "docs/field-library/R03-generative-patterns/assets/rule-worksheet.txt": "a55e96a43a898963621569bf091dbaaff432343a5b801d4b2731cd94c2ba4781"
+      }
+    },
+    {
+      "id": "R04",
+      "disposition": "host-reading-candidate; physical acceptance pending",
+      "first_result_actions": 3,
+      "activity_parts": [
+        "A",
+        "B",
+        "C",
+        "D",
+        "E",
+        "F",
+        "G"
+      ],
+      "answer_parts": [
+        "A",
+        "B",
+        "C",
+        "D",
+        "E",
+        "F",
+        "G"
+      ],
+      "answer_mapping_notes": {},
+      "shared_source_keys": [
+        "H-NINE"
+      ],
+      "evidence_lab": "R04",
+      "card_book": "R04",
+      "mode": "OFF-DEVICE",
+      "source_qualification": "citations resolve; local-scan ledger and editorial findings are separate; no authentication/rights clearance",
+      "input_sha256": {
+        "docs/field-library/R04-interactive-fiction/README.md": "6479f87bfbb0beb27dd440227fa03dbe6247c6267ce3e9d754cc9919a3b83afa",
+        "docs/field-library/R04-interactive-fiction/ACTIVITY.md": "bc44121df44a691c6ddc291b35c825ab046ccff8f8450af4dce74e761ce729f9",
+        "docs/field-library/R04-interactive-fiction/ANSWERS.md": "ad6adcee48594d0fc370d670c89ec94b59ac3573621ad4a896bbdde3493f7810",
+        "docs/field-library/R04-interactive-fiction/SOURCE-NOTES.md": "e97820f9659a2166e24310e3fe44c4c8e4d96210df54a4b42dd9b2df9ecdad09",
+        "docs/field-library/R04-interactive-fiction/STATUS.md": "ae34c761dff3a9261671fbb06cdcbc782668e7ab6cd8d6d4498cd520d9fadbce",
+        "docs/field-library/R04-interactive-fiction/assets/story-map.txt": "385c1fb154da41e81f80ca5e3d7a800004c81d23472b96cf4eda34ea119e446f"
+      }
+    },
+    {
+      "id": "R05",
+      "disposition": "host-reading-candidate; physical acceptance pending",
+      "first_result_actions": 3,
+      "activity_parts": [
+        "A",
+        "B",
+        "C",
+        "D",
+        "E",
+        "F",
+        "G"
+      ],
+      "answer_parts": [
+        "A",
+        "B",
+        "C",
+        "D",
+        "E",
+        "F",
+        "G"
+      ],
+      "answer_mapping_notes": {},
+      "shared_source_keys": [
+        "A-HEX",
+        "A-TABLE"
+      ],
+      "evidence_lab": "R05",
+      "card_book": "R05",
+      "mode": "OFF-DEVICE",
+      "source_qualification": "citations resolve; local-scan ledger and editorial findings are separate; no authentication/rights clearance",
+      "input_sha256": {
+        "docs/field-library/R05-sound-rhythm-and-code/README.md": "dc330fe2ea24fc9441fc9cfd66f99ddddf225fa9026eddd20cfb685c18412074",
+        "docs/field-library/R05-sound-rhythm-and-code/ACTIVITY.md": "0b5fe77f148633001ba00fb05e61494cb88e212301194867789b48d3da23297c",
+        "docs/field-library/R05-sound-rhythm-and-code/ANSWERS.md": "202fbf77e1abcace4113582698b0538a312bb4063c72bb644648e930cbd7b0da",
+        "docs/field-library/R05-sound-rhythm-and-code/SOURCE-NOTES.md": "4ec0355311754e195571d292dc5a5f3fad0944dffe70ad29e1bee1d061c61b66",
+        "docs/field-library/R05-sound-rhythm-and-code/STATUS.md": "b0fd60814283096efb6ea14b6f303c01962bd408d59d6f640c77af466c984314",
+        "docs/field-library/R05-sound-rhythm-and-code/assets/rhythm-grid.txt": "5e544b109a159b0e266399e2a95f5fac52b85d2f592edb4f6b9f5c1c68d7540a"
+      }
+    },
+    {
+      "id": "H01",
+      "disposition": "host-reading-candidate; physical acceptance pending",
+      "first_result_actions": 3,
+      "activity_parts": [
+        "A",
+        "B",
+        "C",
+        "D",
+        "E",
+        "F"
+      ],
+      "answer_parts": [
+        "A",
+        "B",
+        "C",
+        "D",
+        "E",
+        "F"
+      ],
+      "answer_mapping_notes": {},
+      "shared_source_keys": [
+        "H-ALTAIR",
+        "H-BARE",
+        "H-BYTESHOP",
+        "H-CLUB",
+        "H-FOUNDED",
+        "H-KBD-STD",
+        "H-MADE",
+        "H-PRICE",
+        "H-SOLD",
+        "H-SUPPLY",
+        "H-TORZEWSKI-16K"
+      ],
+      "evidence_lab": "H01",
+      "card_book": "H01",
+      "mode": "OFF-DEVICE",
+      "source_qualification": "citations resolve; local-scan ledger and editorial findings are separate; no authentication/rights clearance",
+      "input_sha256": {
+        "docs/field-library/H01-the-1976-personal-computing-moment/README.md": "e9897693818fca082b2def4b5d1806f7e5a4cab4d795d3adf14c0f13a32c63da",
+        "docs/field-library/H01-the-1976-personal-computing-moment/ACTIVITY.md": "b781f1b36f94ec9ae9a968ff67acaa6d1e6bb00352de523b97de8f3b6adea402",
+        "docs/field-library/H01-the-1976-personal-computing-moment/ANSWERS.md": "5c306b763274958d2fb6858df115aba4436ccb15fec820659c6953e7f6dcee74",
+        "docs/field-library/H01-the-1976-personal-computing-moment/SOURCE-NOTES.md": "6f39651281d062065217d325dd2f0d9572747bb418a7e6762f4312589eb0372e",
+        "docs/field-library/H01-the-1976-personal-computing-moment/STATUS.md": "8d3a908175115f80591ead1703bc1195d1f4649712d24fc6a896764fbe208026",
+        "docs/field-library/H01-the-1976-personal-computing-moment/assets/timeline-cards.txt": "3a625abd667ff9238b8e32d30f38d8971fcbef561b901a8bce1c3347ae8cd356"
+      }
+    },
+    {
+      "id": "H02",
+      "disposition": "host-reading-candidate; physical acceptance pending",
+      "first_result_actions": 3,
+      "activity_parts": [
+        "A",
+        "B",
+        "C",
+        "D",
+        "E",
+        "F",
+        "G"
+      ],
+      "answer_parts": [
+        "A",
+        "B",
+        "C",
+        "D",
+        "E",
+        "F",
+        "G"
+      ],
+      "answer_mapping_notes": {},
+      "shared_source_keys": [
+        "H-BASIC-TAPE",
+        "H-MADE",
+        "H-TORZEWSKI-16K",
+        "R-RESET",
+        "R-ROM-SPLIT"
+      ],
+      "evidence_lab": "H02",
+      "card_book": "H02",
+      "mode": "OFF-DEVICE",
+      "source_qualification": "citations resolve; local-scan ledger and editorial findings are separate; no authentication/rights clearance",
+      "input_sha256": {
+        "docs/field-library/H02-original-replica-and-reproduction/README.md": "0c55bf3fa6da1bd3d5791fae63a5be446fed8d99e7cd11d82e4834632d21084a",
+        "docs/field-library/H02-original-replica-and-reproduction/ACTIVITY.md": "72161b8244eab6ef2a8285cc2bfeb2bb3678092e0821c9f363d39b148f3ee9b2",
+        "docs/field-library/H02-original-replica-and-reproduction/ANSWERS.md": "ba70ad79d5fb04d36b9e167fec724af28898cfb70929d12368387f9fb609babc",
+        "docs/field-library/H02-original-replica-and-reproduction/SOURCE-NOTES.md": "3e73ea07cbf50fae01428b4d8685708dfcb49924ec04f100d236e88e4a218e60",
+        "docs/field-library/H02-original-replica-and-reproduction/STATUS.md": "a3d46dfe0baaacf919a23b8c5a34298d7a9b61bc57c43cdef63cfd75bea0b572",
+        "docs/field-library/H02-original-replica-and-reproduction/assets/word-card.txt": "c1b99751349194a05bc674d70cbd85f21840ff87b431d754add80a49cd388770"
+      }
+    },
+    {
+      "id": "H03",
+      "disposition": "host-reading-candidate; physical acceptance pending",
+      "first_result_actions": 3,
+      "activity_parts": [
+        "A",
+        "B",
+        "C",
+        "D",
+        "E",
+        "F",
+        "G"
+      ],
+      "answer_parts": [
+        "A",
+        "B",
+        "C",
+        "D",
+        "E",
+        "F",
+        "G"
+      ],
+      "answer_mapping_notes": {},
+      "shared_source_keys": [],
+      "evidence_lab": "H03",
+      "card_book": "H03",
+      "mode": "OFF-DEVICE",
+      "source_qualification": "citations resolve; local-scan ledger and editorial findings are separate; no authentication/rights clearance",
+      "input_sha256": {
+        "docs/field-library/H03-why-provenance-matters/README.md": "ecc188d2c2811ba7bef817e1fe07dcba29b6cdf9b1a2d7fde1e568b7bff1ed72",
+        "docs/field-library/H03-why-provenance-matters/ACTIVITY.md": "87d158631a59829f102aef742c70dd51e6f7dd421594f25386e974e33cf2c5e6",
+        "docs/field-library/H03-why-provenance-matters/ANSWERS.md": "f13e042edfaca0bc2a87543eec468eaa4b595291aa1f9707da06f5ff5a123464",
+        "docs/field-library/H03-why-provenance-matters/SOURCE-NOTES.md": "721b62681945337640707024036c8556e6eee7e5ea9256442af46e8cb77d0346",
+        "docs/field-library/H03-why-provenance-matters/STATUS.md": "4ed6bd05bc5edc46ec4dd5f9d59d2fc780d96ab96b8964fe6095d007adbf76b2",
+        "docs/field-library/H03-why-provenance-matters/assets/evidence-card.txt": "551daadef74dca24805e8fdb1289412d2549ef148e79983e7db8b094f5e3906c"
+      }
+    },
+    {
+      "id": "H04",
+      "disposition": "host-reading-candidate; physical acceptance pending",
+      "first_result_actions": 3,
+      "activity_parts": [
+        "A",
+        "B",
+        "C",
+        "D",
+        "E",
+        "F",
+        "G"
+      ],
+      "answer_parts": [
+        "A",
+        "B",
+        "C",
+        "D",
+        "E",
+        "F",
+        "G"
+      ],
+      "answer_mapping_notes": {},
+      "shared_source_keys": [],
+      "evidence_lab": "H04",
+      "card_book": "H04",
+      "mode": "OFF-DEVICE",
+      "source_qualification": "citations resolve; local-scan ledger and editorial findings are separate; no authentication/rights clearance",
+      "input_sha256": {
+        "docs/field-library/H04-safe-experimentation/README.md": "0f01bfd4d3e1f60d96dfc41582227a9038131c75cf341296caec84edcf882543",
+        "docs/field-library/H04-safe-experimentation/ACTIVITY.md": "e3a4c32062c3327b59651e3632c92f5cd5f23d204176ec881fb187d425d9eb90",
+        "docs/field-library/H04-safe-experimentation/ANSWERS.md": "976c94e5333ec2a473531799bff2c599d72df1cb4ae84de947d679cd3b6b3e74",
+        "docs/field-library/H04-safe-experimentation/SOURCE-NOTES.md": "54f3944ea63b7977fd37fc94f1e99c87060236b63aa07586ac3b5dc55d1c6db1",
+        "docs/field-library/H04-safe-experimentation/STATUS.md": "d6425a831b069a82585c7a7e72d2f3cf1d611af9d1a24f0ac4a534310f763204",
+        "docs/field-library/H04-safe-experimentation/assets/decision-card.txt": "6df7fde8f2a83836eca51a821073774c584d5290963cc2ea3c6f9fcd81126aba"
+      }
+    },
+    {
+      "id": "H05",
+      "disposition": "host-reading-candidate; physical acceptance pending",
+      "first_result_actions": 3,
+      "activity_parts": [
+        "A",
+        "B",
+        "C",
+        "D",
+        "E",
+        "F",
+        "G"
+      ],
+      "answer_parts": [
+        "A",
+        "B",
+        "C",
+        "D",
+        "E",
+        "F",
+        "G"
+      ],
+      "answer_mapping_notes": {},
+      "shared_source_keys": [
+        "H-CLUB",
+        "R-RESET"
+      ],
+      "evidence_lab": "H05",
+      "card_book": "H05",
+      "mode": "OFF-DEVICE",
+      "source_qualification": "citations resolve; local-scan ledger and editorial findings are separate; no authentication/rights clearance",
+      "input_sha256": {
+        "docs/field-library/H05-the-future-history-you-are-making/README.md": "e6d7de4757c393343a69b2e949a9fb051d06f098cc4515fcfee5c18262844231",
+        "docs/field-library/H05-the-future-history-you-are-making/ACTIVITY.md": "22b3c2a09b32e3dcfe03834d5a5020a8e981dfc23a8e2514ecdbef710c2f4776",
+        "docs/field-library/H05-the-future-history-you-are-making/ANSWERS.md": "dc86d5c4d4b884ad97a867bb3739cd0002fd723a754dc6b74699358a4bca47bf",
+        "docs/field-library/H05-the-future-history-you-are-making/SOURCE-NOTES.md": "edfc4f20084397ecea56c268a4fa3c9d97b395fe7a59aa7191e526718c4474b6",
+        "docs/field-library/H05-the-future-history-you-are-making/STATUS.md": "3d2e49c1299c613d814bba4a84bfcbc8128a9e329b58e8ddf6dc30604b05fba1",
+        "docs/field-library/H05-the-future-history-you-are-making/assets/log-entry.txt": "fa53518c80c71b97154c1d85b52c1381436eaabc5e7e5a9f511e2a1ab1b6e612"
+      }
+    },
+    {
+      "id": "H06",
+      "disposition": "host-reading-candidate; physical acceptance pending",
+      "first_result_actions": 3,
+      "activity_parts": [
+        "A",
+        "B",
+        "C",
+        "D"
+      ],
+      "answer_parts": [
+        "A",
+        "B",
+        "C",
+        "D"
+      ],
+      "answer_mapping_notes": {},
+      "shared_source_keys": [],
+      "evidence_lab": "H06",
+      "card_book": "H06",
+      "mode": "OFF-DEVICE",
+      "source_qualification": "citations resolve; local-scan ledger and editorial findings are separate; no authentication/rights clearance",
+      "input_sha256": {
+        "docs/field-library/H06-the-monitor-that-wasnt/README.md": "aa57980ee2eba9a23a4b33ac1b8d8146173b30e97c7deef668c2d249711d5e76",
+        "docs/field-library/H06-the-monitor-that-wasnt/ACTIVITY.md": "c8a7e25990c082609db3b48a8bfa25da075ed117fcf97c078f888d4050bbbbea",
+        "docs/field-library/H06-the-monitor-that-wasnt/ANSWERS.md": "ec7202afe247122471cca7988b5446d3bcad1477159adf0936ba010891ed2d03",
+        "docs/field-library/H06-the-monitor-that-wasnt/SOURCE-NOTES.md": "d5db7814c16263512fe1e8a5277d5addea352ea9ff88c03b6970d0a3a2a815ee",
+        "docs/field-library/H06-the-monitor-that-wasnt/STATUS.md": "de2eaa8fd973a2bfa151f4e7b9b5f4212765cbf961a3c857c6f17e40af271f73",
+        "docs/field-library/H06-the-monitor-that-wasnt/assets/three-claims.txt": "6121cbfa520a51bb76163cb7a8ad6513fa7d49a674bec73fd06257f4ae39c91d"
+      }
+    },
+    {
+      "id": "X01",
+      "disposition": "host-reading-candidate; physical acceptance pending",
+      "first_result_actions": 3,
+      "activity_parts": [
+        "A",
+        "B",
+        "C",
+        "D",
+        "E",
+        "F",
+        "G"
+      ],
+      "answer_parts": [
+        "A",
+        "B",
+        "C",
+        "D",
+        "E",
+        "F",
+        "G"
+      ],
+      "answer_mapping_notes": {},
+      "shared_source_keys": [
+        "A-ASCII",
+        "A-CHART",
+        "P-HIGHBIT",
+        "P-KBD",
+        "R-MON-8",
+        "W-CR",
+        "W-FF1F",
+        "W-FFEF"
+      ],
+      "evidence_lab": "X01",
+      "card_book": "X01",
+      "mode": "OFF-DEVICE",
+      "source_qualification": "citations resolve; local-scan ledger and editorial findings are separate; no authentication/rights clearance",
+      "input_sha256": {
+        "docs/field-library/X01-hex-scavenger-hunt/README.md": "e8bb7df47b566898e4a867a682717726c6c3cd1d047ec083d09eb7acf0dbe451",
+        "docs/field-library/X01-hex-scavenger-hunt/ACTIVITY.md": "65492e5bfa2f7edecdaeda65ca3869c37b0d9157d8e6acfbc21eaf5b19607b15",
+        "docs/field-library/X01-hex-scavenger-hunt/ANSWERS.md": "4272d284190a556a9a4f71ef2e39fe54c8978af907125e2e7e106ebcd2986979",
+        "docs/field-library/X01-hex-scavenger-hunt/SOURCE-NOTES.md": "ede19132818e19f103c74fcda7e383808505059e37f522c33bb95236192baa4e",
+        "docs/field-library/X01-hex-scavenger-hunt/STATUS.md": "a51760265aad7b214f1b841ddefd91e0b212474b24f1ae6a56ac5be4d735c240",
+        "docs/field-library/X01-hex-scavenger-hunt/assets/hunt-sheet.txt": "cf09fd6f1283404d101ac2e677a1a7809db40ced38f88cbc80c250f776a59be4"
+      }
+    },
+    {
+      "id": "X02",
+      "disposition": "host-reading-candidate; physical acceptance pending",
+      "first_result_actions": 3,
+      "activity_parts": [
+        "A",
+        "B",
+        "C",
+        "D",
+        "E",
+        "F",
+        "G",
+        "H"
+      ],
+      "answer_parts": [
+        "A",
+        "B",
+        "C",
+        "D",
+        "E",
+        "F",
+        "G",
+        "H"
+      ],
+      "answer_mapping_notes": {},
+      "shared_source_keys": [
+        "A-CHART",
+        "W-FF1F"
+      ],
+      "evidence_lab": "X02",
+      "card_book": "X02",
+      "mode": "OFF-DEVICE",
+      "source_qualification": "citations resolve; local-scan ledger and editorial findings are separate; no authentication/rights clearance",
+      "input_sha256": {
+        "docs/field-library/X02-fix-the-loop/README.md": "29620df7c11c7bed0fef1649af70f37b0c8e17e5760d9881b144e1531ad005f2",
+        "docs/field-library/X02-fix-the-loop/ACTIVITY.md": "9f94e558e0743536d4351af37948539618160675e8f3618b67f21e85ea7cba42",
+        "docs/field-library/X02-fix-the-loop/ANSWERS.md": "9a7db1720266dc0c1e7cfac34b77cc54eeec7009cdbf46979792c2cb318c7a7c",
+        "docs/field-library/X02-fix-the-loop/SOURCE-NOTES.md": "2817e1b6c4bf254bb0a2439846221e968fa55e3fda1af1b08b8e4bd3f22b03c3",
+        "docs/field-library/X02-fix-the-loop/STATUS.md": "ba6b5fd171a6e283af22f150808789ab337c0df4b4b149d88081d5d953869b82",
+        "docs/field-library/X02-fix-the-loop/assets/broken-loop.txt": "d6ec9d265f877dec11a44050ed53c9b930052389bbf2a0e5bb3756a7ee98748f"
+      }
+    },
+    {
+      "id": "X03",
+      "disposition": "host-reading-candidate; physical acceptance pending",
+      "first_result_actions": 3,
+      "activity_parts": [
+        "A",
+        "B",
+        "C",
+        "D",
+        "E",
+        "F",
+        "G",
+        "H"
+      ],
+      "answer_parts": [
+        "B",
+        "C",
+        "D",
+        "E",
+        "F",
+        "G",
+        "H"
+      ],
+      "answer_mapping_notes": {
+        "A": "Worked three-minute script includes the fallback; remaining sections give criteria."
+      },
+      "shared_source_keys": [
+        "A-CHART",
+        "H-BARE",
+        "H-FOUNDED",
+        "H-MADE",
+        "H-SUPPLY",
+        "M-ROM",
+        "P-HIGHBIT"
+      ],
+      "evidence_lab": "X03",
+      "card_book": "X03",
+      "mode": "OFF-DEVICE",
+      "source_qualification": "citations resolve; local-scan ledger and editorial findings are separate; no authentication/rights clearance",
+      "input_sha256": {
+        "docs/field-library/X03-build-a-museum-demo/README.md": "ff9c68addea01b0da5a3e16d46c7178c13854114abe21429acade2169293bd90",
+        "docs/field-library/X03-build-a-museum-demo/ACTIVITY.md": "29f31da5e0ae5b8925496741bb60f7b092361da29a39fa2e409320a560d94853",
+        "docs/field-library/X03-build-a-museum-demo/ANSWERS.md": "2ab6af7a96e277af798748ac508b83546723be77be3035b7a09826c8e58f32ce",
+        "docs/field-library/X03-build-a-museum-demo/SOURCE-NOTES.md": "14b625eefc5f9d9c6b55291327b0a63895e9002d2ec397eee5369c7781df918c",
+        "docs/field-library/X03-build-a-museum-demo/STATUS.md": "1fc0417e54266bcec15e39a047f81fc98956ea252678656647c17e6d042e4426",
+        "docs/field-library/X03-build-a-museum-demo/assets/demo-script.txt": "6c80dbd56ce237517da287ae18aab41408fdbb765bb32c9a8fab727be8c7e7cb"
+      }
+    },
+    {
+      "id": "X04",
+      "disposition": "host-reading-candidate; physical acceptance pending",
+      "first_result_actions": 3,
+      "activity_parts": [
+        "A",
+        "B",
+        "C",
+        "D",
+        "E",
+        "F",
+        "G",
+        "H"
+      ],
+      "answer_parts": [
+        "A",
+        "B",
+        "C",
+        "D",
+        "E",
+        "F",
+        "G",
+        "H"
+      ],
+      "answer_mapping_notes": {},
+      "shared_source_keys": [
+        "W-FF00",
+        "W-FF1F",
+        "W-FFEF"
+      ],
+      "evidence_lab": "X04",
+      "card_book": "X04",
+      "mode": "OFF-DEVICE",
+      "source_qualification": "citations resolve; local-scan ledger and editorial findings are separate; no authentication/rights clearance",
+      "input_sha256": {
+        "docs/field-library/X04-curate-a-mini-software-exhibit/README.md": "ee36e73f09894162a4baa9498ba8e6039b17a61a26779b13e4aa8052c719b52b",
+        "docs/field-library/X04-curate-a-mini-software-exhibit/ACTIVITY.md": "d401f64bbe2d36317683bda5ed1441e0ccf9d126e471e9292d7c3adf18a6257f",
+        "docs/field-library/X04-curate-a-mini-software-exhibit/ANSWERS.md": "75e1cb37d6b329f5bcc5f9f3b58f4cfe0f5786c25a22b4c17f6620755f0d6c96",
+        "docs/field-library/X04-curate-a-mini-software-exhibit/SOURCE-NOTES.md": "5e630196a23927693c65c55e3c2b20a84f61de107fbc551e8c372afef0b1ae55",
+        "docs/field-library/X04-curate-a-mini-software-exhibit/STATUS.md": "ec4fd7d22d0655f8554a871424e9fc386d43b92a20b3f12b48a9dc8fac77a00c",
+        "docs/field-library/X04-curate-a-mini-software-exhibit/assets/exhibit-card.txt": "0f3117efc5bd2c8bd3a8e78e88ca1bb5b7031a3c00c06383dd4613c69a794a6d"
+      }
+    },
+    {
+      "id": "X05",
+      "disposition": "host-reading-candidate; physical acceptance pending",
+      "first_result_actions": 3,
+      "activity_parts": [
+        "A",
+        "B",
+        "C",
+        "D",
+        "E",
+        "F",
+        "G",
+        "H",
+        "I"
+      ],
+      "answer_parts": [
+        "A",
+        "B",
+        "C",
+        "D",
+        "E",
+        "F",
+        "G",
+        "H",
+        "I"
+      ],
+      "answer_mapping_notes": {},
+      "shared_source_keys": [],
+      "evidence_lab": "X05",
+      "card_book": "X05",
+      "mode": "OFF-DEVICE",
+      "source_qualification": "citations resolve; local-scan ledger and editorial findings are separate; no authentication/rights clearance",
+      "input_sha256": {
+        "docs/field-library/X05-invent-the-next-lesson/README.md": "543d68cb58e3a979cfe26166244ab6f70c2cc9443969bb82c4dc6a175eff817c",
+        "docs/field-library/X05-invent-the-next-lesson/ACTIVITY.md": "86cc0eed516b8022ca54790844cd20449c98b7587bef5940e5a0ab7d5224d3b2",
+        "docs/field-library/X05-invent-the-next-lesson/ANSWERS.md": "145b1afe58d1780c3ac89253edacc95de54b2b23b0d1cd218df88f1fba86de46",
+        "docs/field-library/X05-invent-the-next-lesson/SOURCE-NOTES.md": "f3a3f001e5e12208690e0565a95d1b6ca7461572e5a591a7d6e693fce1fa54be",
+        "docs/field-library/X05-invent-the-next-lesson/STATUS.md": "f3bebdb7bfd33e8f8b522174ebad6ab322df7bf049e3c984b701febb8178c58a",
+        "docs/field-library/X05-invent-the-next-lesson/assets/author-card.txt": "2e99241a0f7dd6813e38cc496af5282613903d00ea4f6d16eb9c8669d338f636"
+      }
+    },
+    {
+      "id": "SP01",
+      "disposition": "host-reading-candidate; physical acceptance pending",
+      "first_result_actions": 3,
+      "activity_parts": [
+        "A",
+        "B",
+        "C",
+        "D",
+        "E",
+        "F"
+      ],
+      "answer_parts": [
+        "A",
+        "B",
+        "C",
+        "D",
+        "E",
+        "F"
+      ],
+      "answer_mapping_notes": {},
+      "shared_source_keys": [],
+      "evidence_lab": "SP01",
+      "card_book": "SP01",
+      "mode": "OFF-DEVICE",
+      "source_qualification": "citations resolve; local-scan ledger and editorial findings are separate; no authentication/rights clearance",
+      "input_sha256": {
+        "docs/field-library/SP01-two-boards-one-computer/README.md": "be32f562cbcfe1fda7be09d82800a39d7212146efd7978ccbaf0353c737ad4be",
+        "docs/field-library/SP01-two-boards-one-computer/ACTIVITY.md": "74ed87bc57f9bfcf47ee7f6103a3f7e911298aece1b88274803ee90a674d4419",
+        "docs/field-library/SP01-two-boards-one-computer/ANSWERS.md": "d0e5a2d220b0b625eb6bfee59ff2238962eb62a136a2e7c54ab68fed10ee3523",
+        "docs/field-library/SP01-two-boards-one-computer/SOURCE-NOTES.md": "7fd95c285b8c093d0db087f117d4ce757e1262fc7eee33f9fcd316e969bb2b5a",
+        "docs/field-library/SP01-two-boards-one-computer/STATUS.md": "94d04c55b77b8cd1bc7a99ff44c60095e5b284c1b24995be481e42c7d65579e7",
+        "docs/field-library/SP01-two-boards-one-computer/assets/README.md": "d8f008f55797e1ea51adcfe3b4acb4e8b8d2efd49c31f0c7d89213ac5bf233af",
+        "docs/field-library/SP01-two-boards-one-computer/card/00-title.txt": "dc27457c2db0421d7463661dc545c8009ac0bb8cff9e00c0173234d31fdf17b3",
+        "docs/field-library/SP01-two-boards-one-computer/card/01-route.txt": "36632f2c89fd8c4d844972b0d1fec644746e8f24ef3f23e94193a1c5cfff4886",
+        "docs/field-library/SP01-two-boards-one-computer/card/02-big-picture.txt": "ea7e4735cfeffc9aee2ff2576efb93909291b40b9f072909a2d42921e3eafe7c",
+        "docs/field-library/SP01-two-boards-one-computer/card/99-index.txt": "0530ef24900d34b8bd6a262600531adb8c70f6045188764ffc68cd55c6bdbe0a",
+        "docs/field-library/SP01-two-boards-one-computer/card/activity/00-find-parts.txt": "fadea6fa53ad682dee2b4abfd4af1c9cae8a733319e43d3f23b62e543fa76e46",
+        "docs/field-library/SP01-two-boards-one-computer/card/activity/01-answers.txt": "1a8071d399e24585c60b684cedead744d2b07747a649cfe894fc12dbf1e673f0",
+        "docs/field-library/SP01-two-boards-one-computer/card/compare/00-common-core.txt": "2ba6e1cc328aa59daad5fae8bdf0f87d1bb660095acdbf7b3f019be2dad50932",
+        "docs/field-library/SP01-two-boards-one-computer/card/compare/01-hardware-a.txt": "f323be4c75e6d59f6c6f12ad9390df20528370b800137411d08bb8c307d071ac",
+        "docs/field-library/SP01-two-boards-one-computer/card/compare/02-hardware-b.txt": "08a5cd1666c7bc1af9a90326650b52f54f815285f7488d0e9efa545ba522a183",
+        "docs/field-library/SP01-two-boards-one-computer/card/compare/03-io-addresses.txt": "a74304d47a51ccac040b73bf35e6c7aa83dec9773369f790ab252804766ef01d",
+        "docs/field-library/SP01-two-boards-one-computer/card/compare/04-memory.txt": "ebea81fc8313d50e2af9c5c07c27db3d448b36d48409e7b0a9b3dda8a83da32f",
+        "docs/field-library/SP01-two-boards-one-computer/card/compare/05-monitor.txt": "758f9b5764dd9dd6c629211de4b03aa0a78da85ea5dd286b33d1235d8d4874d2",
+        "docs/field-library/SP01-two-boards-one-computer/card/compare/06-rom-software.txt": "f021f1110473fbfc5e54d92af377bccab18e962ac6ff7c3b83089b394cea08fe",
+        "docs/field-library/SP01-two-boards-one-computer/card/compare/07-keypress-original.txt": "cc2cce1a40270ce60f97d920b008ca3a8f899f7782e90ea9e9f9701c87047611",
+        "docs/field-library/SP01-two-boards-one-computer/card/compare/08-keypress-replica.txt": "481e2823b1c0b63f5d629723b5bba5a553a1da9d83809171cc0b223e42b08424",
+        "docs/field-library/SP01-two-boards-one-computer/card/compare/09-interface-contract.txt": "b0dfdece1a85c7ad17cb9fa872afe4cfe4fc11dd21701fd27bb1c820cb6ade8e",
+        "docs/field-library/SP01-two-boards-one-computer/card/evidence/00-live-unit.txt": "6e18dfab9adb5fe5aa1abdc7150b4093fb9725ac3337797835823b3a7271a286",
+        "docs/field-library/SP01-two-boards-one-computer/card/evidence/01-boundary.txt": "6268b38cb3c4d807e278e5068654df51782807d640223bf2a16cade5900adf6a",
+        "docs/field-library/SP01-two-boards-one-computer/card/original/00-atlas-map.txt": "f63839478b7ac666278a08192aad4dedd2cd711e231ef9870380cce5a0fc187b",
+        "docs/field-library/SP01-two-boards-one-computer/card/original/01-dc1-cols01-06.txt": "29f340d9507d22d1158e8370453ade410313c36dedf05a4beacb69b185fe083c",
+        "docs/field-library/SP01-two-boards-one-computer/card/original/02-dc2-cols07-12.txt": "243b9fc3bbdb3d51000ffe4a0bcc416ce01e64c3add938593d18108d33d699b0",
+        "docs/field-library/SP01-two-boards-one-computer/card/original/03-dc3-cols13-18.txt": "a612775edf6b6952ad232c3ce16df1746982a5d968331e7458b0a24996f36a15",
+        "docs/field-library/SP01-two-boards-one-computer/card/original/04-ba1-cols01-06.txt": "814f739b99a63159fcf2e562641779cb972f0d725cdd271857628fbea214fa5b",
+        "docs/field-library/SP01-two-boards-one-computer/card/original/05-ba2-cols07-12.txt": "909725f30a37dea5c9c83d5f8e4684552b22d621a38185c7f3400187d45386ca",
+        "docs/field-library/SP01-two-boards-one-computer/card/original/06-ba3-cols13-18.txt": "80b61714cdf5c0e34a2c87eab9679e3496edaf15f172d0b709b1d152f146638b",
+        "docs/field-library/SP01-two-boards-one-computer/card/original/07-coordinate-key.txt": "29d3e7b3ac6dcfaa3d46bd7125d0d400d39c90feec986f7e0f74bcb4ead494b4",
+        "docs/field-library/SP01-two-boards-one-computer/card/original/08-video-census.txt": "1d6f99ad8e649c2068918a785019b6b04d48f17d66c2d5a249eaeddc2ad87903",
+        "docs/field-library/SP01-two-boards-one-computer/card/original/09-video-flow.txt": "76e4dcf1c4a1cfe5e05413ec70cf14e66811abaccd2ed1b5d91fcae1b139f74d",
+        "docs/field-library/SP01-two-boards-one-computer/card/original/10-two-systems.txt": "cbab6eed77c83b9aee864bf84c47d18088cde53dfed45a8cd8890a5e012a55c8",
+        "docs/field-library/SP01-two-boards-one-computer/card/replica/00-atlas-map.txt": "958aeea60344b1481ab8d8d6ff7285f3ab40b3968246bf3c1f1f7a6b4218a590",
+        "docs/field-library/SP01-two-boards-one-computer/card/replica/01-upper-left.txt": "c1b37ca7ebae3a0f83b099cc737d7581a799740d12e8f43f8c4b189cf0f91d25",
+        "docs/field-library/SP01-two-boards-one-computer/card/replica/02-upper-right.txt": "eb5bb023c0d1af944a610b5c0a9cc163fe2574f273358a93aa9d2d267c340740",
+        "docs/field-library/SP01-two-boards-one-computer/card/replica/03-lower-left.txt": "df887801c154a134e45809924b299f684eeb37f96298a6c399b52124ef5aeff1",
+        "docs/field-library/SP01-two-boards-one-computer/card/replica/04-lower-right.txt": "7951cbb59bede47e56582ba62a25d0eadd920ccaa585788293a68936887883f6",
+        "docs/field-library/SP01-two-boards-one-computer/card/replica/05-eight-main-ics.txt": "ee20d14195623cba606d35261ab37653d77d1c0927e24cd5395fcb7c0144a0c7",
+        "docs/field-library/SP01-two-boards-one-computer/card/replica/06-logic-block.txt": "3475545f7e15261293201bd6318146e8dd4249d226c478702de7380166da5739",
+        "docs/field-library/SP01-two-boards-one-computer/card/replica/07-physical-key.txt": "602ce11f6ba00a013f000c4d676d0ab8dbe5cf973337804ff47c2f19227fc24c",
+        "docs/field-library/SP01-two-boards-one-computer/card/sources/00-original.txt": "9159b67f711f03a3618fc05c5377708cf370a0b0f78ac95245c3ca65dbfae5c4",
+        "docs/field-library/SP01-two-boards-one-computer/card/sources/01-replica.txt": "c94a25a75e59de284766eca2a697f965a09366997936fca0fa9e775242c0f0df"
+      }
+    }
+  ],
+  "does_not_establish": [
+    "every historical claim independently corroborated",
+    "rights clearance",
+    "physical acceptance",
+    "learner comprehension"
+  ]
+}

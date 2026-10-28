@@ -1,0 +1,22 @@
+B03 ALGORITHMS: RECIPES FOR INFORMATIO
+018/031 WORKSHEET AMBIGUITY-HUNT.TXT
+
+MARK EVERY WORD THAT A LITERAL
+FOLLOWER COULD GET WRONG:
+
+  STEP 1  ______________________
+  STEP 2  ______________________
+  STEP 3  ______________________
+  STEP 4  ______________________
+
+NOW REWRITE STEP 2 SO THAT A
+FOLLOWER WHO KNOWS NOTHING ABOUT
+SANDWICHES CANNOT GET IT WRONG.
+
+  ______________________________
+  ______________________________
+  ______________________________
+
+HOW MANY WORDS DID IT TAKE?  ____
+
+N NEXT P BACK A ANSWER M BOOK Q EXIT

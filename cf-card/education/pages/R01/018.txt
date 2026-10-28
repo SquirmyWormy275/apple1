@@ -1,0 +1,22 @@
+R01 PICTURES MADE OF LETTERS
+018/033 WORKSHEET BANNER-EXAMPLES.TXT
+
+
+THREE: WEIGHT USED TO SUGGEST DEPTH
+
+       .,'''''',.
+     ,'          ',
+    '   #######   '
+    '   #     #   '
+     ',  #####  ,'
+       '',,,,,''
+
+WHAT MAKES ONE WORK:
+
+  A LETTER NEEDS AT LEAST 5 ROWS
+  TO BE READABLE.
+
+  A GAP OF ONE COLUMN BETWEEN
+  LETTERS IS TOO LITTLE.  USE TWO.
+
+N NEXT P BACK A ANSWER M BOOK Q EXIT

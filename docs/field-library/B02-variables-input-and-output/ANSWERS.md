@@ -19,6 +19,11 @@ keeps everything integer and loses the fractional part, which is the honest
 consequence of the language's limits rather than a workaround to be embarrassed
 about.
 
+**Check intermediate results too.** This expression is valid for the stated
+nonnegative integer domain 0 through 129. At 130, `130*254` already exceeds
+32767 before division can reduce it. The guarded listing below checks the
+domain first; at 129 it reports 327 cm.
+
 A learner who wrote `I * 2.54` should be shown that it cannot work here, and
 asked what they want to happen to the fraction.
 
@@ -63,9 +68,14 @@ Job 2, a greeting:
 Job 1, inches to centimetres:
 
 ```text
-10 INPUT "HOW MANY INCHES", I
-20 PRINT I; " INCHES IS "; I*254/100; " CM"
-30 END
+10 INPUT "INCHES (0 TO 129)",I
+20 IF I<0 THEN 70
+30 IF I>129 THEN 70
+40 PRINT I;" INCHES IS ";I*254/100;" CM"
+50 PRINT "FRACTIONS ARE TRUNCATED"
+60 END
+70 PRINT "USE AN INTEGER FROM 0 TO 129"
+80 END
 ```
 
 Accept any version with the four boxes present, a legal variable name, and a
@@ -77,6 +87,7 @@ For the greeting program:
 
 ```text
 WHAT IS YOUR NAME?TOM
+
 HELLO TOM
 ```
 
@@ -84,6 +95,10 @@ HELLO TOM
 space between it and the typed answer either. A prompt written as
 `"WHAT IS YOUR NAME?"` would produce `WHAT IS YOUR NAME??`, which is the sort of
 thing that only becomes obvious when you write the exchange out.
+
+The preserved interpreter now reproduces this interaction in host execution:
+[U01: real greeting](../../textbook/features/U01.md) includes both prompt forms.
+`INPUT` must be in the numbered program; it is rejected in immediate mode.
 
 That is why Part E exists. Reading the interaction aloud catches things reading
 the code does not.

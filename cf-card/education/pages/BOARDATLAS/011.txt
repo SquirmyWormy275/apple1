@@ -1,0 +1,18 @@
+COMPARE / HARDWARE A
+----------------------------------------
+ITEM        ORIGINAL       REPLICA 1+
+
+CPU         6502           6502
+
+PIA         6820           6821
+
+MAIN RAM    4K DRAM        32K SRAM
+            BANKS
+
+MONITOR     TWO 256X4      EPROM / ROM
+STORAGE     PROMS
+
+VIDEO       2504/2519/     PROPELLER
+            2513 + TTL
+
+KEYBOARD    ASCII          PS/2 + ASCII

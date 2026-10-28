@@ -1,0 +1,22 @@
+R05 SOUND, RHYTHM, AND CODE
+012/033 TRY
+
+
+COMPLETE ASSETS/RHYTHM-GRID.TXT: CLAP
+ALL THREE ROWS, THEN ENCODE ROWS 2 AND
+3 AS BITS AND AS HEX.
+
+PART B: DECODE
+
+ /  BYTE  /  BITS  /  SLOTS THAT SOUND
+/
+ /  $88  /   /   /
+ /  $A4  /   /   /
+ /  $FF  /   /   /
+ /  $00  /   /   /
+ /  $C0  /   /   /
+ /  $81  /   /   /
+
+CLAP EACH ONE.
+
+N NEXT P BACK A ANSWER M BOOK Q EXIT

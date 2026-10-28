@@ -1,0 +1,22 @@
+X02 FIX THE LOOP
+020/032 ANSWERS
+
+X02 ANSWER KEY
+
+PART A: TRACE FIRST
+
+ /  PASS  /  Y BEFORE  /  STORED AT  /
+Y AFTER  /
+ /  1  /  $00  /  $0400  /  $01  /
+ /  2  /  $01  /  $0401  /  $02  /
+ /  3  /  $02  /  $0402  /  $03  /
+ /  4  /  $03  /  $0403  /  $04  /
+ /  5  /  $04  /  $0404  /  $05  /
+ /  6  /  $05  /  $0405  /  $06  /
+
+- STORES: SIX.
+- HIGHEST ADDRESS WRITTEN: $0405.
+- WAS THAT THE INTENTION? NO. THE
+INTENTION WAS FIVE STORES, $0400 TO
+$0404.
+N NEXT P BACK A ANSWER M BOOK Q EXIT

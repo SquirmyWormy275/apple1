@@ -1,0 +1,21 @@
+C01 THE 6502 AT WORK
+018/026 WORKSHEET FETCH-DECIDE-ACT.TXT
+
+   !         !  ACTIONS NEED   !
+   !         !  MORE BYTES.    !
+   +---------+                 !
+        !                      !
+        V                      !
+   +---------+                 !
+   ! ACT     !  DO IT.  MOVE   !
+   !         !  THE PROGRAM    !
+   !         !  COUNTER PAST   !
+   !         !  WHAT WAS USED. !
+   +---------+                 !
+        !                      !
+        +----------------------+
+
+IT NEVER STOPS.  IT NEVER DECIDES TO
+STOP.  A "HALTED" COMPUTER IS RUNNING
+A LOOP THAT GOES NOWHERE.
+N NEXT P BACK A ANSWER M BOOK Q EXIT

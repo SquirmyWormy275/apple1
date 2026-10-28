@@ -1,0 +1,22 @@
+R04 INTERACTIVE FICTION
+018/029 WORKSHEET STORY-MAP.TXT
+
+  +----------+ +----------+
+
+DRAW YOUR OWN MAP HERE.
+FOUR ROOMS IS PLENTY.
+
+  +-------------------------------+
+  !                               !
+  !                               !
+  !                               !
+  !                               !
+  !                               !
+  !                               !
+  !                               !
+  !                               !
+  !                               !
+  !                               !
+  +-------------------------------+
+
+N NEXT P BACK A ANSWER M BOOK Q EXIT

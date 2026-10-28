@@ -1,0 +1,16 @@
+R05 SOUND, RHYTHM, AND CODE
+020/033 WORKSHEET RHYTHM-GRID.TXT
+
+  _ _ _ _ _ _ _ _  =  ________  =  ___
+
+CLAP IT.  THEN HAND THE BYTE TO
+SOMEONE ELSE AND SEE IF THEY CLAP
+THE SAME THING.
+
+WHAT THE BYTE DOES NOT SAY:
+
+  HOW FAST      ______________
+  HOW LOUD      ______________
+  HOW LONG EACH ______________
+  WHAT SOUND    ______________
+N NEXT P BACK A ANSWER M BOOK Q EXIT

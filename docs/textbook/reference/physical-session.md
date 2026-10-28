@@ -87,3 +87,13 @@ They are not prerequisites for learning from the host book, and none is needed
 merely to produce a successful-looking capture.
 
 [Textbook home](../README.md) · [Current investigation](../../troubleshooting.md) · [Review record](../review.md)
+
+
+## Ready for the arrival
+
+The [build storyboard kit](../../hardware/build-storyboard/README.md) has stable
+shot IDs, empty credited-asset slots, a caption template and unmeasured
+as-built fields. The [card guide](../../../cf-card/README.md) and
+[BASIC chapter](basic.md) now supply host-rehearsed counterparts for later
+physical reader and interpreter trials. Add genuine physical evidence beside
+those captures when the finished setup arrives.

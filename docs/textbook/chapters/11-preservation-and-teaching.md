@@ -21,8 +21,10 @@ verify every historical statement in the source pool.
 ## Keep original records and derived lessons distinct
 
 The Field Library's verification register remains open where it was open.
-Adding a worked example does not close V-36's earlier set-level historical review
-or make a packet approved for physical CF deployment. The reset-vector error
+The [pre-hardware review](../../field-library/review/README.md) now applies the
+structural gate across all 42 packets and retains source qualifications. This
+does not independently corroborate every historical claim or approve physical
+CF deployment. The reset-vector error
 found during this work is corrected explicitly and linked to a primary manual;
 its quoted secondary source remains visible as an erratum.
 

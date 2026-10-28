@@ -1,84 +1,155 @@
-# Apple1 CF-card source control
+# The flash-card reading edition
 
-The October 2026 [card deployment workflow](DEPLOYMENT.md) builds the complete
-educational display edition, alongside an exact-source archive. The attached
-Lexar card was loaded and fully read back on October 27; see the
-[inventory and verification report](AUDIT-2026-10-27.md).
+The host-built core edition contains **50 numbered books**, an NMOS 6502 RAM
+reader, and **six real CFFA1 BASIC programs**. It includes every original lesson's
+reading, activity, text worksheets and answer key, plus all 39 SP01 board plates.
+Guides connect the card to the local-model, software-feature, CPU and native
+evidence labs on the host.
 
-This directory is the **host-side control plane** for material associated with
-the project's CF card. It is deliberately separate from both the preserved raw
-card image and the learner-facing source documents.
+**State:** generated and rehearsed on the host; physical Replica acceptance is
+pending. The preserved card image is never edited in place. A host image build
+does not write a physical card or establish installed firmware identity.
 
-`tools/build_cf_library.py` defines the current ProDOS folder/file edition and
-its RAM-only reader. The older `export_cf_card_sources.py` described below
-remains a source-staging exporter; its candidate flags are not editorial review
-approvals or a complete inventory of the installed edition.
+[Browse the core page sources](education/pages/) ·
+[Reading-edition manifest](education/manifest.json) ·
+[RAM reader source](../software/card-reader/README.md) ·
+[BASIC programs](../software/basic/README.md) ·
+[Textbook](../docs/textbook/README.md)
 
-## The model: baseline + approved overlays
+## What belongs where
 
-```text
-IMMUTABLE ORIGINAL BASELINE
-preservation/cf-card/2026-08-28/
-        |
-        |  never edited in place
-        V
-FUTURE WORKING COPY / BUILD
-        +
-APPROVED CONTENT OVERLAYS
-        |
-        V
-HOST-SIDE STAGING OUTPUT
+| Location in the candidate image | Contents | Purpose |
+|---|---|---|
+| `EDUCATION/READFIRST` | Book index and navigation | Begin with book 00 |
+| `EDUCATION/READER` | BIN `$06`, load/entry `$0800` | The paged reader |
+| `EDUCATION/S01` through the other lesson IDs | All 42 complete packet readings, activities, text assets and answers | Work through the original lessons |
+| `EDUCATION/MODELS`, `FEATURES`, `CPULABS`, `NATIVE` | Guides to the L/F/T/N host labs | Explain what runs on the Pi and what runs on the 6502 |
+| `EDUCATION/BASICGUIDE`, `CARDGUIDE` | U01–U06 and K01–K04 | Interpreter, files, reader and build exercises |
+| `EDUCATION/BOARDATLAS` | All 39 original SP01 plates in a display-safe reading copy | Compare the documented boards |
+| `BASICLABS` | HELLO, CONVERT, SUM, SORT, QUIZ, PATTERN | Actual tokenized BA1 files, type `$F1` |
+| `UTILITIES` and `GAMES` | Original card files | Preserved unchanged, including metadata |
+
+The core image contains the complete **original packet text** and **guided
+summaries** of the later labs. Full textbook chapters, exact Python sources,
+images, transcripts, teacher/visitor material and annotation archives are host
+resources; a combined card package can add those as clearly indexed supplements.
+This core build does not claim that short lab guides contain every host artifact.
+
+## Begin without a card
+
+With the ordinary repository Python environment active:
+
+```bash
+python -m tools.textbook run U01
+python -m tools.textbook run K01
+python -m tools.card_image rehearse
+python -m tools.card_book --out out/my-card-books
 ```
 
-### 1. Original baseline
+Use a new output directory. The compiler emits 40x24 page sources, binary books,
+the reader and a manifest. `rehearse` executes the actual reader and CFFA1 ROM
+against a small virtual card, including missing-prefix handling and answer jumps.
 
-The original Lexar CF card has a verified sector-for-sector image under
-`preservation/cf-card/2026-08-28/`. That image is preservation evidence and is
-never used as a scratch file. See [`original/README.md`](original/README.md).
+The compiler preserves exact source on the host. This is an uppercase reading
+copy: case-sensitive Python, shell commands and exact JSON output must be copied
+from their host sources. Lowercase character examples are spelled out, such as
+`LOWERCASE A`, so `$61` does not get mislabeled as uppercase A.
 
-### 2. Field Library
+## Build a new candidate image
 
-The authoritative educational source remains `docs/field-library/`. The new
-SP01 packet contains a `card/` subtree of display-native 40x24 ASCII screens and
-is currently the first item marked for approved staging. See
-[`field-library/README.md`](field-library/README.md).
+The original image is stored with Git LFS. Hydrate that image in a normal checkout
+with Git LFS available, or supply a separately downloaded, verified reference
+copy. The builder requires the registered 128,974,848-byte SHA-256 identity:
 
-The legacy registry still excludes the broader source corpus from that
-exporter's defaults. The complete display build includes all 42 current packets
-with their source notes and open review items, following the user's October 27
-installation request. Packaging does not mark those review items resolved.
+```text
+5c98a3bb8c77e4155167a1c8df353ae07697f57c939de9196b838ecf097ad836
+```
 
-### 3. Software
+```bash
+python -m tools.card_image build \
+  --baseline preservation/cf-card/2026-08-28/apple1-cf-card-lexar-disk2-128974848.img \
+  --out out/my-card-image
+python -m tools.card_image inspect out/my-card-image/education-candidate.img
+python -m tools.card_preview --build out/my-card-image --out out/my-card-preview
+```
 
-`software/ram-only/` remains a separate RAM-only candidate library with no
-live-run authority. It is indexed here but not included in the approved overlay
-by default. See [`software/README.md`](software/README.md).
+The preview needs `python -m pip install -e '.[textbook]'`. Open
+`out/my-card-preview/index.html` locally to browse the retained reader output.
+Its buttons select recorded pages; they do not control hardware. PNGs and a
+short GIF are labeled as modeled-display evidence.
 
-### 4. Machine-readable manifest
+The build checks the following before returning success:
 
-[`manifests/current.json`](manifests/current.json) is the authoritative source
-registry for host-side staging. Each source has an explicit status and an
-`include_in_default_export` flag.
+- The baseline's length and SHA-256 match the preservation registry.
+- The **identified CFFA1 firmware** creates ProDOS directories and files against
+  modeled ATA; a second read-only parser independently validates the allocation.
+- All original file bytes and type/aux metadata remain unchanged.
+- Original allocated data blocks and the bytes after the first volume remain
+  unchanged; root entries and allocation bitmap necessarily gain new data.
+- Every book loads correctly; every page is displayed by the actual RAM reader.
+  First/last page limits, answer jumps, book selection, errors and exit have
+  separate fixture checks.
+- Every BA1 is generated by `SaveBASICFile`, restored into cleared RAM by
+  `LoadBASICFile`, and executed. Its result matches the cold source run.
+- The reader makes **zero card writes**. The report records image, source and
+  capture identities.
 
-### 5. Export
+Outputs are a new image, `build.json`, and all recorded reader screens.
+The current build receipt belongs in the textbook validation records.
+The image is a candidate for later acceptance, not a physical-board success.
 
-`tools/export_cf_card_sources.py` reads the manifest and creates a **host-side
-staging tree only**. It does not mount, format, image, or write a CF card. The
-default output is `out/cf-card-staging/`, which is ignored by Git.
+## Navigation on the intended machine
 
-The exporter validates any source declared as `ascii-40x24` before copying it.
-Use `--include-baseline-image` only on a clone where Git LFS has hydrated the
-original image; the exporter verifies its size and SHA-256 before copying it.
+The following is the intended sequence **after the finished hardware and its
+installed firmware have been accepted**. It is documentation for that session,
+not evidence that it occurred.
 
-## Rule for future work
+| Stage | Intended action | Expected observation |
+|---|---|---|
+| Enter CFFA1 from Monitor | `9000R` | CFFA1 menu |
+| Select the book directory | `P`, then `EDUCATION` and Return | Prefix becomes EDUCATION |
+| Load the reader | `L`, then `READER` and Return | Loads at `$0800` |
+| Return to Monitor | `Q` | Monitor prompt |
+| Start the reader | `800R` | Book 00 / READFIRST |
+| Read | `N` next, `P` back, `A` answers, `M` then 00–49 to select | Another recorded page or book |
+| Leave | `Q` | Defined Monitor entry `$FF1F` |
 
-When new material is intended for the card:
+The CFFA1 manual does not establish an automatic boot launcher. Load READER,
+not an individual binary book. Its filename table and books occupy RAM, and
+starting it replaces any BASIC program in that region.
 
-1. keep the authoritative source in its normal repository location;
-2. add it to `manifests/current.json` with an explicit status;
-3. do not set `include_in_default_export` until it is approved;
-4. never modify the preserved original image in place;
-5. use generated staging/build output rather than hand-copying an ad hoc mix of
-   repository files.
+For BASIC, first cold-initialize the identified Integer BASIC, then return to
+Monitor using the qualified physical reset path. Enter the CFFA1 menu through
+`9003R`, choose prefix `BASICLABS`, load a program such as `HELLO` with `L`,
+and `Q` back to warm BASIC. `RUN` executes the restored program. A cold
+`E000R` **after** loading would clear it; warm entry is `$E2B3`.
+The host verifies the saved state and execution; the physical transition still
+needs its own capture.
 
-This keeps preservation, authored content, and future build output distinct.
+## Why the layout looks this way
+
+CFFA1 uses **ProDOS**, not FAT. The edition uses filenames of at most 15
+characters and only one subdirectory level. The root retains the original
+UTILITIES/GAMES and gains EDUCATION/BASICLABS, well below its 51-entry limit.
+The baseline's first volume contains 62,720 blocks; later bytes are preserved.
+
+The reader uses a conservative **SPACE through `$5F`** character set. Atlas
+vertical borders use `!` instead of `|`. Prose leaves a margin; complete
+40-column plates use automatic wrap without a redundant CR. A full bottom-right
+cell that would scroll away the first line is rejected during compilation.
+
+Books are a documented `A1BK` binary format, not a claim that CFFA1 renders
+Markdown or TXT. The reader, book buffer, firmware workspace and ROM have
+separate memory regions. See the [reader contract](../software/card-reader/README.md)
+and [identified firmware records](../preservation/software/apple1-reference/README.md).
+
+## Source staging and preservation
+
+`tools.export_cf_card_sources` still exports approved host sources according to
+[the registry](manifests/current.json). It now refuses an existing output,
+checks the full plan before creating it, rejects escaping paths and symlinks,
+and records file hashes. It never recursively deletes a selected directory.
+
+[Original-card preservation](original/README.md) ·
+[Field Library review](../docs/field-library/review/README.md) ·
+[Physical chapter and build storyboard](../docs/textbook/reference/physical-session.md)

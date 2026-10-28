@@ -1,6 +1,6 @@
 # Current project status
 
-Updated **October 27, 2026 (Pacific time)** for the expanded textbook and fresh
+Updated **October 28, 2026 (Pacific time)** for the expanded textbook and fresh
 native Pi observations (recorded October 28 UTC). Historical commissioning
 claims remain distinct from these teaching runs.
 
@@ -8,13 +8,16 @@ claims remain distinct from these teaching runs.
 
 ## Worked textbook edition
 
-The source now includes a 13-chapter textbook, worked companions for all 42
+The source now includes a 15-chapter textbook, worked companions for all 42
 existing lesson packets, eight local-model labs, 36 feature labs, twelve extended
-CPU labs and two native-evidence labs. All 100
+CPU labs, two native-evidence labs, six real BASIC labs and four card labs. All 110
 examples have captured host output, images, checks, and reproduction commands.
 See the [book](textbook/README.md) and [coverage register](textbook/coverage.md).
-These captures do not close the historical corpus review or physical approval
-gates. The separate [native walkthrough](textbook/native/README.md) retains fresh
+The pre-hardware review applies structural checks to all 42 original packets
+and checks source locations, while retaining historical/rights qualifications.
+The core card image adds 50 books, the RAM reader and six real BA1 programs;
+every page is rehearsed through the identified CFFA1 firmware. Physical
+acceptance remains pending. The separate [native walkthrough](textbook/native/README.md) retains fresh
 workstation/Pi inference, installed tutor calls and bounded virtual execution;
 there is no newly completed physical Replica capture.
 The earlier reset-vector teaching error is corrected with an explicit primary-
@@ -41,7 +44,7 @@ remains the reference for that installed application.
 | Commissioned Pi | September 10 closeout records usable local inference, persistent SSD state, and automatic mount/provider startup after operator SSD activation. | No reinstallation is required for this repository update. USB 2 connection speed and intermittent network/name resolution remain recorded limitations. |
 | Physical Replica / FT232R | September 2 no-transmit open reproduced display corruption; root cause remains inconclusive. | Resolve reset and analog power/ground evidence through an approved instrumented procedure. |
 | Propeller diagnostic preparation | PR #6 holds the bounded capture/worker preparation. | It remains separate from Pi operation and is not physical qualification. |
-| Field Library | 42 existing lesson packets, including SP01, are present. The prior 41-entry index omitted the special lesson. | Keep the catalog synchronized; the earlier corpus-review and CF-card approval gates remain open. |
+| Field Library | 42 existing lesson packets, including SP01, are present. The prior 41-entry index omitted the special lesson. | The host reading candidate is compiled and reviewed with source qualifications; add physical acceptance when the finished setup arrives. |
 | Historical research | The broad March-1976 index remains research staging. The console has two separately reviewed year-end-1976 CPU/RAM records. | Do not extrapolate those bounded records into complete-board, price, electrical, or March-1976 claims. |
 
 ## NEURAL1 on the Pi
@@ -103,8 +106,9 @@ acceptances, and zero automatic findings. The later Pi run is a separate result.
 The [Field Library index](field-library/README.md) is the lesson directory and
 review register. SP01, [Two Boards, One Computer](field-library/SP01-two-boards-one-computer/README.md),
 was already present in the inspected main tree; the discrepancy was navigation,
-not lost work. Listing all 42 lessons does not close the original corpus-review
-gate or approve physical CF deployment.
+not lost work. The [pre-hardware review](field-library/review/README.md) records the gate
+application and remaining qualifications. The [card build](../cf-card/README.md)
+has an implemented reader; physical CF deployment still needs its own evidence.
 
 The [source-ingestion policy](neural1/history/source-ingestion.md) and
 [console-corpus review](neural1/history/console-corpus-review.md) retain separate

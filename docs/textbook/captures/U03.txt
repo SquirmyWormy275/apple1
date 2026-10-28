@@ -1,0 +1,23 @@
+U03 / A running sum in BASIC
+MODE: BASIC_INTERPRETER | HOST ONLY | NO MODEL INFERENCE
+
+Interpreter SHA-256: 5d8a3fe3c20c42903b226d67430c840ea5119557f88774c069e2e4dd80ad2c67
+
+>10 S=0
+>20 FOR I=1 TO 5
+>30 S=S+I
+>40 PRINT "I=";I;" SUM=";S
+>50 NEXT I
+>60 END
+>RUN
+I=1 SUM=1
+I=2 SUM=3
+I=3 SUM=6
+I=4 SUM=10
+I=5 SUM=15
+
+>Stop: waiting-for-input
+NMOS 6502 instructions: 60961
+LOMEM=$0800; HIMEM=$1000
+
+CHECKS PASSED | No physical serial connection was requested.

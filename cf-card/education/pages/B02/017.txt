@@ -1,0 +1,22 @@
+B02 VARIABLES, INPUT, AND OUTPUT
+017/031 WORKSHEET FLOW-DIAGRAM.TXT
+
+APPLE-1 FIELD LIBRARY / B02
+PROGRAM FLOW: ONE IN, ONE OUT
+
+  +---------------------+
+  !       START         !
+  +---------------------+
+            !
+            V
+  +---------------------+
+  ! ASK                 !
+  ! PRINT A PROMPT      !
+  +---------------------+
+            !
+            V
+  +---------------------+
+  ! GET                 !
+  ! READ ONE VALUE INTO !
+  ! A VARIABLE          !
+N NEXT P BACK A ANSWER M BOOK Q EXIT

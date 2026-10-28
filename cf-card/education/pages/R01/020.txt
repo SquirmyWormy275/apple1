@@ -1,0 +1,22 @@
+R01 PICTURES MADE OF LETTERS
+020/033 WORKSHEET GRID-40.TXT
+
+APPLE-1 FIELD LIBRARY / R01
+THE 40-COLUMN GRID
+
+EVERY LINE IS EXACTLY 40 WIDE.
+COUNT THE RULER BEFORE YOU DRAW.
+
+         1111111111222222222233333333334
+1234567890123456789012345678901234567890
++--------------------------------------+
+!                                      !
+!                                      !
+!                                      !
+!                                      !
+!                                      !
+!                                      !
+!                                      !
+!                                      !
+!                                      !
+N NEXT P BACK A ANSWER M BOOK Q EXIT

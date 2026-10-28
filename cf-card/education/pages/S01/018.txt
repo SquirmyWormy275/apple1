@@ -1,0 +1,22 @@
+S01 WHAT IS AN APPLE-1?
+018/030 WORKSHEET THREE-PARTS-BLANK.TX
+
+APPLE-1 FIELD LIBRARY / S01
+WORKSHEET: NAME THE THREE PARTS
+
++--------------------------------------+
+! 1. ________________                  !
+!    A 1976 CIRCUIT BOARD.             !
+!    HARDWARE YOU CAN HOLD.            !
+!    SOLD BARE: NO CASE, NO KEYBOARD,  !
+!    NO POWER SUPPLY, NO DISPLAY.      !
++--------------------------------------+
+                   !
+                   ! CARRIES A CHIP
+                   ! HOLDING
+                   V
++--------------------------------------+
+! 2. ________________                  !
+!    A 256-BYTE PROGRAM IN ROM.        !
+!    SOFTWARE, NOT HARDWARE.           !
+N NEXT P BACK A ANSWER M BOOK Q EXIT

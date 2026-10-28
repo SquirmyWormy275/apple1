@@ -1,0 +1,30 @@
+U01 / A real Integer BASIC greeting
+MODE: BASIC_INTERPRETER | HOST ONLY | NO MODEL INFERENCE
+
+Interpreter SHA-256: 5d8a3fe3c20c42903b226d67430c840ea5119557f88774c069e2e4dd80ad2c67
+
+>10 DIM N$(20)
+>20 INPUT "WHAT IS YOUR NAME",N$
+>30 PRINT "HELLO ";N$
+>40 END
+>RUN
+WHAT IS YOUR NAME?TOM
+
+HELLO TOM
+
+>Stop: waiting-for-input
+NMOS 6502 instructions: 36419
+LOMEM=$0800; HIMEM=$1000
+Prompt boundary: a supplied question mark plus INPUT's automatic one
+
+>10 DIM N$(20)
+>20 INPUT "NAME?",N$
+>30 PRINT N$
+>40 END
+>RUN
+NAME??TOM
+
+TOM
+
+>
+CHECKS PASSED | No physical serial connection was requested.

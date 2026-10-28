@@ -91,6 +91,30 @@ this checklist does not substitute for them.
 
 [Textbook home](README.md) · [Course guide](course-guide.md) · [Native evidence](native/README.md)
 
-The [native course receipt](validation/README.md) records 439 passing tests,
+The earlier [native course receipt](validation/README.md) records 439 passing tests,
 all 100 exact example reruns, repository validation, Ruff and mypy on the real
 Pi. The workstation passed the same full suite and checks.
+
+
+## Pre-hardware extension
+
+The [packet review](../field-library/review/README.md) applies the structural
+gate to all 42 packets and records targeted editorial corrections. The shared
+quotation ledger matches 73 fragments to identified local scan pages; it does
+not independently corroborate every historical assertion or clear rights.
+
+The new [BASIC chapter](reference/basic.md) executes the preserved interpreter
+on an NMOS 6502: six programs, actual INPUT/string/array behavior, intermediate
+overflow and both quiz outcomes. The primary BASIC manual's printed p. 1 /
+PDF p. 3 was visually checked for loading and cold/warm entry.
+
+The [card edition](../../cf-card/README.md) implements the RAM reader and a
+host image build using the actual CFFA1 ROM against modeled ATA. An independent
+ProDOS reader validates allocation and preserved originals. Every page is
+rehearsed, and all six generated BA1 programs are restored into cleared RAM and
+run again. No serial port or physical card is opened by this build.
+
+The [pre-hardware receipt](validation/prehardware.md) and final release checks
+record the new scope. Physical acceptance, installed ROM identity, electrical
+timing, credited build photographs and as-built dimensions remain separate.
+The [storyboard kit](../hardware/build-storyboard/README.md) prepares those slots.

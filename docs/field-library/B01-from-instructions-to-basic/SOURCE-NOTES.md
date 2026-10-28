@@ -1,5 +1,13 @@
 # B01 Source notes
 
+> **Current host evidence (October 28, 2026):** The original paper activity
+> remains available. [The BASIC chapter](../../textbook/reference/basic.md)
+> now runs the preserved interpreter on a modeled NMOS 6502. U01–U06 retain
+> actual sessions; U02 checks conversion bounds and U04 checks one-based arrays.
+> V-20 and V-21 are resolved for these identified host sessions. Older "not run"
+> notes below describe the earlier edition; they do not describe current host
+> capability. Physical installation and execution remain unverified.
+
 Keys refer to the shared pool in `../SOURCES.md`.
 
 | Claim | Key |
@@ -19,7 +27,7 @@ Keys refer to the shared pool in `../SOURCES.md`.
 
 ## No BASIC was run
 
-There is **no runnable BASIC environment in this repository**. The curriculum
+The original paper edition had no runnable BASIC environment. The curriculum
 brief for B01 anticipates this and asks for small pseudocode snippets in that
 case.
 

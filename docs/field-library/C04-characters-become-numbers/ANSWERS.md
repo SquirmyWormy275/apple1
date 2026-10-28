@@ -72,11 +72,15 @@ rather than a lookup that visibly fails.
 
 ## Part F: the case question
 
-One line of reasoning. Handling a lower-case byte costs one instruction: clearing
-bit 5 turns any lower-case letter into its upper-case equivalent, since they
-differ by exactly that bit. Rejecting it costs a comparison and a decision about
-what to do instead. Handling is cheaper and kinder, but it silently changes what
-the user typed, which is a real trade rather than an obvious win.
+For a byte already known to be a lowercase ASCII letter, clearing bit 5
+converts it to uppercase. A general input routine needs range checks before
+that operation. Applying `AND #$DF` blindly also changes other characters:
+ASCII `0` (`$30`) becomes control code `$10`.
+
+Compare the complete policies: preserve the original, convert letters after
+checking the range, or reject unsupported input visibly. Conversion silently
+changes the user's text, so it should be a documented choice. Instruction cost
+depends on those checks; one AND instruction is not a complete general converter.
 
 Accept any answer that notices the one-bit relationship and weighs silent
 correction against visible rejection. The repository's own firmware behavior

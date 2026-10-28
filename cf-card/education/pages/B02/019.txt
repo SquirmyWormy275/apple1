@@ -1,0 +1,17 @@
+B02 VARIABLES, INPUT, AND OUTPUT
+019/031 WORKSHEET FLOW-DIAGRAM.TXT
+
+  +---------------------+
+
+FOUR BOXES.  ASK, GET, WORK, TELL.
+
+FILL IN FOR YOUR OWN PROGRAM:
+
+  ASK   __________________________
+  GET   __________________________
+  WORK  __________________________
+  TELL  __________________________
+
+  VARIABLE NAME  ______
+  IS IT A NUMBER OR A STRING? ____
+N NEXT P BACK A ANSWER M BOOK Q EXIT

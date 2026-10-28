@@ -1,0 +1,22 @@
+C04 CHARACTERS BECOME NUMBERS
+019/030 WORKSHEET ENCODING-WORKSHEET.T
+
+APPLE-1 FIELD LIBRARY / C04
+WORKSHEET: ENCODE AND DECODE
+
+PART 1.  FILL THE TABLE.
+
+  CHAR   DEC   HEX   HIGH-BIT HEX
+   A      65   $41       $C1
+   B     ___   ___       ___
+   Z     ___   ___       ___
+   0     ___   ___       ___
+  SPC    ___   ___       ___
+   CR    ___   ___       ___
+
+
+PART 2.  DECODE THIS BYTE LIST.
+STRIP THE TOP BIT FIRST.
+
+  C8  C9  A0  D4  C8  C5  D2  C5  8D
+N NEXT P BACK A ANSWER M BOOK Q EXIT

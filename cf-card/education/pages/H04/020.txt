@@ -1,0 +1,22 @@
+H04 SAFE EXPERIMENTATION
+020/035 WORKSHEET DECISION-CARD.TXT
+
+! A PROGRAM THAT COULD ONE DAY BE      !
+! ENTERED BY HAND INTO RAM, IN A       !
+! SEPARATE OPERATOR-LED SESSION.       !
+!                                      !
+! THE ARTIFACTS IN THIS PROJECT        !
+! CARRY  NO LIVE-RUN AUTHORITY.        !
+!                                      !
+! NOT YOURS TO START.  READ, REHEARSE  !
+! OFF-DEVICE, AND STOP THERE.          !
++--------------------------------------+
+
++--------------------------------------+
+! RED     NOT IN ANY LESSON            !
+!                                      !
+!   FIRMWARE LOADING                   !
+!   EEPROM WRITING                     !
+!   CFFA1 MODIFICATION                 !
+!   SERIAL-PORT OPENING                !
+N NEXT P BACK A ANSWER M BOOK Q EXIT

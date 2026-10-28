@@ -1,5 +1,13 @@
 # B01 From instructions to BASIC
 
+> **Current host evidence (October 28, 2026):** The original paper activity
+> remains available. [The BASIC chapter](../../textbook/reference/basic.md)
+> now runs the preserved interpreter on a modeled NMOS 6502. U01–U06 retain
+> actual sessions; U02 checks conversion bounds and U04 checks one-based arrays.
+> V-20 and V-21 are resolved for these identified host sessions. Older "not run"
+> notes below describe the earlier edition; they do not describe current host
+> capability. Physical installation and execution remain unverified.
+
 **Audience:** LEARN
 **Time:** 30 minutes
 **Status:** OFF-DEVICE
@@ -76,11 +84,11 @@ and `$D010` and calls a ROM routine; you would not attempt that in BASIC.
 *Neither is a general answer.* The question "which language is better" has no
 content. "Which language suits this job" always does.
 
-**A note on this library.** No runnable BASIC environment is packaged in this
-repository. The BASIC lines in this lesson are drawn from published examples and
-are read, not run. If you have access to a machine with BASIC in ROM, running
-them is a separate matter governed by the project's own rules, not by this
-lesson.
+**A note on this library.** The original packet compares the languages on paper.
+The [BASIC chapter](../../textbook/reference/basic.md) now executes the identified
+interpreter on a modeled NMOS 6502. U01–U06 supply real sessions; the original
+B01/B02 Python companions remain clearly labeled analogues. Physical ROM
+identity and hardware execution remain separate observations.
 
 ## Try a variation
 

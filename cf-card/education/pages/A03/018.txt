@@ -1,0 +1,22 @@
+A03 COUNTING AND LOOPING
+018/034 WORKSHEET COUNTDOWN-TRACE.TXT
+
+APPLE-1 FIELD LIBRARY / A03
+COUNTDOWN TRACE
+
+PROGRAM A
+
+  0300  A2 05     LDX #$05
+  0302  CA        DEX
+  0303  D0 FD     BNE $0302
+  0305  8E 00 04  STX $0400
+  0308  4C 1F FF  JMP $FF1F
+
+ PASS   X BEFORE   X AFTER   BRANCH?
+   1      ____      ____      ____
+   2      ____      ____      ____
+   3      ____      ____      ____
+   4      ____      ____      ____
+   5      ____      ____      ____
+   6      ____      ____      ____
+N NEXT P BACK A ANSWER M BOOK Q EXIT

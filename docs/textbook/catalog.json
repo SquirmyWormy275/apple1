@@ -998,5 +998,105 @@
     "answer": "No. This recorded ASK response abstains despite the lesson containing the three functions. Compare the source, the generated text and deterministic evidence; do not substitute a metadata flag for review.",
     "mode": "RETAINED_NATIVE_REEVALUATION",
     "lesson": ""
+  },
+  {
+    "id": "U01",
+    "title": "A real Integer BASIC greeting",
+    "concept": "Run INPUT and DIM on the preserved interpreter",
+    "explanation": "A string must be dimensioned before INPUT. This session runs the identified Apple-1 interpreter on a modeled NMOS 6502; its echo, automatic question mark and greeting are interpreter output.",
+    "challenge": "Put a question mark at the end of the prompt. What changes?",
+    "answer": "The prompt supplies one question mark and INPUT supplies another. The exact NAME?? behavior is covered by the BASIC boundary tests.",
+    "mode": "BASIC_INTERPRETER",
+    "lesson": null
+  },
+  {
+    "id": "U02",
+    "title": "Integer conversion with a checked domain",
+    "concept": "Prevent intermediate arithmetic overflow",
+    "explanation": "Integer division truncates. Multiplication happens before division here: 129*254 fits, but 130*254 exceeds 32767. The program checks 0 through 129 before computing.",
+    "challenge": "Try 0, 129, 130 and -1. Which inputs reach the calculation?",
+    "answer": "0 and 129 yield 0 and 327 cm. 130 and -1 print the domain message. Fractional input is outside this integer-only program contract.",
+    "mode": "BASIC_INTERPRETER",
+    "lesson": null
+  },
+  {
+    "id": "U03",
+    "title": "A running sum in BASIC",
+    "concept": "Trace a loop and its accumulated state",
+    "explanation": "FOR, NEXT and integer storage are executed by the original interpreter. The printed running totals expose each update instead of checking only the final answer.",
+    "challenge": "Change the bound from 5 to 6. Predict the last two numbers.",
+    "answer": "The final index is 6 and the accumulated sum is 21. State the intended behavior before changing the bound to zero.",
+    "mode": "BASIC_INTERPRETER",
+    "lesson": null
+  },
+  {
+    "id": "U04",
+    "title": "Bubble sort in real Apple-1 BASIC",
+    "concept": "Compare each pass with the B04 paper trace",
+    "explanation": "The real interpreter executes adjacent comparisons and swaps. Integer arrays are one-based: DIM A(5) permits indices 1 through 5; index 0 raises RANGE ERR. The final no-swap pass is retained.",
+    "challenge": "Try the already sorted and reverse-sorted starting orders from B04.",
+    "answer": "Already sorted: 4 comparisons, 0 swaps. Reverse order: 20 comparisons, 10 swaps, including the final no-swap pass.",
+    "mode": "BASIC_INTERPRETER",
+    "lesson": null
+  },
+  {
+    "id": "U05",
+    "title": "A BASIC quiz with both outcomes",
+    "concept": "Exercise a conditional and a nonmatching answer",
+    "explanation": "The interpreter reads an integer and selects a response. A successful answer alone would not validate the other branch, so the tests exercise a wrong answer too.",
+    "challenge": "Answer 41, then rerun and answer 42.",
+    "answer": "41 prints the hint 2*16+10; 42 prints CORRECT: 42. Both reach END and return to the BASIC prompt.",
+    "mode": "BASIC_INTERPRETER",
+    "lesson": null
+  },
+  {
+    "id": "U06",
+    "title": "Generate a triangular pattern in BASIC",
+    "concept": "Produce text from nested loop state",
+    "explanation": "A row loop chooses the length and a column loop prints that many stars. PRINT with a semicolon stays on the line; a bare PRINT ends it. The interpreter emits all characters.",
+    "challenge": "How many stars are generated, and how many loop rows?",
+    "answer": "Six rows and 21 stars. This is a deterministic generator, not randomness or learning.",
+    "mode": "BASIC_INTERPRETER",
+    "lesson": null
+  },
+  {
+    "id": "K01",
+    "title": "Compile every lesson for a 40x24 screen",
+    "concept": "Check all card pages and RAM bounds",
+    "explanation": "The compiler includes all 42 original packet readings, activities, text worksheets and answers. Model, feature, CPU, native-evidence and new lab guides provide host routes. The uppercase reading copy is explicitly separate from exact host commands.",
+    "challenge": "Why can a valid Markdown file still fail this card build?",
+    "answer": "Display dimensions, unsupported characters, book size, filename and reader memory limits are additional constraints. A Markdown file is not a CFFA1 launcher.",
+    "mode": "HOST_BUILD",
+    "lesson": null
+  },
+  {
+    "id": "K02",
+    "title": "Let real CFFA1 firmware build a virtual file",
+    "concept": "Inspect a ProDOS file independently after firmware writes it",
+    "explanation": "The preserved CFFA1 ROM runs on an NMOS 6502 with modeled ATA registers. It formats only a new in-memory test card, writes a file and reads it back. A separate Python ProDOS reader checks the result.",
+    "challenge": "Does this prove the installed CFFA1 or physical card works?",
+    "answer": "No. It checks this identified firmware against the declared ATA model. Installed identity, bus behavior, timing and physical media remain hardware acceptance work.",
+    "mode": "CFFA1_FIRMWARE",
+    "lesson": null
+  },
+  {
+    "id": "K03",
+    "title": "Navigate the RAM card reader",
+    "concept": "Run actual pager instructions and verify visible text",
+    "explanation": "The RAM reader uses the real CFFA1 API and a modeled keyboard/display. The rehearsal checks first page, next, previous, answer jump, book selection and Monitor exit. These are CPU results, not physical screen photographs.",
+    "challenge": "What happens if the reader is launched with the wrong prefix?",
+    "answer": "It shows a CFFA error and offers another book selection. Choose EDUCATION in the CFFA menu before loading the reader.",
+    "mode": "CFFA1_FIRMWARE",
+    "lesson": null
+  },
+  {
+    "id": "K04",
+    "title": "Save and restore BASIC in CFFA1 format",
+    "concept": "Generate a real BA1 file and execute the restored program",
+    "explanation": "The interpreter tokenizes the authored program. CFFA1 SaveBASICFile emits its A1 header and $F1 file; LoadBASICFile restores state into cleared RAM. A BASIC warm start then executes the restored program.",
+    "challenge": "Why would renaming a .bas text file to a BASIC filename be insufficient?",
+    "answer": "CFFA1 BA1 stores interpreter state and tokenized memory, including a versioned header. Plain source text is a different format. Use the interpreter and save API rather than a filename trick.",
+    "mode": "CFFA1_FIRMWARE",
+    "lesson": null
   }
 ]

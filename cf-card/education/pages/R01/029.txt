@@ -1,0 +1,22 @@
+R01 PICTURES MADE OF LETTERS
+029/033 ANSWERS
+
+- 12 ROWS OR FEWER.
+- UPPER-CASE PRINTABLE ASCII
+THROUGHOUT, SO IT WOULD PASS THE
+FORMATTER UNCHANGED.
+- AT MOST THREE WEIGHTS.
+- CONTAINS APPLE-1.
+
+A WORKED EXAMPLE THAT MEETS ALL FIVE,
+AT 34 COLUMNS AND 7 ROWS:
+
+++++++++++++++++++++++++++++++++++
++                                +
++   A P P L E - 1                +
++   ....................         +
++   F I E L D   L I B R A R Y    +
++                                +
+++++++++++++++++++++++++++++++++++
+
+N NEXT P BACK A ANSWER M BOOK Q EXIT

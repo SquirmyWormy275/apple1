@@ -4,13 +4,17 @@ Learn the machine, write and debug small 6502 programs, and understand how
 NEURAL1 connects local-model proposals to independently checked execution.
 Start without assembly experience; build toward a reproducible capstone.
 
-**This edition:** 13 teaching chapters, all 42 existing Field Library packets
+**This edition:** 15 teaching chapters, all 42 existing Field Library packets
 with worked companions, eight new local-model labs, and 36 feature walkthroughs.
 Twelve extended CPU labs add pointers, flags, multi-byte arithmetic, calls,
 branch limits and original-program boundary cases. Native evidence labs
-connect actual local inference to independently checked execution.
-All 100 catalog examples have executable source, actual stdout, checks,
+connect actual local inference to independently checked execution. Six new
+BASIC labs execute the preserved interpreter, and four card labs exercise
+compilation, real CFFA1 firmware, the RAM pager and BA1 save/restore.
+All 110 catalog examples have executable source, actual stdout, checks,
 a captured image, a practice variation, and a worked answer.
+
+[Real Integer BASIC](reference/basic.md) · [Flash-card edition](../../cf-card/README.md) · [Build storyboard](../hardware/build-storyboard/README.md)
 
 [Course and teaching guide](course-guide.md) · [Fresh native walkthrough](native/README.md) · [6502 desk reference](reference/6502.md) · [Technical review](review.md) · [Pi verification](validation/README.md)
 
@@ -48,6 +52,8 @@ explain how to read every capture.
 | [10. Understand deployment without confusing it with a lab](chapters/10-pi-operation-and-feature-reference.md) | Understand installed Pi lifecycle, storage, guards, and operator boundaries |
 | [11. Preserve the evidence and teach it accurately](chapters/11-preservation-and-teaching.md) | Preserve sources, interpret historical claims, and teach accurately |
 | [12. Build an inspectable constrained-computing exhibit](chapters/12-capstone.md) | Build and assess an inspectable capstone |
+| [13. Execute a real Integer BASIC interpreter](chapters/13-run-integer-basic.md) | Run six programs, explain actual integer/array limits, save and restore BA1 |
+| [14. Build and inspect the card edition](chapters/14-build-the-card-edition.md) | Compile books, inspect ProDOS, rehearse the reader and preserve the baseline |
 
 ## Use the book as a course
 
@@ -91,9 +97,10 @@ semantics and offline inspection of actual local-model output. The separate
 [native chapter](native/README.md) retains fresh observations, including failed
 proposals, rather than treating generated text as proof of success.
 
-A native BASIC interpreter, physical Replica acceptance, historical source
-clearance and the unfinished physical launcher are not established by these
-captures. Their status stays explicit in the [review record](review.md), the
+The BASIC interpreter and CFFA1 ROM now execute on a modeled NMOS 6502;
+physical Replica acceptance, installed ROM identity and historical/rights
+clearance are not established by these captures. The RAM reader is implemented
+and host rehearsed; its physical acceptance remains pending. Their status stays explicit in the [review record](review.md), the
 [coverage boundaries](coverage.md#operator-and-environment-dependent-work) and
 the [physical-session chapter](reference/physical-session.md). The course is
 usable without waiting for the physical setup; a measured hardware chapter can

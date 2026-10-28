@@ -2,9 +2,10 @@
 
 Machine code exposes operations that higher-level languages package together.
 A BASIC interpreter handles parsing, variables, arithmetic, and output. The
-repository does not bundle a runnable Apple-1 BASIC interpreter in these labs;
-its BASIC packets are reading and design exercises. Python examples are marked
-host analogues and must not be mistaken for native Integer BASIC behavior.
+original B-series companions use marked Python analogues. The new
+[BASIC chapter](../reference/basic.md) and U01–U06 execute the identified
+Apple-1 interpreter on a modeled NMOS 6502. Compare both modes deliberately;
+a Python calculation does not validate BASIC syntax or representation.
 
 ## Compare a task rather than ranking languages
 

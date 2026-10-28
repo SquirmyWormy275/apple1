@@ -99,6 +99,14 @@
     "teaching_route": "F17, F24; real storage initialization/finalization remains operator-only"
   },
   {
+    "path": "tools/apple1_basic.py",
+    "subcommands": [],
+    "flags": [
+      "--max-instructions"
+    ],
+    "teaching_route": "U01-U06; reference/basic.md"
+  },
+  {
     "path": "tools/apple1_emulator.py",
     "subcommands": [],
     "flags": [
@@ -128,6 +136,36 @@
     "subcommands": [],
     "flags": [],
     "teaching_route": "F31; incomplete metadata rejected"
+  },
+  {
+    "path": "tools/card_book.py",
+    "subcommands": [],
+    "flags": [
+      "--out"
+    ],
+    "teaching_route": "K01; chapter14; cf-card/README.md"
+  },
+  {
+    "path": "tools/card_image.py",
+    "subcommands": [
+      "build",
+      "inspect",
+      "rehearse"
+    ],
+    "flags": [
+      "--baseline",
+      "--out"
+    ],
+    "teaching_route": "K02-K04; chapter14; cf-card/README.md"
+  },
+  {
+    "path": "tools/card_preview.py",
+    "subcommands": [],
+    "flags": [
+      "--build",
+      "--out"
+    ],
+    "teaching_route": "chapter14; cf-card/README.md; renders retained host observations"
   },
   {
     "path": "tools/cf_card_audit.py",

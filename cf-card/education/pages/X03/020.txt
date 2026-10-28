@@ -1,0 +1,22 @@
+X03 BUILD A MUSEUM DEMO
+020/036 WORKSHEET DEMO-SCRIPT.TXT
+
+        __________________________
+
+  1:15  THE SHOW
+        THE THING THEY WATCH.
+        __________________________
+        __________________________
+
+  2:15  THE QUESTION BACK
+        SOMETHING THEY ANSWER.
+        __________________________
+
+  2:45  WHERE TO GO NEXT
+        __________________________
+
++--------------------------------------+
+! THE FALLBACK                         !
+!                                      !
+! YOUR DEMO MUST WORK WITH NO          !
+N NEXT P BACK A ANSWER M BOOK Q EXIT

@@ -1,0 +1,22 @@
+H04 SAFE EXPERIMENTATION
+019/035 WORKSHEET DECISION-CARD.TXT
+
+APPLE-1 FIELD LIBRARY / H04
+GREEN, AMBER, RED
+
++--------------------------------------+
+! GREEN   OFF-DEVICE                   !
+!                                      !
+! NOTHING IS POWERED, CONNECTED, OR    !
+! CHANGED.  READING, PAPER WORK, THE   !
+! REPOSITORY EMULATOR ON AN ORDINARY   !
+! COMPUTER, HASHING FILES AN OPERATOR  !
+! NAMED.                               !
+!                                      !
+! DO IT.  NO PERMISSION NEEDED.        !
++--------------------------------------+
+
++--------------------------------------+
+! AMBER   RAM-ONLY CANDIDATE           !
+!                                      !
+N NEXT P BACK A ANSWER M BOOK Q EXIT

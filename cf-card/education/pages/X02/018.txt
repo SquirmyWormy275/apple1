@@ -1,0 +1,22 @@
+X02 FIX THE LOOP
+018/032 WORKSHEET BROKEN-LOOP.TXT
+
+  CPY #N   COMPARE Y WITH N.
+           SET THE ZERO FLAG IF
+           THEY ARE EQUAL.
+  BNE ADDR IF THE ZERO FLAG IS
+           CLEAR, GO TO ADDR.
+
+THERE IS EXACTLY ONE BUG.
+IT IS ONE BYTE.
+
+TRACE BEFORE YOU LOOK FOR IT.
+
+ PASS   Y BEFORE  STORED AT  Y AFTER
+   1     ______    _______    ______
+   2     ______    _______    ______
+   3     ______    _______    ______
+   4     ______    _______    ______
+   5     ______    _______    ______
+   6     ______    _______    ______
+N NEXT P BACK A ANSWER M BOOK Q EXIT

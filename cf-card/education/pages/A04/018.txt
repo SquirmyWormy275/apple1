@@ -1,0 +1,13 @@
+A04 DECISIONS AND BRANCHES
+018/033 WORKSHEET CHOOSE-THE-MESSAGE.T
+
+  KEY   PATH TAKEN   ECHOED
+   Y    __________   ______
+   N    __________   ______
+   Q    __________   ______
+
+WHY DOES PATH B NEED A JMP AT $030E
+BUT PATH A NEEDS NOTHING AT $0313?
+
+  ______________________________
+N NEXT P BACK A ANSWER M BOOK Q EXIT

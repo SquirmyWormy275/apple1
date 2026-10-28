@@ -1,0 +1,6 @@
+10 S=0
+20 FOR I=1 TO 5
+30 S=S+I
+40 PRINT "I=";I;" SUM=";S
+50 NEXT I
+60 END

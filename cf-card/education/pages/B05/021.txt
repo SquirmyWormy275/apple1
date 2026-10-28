@@ -1,0 +1,22 @@
+B05 DATA, FILES, AND THE CF CARD
+021/037 WORKSHEET THREE-KINDS.TXT
+
+! RUINED BY: ONE WRONG BYTE.           !
+! ASK: IS IT EXACTLY WHAT IT WAS?      !
++--------------------------------------+
+
++--------------------------------------+
+! BACKUP                               !
+! A SECOND COPY KEPT SO THE FIRST      !
+! CAN BE LOST.                         !
+!                                      !
+! RUINED BY: LIVING IN THE SAME PLACE  !
+! AS THE ORIGINAL.                     !
+! ASK: WOULD IT SURVIVE WHAT WOULD     !
+! DESTROY THE ORIGINAL?                !
++--------------------------------------+
+
+THE SAME FILE CAN BE MORE THAN ONE
+OF THESE, IN DIFFERENT CONTEXTS.
+
+N NEXT P BACK A ANSWER M BOOK Q EXIT

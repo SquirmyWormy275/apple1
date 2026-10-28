@@ -1,5 +1,13 @@
 # B02 Source notes
 
+> **Current host evidence (October 28, 2026):** The original paper activity
+> remains available. [The BASIC chapter](../../textbook/reference/basic.md)
+> now runs the preserved interpreter on a modeled NMOS 6502. U01–U06 retain
+> actual sessions; U02 checks conversion bounds and U04 checks one-based arrays.
+> V-20 and V-21 are resolved for these identified host sessions. Older "not run"
+> notes below describe the earlier edition; they do not describe current host
+> capability. Physical installation and execution remain unverified.
+
 Keys refer to the shared pool in `../SOURCES.md`.
 
 | Claim | Key |
@@ -19,8 +27,7 @@ Keys refer to the shared pool in `../SOURCES.md`.
 
 The two programs in `ANSWERS.md` Part D were written for this lesson using the
 syntax documented in OWAD chapter 5. They are **not** quoted from a source and
-**have not been run**, because this repository packages no BASIC environment
-(V-20, from B01).
+now have executed host counterparts in `software/basic/` and U01/U02.
 
 The `WHAT IS YOUR NAME?TOM` exchange in Part E is patterned on the transcript
 OWAD prints on p. 130, which shows exactly that spacing.

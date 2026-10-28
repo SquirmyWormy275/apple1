@@ -1,0 +1,45 @@
+{
+  "schema_version": 1,
+  "date": "2026-10-28",
+  "implementation_commit": "5b2863bd00e11dce65ffe41c350b41030c70d996",
+  "checkout_policy_commit": "bf3a7ad3f7e591c20f457b9d2361e9997dfc896f",
+  "textbook_source_manifest_sha256": "3a15549e4be3b909795b62963f9f135cee87da819d79d4c91bfe38b95a86c383",
+  "card_build_receipt_sha256": "10f951b3706d88a321364d69022b1cd4b27e1233113b74e09c821f4d77eb8d9c",
+  "image_sha256": "6de58ddb3ebb301c6c27bfb4da75e4216e36f6b7c3953519ba9960f6c88ab1b6",
+  "workstation": {
+    "python": "3.12.14",
+    "pytest_passed": 483,
+    "exact_example_reruns": 110,
+    "ruff": "passed",
+    "mypy_modules": 40,
+    "repository_validation": "passed",
+    "default_source_export": "passed"
+  },
+  "raspberry_pi": {
+    "python": "3.13.5",
+    "pytest_passed": 483,
+    "exact_example_reruns": 110,
+    "repository_validation": "passed",
+    "all_reader_pages": 1468,
+    "books": 50,
+    "ba1_restored_runs": 6,
+    "image_byte_identical": true,
+    "entire_build_receipt_identical": true,
+    "cpu_temperature_c": 49.4,
+    "throttled": "0x0",
+    "scope": "isolated SSD source checkout; installed release unchanged"
+  },
+  "clean_checkout": {
+    "core_autocrlf": true,
+    "fresh_venv": true,
+    "pytest_passed": 483,
+    "exact_example_reruns": 110,
+    "repository_validation": "passed",
+    "mypy_modules": 40,
+    "demo_serial_opened": false,
+    "git_status_clean": true
+  },
+  "physical_replica_acceptance": false,
+  "physical_serial_or_card_opened_by_core_tools": false,
+  "review": "Separate read-only card-integration review found a malformed-table guard gap; guarded reader negative regressions pass. Combined-image supplement preflight passed without modifying the core."
+}

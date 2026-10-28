@@ -1,0 +1,22 @@
+A02 VARIABLES IN MEMORY
+019/029 ANSWERS
+
+A02 ANSWER KEY
+
+PART A: THE BEFORE-AND-AFTER TABLE
+
+ /  AFTER  /  A  /  $0400  /  $0401  /
+ /  START  /  ?  /  ?  /  ?  /
+ /  0300 LDA #$48  /  $48  /  ?  /  ?
+/
+ /  0302 STA $0400  /  $48  /  $48  /
+?  /
+ /  0305 LDA #$49  /  $49  /  $48  /
+?  /
+ /  0307 STA $0401  /  $49  /  $48  /
+$49  /
+ /  030A JMP $FF1F  /  $49  /  $48  /
+$49  /
+
+$48 IS H AND $49 IS I, SO THE PROGRAM
+N NEXT P BACK A ANSWER M BOOK Q EXIT
