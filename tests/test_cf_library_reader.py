@@ -102,3 +102,10 @@ def test_reading_copy_uses_original_display_glyphs_and_labels_lowercase():
     assert all(0x20 <= ord(c) <= 0x5F for c in text)
     with pytest.raises(ValueError, match="alphabet"):
         encode_screen(["VERTICAL |"])
+
+
+def test_markdown_reflows_editor_breaks_but_preserves_code_columns():
+    pages = pages_for("One sentence\ncontinues.\n\n```text\nA  B\n1  2\n```", "READ", reflow=True)
+    assert pages[0][2] == "ONE SENTENCE CONTINUES."
+    assert "A  B" in pages[0] and "1  2" in pages[0]
+    assert not any("TEXT" in row for row in pages[0][2:])

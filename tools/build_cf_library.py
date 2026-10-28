@@ -83,9 +83,39 @@ def ascii_text(text: str) -> str:
     return text
 
 
-def pages_for(text: str, title: str) -> list[list[str]]:
+def pages_for(text: str, title: str, *, reflow: bool = False) -> list[list[str]]:
+    source_lines = text.splitlines()
+    if reflow:
+        logical_lines: list[str] = []
+        paragraph: list[str] = []
+        code = False
+
+        def flush() -> None:
+            if paragraph:
+                logical_lines.append(" ".join(paragraph))
+                paragraph.clear()
+
+        for raw in source_lines:
+            if raw.lstrip().startswith("```"):
+                flush()
+                code = not code
+            elif code or raw.startswith(("    ", "#", "|")):
+                flush()
+                logical_lines.append(raw)
+            elif not raw.strip():
+                flush()
+                logical_lines.append("")
+            else:
+                if re.match(r"^\s*(?:[-*]|\d+\.)\s", raw):
+                    flush()
+                paragraph.append(raw.strip())
+                if raw.endswith("  "):
+                    flush()
+        flush()
+        source_lines = logical_lines
     lines: list[str] = []
-    for line in ascii_text(text).splitlines():
+    for original in source_lines:
+        line = ascii_text(original)
         # Preserve indentation and all characters when splitting wide code/tables.
         lines.extend(textwrap.wrap(line, width=40, replace_whitespace=False,
                                    drop_whitespace=False, break_on_hyphens=False) or [""])
@@ -186,7 +216,7 @@ class Builder:
 
     def document(self, name: str, path: Path) -> None:
         relative = str(path.relative_to(ROOT))
-        self.book(name, pages_for(self.read(path), name), [relative])
+        self.book(name, pages_for(self.read(path), name, reflow=path.suffix == ".md"), [relative])
 
 
 def build(output: Path, *, supplements: bool = False) -> dict:
@@ -234,7 +264,7 @@ def build(output: Path, *, supplements: bool = False) -> dict:
             b.document(f"WORKED/{identifier}", lesson / "WORKED.md")
             paths = [lesson / name for name in ("SOURCE-NOTES.md", "STATUS.md")]
             text = "\n\n".join(f"{p.name}\n{b.read(p)}" for p in paths)
-            b.book(f"NOTES/{identifier}", pages_for(text, identifier + " SOURCES AND STATUS"),
+            b.book(f"NOTES/{identifier}", pages_for(text, identifier + " SOURCES AND STATUS", reflow=True),
                    [str(p.relative_to(ROOT)) for p in paths])
 
     # Companion resources retain simple, stable, collision-free card names.
