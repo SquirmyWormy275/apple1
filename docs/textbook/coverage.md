@@ -146,7 +146,9 @@ items are intentionally not invoked by batch capture.
 | [neural1/storage_commissioning.py](../../neural1/storage_commissioning.py) | baseline-rootfs, copy-migration, finalize-migration, init-ssd-root, init-temporary-root, inspect-image, plan-migration, verify-migration | F17, F24; real storage initialization/finalization remains operator-only |
 | [tools/apple1_emulator.py](../../tools/apple1_emulator.py) | (flags; see inventory) | M03, A05; real host-only RAM harness |
 | [tools/archive_manifest.py](../../tools/archive_manifest.py) | (flags; see inventory) | H03; identity/provenance procedure, source API reference |
+| [tools/build_cf_library.py](../../tools/build_cf_library.py) | (flags; see inventory) | [CF-card deployment](../../cf-card/DEPLOYMENT.md); offline display build |
 | [tools/capture_manifest.py](../../tools/capture_manifest.py) | (flags; see inventory) | F31; incomplete metadata rejected |
+| [tools/cf_card_audit.py](../../tools/cf_card_audit.py) | (flags; see inventory) | [CF-card deployment](../../cf-card/DEPLOYMENT.md); read-only image verification |
 | [tools/export_cf_card_sources.py](../../tools/export_cf_card_sources.py) | (flags; see inventory) | F22, F29; host staging fixture only |
 | [tools/firmware_static_audit.py](../../tools/firmware_static_audit.py) | (flags; see inventory) | F30; candidate-source audit only |
 | [tools/neural1_install_pi.py](../../tools/neural1_install_pi.py) | (flags; see inventory) | Chapter 10; pinned operator deployment, not invoked |

@@ -1,5 +1,10 @@
 # Apple1 CF-card source control
 
+The October 2026 [card deployment workflow](DEPLOYMENT.md) now builds the
+complete educational display edition, alongside an exact-source archive.
+The source exporter described below remains available for its original staging
+purpose; its candidate flags are not editorial review approvals.
+
 This directory is the **host-side control plane** for material associated with
 the project's CF card. It is deliberately separate from both the preserved raw
 card image and the learner-facing source documents.
