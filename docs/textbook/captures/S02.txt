@@ -1,0 +1,11 @@
+S02 / A computer is not magic
+MODE: VIRTUAL_EXECUTION | HOST ONLY | NO MODEL INFERENCE
+
+{
+  "buffer_text": "A\r",
+  "instructions": 20,
+  "returned_to_monitor": true,
+  "screen_text": "A\r"
+}
+
+CHECKS PASSED | No physical serial connection was requested.

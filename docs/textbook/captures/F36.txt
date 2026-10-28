@@ -1,0 +1,8 @@
+F36 / Connect a virtual echo program to a fixed-response bridge
+MODE: SYNTHETIC_SOFTWARE | HOST ONLY | NO MODEL INFERENCE
+
+Keyboard echo: 'HI\r'
+Formatted response: ('THIS IS A FIXED RESPONSE.',)
+Serial opened: False
+
+CHECKS PASSED | No physical serial connection was requested.

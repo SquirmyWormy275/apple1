@@ -1,0 +1,8 @@
+F17 / Inspect a synthetic disk image without touching a disk
+MODE: SYNTHETIC_SOFTWARE | HOST ONLY | NO MODEL INFERENCE
+
+Fixture bytes: 4096
+MBR signature valid: True
+First partition offset: 512
+
+CHECKS PASSED | No physical serial connection was requested.

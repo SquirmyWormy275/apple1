@@ -1,5 +1,10 @@
 # X02 Activity: find it, fix it, show it
 
+> **Companion scope (October 27, 2026):** This page retains the original activity.
+> Paper-only and no-execution statements below describe that original exercise.
+> The separate [worked companion](WORKED.md) explicitly identifies any new host
+> calculation or virtual execution; neither provides physical Replica approval.
+
 **Status:** OFF-DEVICE. Paper, optionally the M03 emulator on an ordinary
 computer. **Neither program is entered on the Replica 1 Plus.**
 

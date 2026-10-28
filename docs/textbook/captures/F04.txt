@@ -1,0 +1,7 @@
+F04 / Qualify a test model registry without downloading weights
+MODE: SYNTHETIC_SOFTWARE | HOST ONLY | NO MODEL INFERENCE
+
+Qualified fixture: True
+Repeated response identical: True
+
+CHECKS PASSED | No physical serial connection was requested.

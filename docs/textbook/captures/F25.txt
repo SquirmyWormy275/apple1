@@ -1,0 +1,7 @@
+F25 / Observe a deployment guard refusing an ordinary directory
+MODE: SYNTHETIC_SOFTWARE | HOST ONLY | NO MODEL INFERENCE
+
+Ordinary directory refused: ValueError
+Fallback files created: 0
+
+CHECKS PASSED | No physical serial connection was requested.

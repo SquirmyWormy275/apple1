@@ -1,0 +1,9 @@
+F05 / Cancel and resume without duplicating committed turns
+MODE: SYNTHETIC_SOFTWARE | HOST ONLY | NO MODEL INFERENCE
+
+First state: DEADLINE_OR_CANCELLED
+Resumed state: COMPLETED
+Committed prefix preserved: True
+Final turns: 3
+
+CHECKS PASSED | No physical serial connection was requested.

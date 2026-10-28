@@ -1,0 +1,9 @@
+L02 / Estimate weight storage without promising total RAM use
+MODE: HOST_EXERCISE | HOST ONLY | NO MODEL INFERENCE
+
+16 bits: 3,000,000,000 nominal weight bytes (2.794 GiB)
+ 8 bits: 1,500,000,000 nominal weight bytes (1.397 GiB)
+ 4 bits: 750,000,000 nominal weight bytes (0.698 GiB)
+Total runtime RAM: not established by this calculation
+
+CHECKS PASSED | No physical serial connection was requested.

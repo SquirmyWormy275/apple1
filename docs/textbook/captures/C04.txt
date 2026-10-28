@@ -1,0 +1,7 @@
+C04 / Characters become numbers
+MODE: HOST_EXERCISE | HOST ONLY | NO MODEL INFERENCE
+
+Harness keyboard bytes: C8 C9 8D
+Decoded: 'HI\r'
+
+CHECKS PASSED | No physical serial connection was requested.

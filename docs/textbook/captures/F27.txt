@@ -1,0 +1,9 @@
+F27 / Use deterministic mutation and selection policies
+MODE: SYNTHETIC_SOFTWARE | HOST ONLY | NO MODEL INFERENCE
+
+Changed bytes: 3
+Correctness-only selection: B
+Common fixture artifact: True
+Conflicting address: 0x401
+
+CHECKS PASSED | No physical serial connection was requested.

@@ -1,5 +1,10 @@
 # B01 Activity: match the job
 
+> **Companion scope (October 27, 2026):** This page retains the original activity.
+> Paper-only and no-execution statements below describe that original exercise.
+> The separate [worked companion](WORKED.md) explicitly identifies any new host
+> calculation or virtual execution; neither provides physical Replica approval.
+
 **Status:** OFF-DEVICE. Paper only. No program in this packet is run anywhere.
 
 ## Part A: five tasks (this is the first result)

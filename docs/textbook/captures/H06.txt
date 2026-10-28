@@ -1,0 +1,9 @@
+H06 / The monitor that wasn't
+MODE: HOST_EXERCISE | HOST ONLY | NO MODEL INFERENCE
+
+{
+  "VM-4209 official Apple-1 factory bundle": null,
+  "later collector association": "see display-history evidence ledger"
+}
+
+CHECKS PASSED | No physical serial connection was requested.

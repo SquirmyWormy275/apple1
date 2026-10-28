@@ -1,0 +1,19 @@
+A05 / Keyboard to screen
+MODE: VIRTUAL_EXECUTION | HOST ONLY | NO MODEL INFERENCE
+
+Input: '\r'
+{
+  "buffer_text": "\r",
+  "instructions": 10,
+  "returned_to_monitor": true,
+  "screen_text": "\r"
+}
+Input: 'HI\r'
+{
+  "buffer_text": "HI\r",
+  "instructions": 30,
+  "returned_to_monitor": true,
+  "screen_text": "HI\r"
+}
+
+CHECKS PASSED | No physical serial connection was requested.

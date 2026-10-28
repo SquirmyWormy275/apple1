@@ -86,3 +86,9 @@ See [ANSWERS.md](ANSWERS.md).
 - A famous auction pairing does not prove a 1976 purchase pairing.
 - A seller's sticker, label, or description is evidence to investigate, not an
   authentication result.
+
+## Worked companion
+
+[Run the worked example and inspect its captured output](WORKED.md).
+This host-only companion supplements the original activity; it does not change
+the packet's physical deployment or historical review status.

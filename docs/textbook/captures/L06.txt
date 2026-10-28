@@ -1,0 +1,8 @@
+L06 / Interpret latency from a retained native run
+MODE: RETAINED_RECORD | HOST ONLY | NO MODEL INFERENCE
+
+Recorded campaign elapsed seconds: 111.291
+Accepted commands: 8
+New inference or benchmark: False
+
+CHECKS PASSED | No physical serial connection was requested.

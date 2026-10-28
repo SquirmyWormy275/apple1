@@ -1,0 +1,14 @@
+R05 / Sound, rhythm, and code
+MODE: HOST_EXERCISE | HOST ONLY | NO MODEL INFERENCE
+
+slot 0: CLAP
+slot 1: rest
+slot 2: CLAP
+slot 3: rest
+slot 4: rest
+slot 5: CLAP
+slot 6: rest
+slot 7: rest
+Sound hardware: not used
+
+CHECKS PASSED | No physical serial connection was requested.

@@ -1,5 +1,10 @@
 # M04 Activity: expected, observed, one hypothesis
 
+> **Companion scope (October 27, 2026):** This page retains the original activity.
+> Paper-only and no-execution statements below describe that original exercise.
+> The separate [worked companion](WORKED.md) explicitly identifies any new host
+> calculation or virtual execution; neither provides physical Replica approval.
+
 **Status:** OFF-DEVICE. Paper, plus optionally the M03 emulator on an ordinary
 computer. **No step of this activity involves the Replica 1 Plus.**
 

@@ -1,0 +1,8 @@
+F34 / Link a proof capsule to explicit falsification work
+MODE: SYNTHETIC_SOFTWARE | HOST ONLY | NO MODEL INFERENCE
+
+Capsule run IDs: ['FIXTURE']
+Compute estimate: UNBENCHMARKED
+Compiled target: VIRTUAL
+
+CHECKS PASSED | No physical serial connection was requested.

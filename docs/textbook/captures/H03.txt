@@ -1,0 +1,7 @@
+H03 / Why provenance matters
+MODE: HOST_EXERCISE | HOST ONLY | NO MODEL INFERENCE
+
+Original: 393443c3293df1eac2481073fd51d065dbeb4b6a1fe93ce9ee057c2d61d181e4
+Changed:  0d833c644d83405396196eb2b12d3e5caec20b3af888bfa276e9c17c68eb50d4
+
+CHECKS PASSED | No physical serial connection was requested.

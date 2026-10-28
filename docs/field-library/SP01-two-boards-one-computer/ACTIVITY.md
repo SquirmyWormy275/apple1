@@ -1,5 +1,10 @@
 # SP01 Activity: trace two implementations of the same computer idea
 
+> **Companion scope (October 27, 2026):** This page retains the original activity.
+> Paper-only and no-execution statements below describe that original exercise.
+> The separate [worked companion](WORKED.md) explicitly identifies any new host
+> calculation or virtual execution; neither provides physical Replica approval.
+
 **Status:** OFF-DEVICE. Use the ASCII atlas only.
 
 ## Part A: find the original-board landmarks

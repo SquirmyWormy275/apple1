@@ -1,0 +1,13 @@
+M02 / Addresses and byte entry
+MODE: VIRTUAL_EXECUTION | HOST ONLY | NO MODEL INFERENCE
+
+0300: A9
+0301: 2A
+0302: 8D
+0303: 00
+0304: 04
+0305: 4C
+0306: 1F
+0307: FF
+
+CHECKS PASSED | No physical serial connection was requested.

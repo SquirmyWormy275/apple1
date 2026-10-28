@@ -1,0 +1,8 @@
+R01 / Pictures made of letters
+MODE: HOST_EXERCISE | HOST ONLY | NO MODEL INFERENCE
+
++--------------------------------------+
+|           APPLE-1 / HELLO            |
++--------------------------------------+
+
+CHECKS PASSED | No physical serial connection was requested.

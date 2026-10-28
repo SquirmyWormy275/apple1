@@ -1,0 +1,8 @@
+H01 / The 1976 personal-computing moment
+MODE: HOST_EXERCISE | HOST ONLY | NO MODEL INFERENCE
+
+1975 Altair era
+1976 Apple Computer Company
+1977 Apple I Owners Club
+
+CHECKS PASSED | No physical serial connection was requested.

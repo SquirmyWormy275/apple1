@@ -1,0 +1,12 @@
+F13 / Ground Field Library operations in a real lesson corpus
+MODE: SYNTHETIC_SOFTWARE | HOST ONLY | NO MODEL INFERENCE
+
+Lesson folders: 42
+SOURCE documents: 4 nonempty: True
+ASK prompt bytes: 980 sources: 2
+HINT prompt bytes: 1004 sources: 2
+EXPLAIN prompt bytes: 1165 sources: 2
+CHECK prompt bytes: 1282 sources: 3
+TRACE has deterministic evidence: True
+
+CHECKS PASSED | No physical serial connection was requested.

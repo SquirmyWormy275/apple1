@@ -1,0 +1,8 @@
+F14 / Restore a snapshot and identify a one-factor fork
+MODE: SYNTHETIC_SOFTWARE | HOST ONLY | NO MODEL INFERENCE
+
+Restored: b'ABC'
+Fork names parent: True
+Changed factor: ram_budget
+
+CHECKS PASSED | No physical serial connection was requested.

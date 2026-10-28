@@ -1,0 +1,8 @@
+R04 / Interactive fiction
+MODE: HOST_EXERCISE | HOST ONLY | NO MODEL INFERENCE
+
+HALL + EAST -> LAB
+LAB + NORTH -> LAB
+LAB + WEST -> HALL
+
+CHECKS PASSED | No physical serial connection was requested.

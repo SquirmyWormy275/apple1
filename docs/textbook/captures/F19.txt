@@ -1,0 +1,8 @@
+F19 / Validate a 40-column frame and preserve artwork rights
+MODE: HOST_EXERCISE | HOST ONLY | NO MODEL INFERENCE
+
+Portal frame errors: []
+Original portal asset: N1-PORTAL-ORIGINAL-001
+License status: PROJECT_LICENSE_PENDING
+
+CHECKS PASSED | No physical serial connection was requested.

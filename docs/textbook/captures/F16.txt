@@ -1,0 +1,9 @@
+F16 / Inspect recorded native evidence without rerunning the Pi
+MODE: RETAINED_RECORD | HOST ONLY | NO MODEL INFERENCE
+
+Evidence class: SANITIZED_EXISTING_NATIVE_RUN_EVIDENCE
+Run: N1-P-5898735E8998CC35
+Accepted commands: 8
+Independent output: 'A'
+
+CHECKS PASSED | No physical serial connection was requested.

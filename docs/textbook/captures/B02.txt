@@ -1,0 +1,8 @@
+B02 / Variables, input, and output
+MODE: HOST_EXERCISE | HOST ONLY | NO MODEL INFERENCE
+
+input=0; state A=0; output=0
+input=5; state A=5; output=10
+input=100; state A=100; output=200
+
+CHECKS PASSED | No physical serial connection was requested.

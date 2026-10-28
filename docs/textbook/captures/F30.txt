@@ -1,0 +1,9 @@
+F30 / Audit candidate firmware source without loading firmware
+MODE: HOST_EXERCISE | HOST ONLY | NO MODEL INFERENCE
+
+Candidate only: True
+Candidate keyboard-bus writers: ['ps2', 'serial']
+Candidate serial strobe milliseconds: 7
+Firmware loaded / EEPROM written: False / False
+
+CHECKS PASSED | No physical serial connection was requested.

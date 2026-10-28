@@ -1,0 +1,8 @@
+F12 / Reject unsupported historical proposals
+MODE: SYNTHETIC_SOFTWARE | HOST ONLY | NO MODEL INFERENCE
+
+Status: EVALUATED
+Passed: False
+Missing historical values were not estimated.
+
+CHECKS PASSED | No physical serial connection was requested.

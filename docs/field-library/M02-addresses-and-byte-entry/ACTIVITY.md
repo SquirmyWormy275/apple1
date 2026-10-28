@@ -1,5 +1,10 @@
 # M02 Activity: mark the listing
 
+> **Companion scope (October 27, 2026):** This page retains the original activity.
+> Paper-only and no-execution statements below describe that original exercise.
+> The separate [worked companion](WORKED.md) explicitly identifies any new host
+> calculation or virtual execution; neither provides physical Replica approval.
+
 **Status:** OFF-DEVICE. Paper only. **This activity is reading practice. No byte
 in it is to be entered on any machine.**
 

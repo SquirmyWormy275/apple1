@@ -1,0 +1,15 @@
+A03 / Counting and looping
+MODE: VIRTUAL_EXECUTION | HOST ONLY | NO MODEL INFERENCE
+
+Branch: BNE
+Program bytes: A2 05 CA D0 FD 8E 00 04 4C 1F FF
+Stop: MONITOR_WARM_ENTRY; instructions: 13
+Final A=00 X=00 Y=00
+0400: 00
+Branch: BPL
+Program bytes: A2 05 CA 10 FD 8E 00 04 4C 1F FF
+Stop: MONITOR_WARM_ENTRY; instructions: 15
+Final A=00 X=FF Y=00
+0400: FF
+
+CHECKS PASSED | No physical serial connection was requested.

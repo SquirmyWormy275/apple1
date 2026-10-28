@@ -1,0 +1,8 @@
+F15 / Reset private context while retaining shared RAM
+MODE: SYNTHETIC_SOFTWARE | HOST ONLY | NO MODEL INFERENCE
+
+Private lists distinct: True
+A context empty: True
+RAM survived: True
+
+CHECKS PASSED | No physical serial connection was requested.

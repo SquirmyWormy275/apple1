@@ -1,0 +1,7 @@
+C03 / Binary, bits, and bytes
+MODE: HOST_EXERCISE | HOST ONLY | NO MODEL INFERENCE
+
+ASCII: 01000001; high bit set: 11000001
+Mask $7F: $41
+
+CHECKS PASSED | No physical serial connection was requested.

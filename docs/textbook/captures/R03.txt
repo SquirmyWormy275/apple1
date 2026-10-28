@@ -1,0 +1,11 @@
+R03 / Generative patterns
+MODE: HOST_EXERCISE | HOST ONLY | NO MODEL INFERENCE
+
+*
+**
+***
+****
+*****
+******
+
+CHECKS PASSED | No physical serial connection was requested.

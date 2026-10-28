@@ -1,5 +1,10 @@
 # C03 Activity: build the byte
 
+> **Companion scope (October 27, 2026):** This page retains the original activity.
+> Paper-only and no-execution statements below describe that original exercise.
+> The separate [worked companion](WORKED.md) explicitly identifies any new host
+> calculation or virtual execution; neither provides physical Replica approval.
+
 **Status:** OFF-DEVICE. Paper and pencil.
 
 ## Part A: build six bytes (this is the first result)

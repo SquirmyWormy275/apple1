@@ -1,0 +1,6 @@
+F31 / Reject incomplete capture metadata
+MODE: SYNTHETIC_SOFTWARE | HOST ONLY | NO MODEL INFERENCE
+
+Incomplete PASS record refused: missing required evidence: board_revision, power_source, target_identity, timestamp_utc, usb_topology
+
+CHECKS PASSED | No physical serial connection was requested.

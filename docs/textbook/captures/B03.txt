@@ -1,0 +1,9 @@
+B03 / Algorithms: recipes for information
+MODE: HOST_EXERCISE | HOST ONLY | NO MODEL INFERENCE
+
+index=0; item=3; total=3
+index=1; item=1; total=4
+index=2; item=2; total=6
+Stop: no items remain.
+
+CHECKS PASSED | No physical serial connection was requested.

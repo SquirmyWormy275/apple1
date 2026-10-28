@@ -1,0 +1,9 @@
+A01 / Read an instruction
+MODE: VIRTUAL_EXECUTION | HOST ONLY | NO MODEL INFERENCE
+
+LDA #$41 -> A9 41
+LDA $0400 -> AD 00 04
+STA $0400 -> 8D 00 04
+STA #$41 -> REJECTED
+
+CHECKS PASSED | No physical serial connection was requested.

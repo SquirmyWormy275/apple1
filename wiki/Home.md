@@ -9,6 +9,14 @@ live in `docs/`; the [project map](../docs/PROJECT-MAP.md) is the full directory
 These pages are versioned in the repository's `wiki/` folder and can be read
 directly on GitHub or in a checkout.
 
+## Work through the textbook
+
+The [worked textbook](../docs/textbook/README.md) provides 13 teaching chapters,
+companions for all 42 lessons, eight local-model labs, and 36 feature examples.
+Its 86 runnable examples include captured output and images. The
+[coverage register](../docs/textbook/coverage.md) distinguishes actual host/virtual
+execution, fixtures, retained native records, and operator-only procedures.
+
 ## First visit: follow this route
 
 | Step | Page | What you will get |

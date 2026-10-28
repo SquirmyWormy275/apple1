@@ -1,5 +1,10 @@
 # H06 activity — Build the display-evidence timeline
 
+> **Companion scope (October 27, 2026):** This page retains the original activity.
+> Paper-only and no-execution statements below describe that original exercise.
+> The separate [worked companion](WORKED.md) explicitly identifies any new host
+> calculation or virtual execution; neither provides physical Replica approval.
+
 ## Part A — Classify three claims
 
 Use `assets/three-claims.txt`.

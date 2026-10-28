@@ -157,3 +157,9 @@ instructions.
 
 This lesson authorizes no serial-port open, CF-card write, firmware load, EEPROM
 write, jumper change, wiring change, or live program run.
+
+## Worked companion
+
+[Run the worked example and inspect its captured output](WORKED.md).
+This host-only companion supplements the original activity; it does not change
+the packet's physical deployment or historical review status.

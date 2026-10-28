@@ -1,0 +1,36 @@
+{
+  "commands": {
+    "1": "1: Select 4K MIND. Explore programs within a 4 KiB memory budget.",
+    "2": "2: Select 1976 MULTIVERSE. Check partial CPU/RAM designs against reviewed historical sources.",
+    "3": "3: Select SELFHOST/1. Begin with raw machine code; later construction stages need separate evidence.",
+    "4": "4: Select 256-BYTE UNIVERSE. Test deposited 256-byte candidates against an output/return task.",
+    "5": "5: Select RAM REPUBLIC. Observe participants interacting through shared memory.",
+    "MODELS": "MODELS: List the available model records.",
+    "MODEL": "MODEL model-id: Verify and select a local model. Example: MODEL qwen-coder",
+    "START": "START: Launch one bounded run of the selected experiment and model. Takes no arguments. Use STATUS to follow it.",
+    "STATUS": "STATUS: Show the selected model, worker state, runs and resource readings.",
+    "RUNS": "RUNS: List recorded runs and their state. Completion alone does not establish scientific success.",
+    "SHOW": "SHOW run-id: Read the family evaluation and checkpoint. Copy a run ID from RUNS.",
+    "TRANSCRIPT": "TRANSCRIPT run-id [page]: Show model/Monitor exchanges. Without a page, show the latest 12 per cell; page 0 starts at the beginning.",
+    "STOP": "STOP run-id: Request cancellation of that run. Its saved state is retained.",
+    "RESUME": "RESUME run-id: Continue a saved run using its recorded model registry.",
+    "EXPORT": "EXPORT run-id: Create a verified evidence bundle on the configured SSD.",
+    "OPEN": "OPEN bundle-path: Verify and inspect an exported bundle on the configured SSD. Quote paths containing spaces.",
+    "META": "META [LIST|QUEUE] or META CLAIM|HISTORY claim-id: Browse recorded claims, evidence and review work.",
+    "SELFHOST": "SELFHOST [LIST] or SELFHOST INGEST run-id | REBUILD artifact-id | QUALIFY evidence-path | EXPORT artifact-id | OPEN bundle-path: Inspect or work with the persistent virtual construction archive.",
+    "LESSONS": "LESSONS: List the available Field Library lesson folders.",
+    "SOURCE": "SOURCE lesson: Read a lesson and its sources without calling a model. Example: SOURCE S01. The older SOURCE lesson sources form also works.",
+    "ASK": "ASK lesson question: Ask a source-grounded question. Example: ASK S01 What is an Apple-1?",
+    "HINT": "HINT lesson question: Ask for a hint grounded in the lesson.",
+    "EXPLAIN": "EXPLAIN lesson question: Ask for an explanation grounded in the lesson.",
+    "CHECK": "CHECK lesson question: Check your work using the lesson and its answer material.",
+    "TRACE": "TRACE lesson \"assembly with \\n separators\": Execute assembly in the virtual harness, then request an explanation.",
+    "HELP": "HELP [command]: Show the command list or help for one command. Example: HELP START",
+    "QUIT": "QUIT: Close the console. Active runs continue in their user service; STOP run-id requests cancellation."
+  },
+  "aliases": {
+    "?": "HELP",
+    "EXIT": "QUIT",
+    "0": "QUIT"
+  }
+}

@@ -1,0 +1,9 @@
+H02 / Original, replica, and reproduction
+MODE: HOST_EXERCISE | HOST ONLY | NO MODEL INFERENCE
+
+hypothetical documented 1976 board: original claim needs provenance
+Replica 1 Plus product: modern replica
+VirtualApple1World object: software model
+Physical authentication performed: False
+
+CHECKS PASSED | No physical serial connection was requested.

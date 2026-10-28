@@ -1,0 +1,8 @@
+B05 / Data, files, and the CF card
+MODE: HOST_EXERCISE | HOST ONLY | NO MODEL INFERENCE
+
+Artifact: line-input-0300.hex
+Byte-identical copy: True
+Physical card write: not performed
+
+CHECKS PASSED | No physical serial connection was requested.

@@ -1,0 +1,10 @@
+R02 / Motion is many pictures
+MODE: HOST_EXERCISE | HOST ONLY | NO MODEL INFERENCE
+
+frame 0: |*       |
+frame 1: | *      |
+frame 2: |  *     |
+frame 3: | *      |
+frame 4: |*       |
+
+CHECKS PASSED | No physical serial connection was requested.

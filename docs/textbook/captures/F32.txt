@@ -1,0 +1,7 @@
+F32 / Package only explicitly selected support evidence
+MODE: SYNTHETIC_SOFTWARE | HOST ONLY | NO MODEL INFERENCE
+
+Archive members: ['evidence/observation.txt', 'manifest.json']
+Evidence files: 1
+
+CHECKS PASSED | No physical serial connection was requested.

@@ -1,0 +1,8 @@
+S01 / What is an Apple-1?
+MODE: HOST_EXERCISE | HOST ONLY | NO MODEL INFERENCE
+
+6502 circuit board: hardware
+Monitor listing: software
+Replica 1 Plus: modern replica
+
+CHECKS PASSED | No physical serial connection was requested.

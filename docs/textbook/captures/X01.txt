@@ -1,0 +1,10 @@
+X01 / Hex scavenger hunt
+MODE: HOST_EXERCISE | HOST ONLY | NO MODEL INFERENCE
+
+0300: A0 00 AD 11 D0 10 FB AD
+0308: 10 D0 99 00 04 20 EF FF
+0310: C9 8D F0 03 C8 10 EB 4C
+0318: 1F FF
+Last instruction: JMP $FF1F
+
+CHECKS PASSED | No physical serial connection was requested.

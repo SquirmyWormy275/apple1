@@ -6,6 +6,17 @@ not a new live health check.
 
 [Project home](../README.md) · [Guided wiki](../wiki/Home.md) · [Full project map](PROJECT-MAP.md)
 
+## Worked textbook edition
+
+The source now includes a 13-chapter textbook, worked companions for all 42
+existing lesson packets, eight local-model labs, and 36 feature labs. All 86
+examples have captured host output, images, checks, and reproduction commands.
+See the [book](textbook/README.md) and [coverage register](textbook/coverage.md).
+These captures do not close the historical corpus review or physical approval
+gates, and do not constitute a new real-model or physical hardware campaign.
+The earlier reset-vector teaching error is corrected with an explicit primary-
+source erratum in the Field Library source pool.
+
 ## Source usability and navigation
 
 The current source includes strict console argument validation, contextual

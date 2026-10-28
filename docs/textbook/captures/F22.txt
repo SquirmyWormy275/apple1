@@ -1,0 +1,8 @@
+F22 / Check a preserved program source without writing a card
+MODE: HOST_EXERCISE | HOST ONLY | NO MODEL INFERENCE
+
+Source SHA-256: 1ae4148aa6c77381dcaeadc27bea89c6c8520e60334bb73143dd9e165e497b4d
+Card manifest is a JSON object: True
+Device opened / card written: False / False
+
+CHECKS PASSED | No physical serial connection was requested.

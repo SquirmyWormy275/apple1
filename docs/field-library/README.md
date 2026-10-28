@@ -5,6 +5,14 @@ and the special [SP01 board-comparison atlas](SP01-two-boards-one-computer/READM
 Packets include learner material, an activity, answers, source notes, and a
 status record. SP01 also contains card-facing ASCII screens under `card/`.
 
+## Worked examples and textbook
+
+Every packet now has a companion `WORKED.md`: a runnable host exercise, recorded
+stdout, an image of that output, an explanation, and a change-one-thing question.
+Start with the [textbook](../textbook/README.md) for the dependency-aware reading
+order and the local-model chapters. Original activities, answers, source notes,
+and review statuses remain separate from these new worked examples.
+
 ## Status of the whole library
 
 **Every lesson is OFF-DEVICE.** No packet contains an entry procedure, a
@@ -147,7 +155,7 @@ evidence and should be worked through before anything goes on the card.**
 |---|---|---|
 | **V-1** | `SOURCES.md` | Page numbers. Taken from indexed PDF text, not a page-by-page read of the local collection copies. Confirm before any packet goes on the card. |
 | **V-2** | `SOURCES.md` | Made versus sold. H-MADE, H-SOLD, and H-BYTESHOP are three different counts of three different things. Lessons must not merge them into one number. |
-| **V-3** | `SOURCES.md` | Reset vector typo. OWAD p. 216 states `$FFFE` and `$FFFF` correctly in one sentence and then writes "$FFEF and $FFFF" in the next. The first is correct for the 6502. Lessons cite the concept, not the typo. |
+| **V-3** | `SOURCES.md` | Reset-vector teaching claim corrected against M-RESET-CORRECT: RESET is `$FFFC/$FFFD`; `$FFFE/$FFFF` is IRQ/BRK. The earlier source quotation remains flagged; collection-scan page verification stays under V-1. |
 | **V-4** | `SOURCES.md` | Which replica. OWAD describes the Replica I and the Replica I TE. BRIEL documents the Replica 1 Plus. These are different products. A claim sourced to OWAD must not be stated as a fact about the Plus. |
 | **V-5** | `SOURCES.md` | BASIC in ROM on the original. H-BASIC-TAPE and M-BASIC-RAM together support "a 1976 Apple-1 did not have BASIC in ROM," but the inference is the author's. A citation from the Apple-1 Operation Manual would settle it. |
 | **V-6** | `SOURCES.md` | Manual identity. The knowledge base indexes `Replica_One_Plus_Manual__June_2014.pdf`; the collection folder holds `Replica_One_Plus_Manual_-_June_2014.pdf`. Presumed the same June 2014 edition. No SHA-256 comparison has been run, which... |

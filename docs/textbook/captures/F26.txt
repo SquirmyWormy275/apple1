@@ -1,0 +1,13 @@
+F26 / Inspect research staging without promoting it
+MODE: RETAINED_RECORD | HOST ONLY | NO MODEL INFERENCE
+
+{
+  "authoritative_runtime_records": 0,
+  "cutoff_date": "1976-03-10",
+  "research_inputs": 6,
+  "status": "RESEARCH_STAGING",
+  "unresolved_high_impact": 10,
+  "world_id": "DESIGN_1976_03_10"
+}
+
+CHECKS PASSED | No physical serial connection was requested.

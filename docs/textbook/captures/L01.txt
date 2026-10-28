@@ -1,0 +1,8 @@
+L01 / Read token accounting without confusing words and tokens
+MODE: MOCK_TRANSPORT | HOST ONLY | NO MODEL INFERENCE
+
+Fixture prompt tokens: 7
+Fixture output tokens: 4
+Response ASCII bytes: 8
+
+CHECKS PASSED | No physical serial connection was requested.

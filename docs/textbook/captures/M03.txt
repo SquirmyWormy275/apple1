@@ -1,0 +1,11 @@
+M03 / A safe rehearsal loop
+MODE: VIRTUAL_EXECUTION | HOST ONLY | NO MODEL INFERENCE
+
+{
+  "buffer_text": "HI\r",
+  "instructions": 30,
+  "returned_to_monitor": true,
+  "screen_text": "HI\r"
+}
+
+CHECKS PASSED | No physical serial connection was requested.

@@ -1,5 +1,10 @@
 # M01 Activity: three jobs
 
+> **Companion scope (October 27, 2026):** This page retains the original activity.
+> Paper-only and no-execution statements below describe that original exercise.
+> The separate [worked companion](WORKED.md) explicitly identifies any new host
+> calculation or virtual execution; neither provides physical Replica approval.
+
 **Status:** OFF-DEVICE. Reading and writing on paper. **Nothing in this activity
 is to be typed on a machine.** The examples below are quoted from a manual.
 

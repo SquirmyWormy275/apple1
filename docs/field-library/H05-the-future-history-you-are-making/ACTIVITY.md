@@ -1,5 +1,10 @@
 # H05 Activity: write one entry
 
+> **Companion scope (October 27, 2026):** This page retains the original activity.
+> Paper-only and no-execution statements below describe that original exercise.
+> The separate [worked companion](WORKED.md) explicitly identifies any new host
+> calculation or virtual execution; neither provides physical Replica approval.
+
 **Status:** OFF-DEVICE. Paper only. Writing a log entry does not authorize
 anything it might describe.
 

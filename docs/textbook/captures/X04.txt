@@ -1,0 +1,8 @@
+X04 / Curate a mini software exhibit
+MODE: HOST_EXERCISE | HOST ONLY | NO MODEL INFERENCE
+
+program bytes: shows one encoded routine; limit: not a live-board result
+virtual transcript: shows modeled execution; limit: not an electrical test
+manual: shows documented design; limit: not proof of installed firmware
+
+CHECKS PASSED | No physical serial connection was requested.

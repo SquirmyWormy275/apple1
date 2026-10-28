@@ -50,12 +50,24 @@ See "Open verification items" at the end.
 |---|---|---|---|
 | M-64K | 64 KB of addressable space; 16-bit address bus | OWAD ch. 7 pp. 206, 216 | "The address bus is 16 bits wide, which means we have enough addresses for 65,536 (64 KB) unique locations"; "The Apple I has 64 KB of addressable space." |
 | M-ROM | Monitor ROM is 256 bytes at `$FF00` to `$FFFF` | OWAD ch. 7 pp. 216, 224 | "The Monitor ROM, therefore, starts at $FF00 and ends at $FFFF." |
-| M-RESET-VEC | The 6502 takes its start address from the top of memory at reset | OWAD ch. 7 p. 216 | "requires that a memory address be stored at addresses $FFFE and $FFFF ... When the 6502 is reset, it immediately loads the address ... into its program counter". See verification item V-3. |
+| M-RESET-VEC | Quoted secondary-source discrepancy: these addresses are IRQ/BRK, not RESET | OWAD ch. 7 p. 216; correction: M-RESET-CORRECT below | "requires that a memory address be stored at addresses $FFFE and $FFFF ... When the 6502 is reset, it immediately loads the address ... into its program counter". See verification item V-3. |
 | M-RAM-ORIG | Original: 4 KB at `$0000`-`$0FFF`, 4 KB at `$E000`-`$EFFF` | OWAD ch. 7 p. 217 | "Four kilobytes are for system and user access. These 4 KB are located at $000-$0FFF. The other 4 KB, which are intended for Apple's Integer BASIC, are located at $E000-$EFFF." |
 | M-BASIC-RAM | On the original, `$E000`-`$EFFF` was RAM, so BASIC had to be reloaded every power-up | OWAD ch. 7 p. 217 | "Every time the original Apple I was powered up, the code for BASIC would have to be either loaded from cassette or typed in by hand." |
 | M-STACK | The 6502 stack is `$0100`-`$01FF`, base `$01FF`, growing down | OWAD ch. 7 p. 216 | "The stack uses memory from $0100 to $01FF. $01FF is the base address. As data is pushed onto the stack, the stack grows towards $0100." |
 | M-REPLICA-MAP | Replica I: 32 KB user space `$0000`-`$8000`; Integer BASIC in ROM at `$E000`-`$EFFF` | OWAD ch. 7 p. 218 | "The first 32 KB ($0000-$8000) are all dedicated to system and user space ... Instead of being in RAM, Integer BASIC is now in ROM." Describes the Replica I, not the Replica 1 Plus. See V-4. |
 | M-PIA-RANGE | The PIA occupies `$D010`-`$D012` on the memory map | OWAD ch. 7 pp. 217, 218 (Figures 7.14, 7.15) | "$D010 - $D012 Keyboard In, Video Out" |
+| M-RESET-CORRECT | NMOS 6502 RESET uses `$FFFC/$FFFD`; IRQ/BRK uses `$FFFE/$FFFF` | MOS Technology programming manual, January 1976, section 9.12, printed p. 146; linked below | Primary-source correction; low vector byte precedes high byte. |
+
+### Reset-vector correction (October 27, 2026)
+
+**M-RESET-CORRECT:** MOS Technology, *MCS6500 Microcomputer Family Programming Manual*,
+January 1976, section 9.12, printed p. 146
+([original-manual scan](https://www.bitsavers.org/components/mosTechnology/6500-50A_MCS6500pgmManJan76.pdf)).
+The low/high vector bytes are NMI `$FFFA/$FFFB`, RESET `$FFFC/$FFFD`, and
+IRQ/BRK `$FFFE/$FFFF`. The M-RESET-VEC quotation above is retained to expose the
+secondary-source error; do not use it as a correct vector table. Py65's NMOS
+`MPU.RESET`, `MPU.NMI`, and `MPU.IRQ` constants agree with the primary manual.
+This corrects the teaching claim without identifying this board's installed ROM.
 
 ## P. Keyboard, display, and the PIA
 
@@ -145,9 +157,10 @@ the Monitor listing with labels.
   the local collection copies. Confirm before any packet goes on the card.
 - **V-2. Made versus sold.** H-MADE, H-SOLD, and H-BYTESHOP are three different
   counts of three different things. Lessons must not merge them into one number.
-- **V-3. Reset vector typo.** OWAD p. 216 states `$FFFE` and `$FFFF` correctly in
-  one sentence and then writes "$FFEF and $FFFF" in the next. The first is
-  correct for the 6502. Lessons cite the concept, not the typo.
+- **V-3. Reset-vector correction.** The earlier assertion that `$FFFE/$FFFF`
+  was correct for RESET was itself wrong. M-RESET-CORRECT establishes `$FFFC/$FFFD`;
+  `$FFFE/$FFFF` is IRQ/BRK. The quoted OWAD passage remains visibly qualified.
+  Page-by-page confirmation of the collection scan remains under V-1.
 - **V-4. Which replica.** OWAD describes the Replica I and the Replica I TE.
   BRIEL documents the Replica 1 Plus. These are different products. A claim
   sourced to OWAD must not be stated as a fact about the Plus.

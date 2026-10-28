@@ -1,5 +1,10 @@
 # B04 Activity: sort five cards
 
+> **Companion scope (October 27, 2026):** This page retains the original activity.
+> Paper-only and no-execution statements below describe that original exercise.
+> The separate [worked companion](WORKED.md) explicitly identifies any new host
+> calculation or virtual execution; neither provides physical Replica approval.
+
 **Status:** OFF-DEVICE. Cards and paper. Nothing runs on any machine.
 
 ## Part A: the sort (this is the first result)
