@@ -1,16 +1,18 @@
 # Apple1 CF-card source control
 
-The October 2026 [card deployment workflow](DEPLOYMENT.md) now builds the
-complete educational display edition, alongside an exact-source archive.
-The source exporter described below remains available for its original staging
-purpose; its candidate flags are not editorial review approvals.
+The October 2026 [card deployment workflow](DEPLOYMENT.md) builds the complete
+educational display edition, alongside an exact-source archive. The attached
+Lexar card was loaded and fully read back on October 27; see the
+[inventory and verification report](AUDIT-2026-10-27.md).
 
 This directory is the **host-side control plane** for material associated with
 the project's CF card. It is deliberately separate from both the preserved raw
 card image and the learner-facing source documents.
 
-It does **not** define the CFFA1 file system, on-card directory names, boot
-mechanism, menu implementation, or a physical write procedure.
+`tools/build_cf_library.py` defines the current ProDOS folder/file edition and
+its RAM-only reader. The older `export_cf_card_sources.py` described below
+remains a source-staging exporter; its candidate flags are not editorial review
+approvals or a complete inventory of the installed edition.
 
 ## The model: baseline + approved overlays
 
@@ -41,9 +43,10 @@ SP01 packet contains a `card/` subtree of display-native 40x24 ASCII screens and
 is currently the first item marked for approved staging. See
 [`field-library/README.md`](field-library/README.md).
 
-The pre-existing forty lesson packets remain cataloged as candidates until their
-review gates and eventual card-facing formatting are resolved. They are **not**
-silently exported just because they exist in the repository.
+The legacy registry still excludes the broader source corpus from that
+exporter's defaults. The complete display build includes all 42 current packets
+with their source notes and open review items, following the user's October 27
+installation request. Packaging does not mark those review items resolved.
 
 ### 3. Software
 
