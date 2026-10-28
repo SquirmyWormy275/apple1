@@ -44,7 +44,7 @@ remains the reference for that installed application.
 |---|---|---|
 | NEURAL1 software | The repository includes the native Pi application, shared virtual runtime, five family paths, META/1, lifecycle controls, storage guards, and tests. | Continue bounded virtual research; distinguish operational acceptance from scientific success. |
 | Commissioned Pi | September 10 closeout records usable local inference, persistent SSD state, and automatic mount/provider startup after operator SSD activation. | No reinstallation is required for this repository update. USB 2 connection speed and intermittent network/name resolution remain recorded limitations. |
-| Physical Replica / FT232R | September 2 no-transmit open reproduced display corruption; root cause remains inconclusive. | Resolve reset and analog power/ground evidence through an approved instrumented procedure. |
+| Physical Replica / FT232R | September 2 no-transmit open reproduced display corruption; root cause remains inconclusive. | Follow the [bounded repair plan](hardware/replica-repair-plan.md): basic power checks, preserved-original/spare-EEPROM recovery, finite acceptance or vendor escalation. [Issue #17](https://github.com/SquirmyWormy275/apple1/issues/17). |
 | Propeller diagnostic preparation | PR #6 holds the bounded capture/worker preparation. | It remains separate from Pi operation and is not physical qualification. |
 | Field Library | 42 existing lesson packets, including SP01, are present. The prior 41-entry index omitted the special lesson. | The host reading candidate is compiled and reviewed with source qualifications; add physical acceptance when the finished setup arrives. |
 | CF-card media | The combined 386-file edition was installed and fully checksum-verified on October 28. | Follow the [physical acceptance handoff](../cf-card/HARDWARE-HANDOFF.md) for reader/BASIC trials, photos/video and documentation; the serial fault remains separate. |
@@ -87,6 +87,12 @@ or successful power tests solely because the source and documentation were
 merged. Ordinary development uses the off-device tests and demo.
 
 ## Physical Replica and Propeller
+
+The October 28 [repair plan](hardware/replica-repair-plan.md) reconciles the
+accessible ChatGPT/Codex history and [eight recovered board photographs](hardware/repair-context-2026-10-28/README.md).
+It restores the later user-accepted time/cost limit and spare-EEPROM route;
+a complete reset/scope investigation is optional. The original EEPROM stays
+preserved. A verified compiled recovery/uploader package is still missing.
 
 The [troubleshooting record](troubleshooting.md) and
 [September 2 packet](captures/2026-09-02-ft232r-open-analyzer/README.md) remain the

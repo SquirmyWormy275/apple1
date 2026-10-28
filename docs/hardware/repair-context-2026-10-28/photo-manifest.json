@@ -1,0 +1,75 @@
+{
+  "schema_version": 1,
+  "retrieved_date": "2026-10-28",
+  "source_chat_title": "Measure Propeller Reset",
+  "source_chat_url": "https://chatgpt.com/g/g-p-6a93cddd65488191a63102d059247d1f/c/6aa39669-e118-83e8-8599-8f5e2206c544",
+  "credit": "Photographs supplied by the project owner in ChatGPT; photographer and capture times not independently established",
+  "retrieval": "Existing user-attachment download controls/media API. Browser did not confirm final download events; complete JPEG bytes were recovered from task-created Chromium download buffers, validated with ImageMagick identify and JPEG end markers, independently hashed and copied unchanged. No new photos requested.",
+  "boundary": "Historical photographs identify visible objects and markings. They do not establish current topology, continuity, rail voltages, installed EEPROM contents or a safe clip point.",
+  "files": [
+    {
+      "file": "photos/powered-board.jpg",
+      "sha256": "1444c70f3528289fee01ba7c239fb569b5f25c6d6bc3fa0e39bf679ec7dd9894",
+      "bytes": 485458,
+      "observation": "Powered top view; USB breakout and Q1/C9/R10 region visible.",
+      "processing": "none; byte-identical copy of recovered ChatGPT download",
+      "camera_original_identity": "unknown; ChatGPT-delivered JPEG rendition"
+    },
+    {
+      "file": "photos/cffa1-card.jpg",
+      "sha256": "aa5ea9423504fbc60f6c2e1a71512297b624010daf40c02cfa5fd3b0ff4157c2",
+      "bytes": 557004,
+      "observation": "CFFA1 board marked 22 and inserted Lexar CF.",
+      "processing": "none; byte-identical copy of recovered ChatGPT download",
+      "camera_original_identity": "unknown; ChatGPT-delivered JPEG rendition"
+    },
+    {
+      "file": "photos/board-overview.jpg",
+      "sha256": "3b89162fb07a0882ae9b8b8a580cb80f275bdfb021692bf76879b0a1d325d1e7",
+      "bytes": 587213,
+      "observation": "Revision 0 and Distributed By: ReActiveMicro.com markings visible.",
+      "processing": "none; byte-identical copy of recovered ChatGPT download",
+      "camera_original_identity": "unknown; ChatGPT-delivered JPEG rendition"
+    },
+    {
+      "file": "photos/propeller-closeup.jpg",
+      "sha256": "6529ee0bb055964149fd690963f5d53ec6df592a497637c0d81c9f4a0ca87b7d",
+      "bytes": 516269,
+      "observation": "P8X32A-D40 marking and U7 orientation visible; no electrical continuity established.",
+      "processing": "none; byte-identical copy of recovered ChatGPT download",
+      "camera_original_identity": "unknown; ChatGPT-delivered JPEG rendition"
+    },
+    {
+      "file": "photos/board-alternate.jpg",
+      "sha256": "3f10740482ece95783e42f293fd00cc6111232d650b390ab91efed85f29e2e16",
+      "bytes": 554355,
+      "observation": "Alternate top view with USB breakout and reset/clear controls.",
+      "processing": "none; byte-identical copy of recovered ChatGPT download",
+      "camera_original_identity": "unknown; ChatGPT-delivered JPEG rendition"
+    },
+    {
+      "file": "photos/rear-connectors.jpg",
+      "sha256": "060dd85414430c9ceba7d43eb9546a9c5bf7e8333904dd9d893b974933b27c0d",
+      "bytes": 415373,
+      "observation": "Composite video and PS/2 connector side view.",
+      "processing": "none; byte-identical copy of recovered ChatGPT download",
+      "camera_original_identity": "unknown; ChatGPT-delivered JPEG rendition"
+    },
+    {
+      "file": "photos/usb-module-side.jpg",
+      "sha256": "2e3eb303524593b109e4939a5b9a34cb81e43aad096044d07d9e9a61877d50fc",
+      "bytes": 386777,
+      "observation": "USB breakout height and interconnect side view; not a continuity measurement.",
+      "processing": "none; byte-identical copy of recovered ChatGPT download",
+      "camera_original_identity": "unknown; ChatGPT-delivered JPEG rendition"
+    },
+    {
+      "file": "photos/board-underside.jpg",
+      "sha256": "fca916ea26bc491f417e431ca8ee49488914cb6d2063194b85ee712adcf2cf12",
+      "bytes": 483011,
+      "observation": "Underside solder connections and ReActiveMicro 2026 sticker visible.",
+      "processing": "none; byte-identical copy of recovered ChatGPT download",
+      "camera_original_identity": "unknown; ChatGPT-delivered JPEG rendition"
+    }
+  ]
+}
