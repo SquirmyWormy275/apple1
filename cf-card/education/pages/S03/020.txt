@@ -1,0 +1,22 @@
+S03 YOUR FIRST HEX NUMBER
+020/025 ANSWERS
+
+ /  64  /  $40  /  FOUR SIXTEENS.  /
+ /  100  /  $64  /  100 / 16 = 6
+REMAINDER 4.  /
+ /  128  /  $80  /  128 / 16 = 8
+REMAINDER 0.  /
+ /  200  /  $C8  /  200 / 16 = 12
+REMAINDER 8; 12 IS C.  /
+ /  255  /  $FF  /  255 / 16 = 15
+REMAINDER 15.  /
+
+PART C: HEX TO DECIMAL
+
+ /  HEX  /  DECIMAL  /  WORKING  /
+ /  $05  /  5  /   /
+ /  $0D  /  13  /   /
+ /  $10  /  16  /  1 X 16 + 0  /
+ /  $1F  /  31  /  1 X 16 + 15  /
+ /  $41  /  65  /  4 X 16 + 1 = 64 + 1
+N NEXT P BACK A ANSWER M BOOK Q EXIT

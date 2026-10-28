@@ -1,0 +1,22 @@
+A06 DESIGN A TINY UTILITY
+021/035 WORKSHEET DESIGN-CARD.TXT
+
+   ______________________________
+
+3. OUTPUTS
+   WHAT CHANGES WHEN IT IS DONE?
+   SCREEN?  MEMORY?  A REGISTER?
+
+   ______________________________
+   ______________________________
+
+4. MEMORY
+   WHAT ADDRESSES DO YOU USE, AND
+   WHY ARE THEY SAFE?
+
+   PROGRAM AT   ______ TO ______
+   DATA AT      ______ TO ______
+   CLEARANCE?   ______
+
+5. EXIT
+N NEXT P BACK A ANSWER M BOOK Q EXIT

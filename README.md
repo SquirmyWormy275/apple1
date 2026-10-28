@@ -61,10 +61,11 @@ evidence**, not an LLM research finding. The
 
 ## Worked textbook
 
-The [textbook](docs/textbook/README.md) connects the system end to end: 13
+The [textbook](docs/textbook/README.md) connects the system end to end: 15
 chapters, worked companions for all 42 Field Library lessons, eight local-model
 labs, 36 feature demonstrations, twelve deeper CPU labs, and fresh native
-model recordings. Each of the 100 catalog examples has executable
+model recordings. Six real BASIC labs and four card labs extend the course.
+Each of the 110 catalog examples has executable
 source, actual captured output, an image, checks, and a practice variation.
 [Choose a course route](docs/textbook/course-guide.md),
 [inspect the fresh native runs](docs/textbook/native/README.md), or
@@ -76,6 +77,20 @@ A fresh Pi capture executes a small program and retains the exact bytes and
 trace. The native guide also shows failed model proposals and independent checks.
 
 ![Actual Pi TRACE, summarized from retained output](docs/textbook/native/evidence/pi-console/overview.png)
+
+## The flash-card edition
+
+The [core card guide](cf-card/README.md) provides 50 books, every original
+lesson's activity and answers, all 39 board-atlas plates, a paged RAM reader,
+and six actual BA1 programs. Real CFFA1 firmware builds the virtual filesystem;
+the reader displays every page in host rehearsal. The original image and files
+remain preserved. Physical Replica acceptance is still pending.
+
+[Run real Integer BASIC](docs/textbook/reference/basic.md) ·
+[Inspect the card build](cf-card/README.md#build-a-new-candidate-image) ·
+[Prepare the build story](docs/hardware/build-storyboard/README.md)
+
+![Actual RAM-reader output, rendered from host rehearsal](docs/textbook/card-preview/reader-tour.gif)
 
 ## Follow a learning path
 
@@ -114,7 +129,7 @@ third-party sources and artwork retain their attribution and rights boundaries.
 |---|---|
 | Virtual software | Runtime, five experiment paths, campaign tooling, META/1, lessons, and deterministic demonstrations are implemented. |
 | Raspberry Pi deployment | The September 10 closeout records native local inference, SSD persistence, cancellation/resume, and post-boot operation. |
-| Physical Replica integration | The serial fault remains unresolved; the physical Apple-1/CFFA1 launcher is unfinished. |
+| Physical Replica integration | The serial fault remains unresolved. The RAM reader and card builder work in host rehearsal; physical acceptance remains pending. |
 | Scientific conclusions | Completed execution can include rejected candidates and negative results. No autonomous discovery is claimed. |
 | Wooden enclosure | [R04 is the design reference](docs/hardware/enclosure/README.md); component fit and assembly details retain open checks. |
 
@@ -146,7 +161,7 @@ mirror the [off-device CI workflow](.github/workflows/ci.yml):
 
 ```bash
 python -m pip install -e '.[dev]'
-ruff check neural1 tools/neural1_validate.py tests/test_neural1*.py tests/test_storage.py tools/textbook.py tools/textbook_support.py tools/textbook_native.py docs/textbook/examples
+ruff check neural1 tools/neural1_validate.py tests/test_neural1*.py tests/test_storage.py tools/textbook.py tools/textbook_support.py tools/textbook_native.py tools/apple1_basic.py tools/cffa1_model.py tools/prodos.py tools/card_book.py tools/card_image.py tools/card_preview.py tools/field_library_review.py tools/export_cf_card_sources.py tests/test_cf_card_sources.py tests/test_pre_hardware.py docs/textbook/examples
 mypy neural1
 python -m pytest -q
 python tools/neural1_validate.py .

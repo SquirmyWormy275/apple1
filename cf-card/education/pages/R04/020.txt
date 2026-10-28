@@ -1,0 +1,22 @@
+R04 INTERACTIVE FICTION
+020/029 ANSWERS
+
+R04 ANSWER KEY
+
+DESIGN WORK HAS NO SINGLE CORRECT
+ANSWER. WHAT FOLLOWS IS A WORKED
+EXAMPLE AND THE CRITERIA TO JUDGE A
+LEARNER'S MAP AGAINST.
+
+WORKED MAP
+
+        [1] THE LANDING
+         !            \
+       NORTH          EAST
+         !               \
+    [2] THE STORE     [3] THE STAIR
+       ROOM               !
+         !              DOWN
+       (KEY HERE)          !
+                      [4] THE CELLAR
+N NEXT P BACK A ANSWER M BOOK Q EXIT

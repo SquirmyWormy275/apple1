@@ -1,0 +1,25 @@
+U06 / Generate a triangular pattern in BASIC
+MODE: BASIC_INTERPRETER | HOST ONLY | NO MODEL INFERENCE
+
+Interpreter SHA-256: 5d8a3fe3c20c42903b226d67430c840ea5119557f88774c069e2e4dd80ad2c67
+
+>10 FOR R=1 TO 6
+>20 FOR C=1 TO R
+>30 PRINT "*";
+>40 NEXT C
+>50 PRINT
+>60 NEXT R
+>70 END
+>RUN
+*
+**
+***
+****
+*****
+******
+
+>Stop: waiting-for-input
+NMOS 6502 instructions: 64836
+LOMEM=$0800; HIMEM=$1000
+
+CHECKS PASSED | No physical serial connection was requested.

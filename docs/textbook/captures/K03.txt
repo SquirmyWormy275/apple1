@@ -1,0 +1,13 @@
+K03 / Navigate the RAM card reader
+MODE: CFFA1_FIRMWARE | HOST ONLY | NO MODEL INFERENCE
+
+first: 'FIRST PAGE'
+next: 'SECOND PAGE'
+previous: 'FIRST PAGE'
+answer: 'ANSWER PAGE'
+select: 'LESSON S01'
+lesson-answer: 'LESSON ANSWER'
+exit: 'MONITOR EXIT $FF1F'
+wrong-prefix: 'CFFA ERROR. PREFIX MUST BE EDUCATION.\n\nBOOK 00-49 (TWO DIGITS), Q TO EXIT: '
+
+CHECKS PASSED | No physical serial connection was requested.

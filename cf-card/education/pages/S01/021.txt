@@ -1,0 +1,18 @@
+S01 WHAT IS AN APPLE-1?
+021/030 WORKSHEET THREE-PARTS-LABELED.
+
+!    IT CAN LOOK AT MEMORY, CHANGE     !
+!    MEMORY, AND RUN A PROGRAM.        !
++--------------------------------------+
+                   !
+                   ! REBUILT DECADES
+                   ! LATER AS
+                   V
++--------------------------------------+
+! 3. THE REPLICA                       !
+!    A MODERN REPRODUCTION BOARD.      !
+!    NEW PARTS, NEW MANUFACTURE.       !
+!    RUNS SIMILAR SOFTWARE.            !
+!    IT IS NOT AN ORIGINAL APPLE-1.    !
++--------------------------------------+
+N NEXT P BACK A ANSWER M BOOK Q EXIT

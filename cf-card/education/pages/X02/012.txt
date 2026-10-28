@@ -1,0 +1,22 @@
+X02 FIX THE LOOP
+012/032 TRY
+
+ /  BYTE IT SHOULD BE  /   /
+ /  HOW YOU KNOW  /   /
+
+PART D: THE AFTER TRACE
+
+TRACE THE CORRECTED PROGRAM.
+
+ /  PASS  /  Y BEFORE  /  STORED AT  /
+Y AFTER  /
+ /  1  /   /   /   /
+ /  2  /   /   /   /
+ /  3  /   /   /   /
+ /  4  /   /   /   /
+ /  5  /   /   /   /
+ /  6  /   /   /   /
+
+ /  STORES  /   /
+ /  HIGHEST ADDRESS WRITTEN  /   /
+N NEXT P BACK A ANSWER M BOOK Q EXIT

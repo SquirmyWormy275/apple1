@@ -1,0 +1,22 @@
+SP01 TWO BOARDS, ONE COMPUTER
+005/024 LEARN
+
+       +--------+--------+--------+
+B / A  !  BA1   !  BA2   !  BA3   !
+       +--------+--------+--------+
+
+THE REPLICA 1 PLUS USES FOUR
+PHOTOGRAPH-ORIENTED TILES BASED ON THE
+LABELED BOARD VIEW IN THE BRIEL
+COMPUTERS MANUAL:
+
+       +-------------+-------------+
+TOP    !     UL      !      UR     !
+       +-------------+-------------+
+BOTTOM !     LL      !      LR     !
+       +-------------+-------------+
+
+THE ATLAS THEN ADDS DEDICATED PAGES
+FOR THE ORIGINAL VIDEO SUBSYSTEM,
+REPLICA LOGIC BLOCK, MEMORY
+N NEXT P BACK A ANSWER M BOOK Q EXIT

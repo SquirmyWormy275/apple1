@@ -1,0 +1,22 @@
+R01 PICTURES MADE OF LETTERS
+013/033 TRY
+
+
+PART C: THE WIDTH ARITHMETIC
+
+ /  LETTERS  /  COLUMNS EACH  /  GAPS
+/  TOTAL  /  FITS?  /
+ /  4  /  5  /  2  /   /   /
+ /  5  /  5  /  2  /   /   /
+ /  6  /  5  /  2  /   /   /
+ /  7  /  5  /  2  /   /   /
+ /  8  /  4  /  1  /   /   /
+
+PART D: RANK THE WEIGHTS
+
+PUT THESE IN ORDER FROM LIGHTEST TO
+HEAVIEST, THEN SAY HOW MANY DISTINCT
+WEIGHTS YOU CAN RELIABLY TELL APART AT
+A GLANCE.
+
+N NEXT P BACK A ANSWER M BOOK Q EXIT

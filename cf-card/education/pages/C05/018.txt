@@ -1,0 +1,22 @@
+C05 INSTRUCTIONS CHANGE STATE
+018/033 WORKSHEET BRANCH-TRACE.TXT
+
+APPLE-1 FIELD LIBRARY / C05
+BRANCH TRACE WORKSHEET
+
+  0310:  A2 03     LDX #$03
+  0312:  CA        DEX
+  0313:  D0 FD     BNE $0312
+  0315:  4C 1F FF  JMP $FF1F
+
+  DEX       SUBTRACT 1 FROM X.
+  BNE ADDR  IF THE LAST RESULT WAS
+            NOT ZERO, GO TO ADDR.
+            OTHERWISE CARRY ON TO
+            THE NEXT LINE.
+
+ PASS   X BEFORE   X AFTER   BRANCH?
+   1      ____      ____      ____
+   2      ____      ____      ____
+   3      ____      ____      ____
+N NEXT P BACK A ANSWER M BOOK Q EXIT

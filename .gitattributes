@@ -6,6 +6,17 @@
 *.jsonl text eol=lf
 *.hex text eol=lf
 docs/textbook/**/*.txt text eol=lf
+docs/field-library/**/*.txt text eol=lf
+cf-card/education/pages/**/*.txt text eol=lf
+cf-card/education/payloads/* -text
+software/basic/*.bas text eol=lf
+software/basic/*.session text eol=lf
+software/card-reader/*.asm text eol=lf
+preservation/software/apple1-reference/*.bin -text
+# Generated display padding and actual interpreter output are evidence bytes.
+cf-card/education/pages/**/*.txt whitespace=-blank-at-eol
+docs/textbook/captures/*.txt whitespace=-blank-at-eol
+docs/textbook/features/U04.md whitespace=-blank-at-eol
 docs/textbook/native/evidence/**/*.source -text
 firmware/vendor/110REV03/*.spin text eol=lf
 firmware/vendor/110REV03/_README_.txt text eol=lf

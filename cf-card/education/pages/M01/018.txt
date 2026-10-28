@@ -1,0 +1,22 @@
+M01 MEET THE MONITOR
+018/027 WORKSHEET THREE-JOBS.TXT
+
+!      CHANGE.  NOT A REFUSAL.)        !
++--------------------------------------+
+
++--------------------------------------+
+! 3.  RUN                              !
+!     START EXECUTING AT AN ADDRESS.   !
+!                                      !
+!     YOU TYPE:   300R                 !
+!     IT DOES:    JUMPS THERE AND      !
+!                 STOPS BEING IN       !
+!                 CHARGE.              !
++--------------------------------------+
+
+THAT IS THE WHOLE TOOL.  256 BYTES.
+
+IT HAS NO FILES, NO COMMANDS, NO
+PROGRAMS, NO HELP, AND NO WAY TO
+UNDO ANYTHING.
+N NEXT P BACK A ANSWER M BOOK Q EXIT

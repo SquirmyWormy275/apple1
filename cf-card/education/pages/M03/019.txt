@@ -1,0 +1,22 @@
+M03 A SAFE REHEARSAL LOOP
+019/032 WORKSHEET REHEARSAL-CARD.TXT
+
+  INPUT USED   ____________________
+
+  PREDICTED BEFORE RUNNING:
+    SCREEN     ____________________
+    BUFFER     ____________________
+    RETURNED   ____________________
+
+  OBSERVED AFTER RUNNING:
+    SCREEN     ____________________
+    BUFFER     ____________________
+    RETURNED   ____________________
+    INSTRS     ____________________
+
+  MATCHED?  YES / NO
+
+  IF NO, WHAT DIFFERED:
+    ______________________________
+
+N NEXT P BACK A ANSWER M BOOK Q EXIT

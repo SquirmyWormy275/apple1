@@ -1,0 +1,26 @@
+{
+  "schema_version": 1,
+  "source_image": "preservation/cf-card/2026-08-28/apple1-cf-card-lexar-disk2-128974848.img",
+  "source_image_sha256": "5c98a3bb8c77e4155167a1c8df353ae07697f57c939de9196b838ecf097ad836",
+  "rights": "Preserved third-party binaries; no new license grant. See the original image provenance. These are not project-authored code.",
+  "files": [
+    {
+      "file": "apple1-basic.bin",
+      "source_path": "/UTILITIES/BASIC",
+      "bytes": 4096,
+      "sha256": "5d8a3fe3c20c42903b226d67430c840ea5119557f88774c069e2e4dd80ad2c67",
+      "virtual_mapping": "E000",
+      "source_file_aux": "E000",
+      "use": "Host-only execution of the preserved interpreter/firmware; no EEPROM or card write."
+    },
+    {
+      "file": "cffa1-v1.1.bin",
+      "source_path": "/UTILITIES/CFFAROMV1.1.BIN",
+      "bytes": 8160,
+      "sha256": "ada5c4c1a918b924a708eb1ac4ac726d3a712f395ff177a6945e1585b7b2dae8",
+      "virtual_mapping": "9000",
+      "source_file_aux": "2000",
+      "use": "Host-only execution of the preserved interpreter/firmware; no EEPROM or card write."
+    }
+  ]
+}

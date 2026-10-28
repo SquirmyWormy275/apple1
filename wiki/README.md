@@ -1,5 +1,7 @@
 # Project wiki
 
+[Worked textbook: 15 chapters, 110 labs, BASIC and the card edition](Textbook.md)
+
 **[Open the wiki home](Home.md)** for the guided tour and routes by interest.
 These pages are part of the source repository, so navigation and documentation
 are reviewed with the implementation.

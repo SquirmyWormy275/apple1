@@ -1,0 +1,22 @@
+B04 SORTING BY HAND
+017/030 WORKSHEET SORT-TRACE.TXT
+
+STOP WHEN A WHOLE PASS MAKES NO
+SWAPS.
+
+ PASS  ORDER AT END   COMPS  SWAPS
+   1   _ _ _ _ _      _____  _____
+   2   _ _ _ _ _      _____  _____
+   3   _ _ _ _ _      _____  _____
+   4   _ _ _ _ _      _____  _____
+   5   _ _ _ _ _      _____  _____
+
+  TOTAL COMPARISONS  ________
+  TOTAL SWAPS        ________
+
+NOW PREDICT, DO NOT COUNT:
+
+  FOR 10 CARDS, ROUGHLY HOW MANY
+  COMPARISONS?    ________
+
+N NEXT P BACK A ANSWER M BOOK Q EXIT

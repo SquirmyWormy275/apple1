@@ -1,0 +1,22 @@
+R03 GENERATIVE PATTERNS
+018/036 WORKSHEET PATTERN-RULES.TXT
+
+  3  ..#..#..#..#..#..#..#..#..#..#..
+  4  ...#...#...#...#...#...#...#...#
+  5  ....#....#....#....#....#....#..
+  6  .....#.....#.....#.....#.....#..
+  7  ......#......#......#......#....
+  8  .......#.......#.......#.......#
+
+RULE THREE: THE TRIANGLE RULE
+
+  EACH NUMBER IS THE SUM OF THE
+  TWO ABOVE IT.  PRINT # IF THE
+  NUMBER IS ODD, SPACE IF EVEN.
+
+                 #
+                ##
+               # #
+              ####
+             #   #
+N NEXT P BACK A ANSWER M BOOK Q EXIT

@@ -1,0 +1,22 @@
+A01 READ AN INSTRUCTION
+011/027 TRY
+
+
+ /  INSTRUCTION  /  ENGLISH  /
+ /  LDX #$03  /   /
+ /  STA $0400  /   /
+ /  JMP $FF1F  /   /
+
+PART B: NAME THE PARTS
+
+ /  INSTRUCTION  /  MNEMONIC  /
+OPERAND  /  IMMEDIATE OR ABSOLUTE  /
+ /  LDA #$8D  /   /   /   /
+ /  LDA $D010  /   /   /   /
+ /  STY $0401  /   /   /   /
+ /  JMP $0300  /   /   /   /
+ /  INY  /   /   /   /
+
+PART C: DIRECTION DRILL
+
+N NEXT P BACK A ANSWER M BOOK Q EXIT

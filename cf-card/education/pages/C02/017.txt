@@ -1,0 +1,22 @@
+C02 MEMORY IS A MAP
+017/031 WORKSHEET ADDRESS-WORKSHEET.TX
+
+APPLE-1 FIELD LIBRARY / C02
+WORKSHEET: WHERE DOES IT LIVE?
+
+FOR EACH ADDRESS, WRITE WHAT REGION
+IT FALLS IN.
+
+  $0300  ______________________
+
+  $0400  ______________________
+
+  $01FF  ______________________
+
+  $D011  ______________________
+
+  $FF1F  ______________________
+
+  $9000  ______________________
+
+N NEXT P BACK A ANSWER M BOOK Q EXIT

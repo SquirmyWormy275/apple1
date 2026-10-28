@@ -1,0 +1,22 @@
+B05 DATA, FILES, AND THE CF CARD
+020/037 WORKSHEET THREE-KINDS.TXT
+
+APPLE-1 FIELD LIBRARY / B05
+THREE KINDS OF STORED THING
+
++--------------------------------------+
+! CONTENT                              !
+! SOMETHING TO BE READ.                !
+! A LESSON.  A MANUAL.  A PHOTOGRAPH.  !
+! A LIST OF BYTES YOU LOOK AT.         !
+!                                      !
+! RUINED BY: BEING UNREADABLE.         !
+! ASK: CAN A PERSON STILL READ IT?     !
++--------------------------------------+
+
++--------------------------------------+
+! EXECUTABLE CODE                      !
+! SOMETHING A MACHINE CARRIES OUT.     !
+! A PROGRAM.  A FIRMWARE IMAGE.        !
+!                                      !
+N NEXT P BACK A ANSWER M BOOK Q EXIT

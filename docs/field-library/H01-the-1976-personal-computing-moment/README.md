@@ -41,13 +41,15 @@ Paper, scissors if you want to cut the cards out.
 was the well-known one, and it was operated with rows of lights and switches. To
 enter a program you set switches, one byte at a time.
 
-The Apple-1 was the first computer of its kind to use a keyboard and a display as
-its standard input and output. Not the first computer, and not the first machine
-somebody had at home. The first of its kind where typing and reading were how you
-used it.
+The Apple-1 integrated a keyboard interface and text-video output on the board.
+That made typing and reading the normal interaction rather than using a switch
+panel for ordinary program entry. Owad calls it the first computer "of its kind"
+with this arrangement. That phrase leaves the comparison class undefined, so
+this lesson treats it as the author's characterization, not a settled priority
+claim. Earlier terminals and other computers existed.
 
-That is a smaller claim than "the first personal computer" and it is the one the
-sources support.
+The documented interface is the useful engineering distinction here. It does
+not establish that the Apple-1 was the first personal computer.
 
 **Wozniak's own account of how it happened is worth reading in his words.** He
 had already built a terminal with a keyboard and a display. Rather than design a
@@ -95,7 +97,7 @@ hundred. Explain how all three can be true at once.
 
 ## Check your understanding
 
-1. What specifically was the Apple-1 the first of its kind to do?
+1. Which interfaces did the Apple-1 integrate, and why qualify a claim that it was first?
 2. Why is "the first personal computer" a claim worth avoiding?
 3. Card D describes about thirty people. Why does a group that small matter?
 

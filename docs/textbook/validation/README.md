@@ -1,5 +1,8 @@
 # Native course verification
 
+The [pre-hardware extension](prehardware.md) adds the later BASIC/card checks.
+The results below retain their original 439-test/100-lab scope.
+
 The [October 28 UTC receipt](pi-20261028.json) records the expanded course
 running on the actual Raspberry Pi 5 in an isolated SSD checkout and test
 environment. The globally installed NEURAL1 release was unchanged.

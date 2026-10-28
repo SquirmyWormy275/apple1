@@ -1,0 +1,22 @@
+R04 INTERACTIVE FICTION
+017/029 WORKSHEET STORY-MAP.TXT
+
+APPLE-1 FIELD LIBRARY / R04
+THE STORY MAP
+
+A ROOM IS A PLACE WITH A
+DESCRIPTION AND SOME EXITS.
+
+  +-------------------+
+  ! ROOM 1            !
+  ! NAME  ___________ !
+  ! SEE   ___________ !
+  ! EXITS N _  S _    !
+  !       E _  W _    !
+  +-------------------+
+        !         !
+        V         V
+  +----------+ +----------+
+  ! ROOM 2   ! ! ROOM 3   !
+  ! ________ ! ! ________ !
+N NEXT P BACK A ANSWER M BOOK Q EXIT

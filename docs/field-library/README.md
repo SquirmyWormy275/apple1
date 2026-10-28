@@ -26,11 +26,15 @@ discussed in several lessons. They remain RAM-only candidates with **no
 live-run authority**, exactly as `../apple1-software-library.md` classifies
 them. No lesson changes that.
 
-**H06 has been through the review gate** as part of the display-history research
-pass. The pre-existing forty packets have not been reviewed as a set; verification
-item V-36 remains outstanding for that earlier material. Adding SP01 to this
-index corrects navigation and the packet count; it does not grant new review
-or CF-card approval to any lesson.
+[The pre-hardware review](review/README.md) now applies the structural gate to
+all 42 packets and records targeted editorial/source-location corrections.
+The source ledger checks the shared quotations against identified local scans.
+Historical corroboration, rights and installed hardware remain separate
+qualifications; this is not a declaration that every historical claim is settled.
+
+The [card reading edition](../../cf-card/README.md) now contains all 42 packet
+readings, activities, text worksheets and answers, plus all 39 SP01 plates.
+Its staging status is a reviewed host candidate; physical acceptance is pending.
 
 ## Shared files
 
@@ -149,15 +153,16 @@ brings a learner or a visitor into contact with the hardware.
 Claims that are cited but unconfirmed, inferences presented as inferences,
 and questions this library could not close. Each is referenced from the
 packet that raised it. **This list is the honest state of the library's
-evidence and should be worked through before anything goes on the card.**
+evidence. The host candidate retains these qualifications; physical acceptance
+and historical/rights conclusions require their own evidence.**
 
 | Item | Raised in | What is open |
 |---|---|---|
-| **V-1** | `SOURCES.md` | Page numbers. Taken from indexed PDF text, not a page-by-page read of the local collection copies. Confirm before any packet goes on the card. |
+| **V-1** | `SOURCES.md` | The new local-scan ledger matches 73 quoted fragments to their cited pages and corrects split/mistyped citations. Critical pages are visually checked. This closes the quoted-text location check, not independent historical corroboration or visual inspection of every page. |
 | **V-2** | `SOURCES.md` | Made versus sold. H-MADE, H-SOLD, and H-BYTESHOP are three different counts of three different things. Lessons must not merge them into one number. |
 | **V-3** | `SOURCES.md` | Reset-vector teaching claim corrected against M-RESET-CORRECT: RESET is `$FFFC/$FFFD`; `$FFFE/$FFFF` is IRQ/BRK. The earlier source quotation remains flagged; collection-scan page verification stays under V-1. |
 | **V-4** | `SOURCES.md` | Which replica. OWAD describes the Replica I and the Replica I TE. BRIEL documents the Replica 1 Plus. These are different products. A claim sourced to OWAD must not be stated as a fact about the Plus. |
-| **V-5** | `SOURCES.md` | BASIC in ROM on the original. H-BASIC-TAPE and M-BASIC-RAM together support "a 1976 Apple-1 did not have BASIC in ROM," but the inference is the author's. A citation from the Apple-1 Operation Manual would settle it. |
+| **V-5** | `SOURCES.md` | Primary loading evidence added: the original Apple BASIC manual, printed p. 1 / PDF p. 3, describes cassette loading at E000–EFFF and cold/warm entry. This concerns the original design, not the installed Replica ROM. |
 | **V-6** | `SOURCES.md` | Manual identity. The knowledge base indexes `Replica_One_Plus_Manual__June_2014.pdf`; the collection folder holds `Replica_One_Plus_Manual_-_June_2014.pdf`. Presumed the same June 2014 edition. No SHA-256 comparison has been run, which... |
 | **V-7** | `SOURCES.md` | **RESOLVED for original Apple-1.** Operation Manual PDF pp. 2–3 specifies 40 columns and 24 lines with automatic scrolling (P-GEOMETRY). The physical Plus remains unmeasured. |
 | **V-8** | `SOURCES.md` | This machine. Nothing in this pool describes the state of this project's board, its installed EEPROM, or its serial path. |
@@ -172,8 +177,8 @@ evidence and should be worked through before anything goes on the card.**
 | **V-17** | `A04-decisions-and-branches` | The A04 program's runs are recorded here and in `../EMULATOR-RUNS.md`, but the program is a teaching artifact written for this lesson and is not part of `software/ram-only/`. It carries no hardware authority of any kind and should not be promoted into the... |
 | **V-18** | `A05-keyboard-to-screen` | The 128-character second exit and whether it is deliberate. |
 | **V-19** | `A06-design-a-tiny-utility` | **RESOLVED.** T10 executes the exact thirteen-byte A06 answer: 16 writes, correct boundary and 51 modeled instructions. Its index-FF variant corrects the zero-length claim. |
-| **V-20** | `B01-from-instructions-to-basic` | No BASIC in this library has been executed. All behavior is cited from OWAD chapter 5. |
-| **V-21** | `B02-variables-input-and-output` | The double-question-mark consequence in Part E is reasoned from B-INPUT-Q, not observed in a transcript. |
+| **V-20** | `B01-from-instructions-to-basic` | U01–U06 now execute the identified preserved interpreter on an NMOS 6502. The tests/captures cover the selected programs and boundaries; no physical BASIC run is claimed. |
+| **V-21** | `B02-variables-input-and-output` | Resolved for the identified host interpreter: U01 retains the actual NAME?? prompt, input echo and result. |
 | **V-22** | `B04-sorting-by-hand` | The "visible wait" claim is qualitative reasoning. No timing figure is given anywhere and none should be added without a source. |
 | **V-23** | `B05-data-files-and-the-cf-card` | Manifest self-integrity is unaddressed in project documentation. |
 | **V-24** | `R01-pictures-made-of-letters` | The set of characters the Apple-1 video ROM can display is not established by any source in this project. This lesson restricts itself to printable ASCII on the repository's rule and does not claim all of it would render. |
@@ -188,7 +193,7 @@ evidence and should be worked through before anything goes on the card.**
 | **V-33** | `X02-fix-the-loop` | Both programs in this packet are teaching artifacts written for this lesson. Neither is in `software/ram-only/`, neither has been through that library's acceptance process, and neither carries any hardware authority. |
 | **V-34** | `X04-curate-a-mini-software-exhibit` | Rights and permission status is unrecorded for several artifacts. |
 | **V-35** | `X05-invent-the-next-lesson` | Two card sections extend the curriculum's stated requirements. |
-| **V-36** | `X05-invent-the-next-lesson` | The review gate has not been applied across the pre-existing forty-packet library. H06 was reviewed separately during the display-history research pass. |
+| **V-36** | `X05-invent-the-next-lesson` | Applied across all 42 packets in the pre-hardware review, with explicit answer mappings and source qualifications. This is a structural/targeted editorial review, not universal historical corroboration or physical CF acceptance. |
 | **V-37** | `H06-the-monitor-that-wasnt` | Exact VM-4209 launch date, earliest primary Apple-specific use, V&A trade-fair source basis, Byte Shop transaction evidence, and the claimed 1977 Apple II/VM-4209 advertisement remain open in the dedicated display-history dossier. |
 
 ## What this library does not establish

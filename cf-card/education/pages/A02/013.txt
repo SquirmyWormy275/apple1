@@ -1,0 +1,22 @@
+A02 VARIABLES IN MEMORY
+013/029 TRY
+
+ /  STA $0400,Y  /  0  /   /
+ /  STA $0400,Y  /  1  /   /
+ /  STA $0400,Y  /  16  /   /
+ /  STA $0400,Y  /  255  /   /
+ /  STA $0500,Y  /  3  /   /
+
+PART D: LABEL OR ADDRESS
+
+ /  #  /  ITEM  /  LABEL OR ADDRESS  /
+ /  1  /  $FF1F  /   /
+ /  2  /  GETLINE  /   /
+ /  3  /  $0400  /   /
+ /  4  /  ECHO  /   /
+ /  5  /  NOTCR  /   /
+
+THEN: WHICH OF THESE APPEAR IN THE
+BYTES OF A PROGRAM, AND WHICH DO NOT?
+
+N NEXT P BACK A ANSWER M BOOK Q EXIT

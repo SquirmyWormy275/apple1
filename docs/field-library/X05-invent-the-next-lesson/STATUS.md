@@ -1,5 +1,11 @@
 # X05 Status
 
+> **Review update (October 28, 2026):** The [pre-hardware review](../review/README.md)
+> now applies the structural gate to all 42 packets, with targeted editorial
+> corrections and a local-scan quotation ledger. Older V-36 notes below
+> describe the earlier edition. Historical corroboration, rights, learner
+> assessment and physical acceptance remain separate.
+
 **Mode: OFF-DEVICE**
 
 No runnable artifact. A proposal written on paper.

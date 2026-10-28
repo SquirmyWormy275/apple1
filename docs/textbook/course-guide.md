@@ -33,7 +33,7 @@ an answer key.
 | 5 | Chapter 4.6–4.8; T03–T06 | Explain C versus V and preserve a two-byte carry |
 | 6 | Chapter 4.9–4.11; T07/T08/T10/T12; A04/A06 | Trace the stack, follow a pointer, and expose a boundary bug |
 | 7 | Chapter 5; A05; T11; X02 | Explain empty input, 127/128-character cases and a failing sentinel |
-| 8 | Chapter 6; B01–B05; selected R packets | Express an algorithm at two levels and label a host analogue accurately |
+| 8 | Chapters 6 and 13; B01–B05; U01–U06; selected R packets | Express an algorithm at two levels run real BASIC, compare it with the earlier host analogues |
 | 9 | Chapter 7; L01–L08; N01; native guide | Trace prompt → parser → virtual program → verifier; explain a negative result |
 | 10 | Chapters 8–9; F03/F05/F06/F08–F15/F23 | Recover a run and detect an altered exported byte |
 | 11 | Chapters 10–11; F16/F24/F25/F30; H03/H04/SP01 | Explain deployment identity, storage guards and the physical boundary |
@@ -42,6 +42,10 @@ an answer key.
 The [coverage register](coverage.md) links every original lesson and all 36
 feature demonstrations. Use it for optional projects instead of implying that
 one twelve-session route exhausts the library.
+
+For the card/build extension, add chapter 14 and K01–K04 after the core route.
+Use the [storyboard kit](../hardware/build-storyboard/README.md) to prepare the
+physical exhibit without presenting planned photos as completed work.
 
 ## Keep prediction separate from explanation
 

@@ -1,0 +1,22 @@
+M04 DEBUGGING AS OBSERVATION
+021/036 WORKSHEET OBSERVATION-SHEET.TX
+
+APPLE-1 FIELD LIBRARY / M04
+THE TWO-COLUMN OBSERVATION SHEET
+
+WHAT I EXPECTED   !  WHAT HAPPENED
+------------------+------------------
+                  !
+                  !
+                  !
+                  !
+                  !
+------------------+------------------
+
+WRITE THE LEFT COLUMN FIRST.
+ALWAYS.  BEFORE YOU LOOK.
+
+THE DIFFERENCE BETWEEN THE COLUMNS
+IS THE ONLY THING YOU HAVE LEARNED.
+
+N NEXT P BACK A ANSWER M BOOK Q EXIT

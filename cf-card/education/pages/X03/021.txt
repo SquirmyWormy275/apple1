@@ -1,0 +1,22 @@
+X03 BUILD A MUSEUM DEMO
+021/036 WORKSHEET DEMO-SCRIPT.TXT
+
+! POWERED HARDWARE AT ALL.             !
+!                                      !
+! THE OFF-DEVICE VERSION OF THE SHOW:  !
+!                                      !
+! ______________________________       !
+! ______________________________       !
+! ______________________________       !
+!                                      !
+! IF YOU CANNOT FILL THIS IN, THE      !
+! DEMO IS NOT FINISHED.                !
++--------------------------------------+
+
+THINGS THAT WILL GO WRONG:
+  NO POWER AT THE VENUE
+  THE MACHINE IS NOT AVAILABLE
+  A VISITOR ASKS A QUESTION YOU
+    CANNOT ANSWER
+  SOMEONE ASKS WHAT IT IS WORTH
+N NEXT P BACK A ANSWER M BOOK Q EXIT

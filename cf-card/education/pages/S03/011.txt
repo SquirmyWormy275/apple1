@@ -1,0 +1,22 @@
+S03 YOUR FIRST HEX NUMBER
+011/025 TRY
+
+PART C: HEX TO DECIMAL
+
+ /  HEX  /  DECIMAL  /
+ /  $05  /   /
+ /  $0D  /   /
+ /  $10  /   /
+ /  $1F  /   /
+ /  $41  /   /
+ /  $7F  /   /
+ /  $80  /   /
+ /  $8D  /   /
+ /  $C8  /   /
+ /  $FF  /   /
+
+PART D: THE LANDMARK TRICK
+
+SOME HEX VALUES SHOW UP CONSTANTLY.
+LEARN THESE FIVE AND MOST ADDRESSES
+N NEXT P BACK A ANSWER M BOOK Q EXIT

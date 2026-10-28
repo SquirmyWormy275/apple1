@@ -1,0 +1,22 @@
+A04 DECISIONS AND BRANCHES
+017/033 WORKSHEET CHOOSE-THE-MESSAGE.T
+
+  $CE IS "N" WITH THE HIGH BIT SET.
+
+THE SHAPE OF A DECISION:
+
+        COMPARE
+           !
+       +---+---+
+       !       !
+    EQUAL   NOT EQUAL
+       !       !
+    PATH A  PATH B
+       !       !
+       +---+---+
+           !
+        REJOIN
+
+TRACE IT FOR THREE KEYS.
+
+N NEXT P BACK A ANSWER M BOOK Q EXIT

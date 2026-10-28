@@ -1,5 +1,6 @@
 from __future__ import annotations
 
+import hashlib
 import json
 from pathlib import Path
 
@@ -66,3 +67,58 @@ def test_default_export_skips_candidates_and_copies_metadata(tmp_path: Path) -> 
     assert (output / "overlay" / "approved" / "00.txt").read_text() == "READY\n"
     assert not (output / "candidate").exists()
     assert (output / "metadata" / "ORIGINAL-CF-MANIFEST.md").is_file()
+    inventory = json.loads((output / "metadata/FILES.json").read_text())
+    for name, entry in inventory.items():
+        data = (output / name).read_bytes()
+        assert entry == {"bytes": len(data), "sha256": hashlib.sha256(data).hexdigest()}
+
+
+def _fixture(repo: Path) -> dict:
+    repo.mkdir()
+    (repo / "baseline.md").write_text("BASELINE")
+    (repo / "source").mkdir()
+    (repo / "source/page.txt").write_text("READY\n")
+    return {"baseline": {"manifest_path": "baseline.md"}, "sources": [
+        {"source_path": "source", "staging_path": "overlay/pages", "include_in_default_export": True, "format": "ascii-40x24"}
+    ]}
+
+
+def test_export_never_replaces_existing_output(tmp_path):
+    repo = tmp_path / "repo"
+    manifest = _fixture(repo)
+    keep = tmp_path / "keep"
+    keep.mkdir()
+    (keep / "precious.txt").write_text("DO NOT DELETE")
+    with pytest.raises(FileExistsError):
+        export_sources(repo, manifest, keep)
+    assert (keep / "precious.txt").read_text() == "DO NOT DELETE"
+
+
+@pytest.mark.parametrize("field,value", [("source_path", "../elsewhere"), ("source_path", "/etc"),
+    ("staging_path", "../escape"), ("staging_path", "/outside/escape"), ("staging_path", "metadata/overwrite"),
+    ("staging_path", ".")])
+def test_invalid_manifest_is_rejected_before_output_creation(tmp_path, field, value):
+    repo = tmp_path / "repo"
+    manifest = _fixture(repo)
+    manifest["sources"][0][field] = value
+    output = tmp_path / "new"
+    with pytest.raises(ValueError):
+        export_sources(repo, manifest, output)
+    assert not output.exists()
+
+
+def test_nested_source_symlink_is_rejected_before_output_creation(tmp_path):
+    repo = tmp_path / "repo"
+    manifest = _fixture(repo)
+    (repo / "source/link").symlink_to(tmp_path)
+    with pytest.raises(ValueError, match="symlink"):
+        export_sources(repo, manifest, tmp_path / "new")
+    assert not (tmp_path / "new").exists()
+
+
+def test_output_inside_exported_source_is_rejected(tmp_path):
+    repo = tmp_path / "repo"
+    manifest = _fixture(repo)
+    with pytest.raises(ValueError, match="inside"):
+        export_sources(repo, manifest, repo / "source/new")
+    assert not (repo / "source/new").exists()
