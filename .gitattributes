@@ -11,6 +11,7 @@ cf-card/education/pages/**/*.txt text eol=lf
 cf-card/education/payloads/* -text
 software/basic/*.bas text eol=lf
 software/basic/*.session text eol=lf
+software/card-reader/*.asm text eol=lf
 preservation/software/apple1-reference/*.bin -text
 # Generated display padding and actual interpreter output are evidence bytes.
 cf-card/education/pages/**/*.txt whitespace=-blank-at-eol
