@@ -42,6 +42,7 @@ before the demonstration. You can read the lessons without installing software.
 |---|---|
 | Review the project's technical work | [Project highlights](Project-Highlights.md): problem, design decisions, implementation, and evidence |
 | Learn programming and early computing | [Field Library](../docs/field-library/README.md): lesson order, levels, times, and prerequisites |
+| Read the physical CF-card edition | [CF-card library](CF-Card-Library.md): contents, keys, loading, preserved originals and verification |
 | Explore hardware, collection history, or the enclosure | [For builders](For-Builders.md) |
 | Design or interpret an experiment | [For researchers](For-Researchers.md) |
 | Operate an existing Pi installation | [Operator guide](../docs/neural1/operations/terminal-application.md) and [deployment status](../docs/STATUS.md#neural1-on-the-pi) |

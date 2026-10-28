@@ -8,6 +8,12 @@ tools. Downloading a package does not require rebuilding the readers.
 | October 28, 2026 combined build | [APPLE1-CF-CONTENT-2026-10-28.zip](APPLE1-CF-CONTENT-2026-10-28.zip) | All six originals and 380 additions: the reviewed 50-book core, six BA1 programs, 319 supplemental readers and exact-source archive. [Build verification](2026-10-28-build.json). Physical-copy verification is recorded separately. |
 | October 27, 2026 installed snapshot | [APPLE1-CF-CONTENT-2026-10-27.zip](APPLE1-CF-CONTENT-2026-10-27.zip) | Six original files, 518 additions, build manifest and installation/readback receipts. Source revision `fcefe714a94b130aba090fb188740f6fbf9638ed`. |
 
+The October 28 combined build is now **installed and fully read back**.
+Its separate [physical-copy receipt](../deployments/2026-10-28.json) and
+[audit](../AUDIT-2026-10-28.md) record the exact image/readback identity and
+preserved originals. The ready-built ZIP above is unchanged from the verified
+candidate; the receipt records its completed installation.
+
 [SHA-256 checksums](SHA256SUMS) · [Installation audit](../AUDIT-2026-10-27.md) ·
 [Reading and reconstruction guide](../DEPLOYMENT.md)
 

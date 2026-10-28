@@ -10,8 +10,7 @@ The authoritative text remains in [docs/field-library](../../docs/field-library/
 counts, answer-page offsets and output identities.
 
 The default source export now includes the reviewed **host reading candidate**.
-That status approves staging and host image construction. Installed firmware,
-media and the finished Replica's display/keyboard still need physical acceptance.
+That status approves staging and host image construction. The [combined media copy](../AUDIT-2026-10-28.md) is now installed and fully read back, including exact-source and full reading supplements. Installed firmware identity and the finished Replica's display/keyboard still need physical acceptance.
 The [review record](../../docs/field-library/review/README.md) distinguishes
 structural checks, source-location checks and remaining historical questions.
 

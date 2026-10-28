@@ -153,10 +153,7 @@ following guides retain the storage design and earlier preservation context:
   [Pi recovery](neural1/operations/pi-recovery.md), and
   [SSD commissioning](neural1/operations/ssd-commissioning.md).
 
-[CF-card source control](../cf-card/README.md) combines approved project sources
-with a preserved baseline through a manifest-controlled host-side export. The
-repository tree is not a card image, and the exporter does not write a physical
-CF card.
+[The combined CF-card edition](../wiki/CF-Card-Library.md) joins the 50-book core, saved BASIC and full reading/source supplements. Its [October 28 installation receipt](../cf-card/AUDIT-2026-10-28.md) records a complete verified card copy with the original six files unchanged. Use the [loading/building guide](../cf-card/DEPLOYMENT.md), [ready-built packages](../cf-card/releases/README.md), and [original-file inventory](../cf-card/original/README.md). The source-staging exporter remains a separate host-only tool. Physical Replica display/keyboard acceptance is still open.
 
 ## Art and visual references
 
