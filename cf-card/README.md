@@ -27,6 +27,7 @@ and **3,374 displayed pages** in total.
 [Read the combined library](../wiki/CF-Card-Library.md) ·
 [Loading and rebuilding](DEPLOYMENT.md) ·
 [Installation audit](AUDIT-2026-10-28.md) ·
+[Next agent: physical acceptance](HARDWARE-HANDOFF.md) ·
 [Download built files](releases/README.md) ·
 [Original six programs](original/README.md)
 

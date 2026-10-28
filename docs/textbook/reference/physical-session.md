@@ -97,3 +97,8 @@ as-built fields. The [card guide](../../../cf-card/README.md) and
 [BASIC chapter](basic.md) now supply host-rehearsed counterparts for later
 physical reader and interpreter trials. Add genuine physical evidence beside
 those captures when the finished setup arrives.
+
+For the installed October 28 edition, the
+[next-agent handoff](../../../cf-card/HARDWARE-HANDOFF.md) lists the exact local
+reader/BASIC trials, evidence to retain and documentation closeout. Keep that
+acceptance separate from the instrumented serial-fault investigation above.

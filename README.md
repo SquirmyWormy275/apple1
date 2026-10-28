@@ -100,7 +100,8 @@ serial acceptance remain pending. Python and model inference run on the host.
 [Download the built content](cf-card/releases/README.md) ·
 [Browse the six originals](cf-card/original/README.md) ·
 [Run real Integer BASIC](docs/textbook/reference/basic.md) ·
-[Prepare the build story](docs/hardware/build-storyboard/README.md)
+[Prepare the build story](docs/hardware/build-storyboard/README.md) ·
+[Next agent: physical CF acceptance](cf-card/HARDWARE-HANDOFF.md)
 
 ![Actual RAM-reader output, rendered from host rehearsal](docs/textbook/card-preview/reader-tour.gif)
 

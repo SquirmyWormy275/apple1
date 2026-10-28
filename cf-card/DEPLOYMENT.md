@@ -9,6 +9,8 @@ The main library uses `EDUCATION/READER` at **`$0800`**. Supplemental readers
 load individually at **`$1000`**. `START.HERE` is the combined entry guide.
 Installation receipts distinguish a checked storage copy from physical
 Replica display/keyboard acceptance; see [dated deployments](deployments/).
+The [next-agent handoff](HARDWARE-HANDOFF.md) gives the remaining physical
+reader/BASIC trials, evidence checklist and documentation closeout.
 
 ## Begin with the main library
 
