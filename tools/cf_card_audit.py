@@ -103,9 +103,10 @@ def verify(before: bytes, after: bytes, manifest: dict) -> dict:
         raise ValueError("boot blocks or bytes beyond the original volume changed")
     expected = {record["path"]: record for record in manifest["files"]}
     # BUILD.JSON describes all other payloads; it cannot hash itself.
-    expected["HOSTSRC/BUILD.JSON"] = dict(bytes=len((json.dumps(manifest, indent=2, sort_keys=True) + "\n").encode()),
-                                             sha256=hashlib.sha256((json.dumps(manifest, indent=2, sort_keys=True) + "\n").encode()).hexdigest(),
-                                             file_type=0, aux_type=0)
+    if "HOSTSRC/BUILD.JSON" not in expected:
+        manifest_bytes = (json.dumps(manifest, indent=2, sort_keys=True) + "\n").encode()
+        expected["HOSTSRC/BUILD.JSON"] = dict(bytes=len(manifest_bytes), sha256=hashlib.sha256(manifest_bytes).hexdigest(),
+                                                 file_type=0, aux_type=0)
     for path, record in expected.items():
         for field in ("bytes", "sha256", "file_type", "aux_type"):
             if new.get(path, {}).get(field) != record[field]:

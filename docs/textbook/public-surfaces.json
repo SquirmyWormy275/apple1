@@ -118,7 +118,8 @@
     "path": "tools/build_cf_library.py",
     "subcommands": [],
     "flags": [
-      "--output"
+      "--output",
+      "--supplements"
     ],
     "teaching_route": "CF-card deployment guide; offline 6502 display build with exact-source archive"
   },

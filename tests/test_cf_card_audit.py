@@ -79,6 +79,15 @@ def test_verifier_accepts_addition_and_checks_load_address():
         verify(before, after, manifest)
 
 
+def test_combined_inventory_can_record_the_component_manifest_explicitly():
+    before, after, component_manifest = augmented()
+    component_bytes = (json.dumps(component_manifest, indent=2, sort_keys=True) + "\n").encode()
+    combined = {"files": [*component_manifest["files"],
+                          {"path": "HOSTSRC/BUILD.JSON", "file_type": 0, "aux_type": 0,
+                           "bytes": len(component_bytes), "sha256": hashlib.sha256(component_bytes).hexdigest()}]}
+    assert verify(before, after, combined)["added_files"] == 2
+
+
 def test_auditor_rejects_out_of_volume_pointers():
     image = fixture_image()
     struct.pack_into("<H", image, 1028 + 39 + 17, 65)

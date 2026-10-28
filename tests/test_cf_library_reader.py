@@ -6,7 +6,7 @@ from collections import deque
 import pytest
 from py65.devices.mpu6502 import MPU
 
-from tools.build_cf_library import ORIGIN, compile_book, encode_screen, pages_for
+from tools.build_cf_library import ORIGIN, ascii_text, compile_book, encode_screen, pages_for
 
 
 def execute(program: bytes, keys: str, *, decimal: bool = False) -> tuple[list[bytes], set[int], int]:
@@ -94,3 +94,11 @@ def test_screen_rejects_non_ascii_and_bottom_right_autoscroll():
         encode_screen(["lowercase"])
     with pytest.raises(ValueError):
         encode_screen([""] * 23 + ["X" * 40])
+
+
+def test_reading_copy_uses_original_display_glyphs_and_labels_lowercase():
+    text = ascii_text("`a` is $61; A is $41. | {x} ~ `code`")
+    assert "LOWERCASE A IS $61; A IS $41" in text
+    assert all(0x20 <= ord(c) <= 0x5F for c in text)
+    with pytest.raises(ValueError, match="alphabet"):
+        encode_screen(["VERTICAL |"])

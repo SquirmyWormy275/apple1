@@ -71,11 +71,16 @@ def ascii_text(text: str) -> str:
                     "✓": "PASS", "✅": "PASS", "⚠": "NOTE", "│": "|", "─": "-"}
     for old, new in replacements.items():
         text = text.replace(old, new)
+    # Preserve a teaching distinction that uppercase output would erase.
+    text = re.sub(r"`([a-z])`", lambda match: "LOWERCASE " + match[1].upper(), text)
     # Keep image/link captions; exact URLs and case-sensitive code are in ZIP.
     text = re.sub(r"!?\[([^\]]*)\]\([^\n)]*\)", r"\1", text)
     text = unicodedata.normalize("NFKD", text)
     text = "".join(c if c in "\n\t" or 32 <= ord(c) <= 126 else "" if unicodedata.combining(c) else "?" for c in text)
-    return text.upper().expandtabs(4)
+    text = text.upper().expandtabs(4)
+    for character, replacement in {"`": "'", "|": "!", "{": "(", "}": ")", "~": " APPROX "}.items():
+        text = text.replace(character, replacement)
+    return text
 
 
 def pages_for(text: str, title: str) -> list[list[str]]:
@@ -85,7 +90,7 @@ def pages_for(text: str, title: str) -> list[list[str]]:
         lines.extend(textwrap.wrap(line, width=40, replace_whitespace=False,
                                    drop_whitespace=False, break_on_hyphens=False) or [""])
     chunks = [lines[i:i + 20] for i in range(0, len(lines), 20)] or [[]]
-    return [[ascii_text(title)[:40], f"PAGE {i + 1}/{len(chunks)} | DISPLAY EDITION", *chunk,
+    return [[ascii_text(title)[:40], f"PAGE {i + 1}/{len(chunks)} / DISPLAY EDITION", *chunk,
              *([""] * (20 - len(chunk))), "", "SPACE NEXT / B BACK / Q MONITOR"]
             for i, chunk in enumerate(chunks)]
 
@@ -99,8 +104,8 @@ def encode_screen(lines: list[str]) -> bytes:
     out = bytearray(b"\r")  # Align to column zero after a Monitor/CFFA prompt.
     for i, line in enumerate(lines):
         data = line.encode("ascii")
-        if any(c < 32 or c > 126 for c in data) or line != line.upper():
-            raise ValueError("screen must be uppercase printable ASCII")
+        if any(c < 32 or c > 95 for c in data) or line != line.upper():
+            raise ValueError("screen must use the SPACE-$5F display alphabet")
         out.extend(data)
         # Apple-1 hardware wraps at column 40; CR here would create a blank row.
         if i < 23 and len(line) < 40:
@@ -184,13 +189,13 @@ class Builder:
         self.book(name, pages_for(self.read(path), name), [relative])
 
 
-def build(output: Path) -> dict:
+def build(output: Path, *, supplements: bool = False) -> dict:
     b = Builder(output)
     field = ROOT / "docs/field-library"
     lessons = sorted(p for p in field.iterdir() if (p / "STATUS.md").is_file())
     if len(lessons) != 42:
         raise ValueError(f"expected 42 packets, found {len(lessons)}; review curriculum coverage")
-    for lesson in lessons:
+    for lesson in ([] if supplements else lessons):
         identifier = lesson.name.split("-")[0]
         prefix = re.sub(r"\d", "", identifier)
         folder = GROUPS[prefix]
@@ -215,13 +220,22 @@ def build(output: Path) -> dict:
     # Preserve every source atlas screen without rewrapping its diagrams.
     atlas_pages = []
     for path in atlas:
-        lines = b.read(path).splitlines()
+        lines = b.read(path).replace("|", "!").splitlines()
         encode_screen(lines)
         atlas_pages.append(lines)
     if len(atlas_pages) != 39:
         raise ValueError("expected all 39 approved atlas screens")
-    b.book("HARDWARE/ATLAS", pages_for("39 original atlas screens follow.\nSPACE next, B back, Q Monitor.\nThe source screen content is unchanged.", "SP01 ATLAS") + atlas_pages,
-           [str(p.relative_to(ROOT)) for p in atlas])
+    if not supplements:
+        b.book("HARDWARE/ATLAS", pages_for("39 source atlas screens follow.\nSPACE next, B back, Q Monitor.\nVertical borders use display-safe !.", "SP01 ATLAS") + atlas_pages,
+               [str(p.relative_to(ROOT)) for p in atlas])
+    else:
+        for lesson in lessons:
+            identifier = lesson.name.split("-")[0]
+            b.document(f"WORKED/{identifier}", lesson / "WORKED.md")
+            paths = [lesson / name for name in ("SOURCE-NOTES.md", "STATUS.md")]
+            text = "\n\n".join(f"{p.name}\n{b.read(p)}" for p in paths)
+            b.book(f"NOTES/{identifier}", pages_for(text, identifier + " SOURCES AND STATUS"),
+                   [str(p.relative_to(ROOT)) for p in paths])
 
     # Companion resources retain simple, stable, collision-free card names.
     companions = sorted([p for name in ("teacher-materials", "visitor-mode", "program-annotations")
@@ -257,7 +271,7 @@ def build(output: Path) -> dict:
 
     # Deterministic ZIP: exact original bytes, paths, images and host sources.
     archive_paths = []
-    for folder in ("docs", "software/ram-only", "art", "tools", "tests", "neural1", "schemas", "configs", "data", "cf-card", "firmware"):
+    for folder in ("docs", "software", "art", "tools", "tests", "neural1", "schemas", "configs", "data", "cf-card", "firmware", "wiki", "preservation/software"):
         archive_paths.extend(p for p in (ROOT / folder).rglob("*")
                              if p.is_file() and "__pycache__" not in p.parts and p.suffix != ".pyc"
                              and not p.is_relative_to(ROOT / "cf-card/releases"))
@@ -284,7 +298,7 @@ def build(output: Path) -> dict:
         b.book(folder + "/INDEX", pages_for("\n".join(lines), folder + " INDEX"), [])
 
     guide = """APPLE-1 FIELD LIBRARY
-COMPLETE DISPLAY EDITION / 2026-10-27
+STANDALONE DISPLAY EDITION
 
 READ THIS FIRST
 In CFFA1: P selects a folder.
@@ -337,11 +351,69 @@ NEXT VOLUME; NO PAGES WERE DROPPED.
 ORIGINAL CARD MATERIAL
 UTILITIES and GAMES are preserved.
 No firmware updater was executed.
-No hardware operation was performed.
+No Replica operation was performed.
 New readers are RAM-only programs.
 They write no files or EEPROM.
 Emulator checks do not establish
 operation on your physical board.
+"""
+    if supplements:
+        guide = """APPLE-1 FIELD LIBRARY
+COMBINED CARD EDITION
+
+START WITH THE MAIN READER
+At Monitor, type 9000R for CFFA1.
+P with an empty name selects root.
+P EDUCATION selects the main books.
+L READER loads the reader at $0800.
+Accept $0800, then Q to Monitor.
+Type 0800R to start the library.
+N next, P back, A answers.
+M chooses a book number. Q exits.
+The main reader loads each book.
+
+SUPPLEMENTAL READING
+TEXTBOOK: all teaching chapters
+WORKED: all 42 worked companions
+FEATURES: complete feature/lab text
+RUNS: all captured example output
+TEACHERS: teachers, visitors, worksheets
+NOTES: packet source notes and status
+REFERENCE: shared sources and glossary
+ART: text art and portal
+RAMDEMOS: line-input candidates
+HOSTSRC: original-source ZIP for a PC
+
+TO READ A SUPPLEMENT
+Use 9000R to enter CFFA1.
+P empty selects root. P folder enters.
+L INDEX loads that folder's guide.
+Accept $1000, Q to Monitor, then 1000R.
+The index lists files to load next.
+These readers use SPACE next, B back,
+and Q to Monitor. Next at end exits.
+They load and run at $1000, not $0800.
+
+BASICLABS
+Contains six saved BASIC programs.
+Follow BASICGUIDE in the main reader
+for BASIC startup and program loading.
+
+EXACT SOURCE AND DISPLAY COPIES
+All screens use uppercase glyphs.
+Vertical borders may use !.
+Code, spelling, links and case in the
+ZIP are authoritative for host use.
+PNG figures are also in that ZIP.
+Python, NEURAL1 and models run on a
+modern host, not on this 6502.
+
+ORIGINAL SOFTWARE
+UTILITIES and GAMES retain all six
+original programs. Maintenance files
+are preserved, not lesson launchers.
+No firmware updater was executed.
+The readers write no card or EEPROM.
 """
     b.book("START.HERE", pages_for(guide, "START HERE"), [])
     git = shutil.which("git")
@@ -349,7 +421,8 @@ operation on your physical board.
         raise ValueError("Git is required to record the source revision")
     revision = subprocess.check_output([git, "rev-parse", "HEAD"], cwd=ROOT, text=True).strip()  # noqa: S603 -- fixed read-only Git arguments
     manifest = dict(schema_version=1, source_revision=revision,
-                    lesson_packets=len(lessons), atlas_pages=len(atlas), reader_origin=ORIGIN,
+                    lesson_packets=len(lessons), atlas_pages=0 if supplements else len(atlas), reader_origin=ORIGIN,
+                    edition_kind="cffa-core-supplements" if supplements else "standalone-display",
                     source_hashes=b.inputs, files=b.records)
     data = (json.dumps(manifest, indent=2, sort_keys=True) + "\n").encode()
     b.add("HOSTSRC/BUILD.JSON", data, 0, 0, kind="build-manifest")
@@ -360,8 +433,9 @@ operation on your physical board.
 def main() -> None:
     parser = argparse.ArgumentParser(description=__doc__)
     parser.add_argument("--output", type=Path, required=True)
+    parser.add_argument("--supplements", action="store_true", help="build supplementary books alongside the CFFA1 main reader")
     args = parser.parse_args()
-    manifest = build(args.output.resolve())
+    manifest = build(args.output.resolve(), supplements=args.supplements)
     print(json.dumps({"lessons": manifest["lesson_packets"], "files": len(manifest["files"]),
                       "pages": sum(r.get("pages", 0) for r in manifest["files"]), "output": str(args.output)}))
 
