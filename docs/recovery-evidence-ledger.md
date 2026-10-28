@@ -1,7 +1,9 @@
 # Firmware recovery evidence ledger
 
 Current status: **recovery package and physical acceptance pending**. No EEPROM
-was programmed by the October 28 history consolidation.
+was programmed by the October 28 history consolidation. The original EEPROM is
+**not eligible for EEPROM programming** under this plan; it stays preserved
+unchanged while a compatible spare is the recovery target.
 
 ## Preserved-original repair route — October 28 reconciliation
 
