@@ -1,6 +1,6 @@
 # Firmware recovery evidence ledger
 
-Current status: **recovery package and physical acceptance pending**. No EEPROM
+Current status: **off-device recovery package built and verified; physical acceptance pending**. No EEPROM
 was programmed by the October 28 history consolidation. The original EEPROM is
 **not eligible for EEPROM programming** under this plan; it stays preserved
 unchanged while a compatible spare is the recovery target.
@@ -17,7 +17,7 @@ Use the [current repair plan](hardware/replica-repair-plan.md), tracked in
 | Board identity | [Eight recovered historical photographs](hardware/repair-context-2026-10-28/README.md) visibly establish Revision 0/ReActiveMicro/P8X32A-D40. Match present setup; selector/routing and voltages remain unmeasured. |
 | Candidate provenance | `firmware/vendor/110REV03/provenance.json` present. Candidate source is not an installed-image identification or compiled recovery package. |
 | Basic electrical suitability | New session must check supply, selector function and nominal 5V/3.3V rails before device loading. DC readings do not exclude transients. |
-| Compatible recovery package | Still missing: versioned toolchain/uploader, exact commands, revision-compatible binary, hashes, two verified copies and inspectable rollback. |
+| Recovery software package | [Built 110REV03 package](../firmware/recovery/110REV03-2026-10-28/README.md): pinned compiler/loader, 6,992-byte program, 32 KB EEPROM image, offline rebuild, hashes, logs and [loading/rollback procedure](../firmware/recovery/110REV03-2026-10-28/LOADING.md). Clean GCC/Clang builds agree; checked local bundle copy retained. Current physical interface/power compatibility and live rehearsal remain pending. |
 | Preserve original | Remove only under the reviewed unpowered procedure; label/store original EEPROM unchanged. Compatible spare 24LC256 DIP-8 provides the persistent trial target. No installed-image readback is required to propose this route. |
 | Active-image identity | Record RAM versus EEPROM boot and whether a Propeller reset discarded the temporary image. Avoid interpreting an old-image reboot as a candidate test. |
 | Finite acceptance | Pending: three cold boots, five normal serial connections, local keyboard, both serial directions and CFFA1 operation. |

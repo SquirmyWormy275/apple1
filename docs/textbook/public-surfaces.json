@@ -233,6 +233,25 @@
     "teaching_route": "Chapter 10; compile-only preparation, not a firmware load"
   },
   {
+    "path": "tools/replica_recovery.py",
+    "subcommands": [
+      "commands",
+      "rebuild",
+      "verify"
+    ],
+    "flags": [
+      "--by-id",
+      "--by-path",
+      "--cc",
+      "--cxx",
+      "--mode",
+      "--out",
+      "--package",
+      "--session-dir"
+    ],
+    "teaching_route": "Firmware recovery package guide; verify/rebuild/print commands are off-device, live loading belongs to the separate repair procedure"
+  },
+  {
     "path": "tools/serial_owner.py",
     "subcommands": [],
     "flags": [

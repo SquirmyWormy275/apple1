@@ -1,0 +1,22 @@
+Propeller Spin/PASM Compiler 'OpenSpin' (c)2012-2018 Parallax Inc. DBA Parallax Semiconductor.
+Version 1.00.81 Compiled on Oct 28 2026 00:00:00
+usage: openspin
+         [ -h ]                 display this help
+         [ -L or -I <path> ]    add a directory to the include path
+         [ -o <path> ]          output filename
+         [ -b ]                 output binary file format
+         [ -e ]                 output eeprom file format
+         [ -c ]                 output only DAT sections
+         [ -d ]                 dump out doc mode
+         [ -t ]                 output just the object file tree
+         [ -f ]                 output a list of filenames for use in archiving
+         [ -q ]                 quiet mode (suppress banner and non-error text)
+         [ -v ]                 verbose output
+         [ -p ]                 disable the preprocessor
+         [ -a ]                 use alternative preprocessor rules
+         [ -D <define> ]        add a define
+         [ -M <size> ]          size of eeprom (up to 16777216 bytes)
+         [ -s ]                 dump PUB & CON symbol information for top object
+         [ -u ]                 enable unused method elimination
+         <name.spin>            spin file to compile
+

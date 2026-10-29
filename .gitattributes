@@ -29,3 +29,12 @@ firmware/vendor/110REV03/_README_.txt text eol=lf
 # preserving their recorded checkout representation on every platform.
 firmware/vendor/110REV03/Serial_IO.spin text eol=crlf
 "firmware/vendor/110REV03/replica 110REV03.spin" text eol=crlf
+
+# Recovery outputs and pinned tool archives are byte artifacts.
+firmware/recovery/**/images/* -text
+firmware/recovery/**/bin/** -text
+firmware/recovery/**/sources/* -text
+firmware/recovery/releases/*.zip -text
+firmware/recovery/**/SHA256SUMS text eol=lf
+# Retain upstream CLI help output, including its final blank line.
+firmware/recovery/**/logs/* whitespace=-blank-at-eof

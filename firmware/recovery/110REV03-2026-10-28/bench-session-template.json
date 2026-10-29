@@ -1,0 +1,52 @@
+{
+  "record_type": "TEMPLATE-NOT-EXECUTED",
+  "session_id": null,
+  "date_time_timezone": null,
+  "operator": null,
+  "package": "110REV03-2026-10-28",
+  "board_markings": null,
+  "breakout_identity": null,
+  "selector_position_and_function": null,
+  "power_topology": null,
+  "voltage_readings_and_points": {
+    "5V": null,
+    "3V3": null,
+    "meter": null
+  },
+  "programming_reset_route": {
+    "method": "dtr",
+    "physically_verified": false,
+    "evidence": null
+  },
+  "standalone_baseline": null,
+  "usb": {
+    "by_id": null,
+    "by_path": null,
+    "resolved_device": null,
+    "vid_pid": null,
+    "existing_owners": null
+  },
+  "original_eeprom": {
+    "label": null,
+    "orientation_record": null,
+    "preserved_unchanged": false
+  },
+  "spare_eeprom_identity": null,
+  "image_sha256": null,
+  "attempts": [],
+  "active_image_and_reset_observations": null,
+  "acceptance": {
+    "cold_boots_passed": 0,
+    "serial_connection_cycles_passed": 0,
+    "keyboard": null,
+    "host_to_replica_bytes": null,
+    "replica_to_host_bytes": null,
+    "monitor_ram_transaction": null,
+    "cffa1_read_only": null,
+    "cf_issue_15": null
+  },
+  "failures_and_unexecuted_checks": [],
+  "rollback_result": null,
+  "next_decision": null,
+  "physical_acceptance": false
+}

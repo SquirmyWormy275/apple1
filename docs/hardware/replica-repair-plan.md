@@ -37,15 +37,18 @@ it does not impose an endless prerequisite before a repair attempt.
 | [September 2 experiment](../captures/2026-09-02-ft232r-open-analyzer/README.md) | Complete, root cause inconclusive; external video is hash-identified. TX-O/RX-I were digitally quiet over 120 million samples at 4 MS/s. | Freeze it. The original one-open event is spent; do not repeat it for bookkeeping. |
 | [Historical photographs](repair-context-2026-10-28/README.md#recovered-hardware-photographs) | Eight supplied JPEGs recovered. Revision 0, ReActiveMicro branding and P8X32A-D40 markings are visible. | Use these before requesting more pictures. They are not continuity or voltage measurements. |
 | [PR #6](https://github.com/SquirmyWormy275/apple1/pull/6) | Capture runner, simulations and P1/Pi preparation exist. September 11 eventually detected the analyzer. | Preparation is real; a completed reset capture or unattended qualification is not. Initial readiness prose is stale. |
-| Firmware | Hash-verified `110REV03` source candidate and static/preflight tools exist. | No verified compiled recovery/uploader package or installed EEPROM identity was located. An earlier promise is not a delivered package. |
+| Firmware | [Recovery package built off-device](../../firmware/recovery/110REV03-2026-10-28/README.md): program/EEPROM images, pinned tools, hashes, offline rebuild and loading procedure. | Physical interface/power compatibility, installed-image identity and on-board recovery remain unverified. |
 | [Pi commissioning](../neural1/operations/pi-closeout-2026-09-10.md) | Complete for the recorded installed revision. | Preserve it; do not reimage/reinstall NEURAL1 to repair the Replica. |
 | [CF installation](../../cf-card/AUDIT-2026-10-28.md) | 386 files fully read back; six originals preserved unchanged. | Preserve the card/receipts. Physical reader/BASIC acceptance remains open in #15. |
 
 ## 1. Prepare the repair package off-device
 
-Do this before starting the limited bench session. The next agent should be
-able to review actual files and commands, rather than another promise to build
-or flash something later.
+The [off-device package](../../firmware/recovery/110REV03-2026-10-28/README.md)
+and [loading/rollback procedure](../../firmware/recovery/110REV03-2026-10-28/LOADING.md)
+are now built and staged. Verify those files before the limited bench session;
+rebuild only when needed for another host or an actual change. The steps below
+remain the compatibility and evidence checklist; they do not require repeating
+successful software preparation.
 
 1. Match the recovered Revision 0/ReActiveMicro/P8X32A-D40 photographs to the
    present board. Identify the exact USB breakout and its programming/reset

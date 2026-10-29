@@ -1,0 +1,40 @@
+mkdir -p ./build
+g++ -Wall -g  -o build/openspin.o -c SpinSource/openspin.cpp
+g++ -Wall -g  -o build/pathentry.o -c SpinSource/pathentry.cpp
+make -C PropellerCompiler CROSS= BUILD=<BUILD_ROOT>/OpenSpin/build/PropellerCompiler all
+make[1]: Entering directory '<BUILD_ROOT>/OpenSpin/PropellerCompiler'
+mkdir -p <BUILD_ROOT>/OpenSpin/build/PropellerCompiler
+g++ -Wall -g  -o <BUILD_ROOT>/OpenSpin/build/PropellerCompiler/BlockNestStackRoutines.o -c BlockNestStackRoutines.cpp
+g++ -Wall -g  -o <BUILD_ROOT>/OpenSpin/build/PropellerCompiler/CompileDatBlocks.o -c CompileDatBlocks.cpp
+g++ -Wall -g  -o <BUILD_ROOT>/OpenSpin/build/PropellerCompiler/CompileExpression.o -c CompileExpression.cpp
+g++ -Wall -g  -o <BUILD_ROOT>/OpenSpin/build/PropellerCompiler/CompileInstruction.o -c CompileInstruction.cpp
+g++ -Wall -g  -o <BUILD_ROOT>/OpenSpin/build/PropellerCompiler/CompileUtilities.o -c CompileUtilities.cpp
+g++ -Wall -g  -o <BUILD_ROOT>/OpenSpin/build/PropellerCompiler/DistillObjects.o -c DistillObjects.cpp
+g++ -Wall -g  -o <BUILD_ROOT>/OpenSpin/build/PropellerCompiler/Elementizer.o -c Elementizer.cpp
+g++ -Wall -g  -o <BUILD_ROOT>/OpenSpin/build/PropellerCompiler/ErrorStrings.o -c ErrorStrings.cpp
+g++ -Wall -g  -o <BUILD_ROOT>/OpenSpin/build/PropellerCompiler/ExpressionResolver.o -c ExpressionResolver.cpp
+g++ -Wall -g  -o <BUILD_ROOT>/OpenSpin/build/PropellerCompiler/InstructionBlockCompiler.o -c InstructionBlockCompiler.cpp
+g++ -Wall -g  -o <BUILD_ROOT>/OpenSpin/build/PropellerCompiler/StringConstantRoutines.o -c StringConstantRoutines.cpp
+g++ -Wall -g  -o <BUILD_ROOT>/OpenSpin/build/PropellerCompiler/SymbolEngine.o -c SymbolEngine.cpp
+g++ -Wall -g  -o <BUILD_ROOT>/OpenSpin/build/PropellerCompiler/Utilities.o -c Utilities.cpp
+g++ -Wall -g  -o <BUILD_ROOT>/OpenSpin/build/PropellerCompiler/UnusedMethodUtils.o -c UnusedMethodUtils.cpp
+g++ -Wall -g  -o <BUILD_ROOT>/OpenSpin/build/PropellerCompiler/PropellerCompiler.o -c PropellerCompiler.cpp
+g++ -Wall -g  -o <BUILD_ROOT>/OpenSpin/build/PropellerCompiler/CompileSpin.o -c CompileSpin.cpp
+g++ -Wall -g  -o <BUILD_ROOT>/OpenSpin/build/PropellerCompiler/flexbuf.o -c flexbuf.cpp
+g++ -Wall -g  -o <BUILD_ROOT>/OpenSpin/build/PropellerCompiler/preprocess.o -c preprocess.cpp
+preprocess.cpp: In function ‘int do_line(preprocess*)’:
+preprocess.cpp:911:36: warning: ISO C++ forbids converting a string constant to ‘char*’ [-Wwrite-strings]
+  911 |             handle_message(pp, &P, "error");
+      |                                    ^~~~~~~
+preprocess.cpp:919:36: warning: ISO C++ forbids converting a string constant to ‘char*’ [-Wwrite-strings]
+  919 |             handle_message(pp, &P, "warning");
+      |                                    ^~~~~~~~~
+preprocess.cpp:923:36: warning: ISO C++ forbids converting a string constant to ‘char*’ [-Wwrite-strings]
+  923 |             handle_message(pp, &P, "info");
+      |                                    ^~~~~~
+g++ -Wall -g  -o <BUILD_ROOT>/OpenSpin/build/PropellerCompiler/textconvert.o -c textconvert.cpp
+g++ -Wall -g  -o <BUILD_ROOT>/OpenSpin/build/PropellerCompiler/objectheap.o -c objectheap.cpp
+ar rs <BUILD_ROOT>/OpenSpin/build/PropellerCompiler/libopenspin.a <BUILD_ROOT>/OpenSpin/build/PropellerCompiler/BlockNestStackRoutines.o <BUILD_ROOT>/OpenSpin/build/PropellerCompiler/CompileDatBlocks.o <BUILD_ROOT>/OpenSpin/build/PropellerCompiler/CompileExpression.o <BUILD_ROOT>/OpenSpin/build/PropellerCompiler/CompileInstruction.o <BUILD_ROOT>/OpenSpin/build/PropellerCompiler/CompileUtilities.o <BUILD_ROOT>/OpenSpin/build/PropellerCompiler/DistillObjects.o <BUILD_ROOT>/OpenSpin/build/PropellerCompiler/Elementizer.o <BUILD_ROOT>/OpenSpin/build/PropellerCompiler/ErrorStrings.o <BUILD_ROOT>/OpenSpin/build/PropellerCompiler/ExpressionResolver.o <BUILD_ROOT>/OpenSpin/build/PropellerCompiler/InstructionBlockCompiler.o <BUILD_ROOT>/OpenSpin/build/PropellerCompiler/StringConstantRoutines.o <BUILD_ROOT>/OpenSpin/build/PropellerCompiler/SymbolEngine.o <BUILD_ROOT>/OpenSpin/build/PropellerCompiler/Utilities.o <BUILD_ROOT>/OpenSpin/build/PropellerCompiler/UnusedMethodUtils.o <BUILD_ROOT>/OpenSpin/build/PropellerCompiler/PropellerCompiler.o <BUILD_ROOT>/OpenSpin/build/PropellerCompiler/CompileSpin.o <BUILD_ROOT>/OpenSpin/build/PropellerCompiler/flexbuf.o <BUILD_ROOT>/OpenSpin/build/PropellerCompiler/preprocess.o <BUILD_ROOT>/OpenSpin/build/PropellerCompiler/textconvert.o <BUILD_ROOT>/OpenSpin/build/PropellerCompiler/objectheap.o
+ar: creating <BUILD_ROOT>/OpenSpin/build/PropellerCompiler/libopenspin.a
+make[1]: Leaving directory '<BUILD_ROOT>/OpenSpin/PropellerCompiler'
+g++ -o ./build/openspin -Wall -g  ./build/openspin.o ./build/pathentry.o ./build/PropellerCompiler/libopenspin.a
