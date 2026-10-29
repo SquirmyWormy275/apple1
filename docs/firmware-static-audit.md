@@ -4,6 +4,10 @@ These tools inspect the immutable `110REV03` vendor candidate. They do not
 compile Spin, invoke an uploader, open a serial device, or identify the
 EEPROM installed in the Replica.
 
+The separate [built recovery package](../firmware/recovery/110REV03-2026-10-28/README.md)
+now provides compiled images, pinned tools and an offline rebuild. The static
+tools described here retain their read-only behavior.
+
 ## Static source facts
 
 ```powershell
@@ -27,5 +31,5 @@ present tool executable may be recorded with `--tool`, but this tool never
 executes it. A compile remains blocked until its exact executable version and
 hash, the candidate-source hash, and an isolated output directory are retained.
 
-No compile result is a recovery image. No preflight result authorizes RAM load,
+A compile result alone does not establish physical qualification. No preflight result authorizes RAM load,
 EEPROM programming, or a programming lease.

@@ -1,0 +1,67 @@
+fatal: not a git repository (or any parent up to mount point /)
+Stopping at filesystem boundary (GIT_DISCOVERY_ACROSS_FILESYSTEM not set).
+VERSION v1.0-37-15-ga1b4cd8 (2026-10-28 staged recovery)
+gcc -Wall -DVERSION=\""v1.0-37-15-ga1b4cd8 (2026-10-28 staged recovery)"\" -DLINUX -I<BUILD_ROOT>/proploader-linux-build/obj tools/split.c -o <BUILD_ROOT>/proploader-linux-build/bin/split
+gcc -Wall -DVERSION=\""v1.0-37-15-ga1b4cd8 (2026-10-28 staged recovery)"\" -DLINUX -I<BUILD_ROOT>/proploader-linux-build/obj tools/bin2c.c -o <BUILD_ROOT>/proploader-linux-build/bin/bin2c
+cd spin/; <BUILD_ROOT>/OpenSpin/build/openspin -o <BUILD_ROOT>/proploader-linux-build/obj/sd_helper.binary sd_helper.spin
+<BUILD_ROOT>/OpenSpin/build/openspin -o <BUILD_ROOT>/proploader-linux-build/blink-fast.binary blink.spin
+Propeller Spin/PASM Compiler 'OpenSpin' (c)2012-2018 Parallax Inc. DBA Parallax Semiconductor.
+Version 1.00.81 Compiled on Oct 28 2026 00:00:00
+Compiling...
+blink.spin
+Done.
+Program size is 68 bytes
+<BUILD_ROOT>/OpenSpin/build/openspin -DSLOW -o <BUILD_ROOT>/proploader-linux-build/blink-slow.binary blink.spin
+Propeller Spin/PASM Compiler 'OpenSpin' (c)2012-2018 Parallax Inc. DBA Parallax Semiconductor.
+Version 1.00.81 Compiled on Oct 28 2026 00:00:00
+Compiling...
+blink.spin
+Done.
+Program size is 68 bytes
+cd spin/; <BUILD_ROOT>/OpenSpin/build/openspin -o <BUILD_ROOT>/proploader-linux-build/obj/IP_Loader.binary IP_Loader.spin
+Propeller Spin/PASM Compiler 'OpenSpin' (c)2012-2018 Parallax Inc. DBA Parallax Semiconductor.
+Version 1.00.81 Compiled on Oct 28 2026 00:00:00
+Compiling...
+IP_Loader.spin
+Done.
+Program size is 856 bytes
+<BUILD_ROOT>/proploader-linux-build/bin/split <BUILD_ROOT>/proploader-linux-build/obj/IP_Loader.binary <BUILD_ROOT>/proploader-linux-build/obj/IP_Loader.h
+g++ -Wall -DVERSION=\""v1.0-37-15-ga1b4cd8 (2026-10-28 staged recovery)"\" -DLINUX -I<BUILD_ROOT>/proploader-linux-build/obj -c src/main.cpp -o <BUILD_ROOT>/proploader-linux-build/obj/main.o
+Propeller Spin/PASM Compiler 'OpenSpin' (c)2012-2018 Parallax Inc. DBA Parallax Semiconductor.
+Version 1.00.81 Compiled on Oct 28 2026 00:00:00
+Compiling...
+sd_helper.spin
+|-packet_driver.spin
+|-fsrw.spin
+  |-safe_spi_c3.spin
+Done.
+Program size is 7268 bytes
+g++ -Wall -DVERSION=\""v1.0-37-15-ga1b4cd8 (2026-10-28 staged recovery)"\" -DLINUX -I<BUILD_ROOT>/proploader-linux-build/obj -c src/loader.cpp -o <BUILD_ROOT>/proploader-linux-build/obj/loader.o
+g++ -Wall -DVERSION=\""v1.0-37-15-ga1b4cd8 (2026-10-28 staged recovery)"\" -DLINUX -I<BUILD_ROOT>/proploader-linux-build/obj -c src/fastloader.cpp -o <BUILD_ROOT>/proploader-linux-build/obj/fastloader.o
+src/main.cpp: In function ‘int main(int, char**)’:
+src/main.cpp:220:37: warning: ‘%s’ directive writing up to 63 bytes into a region of size 53 [-Wformat-overflow=]
+  220 |                     sprintf(buf, "%s%s", PORT_PREFIX, port);
+      |                                     ^~
+src/main.cpp:220:28: note: ‘sprintf’ output between 12 and 75 bytes into a destination of size 64
+  220 |                     sprintf(buf, "%s%s", PORT_PREFIX, port);
+      |                     ~~~~~~~^~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~
+g++ -Wall -DVERSION=\""v1.0-37-15-ga1b4cd8 (2026-10-28 staged recovery)"\" -DLINUX -I<BUILD_ROOT>/proploader-linux-build/obj -c src/propimage.cpp -o <BUILD_ROOT>/proploader-linux-build/obj/propimage.o
+g++ -Wall -DVERSION=\""v1.0-37-15-ga1b4cd8 (2026-10-28 staged recovery)"\" -DLINUX -I<BUILD_ROOT>/proploader-linux-build/obj -c src/packet.cpp -o <BUILD_ROOT>/proploader-linux-build/obj/packet.o
+g++ -Wall -DVERSION=\""v1.0-37-15-ga1b4cd8 (2026-10-28 staged recovery)"\" -DLINUX -I<BUILD_ROOT>/proploader-linux-build/obj -c src/serialpropconnection.cpp -o <BUILD_ROOT>/proploader-linux-build/obj/serialpropconnection.o
+g++ -Wall -DVERSION=\""v1.0-37-15-ga1b4cd8 (2026-10-28 staged recovery)"\" -DLINUX -I<BUILD_ROOT>/proploader-linux-build/obj -c src/serialloader.cpp -o <BUILD_ROOT>/proploader-linux-build/obj/serialloader.o
+g++ -Wall -DVERSION=\""v1.0-37-15-ga1b4cd8 (2026-10-28 staged recovery)"\" -DLINUX -I<BUILD_ROOT>/proploader-linux-build/obj -c src/wifipropconnection.cpp -o <BUILD_ROOT>/proploader-linux-build/obj/wifipropconnection.o
+gcc -Wall -DVERSION=\""v1.0-37-15-ga1b4cd8 (2026-10-28 staged recovery)"\" -DLINUX -I<BUILD_ROOT>/proploader-linux-build/obj -c src/loadelf.c -o <BUILD_ROOT>/proploader-linux-build/obj/loadelf.o
+<BUILD_ROOT>/proploader-linux-build/bin/bin2c <BUILD_ROOT>/proploader-linux-build/obj/sd_helper.binary <BUILD_ROOT>/proploader-linux-build/obj/sd_helper.c
+gcc -Wall -DVERSION=\""v1.0-37-15-ga1b4cd8 (2026-10-28 staged recovery)"\" -DLINUX -I<BUILD_ROOT>/proploader-linux-build/obj -c src/config.c -o <BUILD_ROOT>/proploader-linux-build/obj/config.o
+gcc -Wall -DVERSION=\""v1.0-37-15-ga1b4cd8 (2026-10-28 staged recovery)"\" -DLINUX -I<BUILD_ROOT>/proploader-linux-build/obj -c src/expr.c -o <BUILD_ROOT>/proploader-linux-build/obj/expr.o
+gcc -Wall -DVERSION=\""v1.0-37-15-ga1b4cd8 (2026-10-28 staged recovery)"\" -DLINUX -I<BUILD_ROOT>/proploader-linux-build/obj -c src/system.c -o <BUILD_ROOT>/proploader-linux-build/obj/system.o
+src/system.c: In function ‘xbAddFilePath’:
+src/system.c:82:15: warning: assignment discards ‘const’ qualifier from pointer target type [-Wdiscarded-qualifiers]
+   82 |     if (!(end = strrchr(name, DIR_SEP)))
+      |               ^
+g++ -Wall -DVERSION=\""v1.0-37-15-ga1b4cd8 (2026-10-28 staged recovery)"\" -DLINUX -I<BUILD_ROOT>/proploader-linux-build/obj -c src/messages.cpp -o <BUILD_ROOT>/proploader-linux-build/obj/messages.o
+gcc -Wall -DVERSION=\""v1.0-37-15-ga1b4cd8 (2026-10-28 staged recovery)"\" -DLINUX -I<BUILD_ROOT>/proploader-linux-build/obj -c src/sock_posix.c -o <BUILD_ROOT>/proploader-linux-build/obj/sock_posix.o
+gcc -Wall -DVERSION=\""v1.0-37-15-ga1b4cd8 (2026-10-28 staged recovery)"\" -DLINUX -I<BUILD_ROOT>/proploader-linux-build/obj -c src/serial_posix.c -o <BUILD_ROOT>/proploader-linux-build/obj/serial_posix.o
+gcc -Wall -DVERSION=\""v1.0-37-15-ga1b4cd8 (2026-10-28 staged recovery)"\" -DLINUX -I<BUILD_ROOT>/proploader-linux-build/obj -c <BUILD_ROOT>/proploader-linux-build/obj/sd_helper.c -o <BUILD_ROOT>/proploader-linux-build/obj/sd_helper.o
+g++ -o <BUILD_ROOT>/proploader-linux-build/bin/proploader  <BUILD_ROOT>/proploader-linux-build/obj/main.o <BUILD_ROOT>/proploader-linux-build/obj/loader.o <BUILD_ROOT>/proploader-linux-build/obj/fastloader.o <BUILD_ROOT>/proploader-linux-build/obj/propimage.o <BUILD_ROOT>/proploader-linux-build/obj/packet.o <BUILD_ROOT>/proploader-linux-build/obj/serialpropconnection.o <BUILD_ROOT>/proploader-linux-build/obj/serialloader.o <BUILD_ROOT>/proploader-linux-build/obj/wifipropconnection.o <BUILD_ROOT>/proploader-linux-build/obj/loadelf.o <BUILD_ROOT>/proploader-linux-build/obj/sd_helper.o <BUILD_ROOT>/proploader-linux-build/obj/config.o <BUILD_ROOT>/proploader-linux-build/obj/expr.o <BUILD_ROOT>/proploader-linux-build/obj/system.o <BUILD_ROOT>/proploader-linux-build/obj/messages.o <BUILD_ROOT>/proploader-linux-build/obj/sock_posix.o <BUILD_ROOT>/proploader-linux-build/obj/serial_posix.o  -lstdc++
+rm <BUILD_ROOT>/proploader-linux-build/obj/sd_helper.binary <BUILD_ROOT>/proploader-linux-build/obj/sd_helper.c

@@ -8,6 +8,11 @@ It separates measured results, later decisions and work that was only promised.
 The public record is self-contained; private chat links are provenance aids and
 may require the owner's account. Full mixed-purpose transcripts stay private.
 
+**Subsequent software staging:** the [recovery package](../../../firmware/recovery/110REV03-2026-10-28/README.md)
+is now built and verified off-device. Statements below about an unlocated
+compiled package describe the earlier history audit, not the current software
+state. Live recovery and physical compatibility remain pending.
+
 ## Coverage and access limits
 
 - Enumerated the **16 conversations visible in the Apple1 ChatGPT project** and

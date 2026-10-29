@@ -92,7 +92,10 @@ The October 28 [repair plan](hardware/replica-repair-plan.md) reconciles the
 accessible ChatGPT/Codex history and [eight recovered board photographs](hardware/repair-context-2026-10-28/README.md).
 It restores the later user-accepted time/cost limit and spare-EEPROM route;
 a complete reset/scope investigation is optional. The original EEPROM stays
-preserved. A verified compiled recovery/uploader package is still missing.
+preserved. The [recovery software package](../firmware/recovery/110REV03-2026-10-28/README.md)
+is now built and verified off-device, with byte-identical GCC/Clang rebuilds,
+laptop compiler/loader, offline sources and a loading/rollback procedure.
+Physical compatibility, live recovery and acceptance remain pending.
 
 The [troubleshooting record](troubleshooting.md) and
 [September 2 packet](captures/2026-09-02-ft232r-open-analyzer/README.md) remain the

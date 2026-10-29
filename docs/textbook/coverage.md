@@ -174,6 +174,7 @@ items are intentionally not invoked by batch capture.
 | [tools/neural1_telemetry.py](../../tools/neural1_telemetry.py) | (flags; see inventory) | Chapter 7/10; native sensor collection not newly run |
 | [tools/neural1_validate.py](../../tools/neural1_validate.py) | (flags; see inventory) | Development workflow; repository validation run during build |
 | [tools/propeller_preflight.py](../../tools/propeller_preflight.py) | (flags; see inventory) | Chapter 10; compile-only preparation, not a firmware load |
+| [tools/replica_recovery.py](../../tools/replica_recovery.py) | verify, rebuild, commands | [Recovery package](../../firmware/recovery/110REV03-2026-10-28/README.md); off-device preparation, separate bench loading procedure |
 | [tools/serial_owner.py](../../tools/serial_owner.py) | (flags; see inventory) | Chapter 10; inspect source/reference before operator use |
 | [tools/support_bundle.py](../../tools/support_bundle.py) | (flags; see inventory) | F32; explicitly selected teaching fixture only |
 | [tools/textbook.py](../../tools/textbook.py) | build-pages, capture, list, run, verify | Chapter 0; list/run/capture/verify/build-pages |

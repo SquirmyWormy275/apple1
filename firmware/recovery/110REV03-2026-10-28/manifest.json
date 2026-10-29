@@ -1,0 +1,149 @@
+{
+  "schema_version": 1,
+  "status": "off-device-built-not-hardware-qualified",
+  "release": "110REV03-2026-10-28",
+  "compiler_commit": "d1991aa821179209cbd21396dfd1d88f226eb99d",
+  "loader_commit": "a1b4cd87cedfb1141d9be888335bca130b486425",
+  "files": {
+    "firmware/recovery/110REV03-2026-10-28/LOADING.md": {
+      "bytes": 8421,
+      "sha256": "cf8ac4b766c38617985f9a11aec78eca503ba19cfe4377ac8ecb17bf537df37f"
+    },
+    "firmware/recovery/110REV03-2026-10-28/NOTICE.md": {
+      "bytes": 1318,
+      "sha256": "16cfa75e5056ee2236aec8df31413789f3ea7881f682e0f16bce8d10bfa63448"
+    },
+    "firmware/recovery/110REV03-2026-10-28/README.md": {
+      "bytes": 5192,
+      "sha256": "6d0cc639a121aa98b717fc098de8a30d90e839eb98df5cad780187c589319b81"
+    },
+    "firmware/recovery/110REV03-2026-10-28/bench-session-template.json": {
+      "bytes": 1277,
+      "sha256": "a50b76ee5ec450e895fd220350da878b7f69f37b591ed14af6003876adc75630"
+    },
+    "firmware/recovery/110REV03-2026-10-28/bin/linux-x86_64/openspin": {
+      "bytes": 490232,
+      "sha256": "f979532975bc858d05bd4373b878406625171aa681ff2c28c67b582c070c09de"
+    },
+    "firmware/recovery/110REV03-2026-10-28/bin/linux-x86_64/proploader": {
+      "bytes": 167040,
+      "sha256": "a4f8c6d9a59697348ccecab2cc5d69d578bace6f35a375f46f0880b6148e678b"
+    },
+    "firmware/recovery/110REV03-2026-10-28/build-record.json": {
+      "bytes": 3339,
+      "sha256": "52c6f1dc80f3143173fd0e0f31dc43342c584e01d1c94492be7a3656472e38e5"
+    },
+    "firmware/recovery/110REV03-2026-10-28/config/replica1.cfg": {
+      "bytes": 165,
+      "sha256": "d3c7e0c51ef96c6ecdee9a153d456e545005572ace7dc220000b7ceca0cbb455"
+    },
+    "firmware/recovery/110REV03-2026-10-28/images/replica-110REV03.binary": {
+      "bytes": 6992,
+      "sha256": "aa024b93ea3294b70e88992b5b002a46958c617873a330b82e87feaa26e7d0a5"
+    },
+    "firmware/recovery/110REV03-2026-10-28/images/replica-110REV03.eeprom": {
+      "bytes": 32768,
+      "sha256": "3d6238f3cfba84667e2747572a1ef1f71da77b6f5225af7f6926145d2c3b7686"
+    },
+    "firmware/recovery/110REV03-2026-10-28/logs/compile-binary.log": {
+      "bytes": 372,
+      "sha256": "f86aa80cca8d1f61a261e7b5457847c28c8a8d9d0f5dcfa1a381066dddefd3c2"
+    },
+    "firmware/recovery/110REV03-2026-10-28/logs/compile-eeprom.log": {
+      "bytes": 373,
+      "sha256": "c703d382098017a60fd686c1b11beeecf7888638cc125a218f4adec8cc149e3d"
+    },
+    "firmware/recovery/110REV03-2026-10-28/logs/compile-tree.log": {
+      "bytes": 182,
+      "sha256": "67c494558d980ebb6f99e0dc8cf3c167e2d514628c6a0a24f0a7f421c02b7309"
+    },
+    "firmware/recovery/110REV03-2026-10-28/logs/offline-loader-corrupt-image.log": {
+      "bytes": 102,
+      "sha256": "36b83c53c129a2710c70c656969e4a6ebccb9c307e5c2f0970326338fd66bebe"
+    },
+    "firmware/recovery/110REV03-2026-10-28/logs/offline-loader-eeprom-format-only.log": {
+      "bytes": 119,
+      "sha256": "71fcde3555f12ad705110fdef91c66750d5c9da51a2795670b7c817947113cef"
+    },
+    "firmware/recovery/110REV03-2026-10-28/logs/offline-loader-ram.log": {
+      "bytes": 119,
+      "sha256": "5bf4ce5544993fa922b038f380ab22255af0f760796da13c4136af4cdf38bf85"
+    },
+    "firmware/recovery/110REV03-2026-10-28/logs/offline-loader-spare-eeprom.log": {
+      "bytes": 119,
+      "sha256": "5bf4ce5544993fa922b038f380ab22255af0f760796da13c4136af4cdf38bf85"
+    },
+    "firmware/recovery/110REV03-2026-10-28/logs/openspin-build.log": {
+      "bytes": 4722,
+      "sha256": "f4e18fab9d64c475c58e280b8a70f283053d517d825505868e3b27013edb06a6"
+    },
+    "firmware/recovery/110REV03-2026-10-28/logs/openspin-help.txt": {
+      "bytes": 1260,
+      "sha256": "2f3ab3ea88d8a249fe864cb004774f5781e33717f13fa231b9be4c54007a838d"
+    },
+    "firmware/recovery/110REV03-2026-10-28/logs/proploader-build.log": {
+      "bytes": 7233,
+      "sha256": "b4c5f772cfb4c252f52d26b5be15e0781d98f396416593ccf7a44a522d5df84e"
+    },
+    "firmware/recovery/110REV03-2026-10-28/logs/proploader-help.txt": {
+      "bytes": 2271,
+      "sha256": "46c46eb42b5164e097412796ef0757a8a4da964434bdf179688e1bda1aa0855f"
+    },
+    "firmware/recovery/110REV03-2026-10-28/sources/OpenSpin.tar.gz": {
+      "bytes": 85458,
+      "sha256": "0f423d3d94e2af2f32bb8d9f84d208732702007bbe9c29c70c797439459f1c99"
+    },
+    "firmware/recovery/110REV03-2026-10-28/sources/PropLoader.tar.gz": {
+      "bytes": 109151,
+      "sha256": "70704b6cc171470d2471ddd4a7163d3bccabde0d5fdfd8c00ae2436dc0306283"
+    },
+    "firmware/recovery/110REV03-2026-10-28/sources/vendor-current.rar": {
+      "bytes": 24232,
+      "sha256": "0ca8bde646954e8dc4590840de146464bb79799b2b484b864b1c6646c3314827"
+    },
+    "firmware/vendor/110REV03/AiGeneric_Driver.spin": {
+      "bytes": 20628,
+      "sha256": "1b25b38377ce4d776e8b3339dafe406cab73e8b2f8150eef4a170e2bf56beda1"
+    },
+    "firmware/vendor/110REV03/AiGeneric_Driver_002.spin": {
+      "bytes": 11669,
+      "sha256": "0a338eb5848b18ac4d31a2a0aca13f9700ca502e6568749fd98e6636d3d5ac56"
+    },
+    "firmware/vendor/110REV03/AiGeneric_Driver_TV.spin": {
+      "bytes": 26323,
+      "sha256": "dedf9b28125ab6cd76c590b1e18cf0fac3b3fe2d74ab9e69c4ab7fcdf9eda1d9"
+    },
+    "firmware/vendor/110REV03/Font_Atari.spin": {
+      "bytes": 96550,
+      "sha256": "e6dc0713e308ea81024c638cd72a80c1518e7f3e923e178d147bf0c3fc62b8db"
+    },
+    "firmware/vendor/110REV03/FullDuplex.spin": {
+      "bytes": 23654,
+      "sha256": "4eabf5ef26131213689e5875505b0f4eb0a4b2b9293bcb4aacced1b0db9716fa"
+    },
+    "firmware/vendor/110REV03/Keyboard.spin": {
+      "bytes": 26058,
+      "sha256": "e8ced09297b67e055e268703fd71c0c2bcb3262d946d0afd09e23b0a715c1b6e"
+    },
+    "firmware/vendor/110REV03/Serial_IO.spin": {
+      "bytes": 3402,
+      "sha256": "f411bbff8db15a811502161bea679e540dd34ff613f3f4391f7ef136ba9c458c"
+    },
+    "firmware/vendor/110REV03/_README_.txt": {
+      "bytes": 1792,
+      "sha256": "0ac01c969b391b2a15dc5a45df9a54cb2893481ec83dff0c0102c603fd772e77"
+    },
+    "firmware/vendor/110REV03/provenance.json": {
+      "bytes": 1681,
+      "sha256": "ac53a3e4796cc2b0b8457395e72e2ca8eff3895d7581971fde0740d0f78fe8dd"
+    },
+    "firmware/vendor/110REV03/replica 110REV03.spin": {
+      "bytes": 9186,
+      "sha256": "4cd279aee4ceb4f87c1f47c4ecd32c84999a65cdff72c5ecb62b240ff9200209"
+    },
+    "tools/replica_recovery.py": {
+      "bytes": 8193,
+      "sha256": "b079b495209021f6f1e3e98f479bc0d1a2754185559351a52bcf7d3cf05a2358"
+    }
+  }
+}

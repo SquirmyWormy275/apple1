@@ -27,8 +27,9 @@ the later user-accepted route: acceptable basic power, a compatible recovery
 package and programming arrangement, the **original EEPROM physically preserved**,
 then temporary RAM and/or a controlled **spare-EEPROM** comparison. Installed-image
 readback and a complete reset/scope diagnosis are not prerequisites for that
-route. It does not authorize overwriting the original. The verified compiled
-package and physical acceptance remain missing. See the
+route. It does not authorize overwriting the original. The [compiled recovery package](../firmware/recovery/110REV03-2026-10-28/README.md)
+now exists with pinned tools, reproducible images and checksums. Physical
+compatibility, live loading and acceptance remain pending. See the
 [updated recovery ledger](recovery-evidence-ledger.md).
 
 ### Earlier persistent-write gate

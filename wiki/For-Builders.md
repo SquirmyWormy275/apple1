@@ -31,7 +31,10 @@ The Replica serial fault remains unresolved. Start with the
 and [repair issue #17](https://github.com/SquirmyWormy275/apple1/issues/17).
 The [troubleshooting record](../docs/troubleshooting.md) preserves the measured
 observations. Basic power checks and a preserved-original/spare-EEPROM recovery
-route precede a firm stopping point for vendor repair or replacement. Software tests and preparation documents do
+route precede a firm stopping point for vendor repair or replacement. The
+[recovery package](../firmware/recovery/110REV03-2026-10-28/README.md) is built
+off-device, with images, laptop tools, hashes and loading/rollback instructions;
+physical recovery remains pending. Software tests and preparation documents do
 not qualify the physical adapter. Read the
 [physical boundary](../docs/neural1/architecture/physical-boundary.md) before
 planning any adapter or hardware procedure.

@@ -13,8 +13,9 @@ strategy: basic power/selector checks, compatible firmware recovery using a
 spare EEPROM while preserving the original, at most one justified further
 substitution, then vendor repair/replacement. No oscilloscope purchase or
 complete root-cause diagnosis is required before that controlled repair route.
-Prepare the actual compatible image/uploader/rollback package first; it has not
-been verified as built. Finite acceptance is three cold boots, five normal serial
+The [recovery software package](../firmware/recovery/110REV03-2026-10-28/README.md)
+is now built and verified off-device, with exact loading/rollback instructions;
+current physical compatibility and execution remain pending. Finite acceptance is three cold boots, five normal serial
 connections, keyboard/both serial directions and a short CFFA1 operation.
 
 [PR #6](https://github.com/SquirmyWormy275/apple1/pull/6) preserves real runner and

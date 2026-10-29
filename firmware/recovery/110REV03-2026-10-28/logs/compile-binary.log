@@ -1,0 +1,13 @@
+Propeller Spin/PASM Compiler 'OpenSpin' (c)2012-2018 Parallax Inc. DBA Parallax Semiconductor.
+Version 1.00.81 Compiled on Oct 28 2026 00:00:00
+Compiling...
+replica 110REV03.spin
+|-Serial_IO.spin
+  |-fullduplex.spin
+|-keyboard.spin
+|-aigeneric_driver.spin
+  |-AiGeneric_Driver_002.spin
+    |-AiGeneric_Driver_TV.spin
+    |-Font_ATARI.spin
+Done.
+Program size is 6992 bytes

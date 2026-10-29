@@ -1,0 +1,130 @@
+{
+  "date": "2026-10-28",
+  "source_base_commit": "18efa6d4ab719d4f4d8fe08961c2c58ac880f7ee",
+  "candidate_source_unmodified": true,
+  "case_aliases": {
+    "fullduplex.spin": "FullDuplex.spin",
+    "keyboard.spin": "Keyboard.spin",
+    "aigeneric_driver.spin": "AiGeneric_Driver.spin",
+    "Font_ATARI.spin": "Font_Atari.spin"
+  },
+  "compiler": {
+    "url": "https://github.com/parallaxinc/OpenSpin",
+    "commit": "d1991aa821179209cbd21396dfd1d88f226eb99d",
+    "version": "1.00.81"
+  },
+  "loader": {
+    "url": "https://github.com/parallaxinc/PropLoader",
+    "commit": "a1b4cd87cedfb1141d9be888335bca130b486425",
+    "version": "v1.0-37-15-ga1b4cd8 (2026-10-28 staged recovery)"
+  },
+  "source_date_epoch": 1793145600,
+  "host": {
+    "os": "Linux",
+    "architecture": "x86_64",
+    "libc": [
+      "glibc",
+      "2.44"
+    ],
+    "gcc": "gcc (GCC) 16.2.1 20260810",
+    "clang": "clang version 23.1.3"
+  },
+  "rebuilds": [
+    {
+      "firmware_byte_identical": true,
+      "device_access": false,
+      "host_architecture": "x86_64",
+      "cc": "gcc",
+      "cxx": "g++",
+      "source_date_epoch": "1793145600",
+      "program_bytes": 6992,
+      "eeprom_bytes": 32768,
+      "clock_hz": 80000000,
+      "clock_mode": 111,
+      "checksum_byte": 31,
+      "pbase": 16,
+      "vbase": 6992,
+      "dbase": 12756,
+      "pcurr": 96,
+      "dcurr": 12760,
+      "image_format_valid": true,
+      "hardware_qualified": false
+    },
+    {
+      "firmware_byte_identical": true,
+      "device_access": false,
+      "host_architecture": "x86_64",
+      "cc": "clang",
+      "cxx": "clang++",
+      "source_date_epoch": "1793145600",
+      "program_bytes": 6992,
+      "eeprom_bytes": 32768,
+      "clock_hz": 80000000,
+      "clock_mode": 111,
+      "checksum_byte": 31,
+      "pbase": 16,
+      "vbase": 6992,
+      "dbase": 12756,
+      "pcurr": 96,
+      "dcurr": 12760,
+      "image_format_valid": true,
+      "hardware_qualified": false
+    }
+  ],
+  "loader_off_device_tests": [
+    {
+      "case": "ram",
+      "exit_code": 1,
+      "image_validation_passed_before_expected_missing_port_failure": true
+    },
+    {
+      "case": "spare-eeprom",
+      "exit_code": 1,
+      "image_validation_passed_before_expected_missing_port_failure": true
+    },
+    {
+      "case": "eeprom-format-only",
+      "exit_code": 1,
+      "image_validation_passed_before_expected_missing_port_failure": true
+    },
+    {
+      "case": "corrupt-image",
+      "exit_code": 1,
+      "rejected_before_port_open": true
+    }
+  ],
+  "live_port_opened": false,
+  "hardware_qualified": false,
+  "board_compatibility": "Vendor Replica 1 Plus 110REV03 source, visible historic Revision 0/P8X32A-D40; present breakout/reset/power compatibility pending",
+  "tool_runtime_symbols": {
+    "openspin": [
+      "CXXABI_1.3",
+      "CXXABI_1.3.8",
+      "CXXABI_1.3.9",
+      "GLIBCXX_3.4",
+      "GLIBC_2.14",
+      "GLIBC_2.2.5",
+      "GLIBC_2.3",
+      "GLIBC_2.34",
+      "GLIBC_2.38",
+      "GLIBC_2.4",
+      "GLIBC_2.43"
+    ],
+    "proploader": [
+      "CXXABI_1.3",
+      "CXXABI_1.3.9",
+      "GLIBCXX_3.4",
+      "GLIBCXX_3.4.15",
+      "GLIBCXX_3.4.29",
+      "GLIBCXX_3.4.30",
+      "GLIBCXX_3.4.32",
+      "GLIBC_2.14",
+      "GLIBC_2.2.5",
+      "GLIBC_2.3",
+      "GLIBC_2.34",
+      "GLIBC_2.38",
+      "GLIBC_2.4",
+      "GLIBC_2.42"
+    ]
+  }
+}

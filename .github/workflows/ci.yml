@@ -13,10 +13,14 @@ jobs:
         with:
           python-version: "3.12"
       - run: python -m pip install -e '.[dev]'
-      - run: ruff check neural1 tools/neural1_validate.py tests/test_neural1*.py tests/test_storage.py tools/textbook.py tools/textbook_support.py tools/textbook_native.py tools/apple1_basic.py tools/cffa1_model.py tools/prodos.py tools/card_book.py tools/card_image.py tools/card_preview.py tools/field_library_review.py tools/export_cf_card_sources.py tests/test_cf_card_sources.py tests/test_pre_hardware.py tools/build_cf_library.py tools/cf_card_audit.py tests/test_cf_library_reader.py tests/test_cf_card_audit.py docs/textbook/examples
+      - run: ruff check neural1 tools/neural1_validate.py tests/test_neural1*.py tests/test_storage.py tools/textbook.py tools/textbook_support.py tools/textbook_native.py tools/apple1_basic.py tools/cffa1_model.py tools/prodos.py tools/card_book.py tools/card_image.py tools/card_preview.py tools/field_library_review.py tools/export_cf_card_sources.py tests/test_cf_card_sources.py tests/test_pre_hardware.py tools/build_cf_library.py tools/cf_card_audit.py tests/test_cf_library_reader.py tests/test_cf_card_audit.py tools/replica_recovery.py tests/test_replica_recovery.py docs/textbook/examples
       - run: mypy neural1
       - run: python -m pytest -q
       - run: python tools/neural1_validate.py .
+      - name: Verify staged recovery package without hardware access
+        run: python tools/replica_recovery.py verify
+      - name: Rebuild pinned firmware and tools offline and compare image bytes
+        run: python tools/replica_recovery.py rebuild --out "$RUNNER_TEMP/replica-recovery-rebuild"
       - name: Verify all textbook captures and reproduce their output
         run: python -m tools.textbook verify docs/textbook/captures --rerun
       - run: python -m neural1.demos --out out/neural1-demo
