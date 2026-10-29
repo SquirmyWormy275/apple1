@@ -36,3 +36,5 @@ firmware/recovery/**/bin/** -text
 firmware/recovery/**/sources/* -text
 firmware/recovery/releases/*.zip -text
 firmware/recovery/**/SHA256SUMS text eol=lf
+# Retain upstream CLI help output, including its final blank line.
+firmware/recovery/**/logs/* whitespace=-blank-at-eof
